@@ -78,6 +78,7 @@ export default {
 				} ) );
 
 				this.yearFilters = filters.sort( ( a, b ) => b.orderBy - a.orderBy );
+				this.activeYear = this.yearFilters[this.yearFilters.length - 1].value;
 
 				this.loading = false;
 
