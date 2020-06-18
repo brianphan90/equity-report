@@ -42,7 +42,7 @@ html {
 	h3,
 	h4,
 	h5 {
-		font-family: 'Roboto', serif;
+		font-family: 'Roboto', sans-serif;
 		color: $color-text;
 	}
 
@@ -90,7 +90,6 @@ html {
 
 	p {
 		font-size: 16px;
-		line-height: 150%;
 	}
 
 	a {
@@ -227,7 +226,7 @@ a {
 
 .bubble {
 	color: white;
-	padding: 3px;
+	padding: 5px;
 	margin-right: 5px;
 	background: $color-primary;
 	border-radius: 3px;

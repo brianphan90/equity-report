@@ -18,7 +18,8 @@ const path = ( a, queryOptions = null, apiUrl = env.API_URL ) => {
 };
 
 const defaultHeaders = () => new Headers( {
-	'Content-Type' : 'application/json',
+	'Access-Control-Allow-Credentials' : true,
+	'Content-Type'                     : 'application/json',
 } );
 
 /**
@@ -47,7 +48,7 @@ const authenticate = method => ( ...args ) => { // eslint-disable-line
 // fetch
 const fetchPromise = ( route, options ) => new Promise( ( resolve, reject ) => {
 	// add credentials to request
-	options.credentials = 'include'; // eslint-disable-line
+	// options.credentials = 'include'; // eslint-disable-line
 
 	try {
 		fetch( route, options )

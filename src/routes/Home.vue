@@ -38,7 +38,6 @@ export default {
 		flex-flow: row wrap;
 
 		.view-container {
-			padding: 0 25px;
 			flex: 1 1 0;
 
 			.filters {

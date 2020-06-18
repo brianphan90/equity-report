@@ -170,21 +170,6 @@ export default {
 
 		} );
 
-		// set up listener for redrawing charts
-		// on page resize
-		let viewPortResizeTimeout = null;
-		window.addEventListener( 'resize', ( e ) => {
-
-			if ( viewPortResizeTimeout != null ) {
-				window.clearTimeout( viewPortResizeTimeout );
-			}
-
-			viewPortResizeTimeout = window.setTimeout( () => {
-				this.call( 'viewport-resize' );
-			}, 200 );
-
-		} );
-
 	},
 
 	computed : {

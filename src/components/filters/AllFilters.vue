@@ -55,7 +55,7 @@ export default {
 
 		setFilter( sectionIndex, groupIndex, filterIndex ) {
 
-			this.$emit( 'setActiveFilter', [sectionIndex, groupIndex, filterIndex] );
+			this.$emit( 'set-active-filter', [sectionIndex, groupIndex, filterIndex] );
 
 		},
 
@@ -99,6 +99,7 @@ export default {
 					margin-right: 5px;
 					margin-bottom: 5px;
 					flex: 1 0 25px;
+					cursor: pointer;
 
 					&.two {
 						flex: 2 0 50px;

@@ -1,7 +1,7 @@
 <template lang="pug">
 .top-bar(:class='mode')
 	.logo
-		img(src='/static/img/pmic-logo.png')
+		img(src='/img/musd-logo.png')
 		.logo-text
 			p Madera Unified
 			h1 SPSA Dashboard
@@ -254,6 +254,7 @@ export default {
 			p {
 				color: white;
 				white-space: nowrap;
+				text-align: left;
 			}
 
 			h1 {

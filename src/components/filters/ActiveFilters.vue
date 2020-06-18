@@ -22,7 +22,7 @@ export default {
 	props : {
 
 		activeFilters : {
-			type : [Array, Object],
+			type : Array,
 		},
 
 	},
