@@ -1,0 +1,42 @@
+$color-primary             : #00A8FF;
+$color-primary-lightened   : #80d4ff;
+$color-secondary           : #262626;
+$color-secondary-lightened : #313131;
+
+$background-primary          : #f9f9f9;
+$background-primary-darkened : #efefef;
+$background-secondary        : #4a4a4a;
+$background-alternative      : #cccccc;
+
+$color-text  : #888888;
+$input-color : #888888;
+
+$status-red           : #F26346;
+$status-orange        : orange;
+$status-glrYellow     : #cfd222;
+$status-yellow        : #D2BB15;
+$status-green         : #7CBF18;
+$status-lightGreen    : #ade35d;
+$status-gold          : #fffaa9;
+$status-purple        : #7526c0;
+
+$error : crimson;
+
+$boxShadow          : 0px 1px 3px rgba(0,0,0,0.08), 0px 0px 24px rgba(0,0,0,0.06);
+$defaultBoxShadow   : 0px 2px 4px rgba(0, 0, 0, 0.25);
+$secondaryBoxShadow : 0px 1px 2px rgba(0, 0, 0, 0.25);
+
+// Small mobile devices (small phones, 340 and down)
+$smallMobile : 340px;
+
+// Small devices (landscape phones, 576px and up)
+$mobile : 575px;
+
+// Medium devices (tablets, 770px and up)
+$tablet : 769px;
+
+// Large devices (desktops, 992px and up)
+$desktop : 991px;
+
+// Extra large devices (large desktops, 1700px and up)
+$largeDesktop : 1700px;

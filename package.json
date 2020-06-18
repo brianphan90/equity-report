@@ -10,8 +10,15 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@jetstech/eslint-config-jetstech": "0.0.5",
+    "cookies": "^0.8.0",
     "core-js": "^3.6.5",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint-plugin-html": "^6.0.2",
+    "pug": "^3.0.0",
+    "pug-plain-loader": "^1.0.0",
     "register-service-worker": "^1.7.1",
+    "swiper": "^5.4.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
@@ -65,5 +72,10 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
