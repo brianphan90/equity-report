@@ -273,7 +273,6 @@ export default {
 	.account-wrapper {
 		margin-right: 25px;
 		position: relative;
-		min-width: 200px;
 
 		&:not(.open) {
 
@@ -306,34 +305,6 @@ export default {
 			position: relative;
 			z-index: 10;
 			padding-left: 30px;
-
-			&::after {
-				content: " ";
-				transition: all 0.2s ease;
-				height: 8px;
-				width: 8px;
-				border: 1px solid white;
-				border-top: 0;
-				border-left: 0;
-				transform: translate(-50%, calc(-50% - 2px)) rotate(-135deg);
-				position: absolute;
-				top: 50%;
-				left: 15px;
-			}
-
-			&::before {
-				content: " ";
-				transition: all 0.2s ease;
-				height: 26px;
-				width: 26px;
-				border-radius: 50%;
-				position: absolute;
-				background-color: white;
-				opacity: 0.5;
-				transform: translate(-50%, -50%);
-				top: 42%;
-				left: 15px;
-			}
 
 			.name-display {
 
@@ -376,6 +347,7 @@ export default {
 		.control-panel {
 			position: absolute;
 			width: calc(100% + 20px);
+			min-width: 200px;
 			top: -10px;
 			left: 50%;
 			transform: translateX(-50%);
@@ -384,9 +356,36 @@ export default {
 			padding-top: 50px;
 			background-color: $background-secondary;
 			z-index: 1;
-			box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.25),
-						0px 0px 0px 1px rgba(0,0,0,0.08);
+			box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.25), 0px 0px 0px 1px rgba(0,0,0,0.08);
 			transition: all 0.2s ease;
+
+			&::after {
+				content: " ";
+				transition: all 0.2s ease;
+				height: 8px;
+				width: 8px;
+				border: 1px solid white;
+				border-top: 0;
+				border-left: 0;
+				transform: translate(-50%, -50%) rotate(-135deg);
+				position: absolute;
+				top: calc( ( 26px / 2 ) + 5px );
+				left: calc( ( 26px / 2 ) + 10px );
+			}
+
+			&::before {
+				content: " ";
+				transition: all 0.2s ease;
+				height: 26px;
+				width: 26px;
+				border-radius: 50%;
+				position: absolute;
+				background-color: white;
+				opacity: 0.5;
+				transform: translate(0%, 0%);
+				top: 5px;
+				left: 10px;
+			}
 
 			.select-site {
 				margin-top: 10px;
@@ -464,6 +463,21 @@ export default {
 
 			&:active {
 				opacity: 0.8;
+			}
+		}
+	}
+}
+
+@media (max-width: $mobile) {
+
+	.top-bar {
+
+		.account-wrapper {
+
+			.control-panel {
+				right: -10px;
+				left: unset;
+				transform: none;
 			}
 		}
 	}

@@ -8,7 +8,7 @@
 			.arrow.forward
 
 		.active-filter-container(
-			v-for='( filter, key, index ) in activeFilters'
+			v-for='( filter, index ) in activeFilters'
 			v-if='filter.filters.length > 0'
 			:slot='`slide-${index + 1}`'
 		)
@@ -35,7 +35,7 @@ export default {
 			// need to come up with a way to get the number of slides
 
 			return {
-				numberOfSlides : this.activeFilters.filters.length,
+				numberOfSlides : this.activeFilters.length,
 
 				config : {
 					// auto initialize this swiper
@@ -54,7 +54,7 @@ export default {
 
 					navigation : {
 						prevEl : '.arrow.prev',
-						nextEl : '.arrow.next',
+						nextEl : '.arrow.forward',
 					}
 				}
 			};
@@ -91,6 +91,39 @@ export default {
 		.arrows-container {
 			position: absolute;
 			width: 100%;
+			height: 100%;
+
+			.arrow {
+				height: 20px;
+				width: 20px;
+				position: absolute;
+				top: 50%;
+				left: 0;
+				z-index: 2;
+				transform: translateY( -50% );
+
+				&::before, &::after {
+					height: 3px;
+					width: 10px;
+				}
+
+				&.forward {
+					right: 0;
+					left: unset;
+				}
+			}
+		}
+
+		.swiper-wrapper {
+			padding: 0 20px;
+
+			.swiper-slide {
+				width: unset;
+			}
+		}
+
+		.active-filter-container {
+			width: max-content;
 		}
 	}
 }
