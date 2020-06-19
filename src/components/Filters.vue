@@ -24,7 +24,8 @@
 					span.icon-close
 
 				active-filters(
-					:active-filters='displayedActiveFilters'
+					:active-filters='activeFilters'
+					@remove-filter='activateFilter'
 				)
 
 		.year-container
@@ -140,7 +141,15 @@ export default {
 
 		displayedActiveFilters() {
 
-			return this.activeFilters.filter( a => !a.isDefaultVal );
+			return this.activeFilters.reduce( ( displayedFilters, filter ) => {
+
+				if ( filter.filters.length > 0 ) {
+					displayedFilters.push( filter );
+				}
+
+				return displayedFilters;
+
+			}, [] );
 
 		},
 
@@ -161,46 +170,62 @@ export default {
 
 		},
 
-		// 'filters' : {
-		// 	immediate : true,
-		// 	deep      : true,
-		// 	handler( val ) {
+		'filters' : {
+			immediate : true,
+			deep      : true,
+			handler( val ) {
 
-		// 		const localFilters = [...val];
+				if ( !val ) {
+					return;
+				}
 
-		// 		console.log( localFilters );
+				this.setActiveFilters();
 
-		// 		if ( !localFilters ) {
-		// 			return;
-		// 		}
-
-		// 		const activeFilters = [];
-
-		// 		localFilters.forEach( ( filterGroup ) => {
-
-		// 			filterGroup.groups.forEach( ( a ) => {
-
-		// 				const activeFilter = a.filters.find( b => b.active );
-		// 				const defaultValue = a.default.value;
-
-		// 				if ( activeFilter.value === defaultValue ) {
-		// 					activeFilter.isDefaultVal = true;
-		// 				}
-
-		// 				activeFilters.push( activeFilter );
-
-		// 			} );
-
-		// 		} );
-
-		// 		this.activeFilters = activeFilters;
-
-		// 	}
-		// }
+			}
+		}
 
 	},
 
 	methods : {
+
+		setActiveFilters() {
+
+			const activeFilters = [];
+
+			this.filters.forEach( ( section, sectionIndex ) => {
+
+				section.groups.forEach( ( group, groupIndex ) => {
+
+					// get all of the active filters for a group so long as they're
+					// not the default value for the group.
+					const localActiveFilters = group.filters.reduce( ( filters, filter ) => {
+
+						if ( filter.active && filter.value !== group.default.value ) {
+							filters.push( filter );
+						}
+
+						return filters;
+
+					}, [] );
+
+					if ( localActiveFilters.length > 0 ) {
+
+						activeFilters.push( {
+							sectionIndex,
+							groupIndex,
+							groupName : group.name,
+							filters   : localActiveFilters,
+						} );
+
+					}
+
+				} );
+
+			} );
+
+			this.activeFilters = activeFilters;
+
+		},
 
 		getFilters() {
 
@@ -344,7 +369,7 @@ export default {
 
 		setActiveYear( year ) {
 			this.activeYear = year;
-		}
+		},
 
 	},
 
@@ -360,12 +385,15 @@ export default {
 .filters {
 	padding: 0 30px;
 
-	.filter-container {
+	> .filter-container {
 		display: flex;
 		flex-flow: row nowrap;
 		align-items: center;
 		justify-content: flex-start;
-		position: relative;
+		//- this positioning is located in Home so that the all
+		//- filters container has a max height of the viewable
+		//- screen and not of the filters top bar
+		//- position: relative;
 		padding: 5px 0;
 
 		&.active {
@@ -396,7 +424,10 @@ export default {
 
 		.all-filters-container {
 			position: absolute;
-			max-width: 80%;
+			width: max-content;
+			max-width: 95%;
+			max-height: 100%;
+			overflow-y: auto;
 			z-index: 5;
 			left: 50%;
 			top: 0;
@@ -412,7 +443,7 @@ export default {
 			.title-container {
 				width: 100%;
 				display: flex;
-				flex-flow: row nowrap;
+				flex-flow: row wrap;
 				align-items: center;
 				justify-content: space-between;
 				padding: 25px;

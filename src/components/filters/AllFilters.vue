@@ -69,11 +69,12 @@ export default {
 
 	.filter-section-container {
 		display: flex;
-		flex-flow: row nowrap;
-		overflow: auto;
+		flex-flow: row wrap;
 
 		.filter-section-wrapper {
-			margin: 0 25px;
+			margin: 0 25px 25px 25px;
+			height: max-content;
+			flex: 1 1 calc( 33% - ( 25px * 2 ) );
 
 			.section-title {
 				font-size: 16px;
@@ -95,25 +96,33 @@ export default {
 					margin-bottom: 5px;
 				}
 
-				.filter {
-					margin-right: 5px;
-					margin-bottom: 5px;
-					flex: 1 0 25px;
-					cursor: pointer;
+				.filter-container {
+					display: flex;
+					flex-flow: row wrap;
+					align-items: center;
+					justify-content: flex-start;
+					margin: 5px 0;
 
-					&.two {
-						flex: 2 0 50px;
-					}
+					.filter {
+						margin-right: 5px;
+						margin-bottom: 5px;
+						flex: 1 0 25px;
+						cursor: pointer;
 
-					&.grey {
-						background: $background-alternative;
-					}
+						&.two {
+							flex: 2 0 50px;
+						}
 
-					p {
-						width: 100%;
-						text-align: center;
-						white-space: pre;
-						font-size: 12px;
+						&.grey {
+							background: $background-alternative;
+						}
+
+						p {
+							width: 100%;
+							text-align: center;
+							white-space: pre;
+							font-size: 12px;
+						}
 					}
 				}
 			}

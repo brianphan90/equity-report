@@ -8,11 +8,12 @@
 			.arrow.forward
 
 		.active-filter-container(
-			v-for='( filter, index ) in activeFilters'
-			:slot='`slot-${index}`'
+			v-for='( filter, key, index ) in activeFilters'
+			v-if='filter.filters.length > 0'
+			:slot='`slide-${index + 1}`'
 		)
-			p.active-filter.bubble {{ filter }}
-				span.icon-close
+			p.active-filter.bubble {{ filter.groupName }}
+				span.icon-close(@click='removeFilter( filter )')
 </template>
 
 <script>
@@ -31,8 +32,10 @@ export default {
 
 		swiperOptions() {
 
+			// need to come up with a way to get the number of slides
+
 			return {
-				numberOfSlides : this.activeFilters.length,
+				numberOfSlides : this.activeFilters.filters.length,
 
 				config : {
 					// auto initialize this swiper
@@ -55,6 +58,18 @@ export default {
 					}
 				}
 			};
+
+		},
+
+	},
+
+	methods : {
+
+		removeFilter( filter ) {
+
+			console.log( filter );
+
+			// this.$emit( 'remove-filter', [sectionIndex, groupIndex, filterIndex] );
 
 		},
 

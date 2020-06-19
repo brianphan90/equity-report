@@ -39,6 +39,10 @@ export default {
 
 		.view-container {
 			flex: 1 1 0;
+			height: 100%;
+			max-height: 100%;
+			overflow-y: auto;
+			position: relative;
 
 			.filters {
 				width: 100%;

@@ -313,6 +313,7 @@ export default {
 	flex-direction: column;
 	transition: all 0.5s ease;
 	z-index: 10;
+	overflow: hidden auto;
 
 	&.day {
 		background-color: $background-primary-darkened;
