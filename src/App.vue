@@ -4,8 +4,23 @@
 </template>
 
 <script>
+import { db } from '@/lib/db';
+
 export default {
 	name : 'app',
+
+	created() {
+
+		console.log( db );
+
+		db.child( 'versionNumber' )
+			.on( 'value', () => {
+
+				localStorage.setItem( 'musd-equity-report:show-change-log', 'false' );
+
+			} );
+
+	},
 
 	computed : {
 
