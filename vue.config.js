@@ -17,7 +17,7 @@ module.exports = {
 		plugins : [
 			new VueAutoRoutingPlugin( {
 				// Path to the directory that contains your page components.
-				pages : 'src/routes',
+				pages : './src/routes',
 
 				// A string that will be added to importing component path (default @/pages/).
 				importPrefix : '@/routes/',

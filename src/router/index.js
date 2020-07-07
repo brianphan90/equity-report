@@ -1,13 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import { generateRoutes } from 'vue-route-generator';
-
-export const routes = generateRoutes( {
-	pages  : './routes',
-	nested : true,
-} );
-
-console.log( routes );
+import routes from './routes';
 
 Vue.use( VueRouter );
 

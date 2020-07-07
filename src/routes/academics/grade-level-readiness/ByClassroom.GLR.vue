@@ -1,4 +1,12 @@
+<route>
+{
+	"name"     : "test",
+	"redirect" : "/test-this-too-fooly"
+}
+</route>
+
 <template lang='pug'>
+.by-classroom-glr
 </template>
 
 <script>

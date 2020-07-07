@@ -5,7 +5,7 @@
 
 <script>
 export default {
-	name : 'student-success-indicator',
+	name : 'student-succeasdflaksdfss-indicator',
 };
 </script>
 
