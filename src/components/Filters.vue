@@ -86,13 +86,13 @@ export default {
 			} )
 			.catch( console.error );
 
-		document.querySelector( '.side-nav' ).addEventListener( 'resize', () => {
+		// document.querySelector( '.side-nav' ).addEventListener( 'resize', () => {
 
-			const $activeFilters = document.querySelector( '.active-filters' );
+		// 	const $activeFilters = document.querySelector( '.active-filters' );
 
-			this.showArrows = ( $activeFilters.clientWidth < $activeFilters.scrollWidth );
+		// 	this.showArrows = ( $activeFilters.clientWidth < $activeFilters.scrollWidth );
 
-		} );
+		// } );
 
 		const stringifiedFilters = this.$store.state.filters;
 		const { activeYear }     = this.$store.state;

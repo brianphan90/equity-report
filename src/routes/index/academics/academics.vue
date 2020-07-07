@@ -1,6 +1,13 @@
+<route>
+{
+	"redirect": "/academics/grade-level-readiness/glr-by-classroom"
+}
+</route>
+
 <template lang="pug">
 	.academics
 		graph-nav(:sections='sections')
+		//- router-view
 </template>
 
 <script>

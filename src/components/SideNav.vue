@@ -16,9 +16,34 @@ aside.side-nav(:class='[mode, { "closed" : navClosed }]')
 </template>
 
 <script>
-import routes from 'vue-auto-routing';
+import routes from '@/router/routes';
 
-console.log( routes );
+const formatNavRoutes = ( routerInfo ) => {
+	console.log( 'I am the league of shadows' );
+	console.log( routerInfo );
+	debugger;
+
+	return [
+		{
+			text   : 'Equity Report',
+			icon   : 'f',
+			open   : false,
+			route  : '/equity-report',
+			subNav : [
+				{
+					text : 'Academics',
+					type : 'link',
+					href : '/academics'
+				},
+				{
+					text : 'Climate and Engagement',
+					type : 'link',
+					href : '/climate'
+				}
+			]
+		}
+	];
+};
 
 export default {
 	name : 'side-nav',
@@ -27,26 +52,7 @@ export default {
 		navClosed : false,
 		nightMode : true,
 
-		nav : [
-			{
-				text   : 'Equity Report',
-				icon   : 'f',
-				open   : false,
-				route  : '/equity-report',
-				subNav : [
-					{
-						text : 'Academics',
-						type : 'link',
-						href : '/academics'
-					},
-					{
-						text : 'Climate and Engagement',
-						type : 'link',
-						href : '/climate'
-					}
-				]
-			}
-		],
+		nav : formatNavRoutes( routes ),
 
 		closeTimeout : {},
 	} ),
@@ -215,6 +221,80 @@ export default {
 	},
 
 };
+// <route>
+// {
+// 	"redirect": "/academics/grade-level-readiness/glr-by-classroom"
+// }
+// </route>
+
+// <template lang="pug">
+// 	.academics
+// 		graph-nav(:sections='sections')
+// 		//- router-view
+// </template>
+
+// <script>
+
+// import GraphNav from '@/components/GraphNav';
+
+// export default {
+// 	name : 'academics',
+
+// 	props : {
+// 	},
+
+// 	data : () => ( {
+// 		sections : [
+// 			{
+// 				title : 'Student Population Census',
+// 				steps : [
+// 					{
+// 						title : 'By Grade Level and Subgroup',
+// 						path  : 'census-gl-subgroup'
+// 					}
+// 				]
+// 			},
+// 			{
+// 				title : 'Grade Level Readiness',
+// 				steps : [
+// 					{ title : 'Overview' },
+// 					{ title : 'By Grade Level and Subgroup' },
+// 					{ title : 'By Classroom' }
+// 				]
+// 			},
+// 			{
+// 				title : 'CAASPP',
+// 				steps : [
+// 					{ title : 'By Grade Level and Subgroup' },
+// 					{ title : 'By Classroom' }
+// 				]
+// 			},
+// 			{
+// 				title : 'ELPAC',
+// 				steps : [
+// 					{ title : 'By Grade Level Subgroup' },
+// 					{ title : 'By Classroom' }
+// 				]
+// 			}
+// 		]
+// 	} ),
+
+// 	created() {
+// 	},
+
+// 	components : {
+// 		GraphNav,
+// 	}
+
+// };
+// </script>
+
+// <style lang="scss">
+// 	.academics {
+// 		width: 100%;
+// 		height: 100%;
+// 	}
+// </style>
 </script>
 
 <style lang="scss">

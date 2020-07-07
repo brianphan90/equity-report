@@ -9,6 +9,10 @@ npm install
 ```
 npm run serve
 ```
+and in another tab
+```
+npm run watch-routes
+```
 
 ### Compiles and minifies for production
 ```

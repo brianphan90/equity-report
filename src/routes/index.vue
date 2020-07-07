@@ -1,9 +1,16 @@
+<route>
+{
+	"path": "/",
+	"name": "main",
+	"redirect": "academics"
+}
+</route>
+
 <template lang="pug">
 .home
 	top-bar
 	.main-content
-		//- ! Just no.
-		//- side-nav
+		side-nav
 		.view-container
 			filters
 			router-view.router-view
