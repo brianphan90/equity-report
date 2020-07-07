@@ -1,3 +1,5 @@
+const VueAutoRoutingPlugin = require( 'vue-auto-routing/lib/webpack-plugin' );
+
 module.exports = {
 	css : {
 		loaderOptions : {
@@ -8,6 +10,23 @@ module.exports = {
 				prependData : '@import "@/assets/scss/variables.scss";'
 			}
 		}
+	},
+
+	configureWebpack : {
+
+		plugins : [
+			new VueAutoRoutingPlugin( {
+				// Path to the directory that contains your page components.
+				pages : 'src/routes',
+
+				// A string that will be added to importing component path (default @/pages/).
+				importPrefix : '@/routes/',
+
+				// let's make it with a nice-a-spicy nested structure
+				nested : true,
+			} )
+		],
+
 	},
 
 	chainWebpack : ( config ) => {

@@ -2,7 +2,8 @@
 .home
 	top-bar
 	.main-content
-		side-nav
+		//- ! Just no.
+		//- side-nav
 		.view-container
 			filters
 			router-view.router-view

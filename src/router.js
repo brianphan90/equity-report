@@ -1,43 +1,34 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import { generateRoutes } from 'vue-route-generator';
+
+export const routes = generateRoutes( {
+	pages  : './routes',
+	nested : true,
+} );
+
+console.log( routes );
 
 Vue.use( VueRouter );
 
-const routes = [
-	{
-		path      : '/',
-		name      : 'home',
-		component : () => import( '@/routes/Home' ),
-		children  : [
-			{
-				path      : 'equity-report',
-				name      : 'Equity Report',
-				component : () => import( '@/routes/EquityReport' ),
-				children  : [
-					{
-						path      : 'academics',
-						component : () => import( '@/routes/Academics' ),
-						children  : [
-							{
-								path      : 'census-gl-subgroup',
-								name      : '',
-								component : () => import( '@/routes/CensusGlSubgroup' ),
-							},
-						]
-					},
-					{
-						path      : 'climate',
-						component : () => import( '@/routes/Climate' ),
-					}
-				]
-			}
-		]
-	},
-	// { // To catch any undefined path and redirect it
-	// 	path     : '*',
-	// 	redirect : '/'
-	// }
-];
+// export const dataViews = [
+// 	{
+// 		path      : '/academics',
+// 		name      : 'academics',
+// 		component : () => import( '@/routes/Main' ),
+// 		redirect  : '', // idk whatever route
+// 		children  : [
+// 			{
+// 				path      : 'student-population-census',
+// 				name      : 'Student Population Census',
+// 				component : () => import( '@/routes/DataView' ),
+// 				children  : [
+
+// 				]
+// 			}
+// 		],
+// 	}
+// ];
 
 const router = new VueRouter( {
 	mode : 'history',

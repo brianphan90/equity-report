@@ -5,6 +5,10 @@
 
 <script>
 import { db } from '@/lib/db';
+import routes from 'vue-auto-routing';
+
+console.log( routes );
+
 
 export default {
 	name : 'app',

@@ -1,11 +1,11 @@
 <template lang="pug">
 	.academics
-		guider(:sections='sections')
+		graph-nav(:sections='sections')
 </template>
 
 <script>
 
-import Guider from '@/components/Guider';
+import GraphNav from '@/components/GraphNav';
 
 export default {
 	name : 'academics',
@@ -53,7 +53,7 @@ export default {
 	},
 
 	components : {
-		Guider,
+		GraphNav,
 	}
 
 };

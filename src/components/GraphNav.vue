@@ -16,7 +16,7 @@
 
 <script>
 export default {
-	name : 'guider',
+	name : 'graph-nav',
 
 	props : {
 		/*

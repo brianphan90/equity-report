@@ -16,6 +16,10 @@ aside.side-nav(:class='[mode, { "closed" : navClosed }]')
 </template>
 
 <script>
+import routes from 'vue-auto-routing';
+
+console.log( routes );
+
 export default {
 	name : 'side-nav',
 
@@ -24,114 +28,6 @@ export default {
 		nightMode : true,
 
 		nav : [
-			{
-				text   : 'Welcome',
-				icon   : 'e',
-				class  : 'active',
-				type   : 'link',
-				href   : '/',
-				subNav : []
-			},
-			{
-				text   : 'Overview',
-				icon   : 'f',
-				type   : 'link',
-				href   : '/overview',
-				subNav : []
-			},
-			{
-				text   : '5x5 Projection',
-				icon   : 'g',
-				route  : '/projections',
-				subNav : [
-					{
-						text : 'Academic Indicator',
-						type : 'link',
-						href : '/academic-indicator'
-					},
-					{
-						text        : 'English Learner Progress Indicator',
-						type        : 'link',
-						href        : '/english-learners',
-						unavailable : true,
-					},
-					{
-						text        : 'Suspension Indicator',
-						type        : 'link',
-						href        : '/suspension-indicator',
-						unavailable : true,
-					},
-					{
-						text        : 'Graduation Indicator',
-						type        : 'link',
-						href        : '/graduation-indicator',
-						unavailable : true,
-					},
-					{
-						text        : 'College/Career Indicator',
-						type        : 'link',
-						href        : '/college-and-career-indicator',
-						unavailable : true,
-					}
-				]
-			},
-			{
-				text   : 'Student Achievement',
-				icon   : 'm',
-				open   : false,
-				route  : '/student-achievement',
-				subNav : [
-					{
-						text        : 'Student Success Indicator',
-						type        : 'link',
-						href        : '/student-success-indicator',
-						unavailable : false,
-					},
-					{
-						text : 'CAASPP',
-						type : 'link',
-						href : '/CAASPP'
-					},
-					{
-						text : 'NWEA',
-						type : 'link',
-						href : '/NWEA'
-					},
-					{
-						text : 'Guided Reading',
-						type : 'link',
-						href : '/guided-reading'
-					},
-					{
-						text : 'Reading Inventory',
-						type : 'link',
-						href : '/reading-inventory'
-					},
-					{
-						text : 'ELPAC',
-						type : 'link',
-						href : '/ELPAC'
-					}
-				]
-			},
-			{
-				text        : 'Operations',
-				icon        : 'd',
-				unavailable : true,
-				subNav      : []
-			},
-			{
-				text        : 'School Climate',
-				icon        : 'i',
-				unavailable : true,
-				subNav      : []
-			},
-			{
-				text        : 'After School Program',
-				icon        : 'k',
-				unavailable : true,
-				subNav      : []
-			},
 			{
 				text   : 'Equity Report',
 				icon   : 'f',
