@@ -10,12 +10,33 @@ const routes = [
 		component : () => import( '@/routes/Home' ),
 		children  : [
 			{
-				path      : '/student-success-indicator',
-				name      : 'student-success-indicator',
-				component : () => import( '@/routes/StudentSuccessIndicator' ),
-			},
-		],
+				path      : 'equity-report',
+				name      : 'Equity Report',
+				component : () => import( '@/routes/EquityReport' ),
+				children  : [
+					{
+						path      : 'academics',
+						component : () => import( '@/routes/Academics' ),
+						children  : [
+							{
+								path      : 'census-gl-subgroup',
+								name      : '',
+								component : () => import( '@/routes/CensusGlSubgroup' ),
+							},
+						]
+					},
+					{
+						path      : 'climate',
+						component : () => import( '@/routes/Climate' ),
+					}
+				]
+			}
+		]
 	},
+	// { // To catch any undefined path and redirect it
+	// 	path     : '*',
+	// 	redirect : '/'
+	// }
 ];
 
 const router = new VueRouter( {

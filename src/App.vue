@@ -10,7 +10,6 @@ export default {
 	name : 'app',
 
 	created() {
-
 		console.log( db );
 
 		db.child( 'versionNumber' )

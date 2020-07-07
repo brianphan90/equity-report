@@ -131,6 +131,24 @@ export default {
 				icon        : 'k',
 				unavailable : true,
 				subNav      : []
+			},
+			{
+				text   : 'Equity Report',
+				icon   : 'f',
+				open   : false,
+				route  : '/equity-report',
+				subNav : [
+					{
+						text : 'Academics',
+						type : 'link',
+						href : '/academics'
+					},
+					{
+						text : 'Climate and Engagement',
+						type : 'link',
+						href : '/climate'
+					}
+				]
 			}
 		],
 
