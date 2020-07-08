@@ -7,12 +7,27 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "update-routes": "node ./src/router/generate.js",
+    "watch-routes": "nodemon --ext vue,js --watch ./src/routes --watch ./src/router/generate.js src/router/generate.js"
   },
   "dependencies": {
+    "@jetstech/eslint-config-jetstech": "0.0.5",
+    "cookies": "^0.8.0",
     "core-js": "^3.6.5",
+    "cz-conventional-changelog": "^3.2.0",
+    "d3": "^5.16.0",
+    "dotenv": "^8.2.0",
+    "eslint-plugin-html": "^6.0.2",
+    "firebase": "^7.15.5",
+    "module": "^1.2.5",
+    "path": "^0.12.7",
+    "pug": "^3.0.0",
+    "pug-plain-loader": "^1.0.0",
     "register-service-worker": "^1.7.1",
+    "swiper": "^5.4.5",
     "vue": "^2.6.11",
+    "vue-route-generator": "^0.5.0",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
   },
@@ -32,8 +47,10 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
     "geckodriver": "^1.19.1",
+    "nodemon": "^2.0.4",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "vue-auto-routing": "^0.5.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
@@ -65,5 +82,10 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }

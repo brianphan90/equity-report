@@ -1,0 +1,266 @@
+@import 'variables';
+
+head {
+	display: none !important;
+}
+
+body,
+html {
+	padding: 0;
+	margin: 0px;
+	font-family: 'Roboto', sans-serif;
+	scroll-behavior: smooth;
+
+	.no-highlight {
+		-webkit-touch-callout: none; /* iOS Safari */
+		-webkit-user-select: none;   /* Chrome/Safari/Opera */
+		-khtml-user-select: none;    /* Konqueror */
+		-moz-user-select: none;      /* Firefox */
+		-ms-user-select: none;       /* Internet Explorer/Edge */
+		user-select: none;           /* Non-prefixed version, currently not supported by any browser */
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	script,
+	script[type="text/x-template"] {
+		display: none;
+	}
+
+	::-webkit-scrollbar {
+		width: 0 !important;
+	}
+
+	::-webkit-scrollbar-thumb {
+		opacity: 0 !important;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5 {
+		font-family: 'Roboto', sans-serif;
+		color: $color-text;
+	}
+
+	h1 {
+		font-size: 36px;
+		font-weight: 600;
+	}
+
+	h2 {
+		font-size: 24px;
+		font-weight: 600;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p {
+		margin: 0;
+		padding: 0;
+
+		&.error {
+			color: $error;
+		}
+	}
+
+	h2 {
+		font-size: 28px;
+		font-weight: 600;
+	}
+
+	h4 {
+		font-size: 14px;
+		font-weight: 500;
+		text-transform: uppercase;
+	}
+
+	h6 {
+		font-size: 16px;
+		font-weight: 400;
+		color: $color-text;
+	}
+
+	p {
+		font-size: 16px;
+	}
+
+	a {
+		text-decoration: none;
+		color: inherit;
+		cursor: pointer;
+
+		&:visited {
+			text-decoration: none;
+		}
+	}
+
+	input,
+	textarea {
+		border: none;
+		outline: none;
+		border-radius: 0;
+		font-size: 18px;
+	}
+
+	.button {
+		padding: 15px 20px;
+		border-radius: 20px;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.icon-close {
+  height: 30px;
+  width: 30px;
+  position: relative;
+	cursor: pointer;
+
+  &::before,
+  &::after {
+    content: ' ';
+    height: 20px;
+    width: 2px;
+    border-radius: 2px;
+    background-color: crimson;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  &::before {
+    transform: translate(-50%,-50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%,-50%) rotate(-45deg);
+  }
+}
+
+.arrow {
+	height: 60px;
+	width: 60px;
+	position: relative;
+	border-radius: 50%;
+	cursor: pointer;
+
+	&.border {
+		border: 3px solid $color-secondary;
+	}
+
+	&.small {
+		height: 18px;
+		width: 18px;
+		background: none !important;
+
+		&::before,
+		&::after {
+			width: 9px;
+			height: 3px;
+			background: $color-text !important;
+		}
+	}
+
+	&::before,
+	&::after {
+		content: ' ';
+		height: 4px;
+		border-radius: 2px;
+		width: 16px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+	}
+
+	&::before {
+		transform: translateY(-50%) rotate(45deg) translate(-50%,50%) ;
+	}
+
+	&::after {
+		transform: translateY(-50%) rotate(-45deg) translate(-50%,-50%) ;
+	}
+
+	&.back {
+		background: $background-primary;
+
+		&::before,
+		&::after {
+			background: $color-primary;
+			left: unset;
+			right: 50%;
+		}
+
+		&::before {
+			transform: translateY(-50%) rotate(45deg) translate(50%,-50%) ;
+		}
+
+		&::after {
+			transform: translateY(-50%) rotate(-45deg) translate(50%,50%) ;
+		}
+	}
+
+	&.forward {
+		background: $color-primary;
+
+		&::before,
+		&::after {
+			background: $background-primary;
+		}
+	}
+}
+
+.bubble {
+	color: white;
+	padding: 5px;
+	margin-right: 5px;
+	background: $color-primary;
+	border-radius: 3px;
+	font-size: 14px;
+	display: flex;
+	flex-flow: row nowrap;
+	align-items: center;
+
+	.icon-close {
+		position: relative;
+		display: inline-block;
+		margin-left: 2px;
+		cursor: pointer;
+		width: 18px;
+		height: 12px;
+		transform: scale( .6, .6 );
+
+		&::before, &::after {
+			background: white;
+		}
+	}
+}
+
+.loading-indicator, .failed-indicator {
+	text-transform: uppercase;
+	letter-spacing: .25em;
+	font-weight: 900;
+}
+
+.loading-indicator {
+	color: $input-color;
+}
+
+.failed-indicator {
+	color: $error;
+	cursor: pointer;
+}
