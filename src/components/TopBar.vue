@@ -4,7 +4,7 @@
 		img(src='/img/musd-logo.png')
 		.logo-text
 			p Madera Unified
-			h1 SPSA Dashboard
+			h1 Equity Report Dashboard
 	.account-wrapper(v-bind:class='{ open: controlPanelOpen }' @mouseenter='controlPanelOpen = !controlPanelOpen' @mouseleave='controlPanelOpen = !controlPanelOpen')
 		.account
 			.name-display
@@ -165,7 +165,7 @@ export default {
 .top-bar {
 	background-color: $color-secondary-lightened;
 	box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
-	z-index: 2;
+	z-index: 11;
 	transition: all 0.5s ease;
 	display: flex;
 	align-items: center;

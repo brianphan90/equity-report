@@ -1,94 +1,92 @@
 <template lang="pug">
-aside.side-nav(:class='[mode, { "closed" : navClosed }]')
+aside.side-nav(:class='[viewMode, navState]')
 	.nav-menu
-		.menu-item(v-for='( item, navIndex ) in nav' @mouseleave='closeSubMenuIfNecessary( item, navIndex )' v-bind:class='{ open : item.open, "sub-nav" : item.subNav.length, unavailable: item.unavailable }' v-bind:title='item.unavailable ? "Coming Soon" : ""')
-			.item(:class='{ active : isActiveNavItem( item ) }' @click='selectMenuItem( item, navIndex )' v-if='item.type != "link"')
-				.icons {{ item.icon }}
-				p {{ item.text }}
-			a.item(:class='{ active : isActiveNavItem( item ) }' @click='selectMenuItem( item )' v-if='item.type == "link"' v-bind:href='item.href')
-				.icons {{ item.icon }}
-				p {{ item.text }}
-			.sub-menu
-				a.sub-item(v-for='( subItem, i ) in item.subNav' v-bind:href='getHref( navIndex, i )' v-bind:class='{ active : isActiveSubNav( subItem ), unavailable: subItem.unavailable }') {{ subItem.text }}
+		.menu-item(
+			v-for='( item  ) in nav'
+			:class='{ "sub-nav" : item.children.length, open : open[item.path], closed : !open[item.path] }'
+		)
+			.item(
+				@click='selectMenuItem( item )'
+				v-if='item.type != "link"'
+			)
+				h1 {{ item.title }}
+				p.sub-text(v-if='open[item.path]') Click to Minimize
+				p.sub-text(v-else) Click to Expand
+
+			nav-items.sub-menu(:items='item.children')
+
 	.bottom-bar
-		.toggle(@click='navClosed = !navClosed')
-		.night-day.no-select(v-bind:class='{ night: nightMode, day : !nightMode }' @click='nightMode = !nightMode')
+		.toggle(@click='toggleNavState')
+		.night-day.no-select(:class='viewMode' @click='toggleViewMode')
 </template>
 
 <script>
 import routes from '@/router/routes';
 
-const formatNavRoutes = ( routerInfo ) => {
-	console.log( 'I am the league of shadows' );
+const formatNavRoutes = ( routerInfo, basePath ) => {
 	console.log( routerInfo );
-	debugger;
 
-	return [
-		{
-			text   : 'Equity Report',
-			icon   : 'f',
-			open   : false,
-			route  : '/equity-report',
-			subNav : [
-				{
-					text : 'Academics',
-					type : 'link',
-					href : '/academics'
-				},
-				{
-					text : 'Climate and Engagement',
-					type : 'link',
-					href : '/climate'
-				}
-			]
+	return routerInfo.map( ( info ) => {
+		const { path : pathProp } = info;
+		const path                = basePath ? `${basePath}/${pathProp}` : pathProp;
+		const item                = {
+			path
+		};
+
+		if ( info.meta ) {
+			const metaKeys = Object.keys( info.meta.navOptions );
+			metaKeys.forEach( ( key ) => {
+				item[key] = info.meta.navOptions[key];
+			} );
 		}
-	];
+
+		if ( info.children ) {
+			item.children = formatNavRoutes( info.children, path );
+		}
+
+		return item;
+	} );
 };
 
 export default {
 	name : 'side-nav',
 
 	data : () => ( {
-		navClosed : false,
-		nightMode : true,
+		navState : 'open',
+		viewMode : 'night',
 
-		nav : formatNavRoutes( routes ),
+		nav  : formatNavRoutes( routes[0].children ), // academics, climate-and-engagement
+		open : routes[0].children.reduce( ( obj, item ) => {
+			const added = {};
+			added[item.path] = false;
+
+			return {
+				...obj,
+				...added,
+			};
+		}, {} ),
 
 		closeTimeout : {},
 	} ),
 
 	created() {
 
-		const { user } = this.$store.state;
+		const navItemsState = localStorage.getItem( 'musd-equity-report:nav-items-state' );
+		const navState      = localStorage.getItem( 'musd-equity-report:nav-state' );
+		const viewMode      = localStorage.getItem( 'musd-equity-report:view-mode' );
 
-		const viewMode      = user.mode;
-		const { navClosed } = user;
+		if ( navState ) {
+			this.navState = navState;
+		}
 
-		this.navClosed = navClosed;
-		this.nightMode = viewMode === 'night';
+		if ( viewMode ) {
+			console.log( `view mode: ${viewMode} (typeof ${typeof viewMode})` );
+			this.viewMode = viewMode;
+		}
 
-		const { nav }  = this;
-		const navState = user.navItemState || [];
-
-		nav.forEach( ( item, i ) => {
-
-			const itemOpen = ( () => {
-				const state = navState[i];
-
-				if ( !state || this.navClosed ) {
-					return false;
-				}
-
-				return state.open;
-			} )();
-
-			// we only need to set this property
-			// if there are items in the submenu
-			if ( item.subNav.length ) {
-				this.$set( this.nav[i], 'open', itemOpen );
-			}
-
-		} );
+		if ( navItemsState ) {
+			this.open = JSON.parse( navItemsState );
+		}
 
 	},
 
@@ -96,10 +94,6 @@ export default {
 
 		user() {
 			return this.$store.state.user;
-		},
-
-		mode() {
-			return this.user.mode;
 		},
 
 		pagePath() {
@@ -110,191 +104,70 @@ export default {
 
 	watch : {
 
-		nightMode( nightMode ) {
-
-			if ( nightMode ) {
-				this.$store.dispatch( 'setMode', 'night' );
-
-				return;
+		open : {
+			deep : true,
+			handler() {
+				localStorage.setItem( 'musd-equity-report:nav-items-state', JSON.stringify( this.open ) );
 			}
-
-			this.$store.dispatch( 'setMode', 'day' );
-
 		},
 
-		navClosed( closed ) {
+		navState() {
+			localStorage.setItem( 'musd-equity-report:nav-state', this.navState );
+		},
 
-			this.$store.dispatch( 'setNavClosed', closed );
-
-			this.nav.forEach( ( item ) => {
-				item.open = false; // eslint-disable-line
-			} );
-
+		viewMode( viewMode ) {
+			localStorage.setItem( 'musd-equity-report:view-mode', this.viewMode );
+			this.$store.dispatch( 'setMode', viewMode );
 		}
 
 	},
 
 	methods : {
 
-		selectMenuItem( item, itemIndex ) {
+		selectMenuItem( item ) {
 
-			if ( item.subNav.length ) {
-				item.open = !item.open; // eslint-disable-line
-			}
+			if ( this.open[item.path] ) {
+				this.open[item.path] = false;
 
-			this.nav.forEach( ( navItem, i ) => {
-
-				if ( this.navClosed && i !== itemIndex ) {
-					navItem.open = false; // eslint-disable-line
-				}
-
-			} );
-
-			this.updateLocalStorageRecord();
-
-		},
-
-		closeSubMenuIfNecessary( item ) {
-
-			if ( !item.subNav.length || !this.navClosed ) {
 				return;
 			}
 
-			item.open = false; // eslint-disable-line
-
-			this.updateLocalStorageRecord();
-
-		},
-
-		updateLocalStorageRecord() {
-
-			const navItems     = this.nav;
-			const navItemState = navItems.map( ( item ) => {
-
-				let open = false;
-
-				if ( item.hasOwnProperty( 'open' ) ) {
-					open = item.open; // eslint-disable-line
-				}
-
-				return { open };
+			const menuItemKeys = Object.keys( this.open );
+			menuItemKeys.forEach( ( key ) => {
+				this.open[key] = false;
 			} );
 
-			this.$store.dispatch( 'setNavItemState', JSON.stringify( navItemState ) );
+			this.open[item.path] = true;
 
 		},
 
-		getHref( navIndex, subNavIndex ) {
+		toggleNavState() {
+			if ( this.navState === 'open' ) {
+				this.navState = 'closed';
 
-			const navItems = this.nav;
-			const item     = navItems[navIndex];
-			const subItem  = item.subNav[subNavIndex];
-			const route    = item.hasOwnProperty( 'route' ) ? item.route : '';
-			const subRoute = subItem.hasOwnProperty( 'href' ) ? subItem.href : '';
-
-			if ( subItem.unavailable ) {
-				return '';
+				return;
 			}
 
-			return route + subRoute;
-
+			this.navState = 'open';
 		},
 
-		isActiveNavItem( item ) {
+		toggleViewMode() {
+			if ( this.viewMode === 'day' ) {
+				this.viewMode = 'night';
 
-			const { path }   = this.$route;
-			const pathPieces = path.split( '/' );
+				return;
+			}
 
-			return item.href === path || item.route === `/${pathPieces[1]}`;
-
-		},
-
-		isActiveSubNav( item ) {
-
-			const { path }   = this.$route;
-			const pathPieces = path.split( '/' );
-
-			return item.href === `/${pathPieces.pop()}`;
-
+			this.viewMode = 'day';
 		},
 
 	},
 
+	components : {
+		NavItems : () => import( '@/components/NavItems' ),
+	}
+
 };
-// <route>
-// {
-// 	"redirect": "/academics/grade-level-readiness/glr-by-classroom"
-// }
-// </route>
-
-// <template lang="pug">
-// 	.academics
-// 		graph-nav(:sections='sections')
-// 		//- router-view
-// </template>
-
-// <script>
-
-// import GraphNav from '@/components/GraphNav';
-
-// export default {
-// 	name : 'academics',
-
-// 	props : {
-// 	},
-
-// 	data : () => ( {
-// 		sections : [
-// 			{
-// 				title : 'Student Population Census',
-// 				steps : [
-// 					{
-// 						title : 'By Grade Level and Subgroup',
-// 						path  : 'census-gl-subgroup'
-// 					}
-// 				]
-// 			},
-// 			{
-// 				title : 'Grade Level Readiness',
-// 				steps : [
-// 					{ title : 'Overview' },
-// 					{ title : 'By Grade Level and Subgroup' },
-// 					{ title : 'By Classroom' }
-// 				]
-// 			},
-// 			{
-// 				title : 'CAASPP',
-// 				steps : [
-// 					{ title : 'By Grade Level and Subgroup' },
-// 					{ title : 'By Classroom' }
-// 				]
-// 			},
-// 			{
-// 				title : 'ELPAC',
-// 				steps : [
-// 					{ title : 'By Grade Level Subgroup' },
-// 					{ title : 'By Classroom' }
-// 				]
-// 			}
-// 		]
-// 	} ),
-
-// 	created() {
-// 	},
-
-// 	components : {
-// 		GraphNav,
-// 	}
-
-// };
-// </script>
-
-// <style lang="scss">
-// 	.academics {
-// 		width: 100%;
-// 		height: 100%;
-// 	}
-// </style>
 </script>
 
 <style lang="scss">
@@ -311,6 +184,7 @@ export default {
 
 	&.day {
 		background-color: $background-primary-darkened;
+		background-image: linear-gradient(180deg, rgba(159, 206, 209, 0.26) 0%, #EACDA9 100%);;
 
 		.nav-menu {
 
@@ -320,40 +194,15 @@ export default {
 					background-color: rgba(0,0,0,0.04);
 				}
 
-				&.sub-nav {
-
-					.item::after {
-						border-left-color: $color-secondary;
-					}
-				}
-
-				&.open {
-
-					.sub-menu {
-						background-color: white !important;
-					}
-				}
-
 				.item {
 
 					&.active {
 						background-color: rgba(0,0,0,0.08);
-
-						.icons {
-							color: $color-primary;
-						}
-
-						p {
-							color: $color-primary;
-						}
 					}
 
-					.icons {
-						color: $color-secondary;
-					}
-
+					h1,
 					p {
-						color: $color-secondary;
+						color: $color-neutral-dark;
 					}
 				}
 
@@ -365,17 +214,6 @@ export default {
 						&.active {
 							background-color: rgba(0,0,0,0.08);
 						}
-					}
-
-					.sub-menu {
-						background-color: rgba(150, 150, 150, 0.1);
-					}
-				}
-
-				.sub-menu {
-
-					.sub-item {
-						color: $color-secondary;
 					}
 				}
 			}
@@ -418,40 +256,6 @@ export default {
 
 					.item{
 						border-right-color: transparent !important;
-
-						.icons {
-							color: $color-primary !important;
-						}
-					}
-
-					.sub-menu {
-						position: absolute;
-						left: 55px;
-						background: $color-secondary;
-						max-width: 243px;
-						width: 243px;
-						padding: 15px 15px 15px 0 !important;
-						z-index: 10;
-						max-height: none !important;
-						top: 0px;
-						overflow: visible;
-						border-left: 5px solid $color-primary;
-						pointer-events: all;
-						box-shadow: 0px 1px 2px rgba(0,0,0,0.25);
-
-						&::before {
-							content: ' ';
-							height: 0;
-							width: 0;
-							position: absolute;
-							top: 22px;
-							left: -13px;
-							border: 8px solid $color-primary;
-							border-left: 0;
-							border-top-color: transparent;
-							border-bottom-color: transparent;
-							transform: translateY(-50%);
-						}
 					}
 				}
 
@@ -464,22 +268,10 @@ export default {
 						background-color: transparent !important;
 					}
 
-					&::after {
+					p,
+					.nav-items {
 						opacity: 0;
 					}
-
-					img {
-						margin-left: 10px;
-					}
-
-					p {
-						opacity: 0;
-					}
-				}
-
-				.sub-menu {
-					max-height: 0 !important;
-					padding: 0 !important;
 				}
 			}
 		}
@@ -507,130 +299,72 @@ export default {
 		flex: 1 1 0;
 		overflow: auto;
 		padding-top: 30px;
+		display: flex;
+		flex-direction: column;
 
-		.menu-item {
+		> .menu-item {
 			cursor: pointer;
 			transition: all 0.2s ease;
 			max-width: 100%;
+			flex: 1 1 0;
+			display: flex;
+			flex-direction: column;
 			overflow: hidden;
+
+			> .nav-items {
+				flex: 1 1 0;
+				overflow: auto;
+			}
+
+			&.closed {
+				flex: 0 0 auto;
+
+				.sub-menu {
+					max-height: 0;
+					opacity: 0;
+					padding: 0 30px 0 50px;
+				}
+			}
+
+			.sub-menu {
+				max-height: 1000px;
+				opacity: 1;
+				transition: max-height 0.2s ease, opacity 0.2s ease, padding 0.2s ease;
+			}
 
 			&:hover {
 				background-color: rgba(255,255,255,0.05);
 			}
 
-			&.sub-nav {
-
-				.item {
-					position: relative;
-
-					&::after {
-						content: ' ';
-						position: absolute;
-						right: 10px;
-						border: 5px solid rgba(255,255,255,1);
-						border-right: 0;
-						border-top-color: transparent;
-						border-bottom-color: transparent;
-						top: 50%;
-						transform: translateY(-50%);
-						transition: all 0.2s ease;
-					}
-				}
-			}
-
 			&.open {
 				background-color: rgba(255,255,255,0.08);
-
-				.item {
-
-					&::after {
-						transform: translateY(-50%) rotate(90deg);
-					}
-				}
-
-				.sub-menu {
-					background-color: rgba(255,255,255,0.1);
-					padding: 10px;
-					max-height: none;
-				}
 			}
 
-			.item {
-				padding: 15px 25px 15px 15px;
-				border-right: 5px solid transparent;
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
+			> .item {
 				text-decoration: none;
 				max-width: 300px;
 				transition: max-width 0.5s ease;
 				will-change: max-width;
+				padding: 15px 23px;
 
-				&.vertical-image {
-
-					img {
-						height: 20px;
-					}
-				}
-
-				&.active {
-					border-right-color: $color-primary;
-					background-color: rgba(255,255,255,0.05);
-
-					.icons {
-						color: $color-primary;
-					}
-				}
-
-				.icons {
-					color: white;
-					margin-left: 0;
+				h1,
+				p {
+					color: $background-primary;
+					font-weight: 600;
 					transition: all 0.5s ease;
+					text-align: left;
+				}
+
+				h1 {
+					max-width: 240px;
+					font-size: 24px;
 				}
 
 				p {
-					color: white;
-					font-weight: 100;
-					transition: all 0.5s ease;
-					white-space: nowrap;
-					overflow: hidden;
-					font-size: 14px;
-				}
-			}
-
-			.sub-menu {
-				padding: 0px 45px;
-				max-height: 0;
-				overflow: hidden;
-				display: flex;
-				flex-direction: column;
-				align-items: flex-end;
-
-				.sub-item {
-					font-size: 14px;
-					color: white;
-					font-weight: 100;
-					text-align: right;
-					line-height: 30px;
-					text-decoration: none;
-					width: 100%;
-
-					&.active {
-						padding-right: 15px;
-						position: relative;
-
-						&::after {
-							content: " ";
-							height: 8px;
-							width: 8px;
-							border-radius: 50%;
-							background-color: $color-primary;
-							position: absolute;
-							right: 0px;
-							top: 50%;
-							transform: translateY( -50% );
-						}
-					}
+					margin-top: 5px;
+					font-size: 12px;
+					text-transform: uppercase;
+					letter-spacing: 2px;
 				}
 			}
 		}

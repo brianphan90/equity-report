@@ -1,3 +1,13 @@
+<route>
+{
+	"meta" : {
+		"navOptions" : {
+			"title": "Grade Level Readiness"
+		}
+	}
+}
+</route>
+
 <script>
 import DataView from '@/components/DataView';
 
