@@ -181,3 +181,8 @@ export const GetReport = () => new Promise( ( resolve ) => {
 
 	resolve( sampleReport );
 } );
+
+export const GetGlrByClassroom = filters => fetchPromise( path( 'data/2019-2020/student/glr-by-classroom', { filters } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );

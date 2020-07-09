@@ -23,30 +23,26 @@ aside.side-nav(:class='[viewMode, navState]')
 <script>
 import routes from '@/router/routes';
 
-const formatNavRoutes = ( routerInfo, basePath ) => {
-	console.log( routerInfo );
+const formatNavRoutes = ( routerInfo, basePath ) => routerInfo.map( ( info ) => {
+	const { path : pathProp } = info;
+	const path                = basePath ? `${basePath}/${pathProp}` : pathProp;
+	const item                = {
+		path
+	};
 
-	return routerInfo.map( ( info ) => {
-		const { path : pathProp } = info;
-		const path                = basePath ? `${basePath}/${pathProp}` : pathProp;
-		const item                = {
-			path
-		};
+	if ( info.meta ) {
+		const metaKeys = Object.keys( info.meta.navOptions );
+		metaKeys.forEach( ( key ) => {
+			item[key] = info.meta.navOptions[key];
+		} );
+	}
 
-		if ( info.meta ) {
-			const metaKeys = Object.keys( info.meta.navOptions );
-			metaKeys.forEach( ( key ) => {
-				item[key] = info.meta.navOptions[key];
-			} );
-		}
+	if ( info.children ) {
+		item.children = formatNavRoutes( info.children, path );
+	}
 
-		if ( info.children ) {
-			item.children = formatNavRoutes( info.children, path );
-		}
-
-		return item;
-	} );
-};
+	return item;
+} );
 
 export default {
 	name : 'side-nav',
@@ -80,7 +76,6 @@ export default {
 		}
 
 		if ( viewMode ) {
-			console.log( `view mode: ${viewMode} (typeof ${typeof viewMode})` );
 			this.viewMode = viewMode;
 		}
 
