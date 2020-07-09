@@ -9,9 +9,7 @@ export default new Vuex.Store( {
 		schoolSelectValue : '',
 
 		user : {
-			mode         : 'night',
-			navClosed    : true,
-			navItemState : [],
+			mode : '',
 		},
 
 		filters : [],
@@ -28,6 +26,8 @@ export default new Vuex.Store( {
 		},
 
 		setMode( state, mode ) {
+
+			console.log( 'Update state.user.mode = ', mode );
 
 			state.user.mode = mode;
 
@@ -57,6 +57,7 @@ export default new Vuex.Store( {
 		},
 
 		setMode( store, mode ) {
+			console.log( 'setMode', mode );
 
 			store.commit( 'setMode', mode );
 

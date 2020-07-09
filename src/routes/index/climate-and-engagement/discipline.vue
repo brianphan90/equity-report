@@ -1,3 +1,13 @@
+<route>
+{
+	"meta" : {
+		"navOptions" : {
+			"title": "Discipline"
+		}
+	}
+}
+</route>
+
 <script>
 import DataView from '@/components/DataView';
 
