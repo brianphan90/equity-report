@@ -27,23 +27,14 @@ export default {
 		ah() { // available height
 			const { h, t, b } = this;
 
-			return h - t + b;
+			return h - ( t + b );
 		},
 
 		aw() { // available width
 			const { w, r, l } = this;
 
-			return w - r + l;
+			return w - ( r + l );
 		}
-	},
-
-	mounted() {
-		this.canvas = d3.select( this.$refs.id );
-		this.draw();
-
-		window.addEventListener( 'resize', this.reset, { passive : true } );
-
-		this.resetDims();
 	},
 
 	beforeDelete() {
@@ -51,6 +42,15 @@ export default {
 	},
 
 	methods : {
+		init( svgEl ) {
+			this.resetDims();
+
+			this.canvas = d3.select( svgEl );
+			this.draw();
+
+			window.addEventListener( 'resize', this.reset, { passive : true } );
+		},
+
 		reset() {
 			this.canvas.selectAll( '*' ).delete();
 
@@ -62,7 +62,7 @@ export default {
 			const {
 				clientWidth  : w,
 				clientHeight : h,
-			} = this.$refs.id;
+			} = this.$refs.svg;
 
 			this.h = h;
 			this.w = w;
@@ -98,44 +98,88 @@ export default {
 
 		drawAxisIndicators( options ) {
 			const {
-				axis,
+				axis, // eslint-disable-line
 				range,
 				lines,
-				numberOfIndicators,
+				postChar,
+				color,
 			} = options;
 
-			// determine the labels we'll draw,
-			// e.g. if we had minValue : 0, and maxValue : 100,
-			// we might get back 0, 25, 50, 75, 100
-			const labels = this.getLabelsFromRange( range );
+			const {
+				numberOfIndicators,
+				spaceBetweenLabelsAndLines,
+			} = lines;
 
 			/* draw initial lines and indicators */
-			const rangeDifference    = range.max - range.min;
-			const getY               = ( i ) => {
+			const rangeDifference = range.max - range.min;
 
-				const bottomOfChart      = this.dims.t + this.dims.ch;
-				const distanceFromBottom = i * ( this.dims.ch / ( numberOfIndicators - 1 ) );
+			/* add text labels */
 
-				return bottomOfChart - distanceFromBottom;
-
-			};
-
+			const labelData = [];
 			for ( let i = 0; i < numberOfIndicators; i++ ) {
 
-				const lineIndicator = this.append( 'g' )
-					.attr( 'class', `line-indicators indicator-group ${this.id}` );
+				const dominantBaseline = ( () => {
+					if ( i === numberOfIndicators - 1 ) {
+						return 'text-before-edge';
+					}
 
-				lineIndicator.append( 'text' )
-					.attr( 'class', `line-indicators label ${this.id}` )
-					.attr( 'text-anchor', 'left' )
-					.attr( 'dominant-baseline', 'middle' )
-					.attr( 'x', this.l )
-					.attr( 'y', getY( i ) )
-					.style( 'font-size', '10px' )
-					.style( 'fill', 'white' )
-					.text( range.min + ( ( i / ( numberOfIndicators - 1 ) ) * rangeDifference ) + ( chart.hasOwnProperty( 'postChar' ) ? chart.postChar : '' ) );
+					if ( i === 0 ) {
+						return 'text-after-edge';
+					}
+
+					return 'middle';
+				} )();
+
+				const y = ( () => {
+					const bottomOfChart      = this.t + this.ah;
+					const distanceFromBottom = i * ( this.ah / ( numberOfIndicators - 1 ) );
+
+					return bottomOfChart - distanceFromBottom;
+				} )();
+
+				labelData.push( {
+					y,
+					text : `${range.min + ( ( i / ( numberOfIndicators - 1 ) ) * rangeDifference )}${postChar || ''}`,
+					dominantBaseline,
+				} );
 
 			}
+
+			const lineIndicatorGroups = this.canvas
+				.selectAll( `line-indicators-${this.id}` )
+				.data( labelData )
+				.enter()
+				.append( 'g' ) // will append as many g's as the length of labelData
+				.attr( 'class', `line-indicators-${this.id}` );
+
+			const lineLabels = lineIndicatorGroups.append( 'text' )
+				.attr( 'class', `line-indicators label-${this.id}` )
+				.attr( 'dominant-baseline', d => d.dominantBaseline )
+				.attr( 'x', this.l )
+				.attr( 'y', d => d.y )
+				.style( 'font-size', '10px' )
+				.style( 'fill', color )
+				.text( d => d.text );
+
+			/* right align text */
+
+			const lineLabelWidths  = Array.from( lineLabels._groups[0] ).map( a => a.getBBox().width );
+			const biggestLineLabel = Math.max( ...lineLabelWidths );
+
+			lineLabels.attr( 'x', biggestLineLabel )
+				.attr( 'text-anchor', 'end' );
+
+			this.updateDims( {
+				l : biggestLineLabel + spaceBetweenLabelsAndLines
+			} );
+
+			/* draw lines */
+
+			lineIndicatorGroups.append( 'path' )
+				.attr( 'd', d => `M ${this.l}, ${d.y} L ${this.l + this.aw}, ${d.y}` )
+				.style( 'stroke-dasharray', '2, 4' )
+				.style( 'stroke', color );
+
 		},
 	}
 };
