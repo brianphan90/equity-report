@@ -17,7 +17,7 @@
 		:state='state'
 		:error-message='errorMessage'
 	)
-		.content(slot='loaded')
+		.content(slot='loaded' v-if='data')
 			simple-stacked-bar-chart(
 				v-for='item in data.charts'
 				:data='item.data.chart'
@@ -48,4 +48,16 @@ export default {
 </script>
 
 <style lang='scss'>
+.glr-by-classroom {
+
+	.content {
+		display: flex;
+		flex-flow: wrap;
+
+		.simple-stacked-bar-chart {
+			margin: 30px;
+			flex: 0 0 150px;
+		}
+	}
+}
 </style>

@@ -152,26 +152,31 @@ export default {
 				.append( 'g' ) // will append as many g's as the length of labelData
 				.attr( 'class', `line-indicators-${this.id}` );
 
-			const lineLabels = lineIndicatorGroups.append( 'text' )
-				.attr( 'class', `line-indicators label-${this.id}` )
-				.attr( 'dominant-baseline', d => d.dominantBaseline )
-				.attr( 'x', this.l )
-				.attr( 'y', d => d.y )
-				.style( 'font-size', '10px' )
-				.style( 'fill', color )
-				.text( d => d.text );
+			if ( options.labels !== false ) {
 
-			/* right align text */
+				/* draw line lables */
+				const lineLabels = lineIndicatorGroups.append( 'text' )
+					.attr( 'class', `line-indicators label-${this.id}` )
+					.attr( 'dominant-baseline', d => d.dominantBaseline )
+					.attr( 'x', this.l )
+					.attr( 'y', d => d.y )
+					.style( 'font-size', '10px' )
+					.style( 'fill', color )
+					.text( d => d.text );
 
-			const lineLabelWidths  = Array.from( lineLabels._groups[0] ).map( a => a.getBBox().width );
-			const biggestLineLabel = Math.max( ...lineLabelWidths );
+				/* right align text */
 
-			lineLabels.attr( 'x', biggestLineLabel )
-				.attr( 'text-anchor', 'end' );
+				const lineLabelWidths  = Array.from( lineLabels._groups[0] ).map( a => a.getBBox().width );
+				const biggestLineLabel = Math.max( ...lineLabelWidths );
 
-			this.updateDims( {
-				l : biggestLineLabel + spaceBetweenLabelsAndLines
-			} );
+				lineLabels.attr( 'x', biggestLineLabel )
+					.attr( 'text-anchor', 'end' );
+
+				this.updateDims( {
+					l : biggestLineLabel + spaceBetweenLabelsAndLines
+				} );
+
+			}
 
 			/* draw lines */
 
@@ -179,6 +184,8 @@ export default {
 				.attr( 'd', d => `M ${this.l}, ${d.y} L ${this.l + this.aw}, ${d.y}` )
 				.style( 'stroke-dasharray', '2, 4' )
 				.style( 'stroke', color );
+
+			return lineIndicatorGroups;
 
 		},
 	}

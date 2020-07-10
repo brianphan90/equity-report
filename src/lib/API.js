@@ -95,91 +95,9 @@ export const GetSchools = () => fetchPromise( path( 'schools' ), {
 	headers : defaultHeaders(),
 } );
 
-export const GetReport = () => new Promise( ( resolve ) => {
-	const sampleReport = {
-		'populationCount' : {
-			'value' : 756,
-			'label' : '2018-2019 Census Day Student Population Count'
-		},
-		'graphs' : [
-			{
-				'title' : 'By Grade Level',
-				'data'  : [
-					{
-						'label' : 'Grade K',
-						'value' : 128,
-					},
-					{
-						'label' : 'Grade 1',
-						'value' : 102,
-					},
-					{
-						'label' : 'Grade 2',
-						'value' : 120,
-					},
-					{
-						'label' : 'Grade 3',
-						'value' : 124,
-					},
-					{
-						'label' : 'Grade 4',
-						'value' : 137,
-					},
-					{
-						'label' : 'Grade 5',
-						'value' : 130,
-					},
-					{
-						'label' : 'Grade 6',
-						'value' : 108,
-					},
-					{
-						'label' : 'Grade 7',
-						'value' : 0,
-					}
-				]
-			},
-			{
-				'title' : 'By Subgroup',
-				'data'  : [
-					{
-						'label' : 'Socio-Economically Disadvantage',
-						'value' : 608,
-					},
-					{
-						'label' : 'English Learner',
-						'value' : 385,
-					},
-					{
-						'label' : 'Foster Youth',
-						'value' : 275,
-					},
-					{
-						'label' : 'Homeless',
-						'value' : 64,
-					},
-					{
-						'label' : 'Students with Disabilities',
-						'value' : 93,
-					},
-					{
-						'label' : 'Hispanic',
-						'value' : 611,
-					},
-					{
-						'label' : 'White',
-						'value' : 304,
-					},
-					{
-						'label' : 'Black',
-						'value' : 152,
-					}
-				]
-			}
-		]
-	};
-
-	resolve( sampleReport );
+export const GetSpcByGradeLevelAndSubgroup =  filters => fetchPromise( path( 'data/2019-2020/student/spc-by-grade-level-and-subgroup', { filters } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
 } );
 
 export const GetGlrByClassroom = filters => fetchPromise( path( 'data/2019-2020/student/glr-by-classroom', { filters } ), {
