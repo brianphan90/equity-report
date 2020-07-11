@@ -23,8 +23,8 @@
 				.charts
 					simple-bar-chart(
 						v-for='item in data.charts'
-						:data='item.data.chart'
-						:legend='data.legend'
+						:title='item.title'
+						:data='item.data'
 					)
 
 </template>
@@ -59,7 +59,7 @@ export default {
 			.population-count {
 				display: flex;
 				width: 70%;
-    		align-items: center;
+				align-items: center;
 
 				.count {
 					font-size: 67px;

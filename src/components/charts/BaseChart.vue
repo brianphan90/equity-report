@@ -5,7 +5,7 @@ import * as d3 from 'd3';
 export default {
 	props : {
 		data : {
-			type : Object,
+			type : [Object, Array],
 		},
 		legend : {
 			type : Object,
@@ -179,7 +179,6 @@ export default {
 			}
 
 			/* draw lines */
-
 			lineIndicatorGroups.append( 'path' )
 				.attr( 'd', d => `M ${this.l}, ${d.y} L ${this.l + this.aw}, ${d.y}` )
 				.style( 'stroke-dasharray', '2, 4' )

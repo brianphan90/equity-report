@@ -47,7 +47,7 @@ export default {
 				postChar : '%',
 				lines    : {
 					spaceBetweenLabelsAndLines : 5,
-					numberOfIndicators         : 5,
+					numberOfIndicators         : 5
 				},
 				color : colors.grey,
 			} );
