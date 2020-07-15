@@ -1,0 +1,528 @@
+{
+	"legend": {
+		"overUnderChart": {
+			"positive": {
+				"currentYear": {
+					"color": "#557176"
+				},
+				"priorYear": {
+					"color": "#94AEB4"
+				}
+			},
+			"negative": {
+				"currentYear": {
+					"color": "#BE8674"
+				},
+				"priorYear": {
+					"color": "#D7B6AA"
+				}
+			}
+		},
+		"pyramidOverUnderChart": {
+			"positive": {
+				"color": "#557176",
+				"label": "Met or Exceeded"
+			},
+			"negative": {
+				"color": "#BE8674",
+				"label": "Not Met or Nearly Met"
+			}
+		}
+	},
+	"charts": [
+		{
+			"title": "ELA",
+			"byGradeLevel": {
+				"type": "overUnderChart",
+				"data": [
+					{
+						"label": 3,
+						"positive": {
+							"currentYear": 69,
+							"priorYear": 69
+						},
+						"negative": {
+							"currentYear": 31,
+							"priorYear": 31
+						}
+					},
+					{
+						"label": 4,
+						"positive": {
+							"currentYear": 72,
+							"priorYear": 67
+						},
+						"negative": {
+							"currentYear": 28,
+							"priorYear": 33
+						}
+					},
+					{
+						"label": 5,
+						"positive": {
+							"currentYear": 98,
+							"priorYear": 99
+						},
+						"negative": {
+							"currentYear": 2,
+							"priorYear": 1
+						}
+					},
+					{
+						"label": 6,
+						"positive": {
+							"currentYear": 69,
+							"priorYear": 64
+						},
+						"negative": {
+							"currentYear": 31,
+							"priorYear": 36
+						}
+					},
+					{
+						"label": 7,
+						"positive": {
+							"currentYear": 81,
+							"priorYear": 87
+						},
+						"negative": {
+							"currentYear": 19,
+							"priorYear": 13
+						}
+					},
+					{
+						"label": 8,
+						"positive": {
+							"currentYear": 72,
+							"priorYear": 73
+						},
+						"negative": {
+							"currentYear": 28,
+							"priorYear": 27
+						}
+					},
+					{
+						"label": 9,
+						"positive": {
+							"currentYear": 84,
+							"priorYear": 79
+						},
+						"negative": {
+							"currentYear": 16,
+							"priorYear": 21
+						}
+					},
+					{
+						"label": 10,
+						"positive": {
+							"currentYear": 61,
+							"priorYear": 62
+						},
+						"negative": {
+							"currentYear": 39,
+							"priorYear": 38
+						}
+					},
+					{
+						"label": 11,
+						"positive": {
+							"currentYear": 83,
+							"priorYear": 86
+						},
+						"negative": {
+							"currentYear": 17,
+							"priorYear": 14
+						}
+					}
+				]
+			},
+			"bySubgroup": {
+				"type": "overUnderChart",
+				"data": [
+					{
+						"label": "SED",
+						"positive": {
+							"currentYear": 81,
+							"priorYear": 76
+						},
+						"negative": {
+							"currentYear": 19,
+							"priorYear": 24
+						}
+					},
+					{
+						"label": "EL",
+						"positive": {
+							"currentYear": 57,
+							"priorYear": 62
+						},
+						"negative": {
+							"currentYear": 43,
+							"priorYear": 38
+						}
+					},
+					{
+						"label": "FY",
+						"positive": {
+							"currentYear": 90,
+							"priorYear": 93
+						},
+						"negative": {
+							"currentYear": 10,
+							"priorYear": 7
+						}
+					},
+					{
+						"label": "HL",
+						"positive": {
+							"currentYear": 57,
+							"priorYear": 54
+						},
+						"negative": {
+							"currentYear": 43,
+							"priorYear": 46
+						}
+					},
+					{
+						"label": "SWD",
+						"positive": {
+							"currentYear": 84,
+							"priorYear": 84
+						},
+						"negative": {
+							"currentYear": 16,
+							"priorYear": 16
+						}
+					},
+					{
+						"label": "HL",
+						"positive": {
+							"currentYear": 89,
+							"priorYear": 87
+						},
+						"negative": {
+							"currentYear": 11,
+							"priorYear": 13
+						}
+					},
+					{
+						"label": "WH",
+						"positive": {
+							"currentYear": 62,
+							"priorYear": 67
+						},
+						"negative": {
+							"currentYear": 38,
+							"priorYear": 33
+						}
+					},
+					{
+						"label": "BL",
+						"positive": {
+							"currentYear": 65,
+							"priorYear": 65
+						},
+						"negative": {
+							"currentYear": 35,
+							"priorYear": 35
+						}
+					},
+					{
+						"label": "AS",
+						"positive": {
+							"currentYear": 52,
+							"priorYear": 55
+						},
+						"negative": {
+							"currentYear": 48,
+							"priorYear": 45
+						}
+					},
+					{
+						"label": "FI",
+						"positive": {
+							"currentYear": 60,
+							"priorYear": 54
+						},
+						"negative": {
+							"currentYear": 40,
+							"priorYear": 46
+						}
+					}
+				]
+			},
+			"metOrExceeded": {
+				"type": "pyramidOverUnderChart",
+				"data": [
+					{
+						"label": 2016,
+						"positive": 0,
+						"negative": 0
+					},
+					{
+						"label": 2017,
+						"positive": 0,
+						"negative": 0
+					},
+					{
+						"label": 2018,
+						"positive": 76.22222222222223,
+						"negative": 23.77777777777778
+					},
+					{
+						"label": 2019,
+						"positive": 76.55555555555556,
+						"negative": 23.444444444444443
+					}
+				]
+			}
+		},
+		{
+			"title": "Mathematics",
+			"byGradeLevel": {
+				"type": "overUnderChart",
+				"data": [
+					{
+						"label": 3,
+						"positive": {
+							"currentYear": 96,
+							"priorYear": 87
+						},
+						"negative": {
+							"currentYear": 4,
+							"priorYear": 13
+						}
+					},
+					{
+						"label": 4,
+						"positive": {
+							"currentYear": 55,
+							"priorYear": 52
+						},
+						"negative": {
+							"currentYear": 45,
+							"priorYear": 48
+						}
+					},
+					{
+						"label": 5,
+						"positive": {
+							"currentYear": 96,
+							"priorYear": 97
+						},
+						"negative": {
+							"currentYear": 4,
+							"priorYear": 3
+						}
+					},
+					{
+						"label": 6,
+						"positive": {
+							"currentYear": 62,
+							"priorYear": 64
+						},
+						"negative": {
+							"currentYear": 38,
+							"priorYear": 36
+						}
+					},
+					{
+						"label": 7,
+						"positive": {
+							"currentYear": 67,
+							"priorYear": 62
+						},
+						"negative": {
+							"currentYear": 33,
+							"priorYear": 38
+						}
+					},
+					{
+						"label": 8,
+						"positive": {
+							"currentYear": 66,
+							"priorYear": 63
+						},
+						"negative": {
+							"currentYear": 34,
+							"priorYear": 37
+						}
+					},
+					{
+						"label": 9,
+						"positive": {
+							"currentYear": 97,
+							"priorYear": 95
+						},
+						"negative": {
+							"currentYear": 3,
+							"priorYear": 5
+						}
+					},
+					{
+						"label": 10,
+						"positive": {
+							"currentYear": 55,
+							"priorYear": 60
+						},
+						"negative": {
+							"currentYear": 45,
+							"priorYear": 40
+						}
+					},
+					{
+						"label": 11,
+						"positive": {
+							"currentYear": 65,
+							"priorYear": 62
+						},
+						"negative": {
+							"currentYear": 35,
+							"priorYear": 38
+						}
+					}
+				]
+			},
+			"bySubgroup": {
+				"type": "overUnderChart",
+				"data": [
+					{
+						"label": "SED",
+						"positive": {
+							"currentYear": 82,
+							"priorYear": 74
+						},
+						"negative": {
+							"currentYear": 18,
+							"priorYear": 26
+						}
+					},
+					{
+						"label": "EL",
+						"positive": {
+							"currentYear": 92,
+							"priorYear": 83
+						},
+						"negative": {
+							"currentYear": 8,
+							"priorYear": 17
+						}
+					},
+					{
+						"label": "FY",
+						"positive": {
+							"currentYear": 62,
+							"priorYear": 55
+						},
+						"negative": {
+							"currentYear": 38,
+							"priorYear": 45
+						}
+					},
+					{
+						"label": "HL",
+						"positive": {
+							"currentYear": 79,
+							"priorYear": 79
+						},
+						"negative": {
+							"currentYear": 21,
+							"priorYear": 21
+						}
+					},
+					{
+						"label": "SWD",
+						"positive": {
+							"currentYear": 90,
+							"priorYear": 87
+						},
+						"negative": {
+							"currentYear": 10,
+							"priorYear": 13
+						}
+					},
+					{
+						"label": "HL",
+						"positive": {
+							"currentYear": 85,
+							"priorYear": 85
+						},
+						"negative": {
+							"currentYear": 15,
+							"priorYear": 15
+						}
+					},
+					{
+						"label": "WH",
+						"positive": {
+							"currentYear": 71,
+							"priorYear": 74
+						},
+						"negative": {
+							"currentYear": 29,
+							"priorYear": 26
+						}
+					},
+					{
+						"label": "BL",
+						"positive": {
+							"currentYear": 98,
+							"priorYear": 95
+						},
+						"negative": {
+							"currentYear": 2,
+							"priorYear": 5
+						}
+					},
+					{
+						"label": "AS",
+						"positive": {
+							"currentYear": 69,
+							"priorYear": 63
+						},
+						"negative": {
+							"currentYear": 31,
+							"priorYear": 37
+						}
+					},
+					{
+						"label": "FI",
+						"positive": {
+							"currentYear": 65,
+							"priorYear": 69
+						},
+						"negative": {
+							"currentYear": 35,
+							"priorYear": 31
+						}
+					}
+				]
+			},
+			"metOrExceeded": {
+				"type": "pyramidOverUnderChart",
+				"data": [
+					{
+						"label": 2016,
+						"positive": 0,
+						"negative": 0
+					},
+					{
+						"label": 2017,
+						"positive": 0,
+						"negative": 0
+					},
+					{
+						"label": 2018,
+						"positive": 71.33333333333333,
+						"negative": 28.666666666666668
+					},
+					{
+						"label": 2019,
+						"positive": 73.22222222222223,
+						"negative": 26.77777777777778
+					}
+				]
+			}
+		}
+	]
+}

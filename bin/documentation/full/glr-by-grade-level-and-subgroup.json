@@ -1,547 +1,547 @@
-        {
-            "totalGlrScore": 789,
-            "charts": [
-                {
-                    "legend": {
-                        "currentYear": {
-                            "label": "Current Year",
-                            "color": "#5C8484"
-                        },
-                        "priorYear": {
-                            "label": "Prior Year",
-                            "color": "#BDD7D5"
-                        },
-                        "difference": {
-                            "label": "Difference",
-                            "color": "#000000"
-                        },
-                        "solid": {
-                            "label": "Solid (Current)",
-                            "color": "#888888"
-                        },
-                        "faded": {
-                            "label": "Faded (Prior)",
-                            "color": "#BDBDBD"
-                        },
-                        "exceeding": {
-                            "label": "Exceeding",
-                            "color": "#557176"
-                        },
-                        "ready": {
-                            "label": "Ready",
-                            "color": "#64A399"
-                        },
-                        "close": {
-                            "label": "Close",
-                            "color": "#D0BA49"
-                        },
-                        "below": {
-                            "label": "Below",
-                            "color": "#D8A556"
-                        },
-                        "farBelow": {
-                            "label": "Far Below",
-                            "color": "#9B3E3A"
-                        }
-                    },
-                    "data": {
-                        "glr": [
-                            {
-                                "label": "K",
-                                "data": {
-                                    "exceeding": 28.599999999999998,
-                                    "ready": 9,
-                                    "close": 33.92,
-                                    "below": 15.08,
-                                    "farBelow": 13.4
-                                }
-                            },
-                            {
-                                "label": "1",
-                                "data": {
-                                    "exceeding": 29.79,
-                                    "ready": 9.21,
-                                    "close": 29.22,
-                                    "below": 12,
-                                    "farBelow": 19.78
-                                }
-                            },
-                            {
-                                "label": "2",
-                                "data": {
-                                    "exceeding": 26.919999999999998,
-                                    "ready": 11.04,
-                                    "close": 35,
-                                    "below": 9.959999999999999,
-                                    "farBelow": 17.080000000000002
-                                }
-                            },
-                            {
-                                "label": "3",
-                                "data": {
-                                    "exceeding": 29.68,
-                                    "ready": 10.66,
-                                    "close": 33.75,
-                                    "below": 12.319999999999999,
-                                    "farBelow": 13.59
-                                }
-                            },
-                            {
-                                "label": "4",
-                                "data": {
-                                    "exceeding": 29.32,
-                                    "ready": 11.76,
-                                    "close": 31.24,
-                                    "below": 9.920000000000002,
-                                    "farBelow": 17.759999999999998
-                                }
-                            },
-                            {
-                                "label": "5",
-                                "data": {
-                                    "exceeding": 32.11,
-                                    "ready": 9,
-                                    "close": 35,
-                                    "below": 12.200000000000001,
-                                    "farBelow": 11.69
-                                }
-                            },
-                            {
-                                "label": "6",
-                                "data": {
-                                    "exceeding": 30.549999999999997,
-                                    "ready": 11.46,
-                                    "close": 29.19,
-                                    "below": 16.689999999999998,
-                                    "farBelow": 12.11
-                                }
-                            },
-                            {
-                                "label": "7",
-                                "data": {
-                                    "exceeding": 30,
-                                    "ready": 8.73,
-                                    "close": 36.57,
-                                    "below": 10.43,
-                                    "farBelow": 14.27
-                                }
-                            },
-                            {
-                                "label": "8",
-                                "data": {
-                                    "exceeding": 30.259999999999998,
-                                    "ready": 8.21,
-                                    "close": 35,
-                                    "below": 13.83,
-                                    "farBelow": 12.7
-                                }
-                            },
-                            {
-                                "label": "9",
-                                "data": {
-                                    "exceeding": 35.33,
-                                    "ready": 9.02,
-                                    "close": 28.79,
-                                    "below": 12,
-                                    "farBelow": 14.860000000000001
-                                }
-                            },
-                            {
-                                "label": "10",
-                                "data": {
-                                    "exceeding": 30,
-                                    "ready": 9.870000000000001,
-                                    "close": 35,
-                                    "below": 12,
-                                    "farBelow": 13.129999999999999
-                                }
-                            },
-                            {
-                                "label": "11",
-                                "data": {
-                                    "exceeding": 25.209999999999997,
-                                    "ready": 10.17,
-                                    "close": 35,
-                                    "below": 12,
-                                    "farBelow": 17.619999999999997
-                                }
-                            },
-                            {
-                                "label": "12",
-                                "data": {
-                                    "exceeding": 30,
-                                    "ready": 10.76,
-                                    "close": 32.36,
-                                    "below": 12,
-                                    "farBelow": 14.88
-                                }
-                            }
-                        ],
-                        "metOrExceeding": {
-                            "currentYear": [
-                                {
-                                    "label": "K",
-                                    "value": 37.599999999999994
-                                },
-                                {
-                                    "label": "1",
-                                    "value": 39
-                                },
-                                {
-                                    "label": "2",
-                                    "value": 37.959999999999994
-                                },
-                                {
-                                    "label": "3",
-                                    "value": 40.34
-                                },
-                                {
-                                    "label": "4",
-                                    "value": 41.08
-                                },
-                                {
-                                    "label": "5",
-                                    "value": 41.11
-                                },
-                                {
-                                    "label": "6",
-                                    "value": 42.01
-                                },
-                                {
-                                    "label": "7",
-                                    "value": 38.730000000000004
-                                },
-                                {
-                                    "label": "8",
-                                    "value": 38.47
-                                },
-                                {
-                                    "label": "9",
-                                    "value": 44.349999999999994
-                                },
-                                {
-                                    "label": "10",
-                                    "value": 39.870000000000005
-                                },
-                                {
-                                    "label": "11",
-                                    "value": 35.379999999999995
-                                },
-                                {
-                                    "label": "12",
-                                    "value": 40.76
-                                }
-                            ],
-                            "priorYear": [
-                                {
-                                    "label": "K",
-                                    "value": 39
-                                },
-                                {
-                                    "label": "1",
-                                    "value": 38
-                                },
-                                {
-                                    "label": "2",
-                                    "value": 39
-                                },
-                                {
-                                    "label": "3",
-                                    "value": 36
-                                },
-                                {
-                                    "label": "4",
-                                    "value": 39
-                                },
-                                {
-                                    "label": "5",
-                                    "value": 37
-                                },
-                                {
-                                    "label": "6",
-                                    "value": 38
-                                },
-                                {
-                                    "label": "7",
-                                    "value": 39
-                                },
-                                {
-                                    "label": "8",
-                                    "value": 39
-                                },
-                                {
-                                    "label": "9",
-                                    "value": 42
-                                },
-                                {
-                                    "label": "10",
-                                    "value": 40
-                                },
-                                {
-                                    "label": "11",
-                                    "value": 39
-                                },
-                                {
-                                    "label": "12",
-                                    "value": 41
-                                }
-                            ]
-                        }
-                    }
-                },
-                {
-                    "legend": {
-                        "subgroups": {
-                            "sed": {
-                                "label": "SED",
-                                "value": "Socio-economically"
-                            },
-                            "el": {
-                                "label": "EL",
-                                "value": "English-Learner"
-                            },
-                            "fy": {
-                                "label": "FY",
-                                "value": "Foster Youth"
-                            },
-                            "hl": {
-                                "label": "HL",
-                                "value": "Homeless"
-                            },
-                            "swd": {
-                                "label": "SWD",
-                                "value": "Students with disabilities"
-                            },
-                            "hi": {
-                                "label": "HL",
-                                "value": "Hispanic"
-                            },
-                            "wh": {
-                                "label": "WH",
-                                "value": "White"
-                            },
-                            "bl": {
-                                "label": "BL",
-                                "value": "Black"
-                            },
-                            "as": {
-                                "label": "AS",
-                                "value": "Asian"
-                            },
-                            "fi": {
-                                "label": "FI",
-                                "value": "Filipino"
-                            },
-                            "glr": {
-                                "exceeding": {
-                                    "label": "Exceeding",
-                                    "color": "#557176"
-                                },
-                                "ready": {
-                                    "label": "Ready",
-                                    "color": "#64A399"
-                                },
-                                "below": {
-                                    "label": "Below",
-                                    "color": "#D8A556"
-                                },
-                                "farBelow": {
-                                    "label": "Far Below",
-                                    "color": "#9B3E3A"
-                                }
-                            }
-                        }
-                    },
-                    "data": {
-                        "glr": [
-                            {
-                                "label": "SED",
-                                "data": {
-                                    "exceeding": 30,
-                                    "ready": 10.39,
-                                    "close": 33.76,
-                                    "below": 11.85,
-                                    "farBelow": 14
-                                }
-                            },
-                            {
-                                "label": "EL",
-                                "data": {
-                                    "exceeding": 27.99,
-                                    "ready": 9.73,
-                                    "close": 33.74,
-                                    "below": 13.59,
-                                    "farBelow": 14.95
-                                }
-                            },
-                            {
-                                "label": "FY",
-                                "data": {
-                                    "exceeding": 30,
-                                    "ready": 9,
-                                    "close": 35,
-                                    "below": 10.96,
-                                    "farBelow": 15.04
-                                }
-                            },
-                            {
-                                "label": "HL",
-                                "data": {
-                                    "exceeding": 30,
-                                    "ready": 10.02,
-                                    "close": 33.98,
-                                    "below": 10.14,
-                                    "farBelow": 15.86
-                                }
-                            },
-                            {
-                                "label": "SWD",
-                                "data": {
-                                    "exceeding": 30,
-                                    "ready": 10.12,
-                                    "close": 35,
-                                    "below": 10.79,
-                                    "farBelow": 14.09
-                                }
-                            },
-                            {
-                                "label": "HL",
-                                "data": {
-                                    "exceeding": 30,
-                                    "ready": 9,
-                                    "close": 33.69,
-                                    "below": 14.46,
-                                    "farBelow": 12.850000000000001
-                                }
-                            },
-                            {
-                                "label": "WH",
-                                "data": {
-                                    "exceeding": 24.819999999999997,
-                                    "ready": 10.41,
-                                    "close": 37.39,
-                                    "below": 13.580000000000002,
-                                    "farBelow": 13.799999999999999
-                                }
-                            },
-                            {
-                                "label": "BL",
-                                "data": {
-                                    "exceeding": 27.37,
-                                    "ready": 9.93,
-                                    "close": 30.71,
-                                    "below": 13.7,
-                                    "farBelow": 18.29
-                                }
-                            },
-                            {
-                                "label": "AS",
-                                "data": {
-                                    "exceeding": 30,
-                                    "ready": 9,
-                                    "close": 35.66,
-                                    "below": 12.01,
-                                    "farBelow": 13.33
-                                }
-                            },
-                            {
-                                "label": "FI",
-                                "data": {
-                                    "exceeding": 30.16,
-                                    "ready": 12.58,
-                                    "close": 31.26,
-                                    "below": 12,
-                                    "farBelow": 14
-                                }
-                            }
-                        ],
-                        "metOrExceeding": {
-                            "currentYear": [
-                                {
-                                    "label": "SED",
-                                    "value": 40.39
-                                },
-                                {
-                                    "label": "EL",
-                                    "value": 37.72
-                                },
-                                {
-                                    "label": "FY",
-                                    "value": 39
-                                },
-                                {
-                                    "label": "HL",
-                                    "value": 40.019999999999996
-                                },
-                                {
-                                    "label": "SWD",
-                                    "value": 40.12
-                                },
-                                {
-                                    "label": "HL",
-                                    "value": 39
-                                },
-                                {
-                                    "label": "WH",
-                                    "value": 35.23
-                                },
-                                {
-                                    "label": "BL",
-                                    "value": 37.3
-                                },
-                                {
-                                    "label": "AS",
-                                    "value": 39
-                                },
-                                {
-                                    "label": "FI",
-                                    "value": 42.74
-                                }
-                            ],
-                            "priorYear": [
-                                {
-                                    "label": "SED",
-                                    "value": 43
-                                },
-                                {
-                                    "label": "EL",
-                                    "value": 39
-                                },
-                                {
-                                    "label": "FY",
-                                    "value": 37
-                                },
-                                {
-                                    "label": "HL",
-                                    "value": 39
-                                },
-                                {
-                                    "label": "SWD",
-                                    "value": 40
-                                },
-                                {
-                                    "label": "HL",
-                                    "value": 42
-                                },
-                                {
-                                    "label": "WH",
-                                    "value": 36
-                                },
-                                {
-                                    "label": "BL",
-                                    "value": 36
-                                },
-                                {
-                                    "label": "AS",
-                                    "value": 41
-                                },
-                                {
-                                    "label": "FI",
-                                    "value": 41
-                                }
-                            ]
-                        }
-                    }
-                }
-            ]
-        }
+{
+	"totalGlrScore": 789,
+	"charts": [
+		{
+			"legend": {
+				"currentYear": {
+					"label": "Current Year",
+					"color": "#5C8484"
+				},
+				"priorYear": {
+					"label": "Prior Year",
+					"color": "#BDD7D5"
+				},
+				"difference": {
+					"label": "Difference",
+					"color": "#000000"
+				},
+				"solid": {
+					"label": "Solid (Current)",
+					"color": "#888888"
+				},
+				"faded": {
+					"label": "Faded (Prior)",
+					"color": "#BDBDBD"
+				},
+				"exceeding": {
+					"label": "Exceeding",
+					"color": "#557176"
+				},
+				"ready": {
+					"label": "Ready",
+					"color": "#64A399"
+				},
+				"close": {
+					"label": "Close",
+					"color": "#D0BA49"
+				},
+				"below": {
+					"label": "Below",
+					"color": "#D8A556"
+				},
+				"farBelow": {
+					"label": "Far Below",
+					"color": "#9B3E3A"
+				}
+			},
+			"data": {
+				"glr": [
+					{
+						"label": "K",
+						"data": {
+							"exceeding": 30,
+							"ready": 13.39,
+							"close": 29.27,
+							"below": 13.34,
+							"farBelow": 14
+						}
+					},
+					{
+						"label": "1",
+						"data": {
+							"exceeding": 29.22,
+							"ready": 12.5,
+							"close": 31.5,
+							"below": 13.110000000000001,
+							"farBelow": 13.67
+						}
+					},
+					{
+						"label": "2",
+						"data": {
+							"exceeding": 25.060000000000002,
+							"ready": 14.850000000000001,
+							"close": 30.630000000000003,
+							"below": 16.939999999999998,
+							"farBelow": 12.52
+						}
+					},
+					{
+						"label": "3",
+						"data": {
+							"exceeding": 25.53,
+							"ready": 9,
+							"close": 39.74,
+							"below": 11.73,
+							"farBelow": 14
+						}
+					},
+					{
+						"label": "4",
+						"data": {
+							"exceeding": 30,
+							"ready": 10.24,
+							"close": 31.65,
+							"below": 13.09,
+							"farBelow": 15.02
+						}
+					},
+					{
+						"label": "5",
+						"data": {
+							"exceeding": 30.56,
+							"ready": 10.22,
+							"close": 34.339999999999996,
+							"below": 13.39,
+							"farBelow": 11.49
+						}
+					},
+					{
+						"label": "6",
+						"data": {
+							"exceeding": 28.07,
+							"ready": 9.45,
+							"close": 36.85,
+							"below": 12.86,
+							"farBelow": 12.770000000000001
+						}
+					},
+					{
+						"label": "7",
+						"data": {
+							"exceeding": 33.59,
+							"ready": 9.07,
+							"close": 29.200000000000003,
+							"below": 11.93,
+							"farBelow": 16.21
+						}
+					},
+					{
+						"label": "8",
+						"data": {
+							"exceeding": 29.580000000000002,
+							"ready": 8.53,
+							"close": 35.42,
+							"below": 13.25,
+							"farBelow": 13.22
+						}
+					},
+					{
+						"label": "9",
+						"data": {
+							"exceeding": 28.979999999999997,
+							"ready": 9,
+							"close": 36.019999999999996,
+							"below": 12,
+							"farBelow": 14
+						}
+					},
+					{
+						"label": "10",
+						"data": {
+							"exceeding": 24.939999999999998,
+							"ready": 11.79,
+							"close": 31.31,
+							"below": 12.9,
+							"farBelow": 19.06
+						}
+					},
+					{
+						"label": "11",
+						"data": {
+							"exceeding": 33.78,
+							"ready": 8.32,
+							"close": 31.869999999999997,
+							"below": 12.03,
+							"farBelow": 14
+						}
+					},
+					{
+						"label": "12",
+						"data": {
+							"exceeding": 31.07,
+							"ready": 9.68,
+							"close": 32.2,
+							"below": 11.32,
+							"farBelow": 15.73
+						}
+					}
+				],
+				"metOrExceeding": {
+					"currentYear": [
+						{
+							"label": "K",
+							"value": 43.39
+						},
+						{
+							"label": "1",
+							"value": 41.72
+						},
+						{
+							"label": "2",
+							"value": 39.910000000000004
+						},
+						{
+							"label": "3",
+							"value": 34.53
+						},
+						{
+							"label": "4",
+							"value": 40.24
+						},
+						{
+							"label": "5",
+							"value": 40.78
+						},
+						{
+							"label": "6",
+							"value": 37.519999999999996
+						},
+						{
+							"label": "7",
+							"value": 42.660000000000004
+						},
+						{
+							"label": "8",
+							"value": 38.11
+						},
+						{
+							"label": "9",
+							"value": 37.98
+						},
+						{
+							"label": "10",
+							"value": 36.73
+						},
+						{
+							"label": "11",
+							"value": 42.1
+						},
+						{
+							"label": "12",
+							"value": 40.75
+						}
+					],
+					"priorYear": [
+						{
+							"label": "K",
+							"value": 44
+						},
+						{
+							"label": "1",
+							"value": 39
+						},
+						{
+							"label": "2",
+							"value": 37
+						},
+						{
+							"label": "3",
+							"value": 34
+						},
+						{
+							"label": "4",
+							"value": 38
+						},
+						{
+							"label": "5",
+							"value": 42
+						},
+						{
+							"label": "6",
+							"value": 36
+						},
+						{
+							"label": "7",
+							"value": 47
+						},
+						{
+							"label": "8",
+							"value": 42
+						},
+						{
+							"label": "9",
+							"value": 35
+						},
+						{
+							"label": "10",
+							"value": 38
+						},
+						{
+							"label": "11",
+							"value": 44
+						},
+						{
+							"label": "12",
+							"value": 37
+						}
+					]
+				}
+			}
+		},
+		{
+			"legend": {
+				"subgroups": {
+					"sed": {
+						"label": "SED",
+						"value": "Socio-economically"
+					},
+					"el": {
+						"label": "EL",
+						"value": "English-Learner"
+					},
+					"fy": {
+						"label": "FY",
+						"value": "Foster Youth"
+					},
+					"hl": {
+						"label": "HL",
+						"value": "Homeless"
+					},
+					"swd": {
+						"label": "SWD",
+						"value": "Students with disabilities"
+					},
+					"hi": {
+						"label": "HL",
+						"value": "Hispanic"
+					},
+					"wh": {
+						"label": "WH",
+						"value": "White"
+					},
+					"bl": {
+						"label": "BL",
+						"value": "Black"
+					},
+					"as": {
+						"label": "AS",
+						"value": "Asian"
+					},
+					"fi": {
+						"label": "FI",
+						"value": "Filipino"
+					},
+					"glr": {
+						"exceeding": {
+							"label": "Exceeding",
+							"color": "#557176"
+						},
+						"ready": {
+							"label": "Ready",
+							"color": "#64A399"
+						},
+						"below": {
+							"label": "Below",
+							"color": "#D8A556"
+						},
+						"farBelow": {
+							"label": "Far Below",
+							"color": "#9B3E3A"
+						}
+					}
+				}
+			},
+			"data": {
+				"glr": [
+					{
+						"label": "SED",
+						"data": {
+							"exceeding": 30,
+							"ready": 9,
+							"close": 32.82,
+							"below": 11.79,
+							"farBelow": 16.39
+						}
+					},
+					{
+						"label": "EL",
+						"data": {
+							"exceeding": 29.04,
+							"ready": 9.7,
+							"close": 32.36,
+							"below": 12.260000000000002,
+							"farBelow": 16.64
+						}
+					},
+					{
+						"label": "FY",
+						"data": {
+							"exceeding": 26.4,
+							"ready": 8.15,
+							"close": 33.120000000000005,
+							"below": 15.6,
+							"farBelow": 16.73
+						}
+					},
+					{
+						"label": "HL",
+						"data": {
+							"exceeding": 27.009999999999998,
+							"ready": 11.989999999999998,
+							"close": 35,
+							"below": 12.010000000000002,
+							"farBelow": 13.989999999999998
+						}
+					},
+					{
+						"label": "SWD",
+						"data": {
+							"exceeding": 32.14,
+							"ready": 8.43,
+							"close": 32.86,
+							"below": 12,
+							"farBelow": 14.57
+						}
+					},
+					{
+						"label": "HL",
+						"data": {
+							"exceeding": 27.12,
+							"ready": 8.49,
+							"close": 35,
+							"below": 12,
+							"farBelow": 17.39
+						}
+					},
+					{
+						"label": "WH",
+						"data": {
+							"exceeding": 30,
+							"ready": 8.5,
+							"close": 35,
+							"below": 11.04,
+							"farBelow": 15.46
+						}
+					},
+					{
+						"label": "BL",
+						"data": {
+							"exceeding": 28.54,
+							"ready": 8,
+							"close": 31.94,
+							"below": 13,
+							"farBelow": 18.52
+						}
+					},
+					{
+						"label": "AS",
+						"data": {
+							"exceeding": 30,
+							"ready": 10.33,
+							"close": 34.129999999999995,
+							"below": 12.87,
+							"farBelow": 12.67
+						}
+					},
+					{
+						"label": "FI",
+						"data": {
+							"exceeding": 26.619999999999997,
+							"ready": 14.02,
+							"close": 32.949999999999996,
+							"below": 12.41,
+							"farBelow": 14
+						}
+					}
+				],
+				"metOrExceeding": {
+					"currentYear": [
+						{
+							"label": "SED",
+							"value": 39
+						},
+						{
+							"label": "EL",
+							"value": 38.739999999999995
+						},
+						{
+							"label": "FY",
+							"value": 34.55
+						},
+						{
+							"label": "HL",
+							"value": 39
+						},
+						{
+							"label": "SWD",
+							"value": 40.57
+						},
+						{
+							"label": "HL",
+							"value": 35.61
+						},
+						{
+							"label": "WH",
+							"value": 38.5
+						},
+						{
+							"label": "BL",
+							"value": 36.54
+						},
+						{
+							"label": "AS",
+							"value": 40.33
+						},
+						{
+							"label": "FI",
+							"value": 40.64
+						}
+					],
+					"priorYear": [
+						{
+							"label": "SED",
+							"value": 40
+						},
+						{
+							"label": "EL",
+							"value": 37
+						},
+						{
+							"label": "FY",
+							"value": 38
+						},
+						{
+							"label": "HL",
+							"value": 43
+						},
+						{
+							"label": "SWD",
+							"value": 41
+						},
+						{
+							"label": "HL",
+							"value": 32
+						},
+						{
+							"label": "WH",
+							"value": 40
+						},
+						{
+							"label": "BL",
+							"value": 39
+						},
+						{
+							"label": "AS",
+							"value": 42
+						},
+						{
+							"label": "FI",
+							"value": 40
+						}
+					]
+				}
+			}
+		}
+	]
+}
