@@ -1,0 +1,103 @@
+{
+	"legend": {
+		"percentFavorable": {
+			"title": "Percent Favorable:",
+			"label": "The total percentage of respondants that selected a favorable choice."
+		}
+	},
+	"data": [
+		{
+			"label": "Topic",
+			"postChar": "%",
+			"data": [
+				{
+					"question": "School Safety",
+					"value": 36
+				},
+				{
+					"question": "School Belonging",
+					"value": 48
+				},
+				{
+					"question": "School Engagement",
+					"value": 49
+				},
+				{
+					"question": "School Climate",
+					"value": 75
+				}
+			]
+		},
+		{
+			"label": "Student Questions",
+			"postChar": "%",
+			"data": [
+				{
+					"question": "How excited are you about going to your classes?",
+					"value": 40
+				},
+				{
+					"question": "How often do you get so focused on activities in your classes that you lose track of time?",
+					"value": 40
+				},
+				{
+					"question": "How often are people disrespectful to others at your school?",
+					"value": 50
+				},
+				{
+					"question": "Overall, how much do you feel like you belong at your school?",
+					"value": 68
+				},
+				{
+					"question": "How often do your teachers seem excited to be teaching your classes?",
+					"value": 36
+				},
+				{
+					"question": "How connected do you feel to the adults at your school?",
+					"value": 55
+				}
+			]
+		},
+		{
+			"label": "Parent Questions",
+			"postChar": "%",
+			"data": [
+				{
+					"question": "How well do administrators at your child’s school create a school environment that helps children learn?",
+					"value": 20
+				},
+				{
+					"question": "Overall, how much respect do you think the teachers at your child’s school have for the children?",
+					"value": 23
+				},
+				{
+					"question": "Overall, how unsafe does your child feel at school?",
+					"value": 71
+				},
+				{
+					"question": "How motivating are the classroom lessons at your child’s school?",
+					"value": 36
+				},
+				{
+					"question": "The office staff at my child’s school is always professional and respectful of my time.",
+					"value": 53
+				}
+			]
+		},
+		{
+			"title": "Teacher Survey Results",
+			"label": "Teacher Questions",
+			"postChar": "%",
+			"data": [
+				{
+					"question": "Teachers in this school believe that every student can learn.",
+					"value": 46
+				},
+				{
+					"question": "I feel that my school is consistent with student disciplinary issues.",
+					"value": 75
+				}
+			]
+		}
+	]
+}

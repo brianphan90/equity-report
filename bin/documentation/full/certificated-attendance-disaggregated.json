@@ -1,0 +1,1187 @@
+{
+	"legend": {
+		"fullAbsence": {
+			"shape": "triangle",
+			"label": "Full Day Absence (non-PD/non-Jury Duty)"
+		},
+		"partialAbsence": {
+			"shape": "circle",
+			"label": "Partial Day Absence (non-PD/non-Jury Dury)"
+		},
+		"totalInstruction": {
+			"label": "Total Instructional Minutes Delivered (in percent)",
+			"shape": "square",
+			"color": "#D0BA49",
+			"style": "striped"
+		},
+		"full": {
+			"title": "Full",
+			"label": "Total number of full day absences."
+		},
+		"partial": {
+			"title": "Partial",
+			"label": "Total number of partial day absences."
+		},
+		"teacherCode": {
+			"title": "#.A.AB",
+			"label": "Grade Level. Teacher’s Last Name Initial. Teacher’s first two letters of First Name"
+		}
+	},
+	"chart": {
+		"range": {
+			"start": "2018-07-01T06:00:00.000Z",
+			"end": "2019-06-30T06:00:00.000Z"
+		},
+		"data": [
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "fullAbsence",
+							"date": "2019-05-12T05:59:25.940Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-03-22T20:16:57.510Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-10-22T18:00:02.908Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-05-24T22:14:27.551Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-01-16T01:15:22.174Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-03-18T20:18:50.999Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-05-14T06:18:39.769Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-11-17T12:27:49.170Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-10-20T00:28:11.629Z"
+						}
+					],
+					"totalInstruction": 95.5,
+					"full": 5,
+					"partial": 4
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2018-08-16T05:37:57.844Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-08-13T16:01:55.075Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-05-23T07:57:50.069Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-06-24T04:47:02.953Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-01-30T13:19:14.659Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-14T07:31:38.124Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-10-06T05:11:36.523Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-08-10T05:26:41.788Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-08-04T01:06:29.979Z"
+						}
+					],
+					"totalInstruction": 95.5,
+					"full": 3,
+					"partial": 6
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "fullAbsence",
+							"date": "2018-10-31T10:58:59.129Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-04-18T07:46:41.726Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-06-06T21:36:35.803Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-06-29T17:35:29.893Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-06-04T02:39:46.391Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-09-02T04:05:54.792Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-11-16T15:25:33.183Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-06-16T02:08:57.928Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-12-25T21:38:47.999Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-08-24T22:39:11.478Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-12-16T00:25:00.132Z"
+						}
+					],
+					"totalInstruction": 94.5,
+					"full": 7,
+					"partial": 4
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2018-10-25T04:09:29.996Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-12-04T03:52:01.972Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-02-20T02:41:17.087Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-04-10T03:11:39.886Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-07-14T10:05:41.011Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-16T17:18:32.700Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-03-15T16:00:09.146Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-06-02T22:19:28.808Z"
+						}
+					],
+					"totalInstruction": 96,
+					"full": 1,
+					"partial": 7
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2019-06-16T20:10:42.606Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-03-12T03:45:16.332Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-07-28T08:19:19.667Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-07-31T13:41:31.081Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-23T21:22:02.209Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-14T19:19:45.692Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-12-10T17:00:58.936Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-24T01:18:40.922Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-04-12T04:06:51.994Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-08-19T13:02:24.166Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-10-25T03:30:38.358Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-02-11T19:45:52.893Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-01-25T12:09:33.892Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-06-27T16:49:39.965Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-01-22T17:13:05.810Z"
+						}
+					],
+					"totalInstruction": 92.5,
+					"full": 7,
+					"partial": 8
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2018-11-26T12:40:26.110Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-03-03T09:50:34.391Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-06-28T10:39:27.476Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-06-23T16:37:05.248Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-03-18T11:47:26.156Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-10-26T00:16:34.129Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-04-15T10:35:39.668Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-02-10T09:40:31.460Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-08-05T21:08:23.834Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-12-18T07:42:50.103Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-03-24T00:02:40.977Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-11T08:10:49.620Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-12-24T17:02:54.471Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-11-04T11:40:19.399Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-03-05T13:23:25.798Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-08-09T18:28:24.831Z"
+						}
+					],
+					"totalInstruction": 92,
+					"full": 9,
+					"partial": 7
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2019-05-09T21:21:38.913Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-03-20T10:26:28.050Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-11-29T23:43:01.078Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-05-22T19:15:18.761Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-03-17T16:48:58.884Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-05-27T18:26:57.529Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-05-14T04:01:45.085Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-06-23T00:25:36.269Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-05-09T14:38:49.803Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-02-28T15:44:32.559Z"
+						}
+					],
+					"totalInstruction": 95,
+					"full": 6,
+					"partial": 4
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2018-12-13T07:14:13.260Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-01T06:03:13.529Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-09-11T10:30:18.974Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-06-16T01:03:56.705Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-08-28T03:40:40.400Z"
+						}
+					],
+					"totalInstruction": 97.5,
+					"full": 1,
+					"partial": 4
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2018-10-29T12:31:38.482Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-01-05T09:59:03.908Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-07-29T10:37:11.482Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-03-23T02:07:39.085Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-08-03T20:11:22.629Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-04-28T21:46:00.439Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-06-08T23:35:22.487Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-01-29T19:02:34.390Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-07-15T12:03:30.746Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-05-01T09:05:44.089Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-12-19T00:35:19.616Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-05-06T22:53:09.828Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-02-03T22:36:04.137Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-05-14T05:10:59.569Z"
+						}
+					],
+					"totalInstruction": 93,
+					"full": 7,
+					"partial": 7
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2018-11-11T10:27:07.962Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-10-08T23:26:25.774Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-08-16T23:18:18.614Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-08-20T04:39:47.192Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-04-03T05:56:46.966Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-04-27T00:16:30.749Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-27T02:35:25.558Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-08-28T22:09:19.058Z"
+						}
+					],
+					"totalInstruction": 96,
+					"full": 2,
+					"partial": 6
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2018-08-06T23:14:01.209Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-05-07T01:06:36.555Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-09-23T05:29:22.413Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-07-14T19:30:28.348Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-07-06T10:56:27.234Z"
+						}
+					],
+					"totalInstruction": 97.5,
+					"full": 3,
+					"partial": 2
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2018-12-31T00:18:16.171Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-09-12T04:12:51.108Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-09-13T20:13:59.901Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-02-24T05:59:50.464Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-02-18T02:00:41.686Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-11-24T12:59:39.117Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-08-16T01:10:42.937Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-03-02T02:18:47.878Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-11-05T11:06:49.913Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-04-13T17:47:57.507Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-11-25T06:03:34.962Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-04-15T22:53:07.864Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-11-09T05:39:13.582Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-11-30T03:35:35.603Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-01-10T13:01:00.337Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-10-08T03:23:08.080Z"
+						}
+					],
+					"totalInstruction": 92,
+					"full": 10,
+					"partial": 6
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2019-06-06T11:08:30.972Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-06-02T08:18:57.157Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-03-18T15:58:14.402Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-09-10T22:21:36.931Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-03-09T19:33:00.499Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-11-26T18:43:50.668Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-04-16T05:16:51.168Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-02-10T18:07:06.247Z"
+						}
+					],
+					"totalInstruction": 96,
+					"full": 2,
+					"partial": 6
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "fullAbsence",
+							"date": "2018-07-05T14:33:10.741Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-09-27T17:36:59.903Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-06-13T00:43:48.307Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-12-25T00:25:50.354Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-06-15T08:24:53.677Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-11-04T01:32:58.107Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-15T19:39:55.397Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-09-26T16:16:32.347Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-09-07T11:10:07.352Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-02-21T03:12:34.766Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-09-17T09:20:41.020Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-05-18T05:25:24.159Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-02-01T04:36:24.280Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-01-03T15:14:01.090Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-12-17T03:49:31.891Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-04-23T23:48:53.537Z"
+						}
+					],
+					"totalInstruction": 92,
+					"full": 7,
+					"partial": 9
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "fullAbsence",
+							"date": "2019-02-04T16:35:36.652Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-12-21T00:12:30.502Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-06-14T16:21:33.500Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-09-01T17:10:57.972Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-08-26T08:36:15.198Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-02-02T15:49:08.676Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-05-05T17:00:52.298Z"
+						}
+					],
+					"totalInstruction": 96.5,
+					"full": 4,
+					"partial": 3
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2018-12-25T02:17:38.513Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-07-28T01:05:36.942Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-04-08T04:57:25.353Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-05-11T10:43:48.168Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-04T21:44:25.782Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-10-29T01:43:21.687Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-05-12T02:41:53.422Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-07-24T07:31:44.321Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-12-06T01:56:21.250Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-05-10T15:30:24.000Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-09-07T22:14:26.549Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-12-07T19:36:49.754Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-01-09T21:57:58.437Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-07-09T15:57:27.796Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-10-18T13:33:37.301Z"
+						}
+					],
+					"totalInstruction": 92.5,
+					"full": 6,
+					"partial": 9
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2018-07-16T06:41:08.497Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-11-01T09:59:37.515Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-11-04T08:30:41.923Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-27T21:47:48.693Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-12-31T23:53:39.708Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-12-20T09:45:27.781Z"
+						}
+					],
+					"totalInstruction": 97,
+					"full": 1,
+					"partial": 5
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-18T09:02:51.876Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-01-03T21:58:17.535Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-09-06T00:00:54.713Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-08-20T07:07:44.321Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-07-10T08:44:45.769Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-12-02T19:13:47.744Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-08-18T03:38:56.678Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-02-24T04:16:30.920Z"
+						}
+					],
+					"totalInstruction": 96,
+					"full": 3,
+					"partial": 5
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2018-12-17T06:26:51.624Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-05-06T05:55:37.416Z"
+						}
+					],
+					"totalInstruction": 99,
+					"full": 0,
+					"partial": 2
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "fullAbsence",
+							"date": "2018-11-14T06:59:29.944Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-11-22T18:58:10.173Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-01-16T13:23:04.517Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-04-24T11:58:56.419Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-04-23T13:14:36.185Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-10-17T00:53:47.260Z"
+						}
+					],
+					"totalInstruction": 97,
+					"full": 3,
+					"partial": 3
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2018-11-21T13:06:28.427Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-11-30T07:08:11.650Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-04-28T13:49:42.647Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-09-10T01:29:51.024Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-02-10T21:48:37.323Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-09-05T23:48:01.509Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-11-03T07:29:12.390Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-28T08:55:49.101Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-07-29T06:33:32.806Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-04-26T00:47:30.556Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-07-09T22:02:47.053Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-12-30T08:35:56.975Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-10-02T01:18:20.171Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-10-16T19:21:56.693Z"
+						}
+					],
+					"totalInstruction": 93,
+					"full": 9,
+					"partial": 5
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2019-05-24T02:48:30.748Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-10-30T02:47:26.939Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-03T19:43:09.357Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-10-10T22:14:47.680Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-10-02T20:35:43.423Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-08-05T10:44:21.529Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2019-03-12T01:40:02.706Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-07-23T06:03:27.221Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-07-21T18:55:57.111Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-09-11T23:24:40.616Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-14T19:05:07.330Z"
+						},
+						{
+							"type": "fullAbsence",
+							"date": "2018-07-12T06:06:07.412Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2018-10-07T14:12:09.386Z"
+						}
+					],
+					"totalInstruction": 93.5,
+					"full": 4,
+					"partial": 9
+				}
+			},
+			{
+				"label": "3-3.A.MJ",
+				"type": "attendance-chart",
+				"data": {
+					"absences": [
+						{
+							"type": "partialAbsence",
+							"date": "2019-05-05T23:33:49.162Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-06-14T17:02:19.265Z"
+						},
+						{
+							"type": "partialAbsence",
+							"date": "2019-01-01T09:30:50.836Z"
+						}
+					],
+					"totalInstruction": 98.5,
+					"full": 0,
+					"partial": 3
+				}
+			}
+		]
+	}
+}

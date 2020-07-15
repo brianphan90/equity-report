@@ -122,7 +122,7 @@ fs.readdir( path.resolve( __dirname, './documentation/base' ), ( err, contents )
 			randomizeBase,
 		} );
 
-		const formatted = stringifyObject( data, { singleQuotes : false } ).replace( /([a-zA-Z0-9]+):/g, '"$1":' );
+		const formatted = stringifyObject( data, { singleQuotes : false } ).replace( /\t([a-zA-Z0-9]+):/g, '\t"$1":' );
 
 		fs.writeFile( full, formatted, ( e ) => {
 			if ( e ) {
