@@ -9,7 +9,8 @@
     "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit",
     "update-routes": "node ./src/router/generate.js",
-    "watch-routes": "nodemon --ext vue,js --watch ./src/routes --watch ./src/router/generate.js src/router/generate.js"
+    "watch-routes": "nodemon --ext vue,js --watch ./src/routes --watch ./src/router/generate.js src/router/generate.js",
+    "build-response-documentation": "node ./bin/create-documentation-response-data.js"
   },
   "dependencies": {
     "@jetstech/eslint-config-jetstech": "0.0.5",
@@ -47,10 +48,12 @@
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-vue": "^6.2.2",
+    "faker": "^4.1.0",
     "geckodriver": "^1.19.1",
     "nodemon": "^2.0.4",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "stringify-object": "^3.3.0",
     "vue-auto-routing": "^0.5.0",
     "vue-template-compiler": "^2.6.11"
   },
