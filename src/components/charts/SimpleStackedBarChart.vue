@@ -55,7 +55,7 @@ export default {
 			// Compute the position and size of the bars
 			const barKeys = Object.keys( this.data );
 			const sum     = barKeys.reduce( ( total, key ) => total + this.data[key], 0 );
-
+			console.log( barKeys );
 			let runningSum = 0;
 			const barData = barKeys.map( ( key ) => {
 				// get the value and the height
