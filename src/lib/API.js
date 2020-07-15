@@ -95,7 +95,7 @@ export const GetSchools = () => fetchPromise( path( 'schools' ), {
 	headers : defaultHeaders(),
 } );
 
-export const GetSpcByGradeLevelAndSubgroup =  filters => fetchPromise( path( 'data/2019-2020/student/spc-by-grade-level-and-subgroup', { filters } ), {
+export const GetSpcByGradeLevelAndSubgroup =  ( year = '2018-2019', identityId = '7', filters ) => fetchPromise( path( 'data/spc-by-grade-level-and-subgroup', { year, identityId, filters } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
