@@ -122,7 +122,10 @@ fs.readdir( path.resolve( __dirname, './documentation/base' ), ( err, contents )
 			randomizeBase,
 		} );
 
-		const formatted = stringifyObject( data, { singleQuotes : false } ).replace( /\t([a-zA-Z0-9]+):/g, '\t"$1":' );
+		const formatted = `${stringifyObject( data, { singleQuotes : false } )}\n`
+			.replace( /\t([a-zA-Z0-9]+):/g, '\t"$1":' ) // double quote everything
+			.replace( /(.+)\n/g, '\t\t$1\n' ) // add two tabs at the beginning of all lines
+			.replace( /\t/g, '    ' ); // change tabs to four spaces;
 
 		fs.writeFile( full, formatted, ( e ) => {
 			if ( e ) {

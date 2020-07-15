@@ -1,528 +1,528 @@
-{
-	"legend": {
-		"overUnderChart": {
-			"positive": {
-				"currentYear": {
-					"color": "#557176"
-				},
-				"priorYear": {
-					"color": "#94AEB4"
-				}
-			},
-			"negative": {
-				"currentYear": {
-					"color": "#BE8674"
-				},
-				"priorYear": {
-					"color": "#D7B6AA"
-				}
-			}
-		},
-		"pyramidOverUnderChart": {
-			"positive": {
-				"color": "#557176",
-				"label": "Met or Exceeded"
-			},
-			"negative": {
-				"color": "#BE8674",
-				"label": "Not Met or Nearly Met"
-			}
-		}
-	},
-	"charts": [
-		{
-			"title": "ELA",
-			"byGradeLevel": {
-				"type": "overUnderChart",
-				"data": [
-					{
-						"label": 3,
-						"positive": {
-							"currentYear": 86,
-							"priorYear": 83
-						},
-						"negative": {
-							"currentYear": 14,
-							"priorYear": 17
-						}
-					},
-					{
-						"label": 4,
-						"positive": {
-							"currentYear": 69,
-							"priorYear": 68
-						},
-						"negative": {
-							"currentYear": 31,
-							"priorYear": 32
-						}
-					},
-					{
-						"label": 5,
-						"positive": {
-							"currentYear": 97,
-							"priorYear": 93
-						},
-						"negative": {
-							"currentYear": 3,
-							"priorYear": 7
-						}
-					},
-					{
-						"label": 6,
-						"positive": {
-							"currentYear": 69,
-							"priorYear": 72
-						},
-						"negative": {
-							"currentYear": 31,
-							"priorYear": 28
-						}
-					},
-					{
-						"label": 7,
-						"positive": {
-							"currentYear": 98,
-							"priorYear": 98
-						},
-						"negative": {
-							"currentYear": 2,
-							"priorYear": 2
-						}
-					},
-					{
-						"label": 8,
-						"positive": {
-							"currentYear": 82,
-							"priorYear": 76
-						},
-						"negative": {
-							"currentYear": 18,
-							"priorYear": 24
-						}
-					},
-					{
-						"label": 9,
-						"positive": {
-							"currentYear": 63,
-							"priorYear": 60
-						},
-						"negative": {
-							"currentYear": 37,
-							"priorYear": 40
-						}
-					},
-					{
-						"label": 10,
-						"positive": {
-							"currentYear": 77,
-							"priorYear": 76
-						},
-						"negative": {
-							"currentYear": 23,
-							"priorYear": 24
-						}
-					},
-					{
-						"label": 11,
-						"positive": {
-							"currentYear": 81,
-							"priorYear": 86
-						},
-						"negative": {
-							"currentYear": 19,
-							"priorYear": 14
-						}
-					}
-				]
-			},
-			"bySubgroup": {
-				"type": "overUnderChart",
-				"data": [
-					{
-						"label": "SED",
-						"positive": {
-							"currentYear": 67,
-							"priorYear": 67
-						},
-						"negative": {
-							"currentYear": 33,
-							"priorYear": 33
-						}
-					},
-					{
-						"label": "EL",
-						"positive": {
-							"currentYear": 97,
-							"priorYear": 92
-						},
-						"negative": {
-							"currentYear": 3,
-							"priorYear": 8
-						}
-					},
-					{
-						"label": "FY",
-						"positive": {
-							"currentYear": 65,
-							"priorYear": 67
-						},
-						"negative": {
-							"currentYear": 35,
-							"priorYear": 33
-						}
-					},
-					{
-						"label": "HL",
-						"positive": {
-							"currentYear": 52,
-							"priorYear": 56
-						},
-						"negative": {
-							"currentYear": 48,
-							"priorYear": 44
-						}
-					},
-					{
-						"label": "SWD",
-						"positive": {
-							"currentYear": 95,
-							"priorYear": 90
-						},
-						"negative": {
-							"currentYear": 5,
-							"priorYear": 10
-						}
-					},
-					{
-						"label": "HL",
-						"positive": {
-							"currentYear": 83,
-							"priorYear": 76
-						},
-						"negative": {
-							"currentYear": 17,
-							"priorYear": 24
-						}
-					},
-					{
-						"label": "WH",
-						"positive": {
-							"currentYear": 60,
-							"priorYear": 65
-						},
-						"negative": {
-							"currentYear": 40,
-							"priorYear": 35
-						}
-					},
-					{
-						"label": "BL",
-						"positive": {
-							"currentYear": 66,
-							"priorYear": 72
-						},
-						"negative": {
-							"currentYear": 34,
-							"priorYear": 28
-						}
-					},
-					{
-						"label": "AS",
-						"positive": {
-							"currentYear": 94,
-							"priorYear": 99
-						},
-						"negative": {
-							"currentYear": 6,
-							"priorYear": 1
-						}
-					},
-					{
-						"label": "FI",
-						"positive": {
-							"currentYear": 79,
-							"priorYear": 72
-						},
-						"negative": {
-							"currentYear": 21,
-							"priorYear": 28
-						}
-					}
-				]
-			},
-			"metOrExceeded": {
-				"type": "pyramidOverUnderChart",
-				"data": [
-					{
-						"label": 2016,
-						"positive": 0,
-						"negative": 0
-					},
-					{
-						"label": 2017,
-						"positive": 0,
-						"negative": 0
-					},
-					{
-						"label": 2018,
-						"positive": 79.11111111111111,
-						"negative": 20.88888888888889
-					},
-					{
-						"label": 2019,
-						"positive": 80.22222222222223,
-						"negative": 19.77777777777778
-					}
-				]
-			}
-		},
-		{
-			"title": "Mathematics",
-			"byGradeLevel": {
-				"type": "overUnderChart",
-				"data": [
-					{
-						"label": 3,
-						"positive": {
-							"currentYear": 98,
-							"priorYear": 95
-						},
-						"negative": {
-							"currentYear": 2,
-							"priorYear": 5
-						}
-					},
-					{
-						"label": 4,
-						"positive": {
-							"currentYear": 61,
-							"priorYear": 60
-						},
-						"negative": {
-							"currentYear": 39,
-							"priorYear": 40
-						}
-					},
-					{
-						"label": 5,
-						"positive": {
-							"currentYear": 52,
-							"priorYear": 47
-						},
-						"negative": {
-							"currentYear": 48,
-							"priorYear": 53
-						}
-					},
-					{
-						"label": 6,
-						"positive": {
-							"currentYear": 100,
-							"priorYear": 91
-						},
-						"negative": {
-							"currentYear": 0,
-							"priorYear": 9
-						}
-					},
-					{
-						"label": 7,
-						"positive": {
-							"currentYear": 99,
-							"priorYear": 94
-						},
-						"negative": {
-							"currentYear": 1,
-							"priorYear": 6
-						}
-					},
-					{
-						"label": 8,
-						"positive": {
-							"currentYear": 86,
-							"priorYear": 85
-						},
-						"negative": {
-							"currentYear": 14,
-							"priorYear": 15
-						}
-					},
-					{
-						"label": 9,
-						"positive": {
-							"currentYear": 74,
-							"priorYear": 79
-						},
-						"negative": {
-							"currentYear": 26,
-							"priorYear": 21
-						}
-					},
-					{
-						"label": 10,
-						"positive": {
-							"currentYear": 52,
-							"priorYear": 57
-						},
-						"negative": {
-							"currentYear": 48,
-							"priorYear": 43
-						}
-					},
-					{
-						"label": 11,
-						"positive": {
-							"currentYear": 89,
-							"priorYear": 83
-						},
-						"negative": {
-							"currentYear": 11,
-							"priorYear": 17
-						}
-					}
-				]
-			},
-			"bySubgroup": {
-				"type": "overUnderChart",
-				"data": [
-					{
-						"label": "SED",
-						"positive": {
-							"currentYear": 83,
-							"priorYear": 82
-						},
-						"negative": {
-							"currentYear": 17,
-							"priorYear": 18
-						}
-					},
-					{
-						"label": "EL",
-						"positive": {
-							"currentYear": 59,
-							"priorYear": 56
-						},
-						"negative": {
-							"currentYear": 41,
-							"priorYear": 44
-						}
-					},
-					{
-						"label": "FY",
-						"positive": {
-							"currentYear": 92,
-							"priorYear": 98
-						},
-						"negative": {
-							"currentYear": 8,
-							"priorYear": 2
-						}
-					},
-					{
-						"label": "HL",
-						"positive": {
-							"currentYear": 94,
-							"priorYear": 87
-						},
-						"negative": {
-							"currentYear": 6,
-							"priorYear": 13
-						}
-					},
-					{
-						"label": "SWD",
-						"positive": {
-							"currentYear": 92,
-							"priorYear": 84
-						},
-						"negative": {
-							"currentYear": 8,
-							"priorYear": 16
-						}
-					},
-					{
-						"label": "HL",
-						"positive": {
-							"currentYear": 88,
-							"priorYear": 81
-						},
-						"negative": {
-							"currentYear": 12,
-							"priorYear": 19
-						}
-					},
-					{
-						"label": "WH",
-						"positive": {
-							"currentYear": 88,
-							"priorYear": 84
-						},
-						"negative": {
-							"currentYear": 12,
-							"priorYear": 16
-						}
-					},
-					{
-						"label": "BL",
-						"positive": {
-							"currentYear": 68,
-							"priorYear": 63
-						},
-						"negative": {
-							"currentYear": 32,
-							"priorYear": 37
-						}
-					},
-					{
-						"label": "AS",
-						"positive": {
-							"currentYear": 56,
-							"priorYear": 56
-						},
-						"negative": {
-							"currentYear": 44,
-							"priorYear": 44
-						}
-					},
-					{
-						"label": "FI",
-						"positive": {
-							"currentYear": 56,
-							"priorYear": 53
-						},
-						"negative": {
-							"currentYear": 44,
-							"priorYear": 47
-						}
-					}
-				]
-			},
-			"metOrExceeded": {
-				"type": "pyramidOverUnderChart",
-				"data": [
-					{
-						"label": 2016,
-						"positive": 0,
-						"negative": 0
-					},
-					{
-						"label": 2017,
-						"positive": 0,
-						"negative": 0
-					},
-					{
-						"label": 2018,
-						"positive": 76.77777777777777,
-						"negative": 23.22222222222222
-					},
-					{
-						"label": 2019,
-						"positive": 79,
-						"negative": 21
-					}
-				]
-			}
-		}
-	]
-}
+        {
+            "legend": {
+                "overUnderChart": {
+                    "positive": {
+                        "currentYear": {
+                            "color": "#557176"
+                        },
+                        "priorYear": {
+                            "color": "#94AEB4"
+                        }
+                    },
+                    "negative": {
+                        "currentYear": {
+                            "color": "#BE8674"
+                        },
+                        "priorYear": {
+                            "color": "#D7B6AA"
+                        }
+                    }
+                },
+                "pyramidOverUnderChart": {
+                    "positive": {
+                        "color": "#557176",
+                        "label": "Met or Exceeded"
+                    },
+                    "negative": {
+                        "color": "#BE8674",
+                        "label": "Not Met or Nearly Met"
+                    }
+                }
+            },
+            "charts": [
+                {
+                    "title": "ELA",
+                    "byGradeLevel": {
+                        "type": "overUnderChart",
+                        "data": [
+                            {
+                                "label": 3,
+                                "positive": {
+                                    "currentYear": 63,
+                                    "priorYear": 59
+                                },
+                                "negative": {
+                                    "currentYear": 37,
+                                    "priorYear": 41
+                                }
+                            },
+                            {
+                                "label": 4,
+                                "positive": {
+                                    "currentYear": 92,
+                                    "priorYear": 96
+                                },
+                                "negative": {
+                                    "currentYear": 8,
+                                    "priorYear": 4
+                                }
+                            },
+                            {
+                                "label": 5,
+                                "positive": {
+                                    "currentYear": 54,
+                                    "priorYear": 58
+                                },
+                                "negative": {
+                                    "currentYear": 46,
+                                    "priorYear": 42
+                                }
+                            },
+                            {
+                                "label": 6,
+                                "positive": {
+                                    "currentYear": 52,
+                                    "priorYear": 55
+                                },
+                                "negative": {
+                                    "currentYear": 48,
+                                    "priorYear": 45
+                                }
+                            },
+                            {
+                                "label": 7,
+                                "positive": {
+                                    "currentYear": 88,
+                                    "priorYear": 92
+                                },
+                                "negative": {
+                                    "currentYear": 12,
+                                    "priorYear": 8
+                                }
+                            },
+                            {
+                                "label": 8,
+                                "positive": {
+                                    "currentYear": 60,
+                                    "priorYear": 63
+                                },
+                                "negative": {
+                                    "currentYear": 40,
+                                    "priorYear": 37
+                                }
+                            },
+                            {
+                                "label": 9,
+                                "positive": {
+                                    "currentYear": 64,
+                                    "priorYear": 58
+                                },
+                                "negative": {
+                                    "currentYear": 36,
+                                    "priorYear": 42
+                                }
+                            },
+                            {
+                                "label": 10,
+                                "positive": {
+                                    "currentYear": 67,
+                                    "priorYear": 66
+                                },
+                                "negative": {
+                                    "currentYear": 33,
+                                    "priorYear": 34
+                                }
+                            },
+                            {
+                                "label": 11,
+                                "positive": {
+                                    "currentYear": 77,
+                                    "priorYear": 78
+                                },
+                                "negative": {
+                                    "currentYear": 23,
+                                    "priorYear": 22
+                                }
+                            }
+                        ]
+                    },
+                    "bySubgroup": {
+                        "type": "overUnderChart",
+                        "data": [
+                            {
+                                "label": "SED",
+                                "positive": {
+                                    "currentYear": 58,
+                                    "priorYear": 61
+                                },
+                                "negative": {
+                                    "currentYear": 42,
+                                    "priorYear": 39
+                                }
+                            },
+                            {
+                                "label": "EL",
+                                "positive": {
+                                    "currentYear": 78,
+                                    "priorYear": 78
+                                },
+                                "negative": {
+                                    "currentYear": 22,
+                                    "priorYear": 22
+                                }
+                            },
+                            {
+                                "label": "FY",
+                                "positive": {
+                                    "currentYear": 65,
+                                    "priorYear": 63
+                                },
+                                "negative": {
+                                    "currentYear": 35,
+                                    "priorYear": 37
+                                }
+                            },
+                            {
+                                "label": "HL",
+                                "positive": {
+                                    "currentYear": 79,
+                                    "priorYear": 85
+                                },
+                                "negative": {
+                                    "currentYear": 21,
+                                    "priorYear": 15
+                                }
+                            },
+                            {
+                                "label": "SWD",
+                                "positive": {
+                                    "currentYear": 79,
+                                    "priorYear": 77
+                                },
+                                "negative": {
+                                    "currentYear": 21,
+                                    "priorYear": 23
+                                }
+                            },
+                            {
+                                "label": "HL",
+                                "positive": {
+                                    "currentYear": 91,
+                                    "priorYear": 86
+                                },
+                                "negative": {
+                                    "currentYear": 9,
+                                    "priorYear": 14
+                                }
+                            },
+                            {
+                                "label": "WH",
+                                "positive": {
+                                    "currentYear": 83,
+                                    "priorYear": 86
+                                },
+                                "negative": {
+                                    "currentYear": 17,
+                                    "priorYear": 14
+                                }
+                            },
+                            {
+                                "label": "BL",
+                                "positive": {
+                                    "currentYear": 63,
+                                    "priorYear": 58
+                                },
+                                "negative": {
+                                    "currentYear": 37,
+                                    "priorYear": 42
+                                }
+                            },
+                            {
+                                "label": "AS",
+                                "positive": {
+                                    "currentYear": 100,
+                                    "priorYear": 97
+                                },
+                                "negative": {
+                                    "currentYear": 0,
+                                    "priorYear": 3
+                                }
+                            },
+                            {
+                                "label": "FI",
+                                "positive": {
+                                    "currentYear": 77,
+                                    "priorYear": 78
+                                },
+                                "negative": {
+                                    "currentYear": 23,
+                                    "priorYear": 22
+                                }
+                            }
+                        ]
+                    },
+                    "metOrExceeded": {
+                        "type": "pyramidOverUnderChart",
+                        "data": [
+                            {
+                                "label": 2016,
+                                "positive": 0,
+                                "negative": 0
+                            },
+                            {
+                                "label": 2017,
+                                "positive": 0,
+                                "negative": 0
+                            },
+                            {
+                                "label": 2018,
+                                "positive": 69.44444444444444,
+                                "negative": 30.555555555555557
+                            },
+                            {
+                                "label": 2019,
+                                "positive": 68.55555555555556,
+                                "negative": 31.444444444444443
+                            }
+                        ]
+                    }
+                },
+                {
+                    "title": "Mathematics",
+                    "byGradeLevel": {
+                        "type": "overUnderChart",
+                        "data": [
+                            {
+                                "label": 3,
+                                "positive": {
+                                    "currentYear": 52,
+                                    "priorYear": 51
+                                },
+                                "negative": {
+                                    "currentYear": 48,
+                                    "priorYear": 49
+                                }
+                            },
+                            {
+                                "label": 4,
+                                "positive": {
+                                    "currentYear": 89,
+                                    "priorYear": 92
+                                },
+                                "negative": {
+                                    "currentYear": 11,
+                                    "priorYear": 8
+                                }
+                            },
+                            {
+                                "label": 5,
+                                "positive": {
+                                    "currentYear": 51,
+                                    "priorYear": 46
+                                },
+                                "negative": {
+                                    "currentYear": 49,
+                                    "priorYear": 54
+                                }
+                            },
+                            {
+                                "label": 6,
+                                "positive": {
+                                    "currentYear": 55,
+                                    "priorYear": 59
+                                },
+                                "negative": {
+                                    "currentYear": 45,
+                                    "priorYear": 41
+                                }
+                            },
+                            {
+                                "label": 7,
+                                "positive": {
+                                    "currentYear": 60,
+                                    "priorYear": 62
+                                },
+                                "negative": {
+                                    "currentYear": 40,
+                                    "priorYear": 38
+                                }
+                            },
+                            {
+                                "label": 8,
+                                "positive": {
+                                    "currentYear": 79,
+                                    "priorYear": 75
+                                },
+                                "negative": {
+                                    "currentYear": 21,
+                                    "priorYear": 25
+                                }
+                            },
+                            {
+                                "label": 9,
+                                "positive": {
+                                    "currentYear": 82,
+                                    "priorYear": 84
+                                },
+                                "negative": {
+                                    "currentYear": 18,
+                                    "priorYear": 16
+                                }
+                            },
+                            {
+                                "label": 10,
+                                "positive": {
+                                    "currentYear": 97,
+                                    "priorYear": 93
+                                },
+                                "negative": {
+                                    "currentYear": 3,
+                                    "priorYear": 7
+                                }
+                            },
+                            {
+                                "label": 11,
+                                "positive": {
+                                    "currentYear": 75,
+                                    "priorYear": 81
+                                },
+                                "negative": {
+                                    "currentYear": 25,
+                                    "priorYear": 19
+                                }
+                            }
+                        ]
+                    },
+                    "bySubgroup": {
+                        "type": "overUnderChart",
+                        "data": [
+                            {
+                                "label": "SED",
+                                "positive": {
+                                    "currentYear": 75,
+                                    "priorYear": 74
+                                },
+                                "negative": {
+                                    "currentYear": 25,
+                                    "priorYear": 26
+                                }
+                            },
+                            {
+                                "label": "EL",
+                                "positive": {
+                                    "currentYear": 52,
+                                    "priorYear": 51
+                                },
+                                "negative": {
+                                    "currentYear": 48,
+                                    "priorYear": 49
+                                }
+                            },
+                            {
+                                "label": "FY",
+                                "positive": {
+                                    "currentYear": 56,
+                                    "priorYear": 56
+                                },
+                                "negative": {
+                                    "currentYear": 44,
+                                    "priorYear": 44
+                                }
+                            },
+                            {
+                                "label": "HL",
+                                "positive": {
+                                    "currentYear": 59,
+                                    "priorYear": 65
+                                },
+                                "negative": {
+                                    "currentYear": 41,
+                                    "priorYear": 35
+                                }
+                            },
+                            {
+                                "label": "SWD",
+                                "positive": {
+                                    "currentYear": 77,
+                                    "priorYear": 71
+                                },
+                                "negative": {
+                                    "currentYear": 23,
+                                    "priorYear": 29
+                                }
+                            },
+                            {
+                                "label": "HL",
+                                "positive": {
+                                    "currentYear": 50,
+                                    "priorYear": 55
+                                },
+                                "negative": {
+                                    "currentYear": 50,
+                                    "priorYear": 45
+                                }
+                            },
+                            {
+                                "label": "WH",
+                                "positive": {
+                                    "currentYear": 96,
+                                    "priorYear": 91
+                                },
+                                "negative": {
+                                    "currentYear": 4,
+                                    "priorYear": 9
+                                }
+                            },
+                            {
+                                "label": "BL",
+                                "positive": {
+                                    "currentYear": 86,
+                                    "priorYear": 94
+                                },
+                                "negative": {
+                                    "currentYear": 14,
+                                    "priorYear": 6
+                                }
+                            },
+                            {
+                                "label": "AS",
+                                "positive": {
+                                    "currentYear": 67,
+                                    "priorYear": 64
+                                },
+                                "negative": {
+                                    "currentYear": 33,
+                                    "priorYear": 36
+                                }
+                            },
+                            {
+                                "label": "FI",
+                                "positive": {
+                                    "currentYear": 94,
+                                    "priorYear": 98
+                                },
+                                "negative": {
+                                    "currentYear": 6,
+                                    "priorYear": 2
+                                }
+                            }
+                        ]
+                    },
+                    "metOrExceeded": {
+                        "type": "pyramidOverUnderChart",
+                        "data": [
+                            {
+                                "label": 2016,
+                                "positive": 0,
+                                "negative": 0
+                            },
+                            {
+                                "label": 2017,
+                                "positive": 0,
+                                "negative": 0
+                            },
+                            {
+                                "label": 2018,
+                                "positive": 71.44444444444444,
+                                "negative": 28.555555555555557
+                            },
+                            {
+                                "label": 2019,
+                                "positive": 71.11111111111111,
+                                "negative": 28.88888888888889
+                            }
+                        ]
+                    }
+                }
+            ]
+        }

@@ -1,243 +1,243 @@
-{
-	"legends": {
-		"domainLevels": {
-			"title": "Domain Levels",
-			"items": {
-				"level3": {
-					"color": "#93ADB4",
-					"label": "Level 3 - Well Developed"
-				},
-				"level2": {
-					"color": "#747776",
-					"label": "Level 2 - Somewhat/Moderately"
-				},
-				"level1": {
-					"color": "#C8C8C8",
-					"label": "Level 1 - Basic"
-				}
-			}
-		},
-		"elpacLevels": {
-			"title": "ELPAC Levels",
-			"items": {
-				"level4": {
-					"color": "#577077",
-					"label": "Level 4 - Well Developed"
-				},
-				"level3": {
-					"color": "#63A49A",
-					"label": "Level 3 - Moderately Developed"
-				},
-				"level2": {
-					"color": "#D8A455",
-					"label": "Level 2 - Somewhat Developed"
-				},
-				"level1": {
-					"color": "#993E39",
-					"label": "Level 1 - Beginning Stage"
-				}
-			}
-		},
-		"odometerChart": {
-			"inner": {
-				"label": "Writing"
-			},
-			"outer": {
-				"label": "Reading"
-			}
-		}
-	},
-	"charts": [
-		{
-			"title": "By Grade Level",
-			"subTitle": "(% of Students at Well or Moderately Developed)",
-			"color": "#577077",
-			"yAxisLabel": "Well or Moderately Developed (Percent)",
-			"type": "bar-chart",
-			"data": [
-				{
-					"label": "K",
-					"value": 48
-				},
-				{
-					"label": "1",
-					"value": 78
-				},
-				{
-					"label": "2",
-					"value": 76
-				},
-				{
-					"label": "3",
-					"value": 76
-				},
-				{
-					"label": "4",
-					"value": 56
-				},
-				{
-					"label": "5",
-					"value": 23
-				},
-				{
-					"label": "6",
-					"value": 94
-				},
-				{
-					"label": "7",
-					"value": 21
-				},
-				{
-					"label": "8",
-					"value": 81
-				},
-				{
-					"label": "9",
-					"value": 42
-				},
-				{
-					"label": "10",
-					"value": 31
-				},
-				{
-					"label": "11",
-					"value": 43
-				},
-				{
-					"label": "12",
-					"value": 90
-				}
-			]
-		},
-		{
-			"title": "By Sub Group",
-			"subTitle": "(% of Students at Well or Moderately Developed)",
-			"color": "#577077",
-			"yAxisLabel": "Well or Moderately Developed (Percent)",
-			"type": "bar-chart",
-			"data": [
-				{
-					"label": "SED",
-					"value": 0
-				},
-				{
-					"label": "EL",
-					"value": 42
-				},
-				{
-					"label": "FY",
-					"value": 82
-				},
-				{
-					"label": "HL",
-					"value": 78
-				},
-				{
-					"label": "SWD",
-					"value": 51
-				},
-				{
-					"label": "HL",
-					"value": 60
-				},
-				{
-					"label": "WH",
-					"value": 87
-				},
-				{
-					"label": "BL",
-					"value": 2
-				},
-				{
-					"label": "AS",
-					"value": 0
-				},
-				{
-					"label": "FI",
-					"value": 52
-				}
-			]
-		},
-		{
-			"data": {
-				"level1": 16,
-				"level2": 41,
-				"level3": 28.66,
-				"level4": 14.34
-			},
-			"type": "rainbow-chart",
-			"title": "Overall Score",
-			"legend": "elpacLevels"
-		},
-		{
-			"left": {
-				"data": {
-					"level1": 17,
-					"level2": 38.01,
-					"level3": 31.740000000000002,
-					"level4": 13.25
-				},
-				"type": "rainbow-chart",
-				"title": "Written Language Score",
-				"legend": "elpacLevels"
-			},
-			"right": {
-				"inner": {
-					"level1": 16,
-					"level2": 54,
-					"level3": 30
-				},
-				"outer": {
-					"level1": 26,
-					"level2": 43,
-					"level3": 31
-				},
-				"type": "odometer-chart",
-				"legend": {
-					"inner": {
-						"label": "Writing"
-					},
-					"outer": {
-						"label": "Reading"
-					}
-				}
-			},
-			"type": "ocular-chart"
-		},
-		{
-			"left": {
-				"inner": {
-					"level1": 21.240000000000002,
-					"level2": 48.760000000000005,
-					"level3": 30
-				},
-				"outer": {
-					"level1": 23.06,
-					"level2": 43,
-					"level3": 33.94
-				},
-				"type": "odometer-chart",
-				"legend": {
-					"inner": {
-						"label": "Speaking"
-					},
-					"outer": {
-						"label": "Listening"
-					}
-				}
-			},
-			"right": {
-				"data": {
-					"level1": 20.96,
-					"level2": 37.36,
-					"level3": 29,
-					"level4": 12.68
-				},
-				"type": "rainbow-chart",
-				"title": "Oral Language Score",
-				"legend": "elpacLevels"
-			},
-			"type": "ocular-chart"
-		}
-	]
-}
+        {
+            "legends": {
+                "domainLevels": {
+                    "title": "Domain Levels",
+                    "items": {
+                        "level3": {
+                            "color": "#93ADB4",
+                            "label": "Level 3 - Well Developed"
+                        },
+                        "level2": {
+                            "color": "#747776",
+                            "label": "Level 2 - Somewhat/Moderately"
+                        },
+                        "level1": {
+                            "color": "#C8C8C8",
+                            "label": "Level 1 - Basic"
+                        }
+                    }
+                },
+                "elpacLevels": {
+                    "title": "ELPAC Levels",
+                    "items": {
+                        "level4": {
+                            "color": "#577077",
+                            "label": "Level 4 - Well Developed"
+                        },
+                        "level3": {
+                            "color": "#63A49A",
+                            "label": "Level 3 - Moderately Developed"
+                        },
+                        "level2": {
+                            "color": "#D8A455",
+                            "label": "Level 2 - Somewhat Developed"
+                        },
+                        "level1": {
+                            "color": "#993E39",
+                            "label": "Level 1 - Beginning Stage"
+                        }
+                    }
+                },
+                "odometerChart": {
+                    "inner": {
+                        "label": "Writing"
+                    },
+                    "outer": {
+                        "label": "Reading"
+                    }
+                }
+            },
+            "charts": [
+                {
+                    "title": "By Grade Level",
+                    "subTitle": "(% of Students at Well or Moderately Developed)",
+                    "color": "#577077",
+                    "yAxisLabel": "Well or Moderately Developed (Percent)",
+                    "type": "bar-chart",
+                    "data": [
+                        {
+                            "label": "K",
+                            "value": 87
+                        },
+                        {
+                            "label": "1",
+                            "value": 24
+                        },
+                        {
+                            "label": "2",
+                            "value": 94
+                        },
+                        {
+                            "label": "3",
+                            "value": 80
+                        },
+                        {
+                            "label": "4",
+                            "value": 11
+                        },
+                        {
+                            "label": "5",
+                            "value": 12
+                        },
+                        {
+                            "label": "6",
+                            "value": 96
+                        },
+                        {
+                            "label": "7",
+                            "value": 90
+                        },
+                        {
+                            "label": "8",
+                            "value": 82
+                        },
+                        {
+                            "label": "9",
+                            "value": 1
+                        },
+                        {
+                            "label": "10",
+                            "value": 82
+                        },
+                        {
+                            "label": "11",
+                            "value": 69
+                        },
+                        {
+                            "label": "12",
+                            "value": 96
+                        }
+                    ]
+                },
+                {
+                    "title": "By Sub Group",
+                    "subTitle": "(% of Students at Well or Moderately Developed)",
+                    "color": "#577077",
+                    "yAxisLabel": "Well or Moderately Developed (Percent)",
+                    "type": "bar-chart",
+                    "data": [
+                        {
+                            "label": "SED",
+                            "value": 83
+                        },
+                        {
+                            "label": "EL",
+                            "value": 2
+                        },
+                        {
+                            "label": "FY",
+                            "value": 22
+                        },
+                        {
+                            "label": "HL",
+                            "value": 0
+                        },
+                        {
+                            "label": "SWD",
+                            "value": 0
+                        },
+                        {
+                            "label": "HL",
+                            "value": 22
+                        },
+                        {
+                            "label": "WH",
+                            "value": 23
+                        },
+                        {
+                            "label": "BL",
+                            "value": 13
+                        },
+                        {
+                            "label": "AS",
+                            "value": 70
+                        },
+                        {
+                            "label": "FI",
+                            "value": 22
+                        }
+                    ]
+                },
+                {
+                    "data": {
+                        "level1": 17,
+                        "level2": 45.769999999999996,
+                        "level3": 24.23,
+                        "level4": 13
+                    },
+                    "type": "rainbow-chart",
+                    "title": "Overall Score",
+                    "legend": "elpacLevels"
+                },
+                {
+                    "left": {
+                        "data": {
+                            "level1": 17.56,
+                            "level2": 43.86,
+                            "level3": 26.14,
+                            "level4": 12.44
+                        },
+                        "type": "rainbow-chart",
+                        "title": "Written Language Score",
+                        "legend": "elpacLevels"
+                    },
+                    "right": {
+                        "inner": {
+                            "level1": 16,
+                            "level2": 54,
+                            "level3": 30
+                        },
+                        "outer": {
+                            "level1": 32.25,
+                            "level2": 41.2,
+                            "level3": 26.549999999999997
+                        },
+                        "type": "odometer-chart",
+                        "legend": {
+                            "inner": {
+                                "label": "Writing"
+                            },
+                            "outer": {
+                                "label": "Reading"
+                            }
+                        }
+                    },
+                    "type": "ocular-chart"
+                },
+                {
+                    "left": {
+                        "inner": {
+                            "level1": 19.02,
+                            "level2": 54,
+                            "level3": 26.98
+                        },
+                        "outer": {
+                            "level1": 27.37,
+                            "level2": 43,
+                            "level3": 29.63
+                        },
+                        "type": "odometer-chart",
+                        "legend": {
+                            "inner": {
+                                "label": "Speaking"
+                            },
+                            "outer": {
+                                "label": "Listening"
+                            }
+                        }
+                    },
+                    "right": {
+                        "data": {
+                            "level1": 17.25,
+                            "level2": 39.88,
+                            "level3": 29.02,
+                            "level4": 13.85
+                        },
+                        "type": "rainbow-chart",
+                        "title": "Oral Language Score",
+                        "legend": "elpacLevels"
+                    },
+                    "type": "ocular-chart"
+                }
+            ]
+        }
