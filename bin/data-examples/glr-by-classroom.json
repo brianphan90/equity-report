@@ -1,0 +1,172 @@
+{
+  "legend" : {
+    "exceeding" : {
+      "label" : "Exceeding",
+      "color" : "#557176"
+    },
+    "ready" : {
+      "label" : "Ready",
+      "color" : "#64A399"
+    },
+    "close" : {
+      "label" : "Close",
+      "color" : "#D0BA49"
+    },
+    "below" : {
+      "label" : "Below",
+      "color" : "#D8A556"
+    },
+    "farBelow" : {
+      "label" : "Far Below",
+      "color" : "#9B3E3A"
+    },
+    "current" : {
+      "label" : "Solid (Current)",
+      "color" : "#888888"
+    },
+    "prior" : {
+      "label" : "Faded (Prior)",
+      "color" : "#BDBDBD"
+    },
+    "positive" : {
+      "label" : "Positive Change",
+      "color" : "#688A8D",
+      "shape" : "triangle-up"
+    },
+    "negative" : {
+      "label" : "Negative Change",
+      "color" : "#BF8574",
+      "shape" : "triangle-down"
+    }
+  },
+  "graphs" : [
+    {
+      "label" : "2-2.A.GZ",
+      "data"  : {
+        "chart" : {
+          "exceeding" : 30,
+          "ready"     : 9,
+          "close"     : 35,
+          "below"     : 12,
+          "farBelow"  : 14
+        },
+        "meta" : {
+          "change"     : "negative",
+          "scoreCount" : 30
+        }
+      }
+    },
+    {
+      "label" : "2-2.A.GZ",
+      "data"  : {
+        "chart" : {
+          "exceeding" : 30,
+          "ready"     : 9,
+          "close"     : 35,
+          "below"     : 12,
+          "farBelow"  : 14
+        },
+        "meta" : {
+          "change"     : "negative",
+          "scoreCount" : 30
+        }
+      }
+    },
+    {
+      "label" : "2-2.A.GZ",
+      "data"  : {
+        "chart" : {
+          "exceeding" : 30,
+          "ready"     : 9,
+          "close"     : 35,
+          "below"     : 12,
+          "farBelow"  : 14
+        },
+        "meta" : {
+          "change"     : "negative",
+          "scoreCount" : 30
+        }
+      }
+    },
+    {
+      "label" : "2-2.A.GZ",
+      "data"  : {
+        "chart" : {
+          "exceeding" : 30,
+          "ready"     : 9,
+          "close"     : 35,
+          "below"     : 12,
+          "farBelow"  : 14
+        },
+        "meta" : {
+          "change"     : "negative",
+          "scoreCount" : 30
+        }
+      }
+    },
+    {
+      "label" : "2-2.A.GZ",
+      "data"  : {
+        "chart" : {
+          "exceeding" : 30,
+          "ready"     : 9,
+          "close"     : 35,
+          "below"     : 12,
+          "farBelow"  : 14
+        },
+        "meta" : {
+          "change"     : "negative",
+          "scoreCount" : 30
+        }
+      }
+    },
+    {
+      "label" : "2-2.A.GZ",
+      "data"  : {
+        "chart" : {
+          "exceeding" : 30,
+          "ready"     : 9,
+          "close"     : 35,
+          "below"     : 12,
+          "farBelow"  : 14
+        },
+        "meta" : {
+          "change"     : "negative",
+          "scoreCount" : 30
+        }
+      }
+    },
+    {
+      "label" : "2-2.A.GZ",
+      "data"  : {
+        "chart" : {
+          "exceeding" : 30,
+          "ready"     : 9,
+          "close"     : 35,
+          "below"     : 12,
+          "farBelow"  : 14
+        },
+        "meta" : {
+          "change"     : "negative",
+          "scoreCount" : 30
+        }
+      }
+    },
+    {
+      "label" : "2-2.A.GZ",
+      "data"  : {
+        "chart" : {
+          "exceeding" : 30,
+          "ready"     : 9,
+          "close"     : 35,
+          "below"     : 12,
+          "farBelow"  : 14
+        },
+        "meta" : {
+          "change"     : "negative",
+          "scoreCount" : 30
+        }
+      }
+    }
+  ]
+}
