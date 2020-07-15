@@ -1,0 +1,196 @@
+{
+	"legend": {
+		"currentYear": {
+			"label": "Current Year",
+			"color": "#9E5A46"
+		},
+		"priorYear": {
+			"label": "Prior Year",
+			"color": "#9E5A46",
+			"style": "striped"
+		}
+	},
+	"charts": {
+		"byGradeLevel": {
+			"title": "By Grade Level",
+			"type": "double-bar-chart",
+			"data": [
+				{
+					"label": "K",
+					"value": {
+						"currentYear": 5,
+						"priorYear": 15
+					}
+				},
+				{
+					"label": "1",
+					"value": {
+						"currentYear": 7,
+						"priorYear": 35
+					}
+				},
+				{
+					"label": "2",
+					"value": {
+						"currentYear": 9,
+						"priorYear": 4
+					}
+				},
+				{
+					"label": "3",
+					"value": {
+						"currentYear": 4,
+						"priorYear": 19
+					}
+				},
+				{
+					"label": "4",
+					"value": {
+						"currentYear": 4,
+						"priorYear": 1
+					}
+				},
+				{
+					"label": "5",
+					"value": {
+						"currentYear": 16,
+						"priorYear": 25
+					}
+				},
+				{
+					"label": "6",
+					"value": {
+						"currentYear": 24,
+						"priorYear": 3
+					}
+				},
+				{
+					"label": "7",
+					"value": {
+						"currentYear": 1,
+						"priorYear": 22
+					}
+				},
+				{
+					"label": "8",
+					"value": {
+						"currentYear": 13,
+						"priorYear": 4
+					}
+				},
+				{
+					"label": "9",
+					"value": {
+						"currentYear": 4,
+						"priorYear": 16
+					}
+				},
+				{
+					"label": "10",
+					"value": {
+						"currentYear": 35,
+						"priorYear": 18
+					}
+				},
+				{
+					"label": "11",
+					"value": {
+						"currentYear": 30,
+						"priorYear": 3
+					}
+				},
+				{
+					"label": "12",
+					"value": {
+						"currentYear": 22,
+						"priorYear": 33
+					}
+				}
+			]
+		},
+		"bySubGroup": {
+			"title": "By Grade Level",
+			"type": "double-bar-chart",
+			"data": [
+				{
+					"label": "SED",
+					"value": {
+						"currentYear": 0,
+						"priorYear": 6
+					}
+				},
+				{
+					"label": "EL",
+					"value": {
+						"currentYear": 0,
+						"priorYear": 28
+					}
+				},
+				{
+					"label": "FY",
+					"value": {
+						"currentYear": 4,
+						"priorYear": 24
+					}
+				},
+				{
+					"label": "HL",
+					"value": {
+						"currentYear": 21,
+						"priorYear": 0
+					}
+				},
+				{
+					"label": "SWD",
+					"value": {
+						"currentYear": 0,
+						"priorYear": 0
+					}
+				},
+				{
+					"label": "HL",
+					"value": {
+						"currentYear": 0,
+						"priorYear": 20
+					}
+				},
+				{
+					"label": "WH",
+					"value": {
+						"currentYear": 0,
+						"priorYear": 23
+					}
+				},
+				{
+					"label": "BL",
+					"value": {
+						"currentYear": 0,
+						"priorYear": 15
+					}
+				},
+				{
+					"label": "AS",
+					"value": {
+						"currentYear": 33,
+						"priorYear": 0
+					}
+				},
+				{
+					"label": "FI",
+					"value": {
+						"currentYear": 0,
+						"priorYear": 20
+					}
+				}
+			]
+		},
+		"overAll": {
+			"type": "emphasis-bar-chart",
+			"title": "Overall Number of Behavior Incidents",
+			"data": {
+				"currentYear": 174,
+				"priorYear": 198
+			}
+		}
+	}
+}

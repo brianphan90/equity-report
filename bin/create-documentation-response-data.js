@@ -20,15 +20,7 @@ const selectRandomlyFromArray = ( arr ) => {
 	return randomItem;
 };
 
-const glrData = () => {
-	const base = {
-		'exceeding' : 30,
-		'ready'     : 9,
-		'close'     : 35,
-		'below'     : 12,
-		'farBelow'  : 14
-	};
-
+const randomizeBase = ( base ) => {
 	const keys = Object.keys( base );
 	const randomSubtractions = keys.map( ( key ) => {
 		const baseVal = base[key];
@@ -36,7 +28,7 @@ const glrData = () => {
 
 		const subtraction = parseFloat( ( Math.random() * maxSubtraction ).toFixed( 2 ), 10 );
 
-		base[key] -= subtraction;
+		base[key] -= subtraction; // eslint-disable-line
 
 		return subtraction;
 	} );
@@ -44,10 +36,27 @@ const glrData = () => {
 	keys.forEach( ( key ) => {
 		const addition = selectRandomlyFromArray( randomSubtractions );
 
-		base[key] += addition;
+		base[key] += addition; // eslint-disable-line
 	} );
 
 	return base;
+};
+
+const glrData = () => randomizeBase( {
+	'exceeding' : 30,
+	'ready'     : 9,
+	'close'     : 35,
+	'below'     : 12,
+	'farBelow'  : 14
+} );
+
+const genArray = ( min, max ) => {
+	const arr = [];
+	for ( let i = min; i <= max; i += 1 ) {
+		arr.push( i );
+	}
+
+	return arr;
 };
 
 const subGroups = {
@@ -109,9 +118,11 @@ fs.readdir( path.resolve( __dirname, './documentation/base' ), ( err, contents )
 			subGroups,
 			faker,
 			glrData,
+			genArray,
+			randomizeBase,
 		} );
 
-		const formatted = stringifyObject( data, { singleQuotes : false } ).replace( /([a-zA-Z]+):/g, '"$1":' );
+		const formatted = stringifyObject( data, { singleQuotes : false } ).replace( /\t([a-zA-Z0-9]+):/g, '\t"$1":' );
 
 		fs.writeFile( full, formatted, ( e ) => {
 			if ( e ) {
