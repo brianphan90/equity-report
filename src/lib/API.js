@@ -95,12 +95,12 @@ export const GetSchools = () => fetchPromise( path( 'schools' ), {
 	headers : defaultHeaders(),
 } );
 
-export const GetSpcByGradeLevelAndSubgroup =  filters => fetchPromise( path( 'data/2019-2020/student/spc-by-grade-level-and-subgroup', { filters } ), {
+export const GetSpcByGradeLevelAndSubgroup =  filters => fetchPromise( path( 'data/school/spc-by-grade-level-and-subgroup', { filters } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
 
-export const GetGlrByClassroom = filters => fetchPromise( path( 'data/2019-2020/student/glr-by-classroom', { filters } ), {
+export const GetGlrByClassroom = filters => fetchPromise( path( 'data/teacher/glr-by-classroom', { filters } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );

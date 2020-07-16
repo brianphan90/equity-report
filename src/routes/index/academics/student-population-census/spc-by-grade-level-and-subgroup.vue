@@ -59,7 +59,7 @@ export default {
 			.population-count {
 				display: flex;
 				width: 70%;
-    		align-items: center;
+				align-items: center;
 
 				.count {
 					font-size: 67px;
