@@ -34,6 +34,25 @@ export default {
 			const { w, r, l } = this;
 
 			return w - ( r + l );
+		},
+
+		mode() {
+			return this.$store.state.user.mode;
+		},
+
+	},
+
+	watch : {
+		mode( mode ) {
+			const prop = ( mode === 'night' ? 'nightColor' : 'dayColor' );
+
+			this.canvas
+				.selectAll( `.dynamic-text-${this.id}` )
+				.style( 'fill', d => d[prop] );
+
+			this.canvas
+				.selectAll( `.dynamic-stroke-${this.id}` )
+				.style( 'stroke', d => d[prop] );
 		}
 	},
 
@@ -52,7 +71,9 @@ export default {
 		},
 
 		reset() {
-			this.canvas.selectAll( '*' ).delete();
+			this.canvas
+				.selectAll( '*' )
+				.remove();
 
 			this.draw();
 		},
@@ -93,17 +114,17 @@ export default {
 			} );
 		},
 
-		getLabelsFromRange( range ) {
-		},
-
 		drawAxisIndicators( options ) {
 			const {
 				axis, // eslint-disable-line
 				range,
 				lines,
 				postChar,
-				color,
+				nightColor,
+				dayColor,
 			} = options;
+
+			const color = ( this.mode === 'night' ? nightColor : dayColor );
 
 			const {
 				numberOfIndicators,
@@ -141,6 +162,8 @@ export default {
 					y,
 					text : `${range.min + ( ( i / ( numberOfIndicators - 1 ) ) * rangeDifference )}${postChar || ''}`,
 					dominantBaseline,
+					nightColor,
+					dayColor,
 				} );
 
 			}
@@ -156,7 +179,7 @@ export default {
 
 				/* draw line lables */
 				const lineLabels = lineIndicatorGroups.append( 'text' )
-					.attr( 'class', `line-indicators label-${this.id}` )
+					.attr( 'class', `line-indicators label-${this.id} dynamic-text-${this.id}` )
 					.attr( 'dominant-baseline', d => d.dominantBaseline )
 					.attr( 'x', this.l )
 					.attr( 'y', d => d.y )
@@ -182,6 +205,7 @@ export default {
 
 			lineIndicatorGroups.append( 'path' )
 				.attr( 'd', d => `M ${this.l}, ${d.y} L ${this.l + this.aw}, ${d.y}` )
+				.attr( 'class', `dynamic-stroke-${this.id}` )
 				.style( 'stroke-dasharray', '2, 4' )
 				.style( 'stroke', color );
 

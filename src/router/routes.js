@@ -233,7 +233,7 @@ export default [
                 path: 'glr-by-classroom',
                 component: index_academics_grade_level_readiness_glr_by_classroom,
                 meta: {
-                  topbarTitle: 'GLR By Classroom',
+                  topbarTitle: 'Academic Performance Equity Report',
                   navOptions: {
                     title: 'By Classroom',
                     icon: 'whatever',

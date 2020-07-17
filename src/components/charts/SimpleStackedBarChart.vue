@@ -49,7 +49,8 @@ export default {
 					spaceBetweenLabelsAndLines : 5,
 					numberOfIndicators         : 5,
 				},
-				color : colors.grey,
+				dayColor   : colors.grey,
+				nightColor : colors.white,
 			} );
 
 			// Compute the position and size of the bars
@@ -219,5 +220,4 @@ export default {
 </script>
 
 <style lang="scss">
-
 </style>

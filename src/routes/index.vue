@@ -9,10 +9,10 @@
 <template lang="pug">
 .home
 	top-bar
-	.main-content
+	.main-content(:class='mode')
 		side-nav
 		.view-container
-			filters
+			//- filters
 			router-view.router-view
 </template>
 
@@ -20,10 +20,16 @@
 export default {
 	name : 'home',
 
+	computed : {
+		mode() {
+			return this.$store.state.user.mode;
+		}
+	},
+
 	components : {
 		TopBar  : () => import( '@/components/TopBar' ),
 		SideNav : () => import( '@/components/SideNav' ),
-		Filters : () => import( '@/components/Filters' ),
+		// Filters : () => import( '@/components/Filters' ),
 	},
 };
 </script>
@@ -44,20 +50,48 @@ export default {
 		width: 100%;
 		display: flex;
 		flex-flow: row wrap;
+		flex: 1 1 0;
+		transition: background 0.4s ease;
+
+		&.night {
+			background: $color-secondary-darkened;
+
+			.dynamic-mode-text {
+				color: $background-primary;
+			}
+
+			.dynamic-mode-background-secondary {
+				background: $color-secondary-lightened;
+			}
+
+			.dynamic-mode-background-opaque {
+				background: rgba( $background-primary, 0.1 );
+			}
+		}
+
+		.dynamic-mode-text {
+			color: $color-neutral-dark;
+			transition: color 0.4s ease;
+		}
+
+		.dynamic-mode-background-secondary {
+			background: $background-primary-darkened;
+			transition: background 0.4s ease;
+		}
+
+		.dynamic-mode-background-opaque {
+			background: $background-primary;
+			transition: background 0.4s ease;
+		}
 
 		.view-container {
 			flex: 1 1 0;
 			height: 100%;
 			max-height: 100%;
-			overflow-y: auto;
 			position: relative;
 
 			.filters {
 				width: 100%;
-			}
-
-			.router-view {
-				overflow: auto;
 			}
 		}
 	}

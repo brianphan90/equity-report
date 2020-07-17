@@ -110,9 +110,12 @@ export default {
 			localStorage.setItem( 'musd-equity-report:nav-state', this.navState );
 		},
 
-		viewMode( viewMode ) {
-			localStorage.setItem( 'musd-equity-report:view-mode', this.viewMode );
-			this.$store.dispatch( 'setMode', viewMode );
+		viewMode : {
+			immediate : true,
+			handler( viewMode ) {
+				localStorage.setItem( 'musd-equity-report:view-mode', this.viewMode );
+				this.$store.dispatch( 'setMode', viewMode );
+			}
 		}
 
 	},
