@@ -1,8 +1,10 @@
 <route>
 {
+	"redirect" : "/academics/elpac/elpac-by-classroom",
 	"meta" : {
 		"navOptions" : {
-			"title": "ELPAC"
+			"title": "ELPAC",
+			"order": 3
 		}
 	}
 }

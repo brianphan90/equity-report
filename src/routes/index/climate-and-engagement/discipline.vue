@@ -1,8 +1,10 @@
 <route>
 {
+	"redirect": "/climate-and-engagement/discipline/behavior-incidents-disaggregated",
 	"meta" : {
 		"navOptions" : {
-			"title": "Discipline"
+			"title": "Discipline",
+			"order": 1
 		}
 	}
 }

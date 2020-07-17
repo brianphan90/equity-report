@@ -1,8 +1,10 @@
 <route>
 {
+	"redirect": "/climate-and-engagement/school-survey/results",
 	"meta" : {
 		"navOptions" : {
-			"title": "School Survey"
+			"title": "School Survey",
+			"order": 3
 		}
 	}
 }

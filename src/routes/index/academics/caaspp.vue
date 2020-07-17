@@ -1,8 +1,10 @@
 <route>
 {
+	"redirect" : "/academics/caaspp/caaspp-by-classroom",
 	"meta" : {
 		"navOptions" : {
-			"title": "CAASPP"
+			"title": "CAASPP",
+			"order": 2
 		}
 	}
 }

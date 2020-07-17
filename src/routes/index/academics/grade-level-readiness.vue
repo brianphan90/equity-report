@@ -1,8 +1,10 @@
 <route>
 {
+	"redirect": "/academics/grade-level-readiness/glr-by-classroom",
 	"meta" : {
 		"navOptions" : {
-			"title": "Grade Level Readiness"
+			"title": "Grade Level Readiness",
+			"order": 2
 		}
 	}
 }
