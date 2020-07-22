@@ -17,7 +17,7 @@
 		:state='state'
 		:error-message='errorMessage'
 	)
-		.content.dynamic-mode-background-secondary(slot='loaded' v-if='data')
+		.content.dynamic-mode-background-secondary.floating-side-text(slot='loaded' v-if='data')
 			.page-header
 				.title
 					h1.dynamic-mode-text Grade Level Readiness
@@ -87,19 +87,7 @@ export default {
 		flex-direction: column;
 
 		&::before {
-			position: fixed;
 			content: "GLR Breakdown";
-			top: calc(50% + 120px);
-			right: 0;
-			transform: rotate(90deg) translate(-80px,-47.5vw);
-			font-size: 64px;
-			font-family: "Roboto Slab";
-			font-weight: 800;
-			width: 100vw;
-			height: 10px;
-			color: rgba($color-neutral-dark, 0.15);
-			text-transform: uppercase;
-			letter-spacing: 5px;
 		}
 
 		.page-header {

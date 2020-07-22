@@ -53,6 +53,24 @@ export default {
 		flex: 1 1 0;
 		transition: background 0.4s ease;
 
+		.content.floating-side-text {
+
+			&::before {
+				position: fixed;
+				top: calc(50% + 120px);
+				right: 0;
+				transform: rotate(90deg) translate(-40px,-47.5vw);
+				font-size: 64px;
+				font-family: "Roboto Slab";
+				font-weight: 800;
+				width: 100vw;
+				height: 10px;
+				color: rgba($color-neutral-dark, 0.15);
+				text-transform: uppercase;
+				letter-spacing: 5px;
+			}
+		}
+
 		&.night {
 			background: $color-secondary-darkened;
 
@@ -66,6 +84,29 @@ export default {
 
 			.dynamic-mode-background-opaque {
 				background: rgba( $background-primary, 0.1 );
+			}
+
+			.dynamic-mode-border {
+
+				&.right {
+					border: 0px solid transparent;
+					border-right: 2px solid $background-primary;
+				}
+
+				&.top {
+					border: 0px solid transparent;
+					border-top: 2px solid $background-primary;
+				}
+
+				&.bottom {
+					border: 0px solid transparent;
+					border-bottom: 2px solid $background-primary;
+				}
+
+				&.left {
+					border: 0px solid transparent;
+					border-left: 2px solid $background-primary;
+				}
 			}
 		}
 
@@ -82,6 +123,30 @@ export default {
 		.dynamic-mode-background-opaque {
 			background: $background-primary;
 			transition: background 0.4s ease;
+		}
+
+		.dynamic-mode-border {
+			border: 2px solid $color-neutral-dark;
+
+			&.right {
+				border: 0px solid transparent;
+				border-right: 2px solid $color-neutral-dark;
+			}
+
+			&.top {
+				border: 0px solid transparent;
+				border-top: 2px solid $color-neutral-dark;
+			}
+
+			&.bottom {
+				border: 0px solid transparent;
+				border-bottom: 2px solid $color-neutral-dark;
+			}
+
+			&.left {
+				border: 0px solid transparent;
+				border-left: 2px solid $color-neutral-dark;
+			}
 		}
 
 		.view-container {
