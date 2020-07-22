@@ -153,7 +153,7 @@ export default [
             meta: {
               navOptions: {
                 title: 'CAASPP',
-                order: 2,
+                order: 3,
               },
             },
             redirect: '/academics/caaspp/caaspp-by-classroom',
@@ -191,7 +191,7 @@ export default [
             meta: {
               navOptions: {
                 title: 'ELPAC',
-                order: 3,
+                order: 4,
               },
             },
             redirect: '/academics/elpac/elpac-by-classroom',
