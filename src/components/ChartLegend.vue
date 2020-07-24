@@ -20,7 +20,7 @@ export default {
 
 	props : {
 		legend : {
-			type     : Object,
+			type     : [Object, Array],
 			required : true,
 		},
 
@@ -55,6 +55,10 @@ export default {
 		},
 
 		shapedItemKeys() {
+			if ( Array.isArray( this.legend ) ) {
+				return this.legend.map( ( item, i ) => i );
+			}
+
 			return Object.keys( this.legend ).filter( key => !this.legend[key].title );
 		},
 
@@ -83,7 +87,7 @@ export default {
 				const rowNum     = Math.floor( i / numberOfColumns );
 				let desiredIndex = ( colNum * this.numberOfFullRowsOfShapedItems ) + rowNum;
 
-				if ( ( colNum + 1 ) > this.remainderInFinalRow ) {
+				if ( this.remainderInFinalRow && ( colNum + 1 ) > this.remainderInFinalRow ) {
 					desiredIndex += 1;
 				}
 
@@ -97,6 +101,10 @@ export default {
 		},
 
 		titledItems() {
+			if ( Array.isArray( this.legend ) ) {
+				return this.legend.filter( item => item.title );
+			}
+
 			const keys = Object.keys( this.legend );
 
 			return keys.filter( key => this.legend[key].title )

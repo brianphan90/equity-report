@@ -104,3 +104,8 @@ export const GetGlrByClassroom = filters => fetchPromise( path( 'data/teacher/gl
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
+
+export const GetGlrOverview = filters => fetchPromise( path( 'data/school/glr-overview', { filters } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );
