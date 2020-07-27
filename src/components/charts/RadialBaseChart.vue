@@ -91,6 +91,7 @@ export default {
 			} = this.$refs.svg;
 
 			this.r         = Math.min( w, h ) / 2;
+			this.o         = 0;
 			this.svgHeight = h;
 			this.svgWidth  = w;
 			this.i         = 0;
