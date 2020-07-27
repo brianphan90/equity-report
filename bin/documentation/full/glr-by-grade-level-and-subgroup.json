@@ -1,547 +1,547 @@
-{
-	"totalGlrScore": 789,
-	"charts": [
-		{
-			"legend": {
-				"currentYear": {
-					"label": "Current Year",
-					"color": "#5C8484"
-				},
-				"priorYear": {
-					"label": "Prior Year",
-					"color": "#BDD7D5"
-				},
-				"difference": {
-					"label": "Difference",
-					"color": "#000000"
-				},
-				"solid": {
-					"label": "Solid (Current)",
-					"color": "#888888"
-				},
-				"faded": {
-					"label": "Faded (Prior)",
-					"color": "#BDBDBD"
-				},
-				"exceeding": {
-					"label": "Exceeding",
-					"color": "#557176"
-				},
-				"ready": {
-					"label": "Ready",
-					"color": "#64A399"
-				},
-				"close": {
-					"label": "Close",
-					"color": "#D0BA49"
-				},
-				"below": {
-					"label": "Below",
-					"color": "#D8A556"
-				},
-				"farBelow": {
-					"label": "Far Below",
-					"color": "#9B3E3A"
-				}
-			},
-			"data": {
-				"glr": [
-					{
-						"label": "K",
-						"data": {
-							"exceeding": 29.990000000000002,
-							"ready": 9.01,
-							"close": 35,
-							"below": 11.15,
-							"farBelow": 14.85
-						}
-					},
-					{
-						"label": "1",
-						"data": {
-							"exceeding": 28.509999999999998,
-							"ready": 10.49,
-							"close": 35,
-							"below": 12,
-							"farBelow": 14
-						}
-					},
-					{
-						"label": "2",
-						"data": {
-							"exceeding": 24.98,
-							"ready": 13.71,
-							"close": 35.31,
-							"below": 12,
-							"farBelow": 14
-						}
-					},
-					{
-						"label": "3",
-						"data": {
-							"exceeding": 30,
-							"ready": 8.98,
-							"close": 35.02,
-							"below": 12,
-							"farBelow": 14
-						}
-					},
-					{
-						"label": "4",
-						"data": {
-							"exceeding": 31.99,
-							"ready": 9,
-							"close": 33.17,
-							"below": 13.83,
-							"farBelow": 12.01
-						}
-					},
-					{
-						"label": "5",
-						"data": {
-							"exceeding": 30,
-							"ready": 9,
-							"close": 32.19,
-							"below": 14.81,
-							"farBelow": 14
-						}
-					},
-					{
-						"label": "6",
-						"data": {
-							"exceeding": 27.29,
-							"ready": 8,
-							"close": 36,
-							"below": 14.91,
-							"farBelow": 13.8
-						}
-					},
-					{
-						"label": "7",
-						"data": {
-							"exceeding": 29.39,
-							"ready": 8.7,
-							"close": 36.37,
-							"below": 10.29,
-							"farBelow": 15.25
-						}
-					},
-					{
-						"label": "8",
-						"data": {
-							"exceeding": 26.62,
-							"ready": 9.95,
-							"close": 34.050000000000004,
-							"below": 15.38,
-							"farBelow": 14
-						}
-					},
-					{
-						"label": "9",
-						"data": {
-							"exceeding": 25.24,
-							"ready": 8.75,
-							"close": 35.559999999999995,
-							"below": 16.45,
-							"farBelow": 14
-						}
-					},
-					{
-						"label": "10",
-						"data": {
-							"exceeding": 27.78,
-							"ready": 11.290000000000001,
-							"close": 35,
-							"below": 14.22,
-							"farBelow": 11.709999999999999
-						}
-					},
-					{
-						"label": "11",
-						"data": {
-							"exceeding": 24.389999999999997,
-							"ready": 9.76,
-							"close": 34.46,
-							"below": 13.61,
-							"farBelow": 17.78
-						}
-					},
-					{
-						"label": "12",
-						"data": {
-							"exceeding": 28.91,
-							"ready": 9,
-							"close": 32.18,
-							"below": 14.88,
-							"farBelow": 15.03
-						}
-					}
-				],
-				"metOrExceeding": {
-					"currentYear": [
-						{
-							"label": "K",
-							"value": 39
-						},
-						{
-							"label": "1",
-							"value": 39
-						},
-						{
-							"label": "2",
-							"value": 38.69
-						},
-						{
-							"label": "3",
-							"value": 38.980000000000004
-						},
-						{
-							"label": "4",
-							"value": 40.989999999999995
-						},
-						{
-							"label": "5",
-							"value": 39
-						},
-						{
-							"label": "6",
-							"value": 35.29
-						},
-						{
-							"label": "7",
-							"value": 38.09
-						},
-						{
-							"label": "8",
-							"value": 36.57
-						},
-						{
-							"label": "9",
-							"value": 33.989999999999995
-						},
-						{
-							"label": "10",
-							"value": 39.07
-						},
-						{
-							"label": "11",
-							"value": 34.15
-						},
-						{
-							"label": "12",
-							"value": 37.91
-						}
-					],
-					"priorYear": [
-						{
-							"label": "K",
-							"value": 37
-						},
-						{
-							"label": "1",
-							"value": 43
-						},
-						{
-							"label": "2",
-							"value": 41
-						},
-						{
-							"label": "3",
-							"value": 41
-						},
-						{
-							"label": "4",
-							"value": 42
-						},
-						{
-							"label": "5",
-							"value": 43
-						},
-						{
-							"label": "6",
-							"value": 38
-						},
-						{
-							"label": "7",
-							"value": 41
-						},
-						{
-							"label": "8",
-							"value": 35
-						},
-						{
-							"label": "9",
-							"value": 34
-						},
-						{
-							"label": "10",
-							"value": 38
-						},
-						{
-							"label": "11",
-							"value": 36
-						},
-						{
-							"label": "12",
-							"value": 35
-						}
-					]
-				}
-			}
-		},
-		{
-			"legend": {
-				"subgroups": {
-					"sed": {
-						"label": "SED",
-						"value": "Socio-economically"
-					},
-					"el": {
-						"label": "EL",
-						"value": "English-Learner"
-					},
-					"fy": {
-						"label": "FY",
-						"value": "Foster Youth"
-					},
-					"hl": {
-						"label": "HL",
-						"value": "Homeless"
-					},
-					"swd": {
-						"label": "SWD",
-						"value": "Students with disabilities"
-					},
-					"hi": {
-						"label": "HL",
-						"value": "Hispanic"
-					},
-					"wh": {
-						"label": "WH",
-						"value": "White"
-					},
-					"bl": {
-						"label": "BL",
-						"value": "Black"
-					},
-					"as": {
-						"label": "AS",
-						"value": "Asian"
-					},
-					"fi": {
-						"label": "FI",
-						"value": "Filipino"
-					},
-					"glr": {
-						"exceeding": {
-							"label": "Exceeding",
-							"color": "#557176"
-						},
-						"ready": {
-							"label": "Ready",
-							"color": "#64A399"
-						},
-						"below": {
-							"label": "Below",
-							"color": "#D8A556"
-						},
-						"farBelow": {
-							"label": "Far Below",
-							"color": "#9B3E3A"
-						}
-					}
-				}
-			},
-			"data": {
-				"glr": [
-					{
-						"label": "SED",
-						"data": {
-							"exceeding": 26.580000000000002,
-							"ready": 8.27,
-							"close": 33.04,
-							"below": 17.38,
-							"farBelow": 14.73
-						}
-					},
-					{
-						"label": "EL",
-						"data": {
-							"exceeding": 25.6,
-							"ready": 9,
-							"close": 29.439999999999998,
-							"below": 17.14,
-							"farBelow": 18.82
-						}
-					},
-					{
-						"label": "FY",
-						"data": {
-							"exceeding": 30.1,
-							"ready": 8.94,
-							"close": 33.6,
-							"below": 11.899999999999999,
-							"farBelow": 15.46
-						}
-					},
-					{
-						"label": "HL",
-						"data": {
-							"exceeding": 30,
-							"ready": 9.4,
-							"close": 35.86,
-							"below": 12,
-							"farBelow": 12.74
-						}
-					},
-					{
-						"label": "SWD",
-						"data": {
-							"exceeding": 29,
-							"ready": 9.15,
-							"close": 36.57,
-							"below": 11.86,
-							"farBelow": 13.42
-						}
-					},
-					{
-						"label": "HL",
-						"data": {
-							"exceeding": 26.21,
-							"ready": 8.79,
-							"close": 31.88,
-							"below": 14.54,
-							"farBelow": 18.58
-						}
-					},
-					{
-						"label": "WH",
-						"data": {
-							"exceeding": 29.62,
-							"ready": 9.379999999999999,
-							"close": 35,
-							"below": 11.139999999999999,
-							"farBelow": 14.86
-						}
-					},
-					{
-						"label": "BL",
-						"data": {
-							"exceeding": 27.26,
-							"ready": 9,
-							"close": 35,
-							"below": 14.739999999999998,
-							"farBelow": 14
-						}
-					},
-					{
-						"label": "AS",
-						"data": {
-							"exceeding": 25.9,
-							"ready": 13.100000000000001,
-							"close": 31.79,
-							"below": 12,
-							"farBelow": 17.21
-						}
-					},
-					{
-						"label": "FI",
-						"data": {
-							"exceeding": 28.27,
-							"ready": 10.41,
-							"close": 36.39,
-							"below": 11.629999999999999,
-							"farBelow": 13.3
-						}
-					}
-				],
-				"metOrExceeding": {
-					"currentYear": [
-						{
-							"label": "SED",
-							"value": 34.85
-						},
-						{
-							"label": "EL",
-							"value": 34.6
-						},
-						{
-							"label": "FY",
-							"value": 39.04
-						},
-						{
-							"label": "HL",
-							"value": 39.4
-						},
-						{
-							"label": "SWD",
-							"value": 38.15
-						},
-						{
-							"label": "HL",
-							"value": 35
-						},
-						{
-							"label": "WH",
-							"value": 39
-						},
-						{
-							"label": "BL",
-							"value": 36.260000000000005
-						},
-						{
-							"label": "AS",
-							"value": 39
-						},
-						{
-							"label": "FI",
-							"value": 38.68
-						}
-					],
-					"priorYear": [
-						{
-							"label": "SED",
-							"value": 34
-						},
-						{
-							"label": "EL",
-							"value": 32
-						},
-						{
-							"label": "FY",
-							"value": 37
-						},
-						{
-							"label": "HL",
-							"value": 36
-						},
-						{
-							"label": "SWD",
-							"value": 39
-						},
-						{
-							"label": "HL",
-							"value": 32
-						},
-						{
-							"label": "WH",
-							"value": 37
-						},
-						{
-							"label": "BL",
-							"value": 39
-						},
-						{
-							"label": "AS",
-							"value": 37
-						},
-						{
-							"label": "FI",
-							"value": 38
-						}
-					]
-				}
-			}
-		}
-	]
-}
+        {
+            "totalGlrScore": 789,
+            "charts": [
+                {
+                    "legend": {
+                        "currentYear": {
+                            "label": "Current Year",
+                            "color": "#5C8484"
+                        },
+                        "priorYear": {
+                            "label": "Prior Year",
+                            "color": "#BDD7D5"
+                        },
+                        "difference": {
+                            "label": "Difference",
+                            "color": "#000000"
+                        },
+                        "solid": {
+                            "label": "Solid (Current)",
+                            "color": "#888888"
+                        },
+                        "faded": {
+                            "label": "Faded (Prior)",
+                            "color": "#BDBDBD"
+                        },
+                        "exceeding": {
+                            "label": "Exceeding",
+                            "color": "#557176"
+                        },
+                        "ready": {
+                            "label": "Ready",
+                            "color": "#64A399"
+                        },
+                        "close": {
+                            "label": "Close",
+                            "color": "#D0BA49"
+                        },
+                        "below": {
+                            "label": "Below",
+                            "color": "#D8A556"
+                        },
+                        "farBelow": {
+                            "label": "Far Below",
+                            "color": "#9B3E3A"
+                        }
+                    },
+                    "data": {
+                        "glr": [
+                            {
+                                "label": "K",
+                                "data": {
+                                    "exceeding": 30,
+                                    "ready": 10.05,
+                                    "close": 35,
+                                    "below": 10.99,
+                                    "farBelow": 13.959999999999999
+                                }
+                            },
+                            {
+                                "label": "1",
+                                "data": {
+                                    "exceeding": 27.869999999999997,
+                                    "ready": 9.09,
+                                    "close": 31.970000000000002,
+                                    "below": 16.99,
+                                    "farBelow": 14.08
+                                }
+                            },
+                            {
+                                "label": "2",
+                                "data": {
+                                    "exceeding": 27.92,
+                                    "ready": 9,
+                                    "close": 36.78,
+                                    "below": 12.3,
+                                    "farBelow": 14
+                                }
+                            },
+                            {
+                                "label": "3",
+                                "data": {
+                                    "exceeding": 25.349999999999998,
+                                    "ready": 9.620000000000001,
+                                    "close": 35.4,
+                                    "below": 12,
+                                    "farBelow": 17.63
+                                }
+                            },
+                            {
+                                "label": "4",
+                                "data": {
+                                    "exceeding": 28.87,
+                                    "ready": 7.95,
+                                    "close": 34.83,
+                                    "below": 10.940000000000001,
+                                    "farBelow": 17.41
+                                }
+                            },
+                            {
+                                "label": "5",
+                                "data": {
+                                    "exceeding": 25.97,
+                                    "ready": 8.05,
+                                    "close": 35,
+                                    "below": 16.03,
+                                    "farBelow": 14.95
+                                }
+                            },
+                            {
+                                "label": "6",
+                                "data": {
+                                    "exceeding": 29.97,
+                                    "ready": 8.21,
+                                    "close": 35.82,
+                                    "below": 12,
+                                    "farBelow": 14
+                                }
+                            },
+                            {
+                                "label": "7",
+                                "data": {
+                                    "exceeding": 30.54,
+                                    "ready": 9.77,
+                                    "close": 35,
+                                    "below": 12.24,
+                                    "farBelow": 12.450000000000001
+                                }
+                            },
+                            {
+                                "label": "8",
+                                "data": {
+                                    "exceeding": 25.14,
+                                    "ready": 12.94,
+                                    "close": 29.33,
+                                    "below": 12,
+                                    "farBelow": 20.59
+                                }
+                            },
+                            {
+                                "label": "9",
+                                "data": {
+                                    "exceeding": 28.970000000000002,
+                                    "ready": 9.16,
+                                    "close": 32.48,
+                                    "below": 14.76,
+                                    "farBelow": 14.629999999999999
+                                }
+                            },
+                            {
+                                "label": "10",
+                                "data": {
+                                    "exceeding": 31.150000000000002,
+                                    "ready": 9,
+                                    "close": 32.41,
+                                    "below": 12.14,
+                                    "farBelow": 15.3
+                                }
+                            },
+                            {
+                                "label": "11",
+                                "data": {
+                                    "exceeding": 31.21,
+                                    "ready": 9.03,
+                                    "close": 35,
+                                    "below": 11.85,
+                                    "farBelow": 12.91
+                                }
+                            },
+                            {
+                                "label": "12",
+                                "data": {
+                                    "exceeding": 29.35,
+                                    "ready": 9,
+                                    "close": 32.56,
+                                    "below": 15.09,
+                                    "farBelow": 14
+                                }
+                            }
+                        ],
+                        "metOrExceeding": {
+                            "currentYear": [
+                                {
+                                    "label": "K",
+                                    "value": 40.05
+                                },
+                                {
+                                    "label": "1",
+                                    "value": 36.959999999999994
+                                },
+                                {
+                                    "label": "2",
+                                    "value": 36.92
+                                },
+                                {
+                                    "label": "3",
+                                    "value": 34.97
+                                },
+                                {
+                                    "label": "4",
+                                    "value": 36.82
+                                },
+                                {
+                                    "label": "5",
+                                    "value": 34.019999999999996
+                                },
+                                {
+                                    "label": "6",
+                                    "value": 38.18
+                                },
+                                {
+                                    "label": "7",
+                                    "value": 40.31
+                                },
+                                {
+                                    "label": "8",
+                                    "value": 38.08
+                                },
+                                {
+                                    "label": "9",
+                                    "value": 38.13
+                                },
+                                {
+                                    "label": "10",
+                                    "value": 40.150000000000006
+                                },
+                                {
+                                    "label": "11",
+                                    "value": 40.24
+                                },
+                                {
+                                    "label": "12",
+                                    "value": 38.35
+                                }
+                            ],
+                            "priorYear": [
+                                {
+                                    "label": "K",
+                                    "value": 41
+                                },
+                                {
+                                    "label": "1",
+                                    "value": 38
+                                },
+                                {
+                                    "label": "2",
+                                    "value": 41
+                                },
+                                {
+                                    "label": "3",
+                                    "value": 36
+                                },
+                                {
+                                    "label": "4",
+                                    "value": 41
+                                },
+                                {
+                                    "label": "5",
+                                    "value": 31
+                                },
+                                {
+                                    "label": "6",
+                                    "value": 42
+                                },
+                                {
+                                    "label": "7",
+                                    "value": 37
+                                },
+                                {
+                                    "label": "8",
+                                    "value": 35
+                                },
+                                {
+                                    "label": "9",
+                                    "value": 37
+                                },
+                                {
+                                    "label": "10",
+                                    "value": 36
+                                },
+                                {
+                                    "label": "11",
+                                    "value": 43
+                                },
+                                {
+                                    "label": "12",
+                                    "value": 38
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "legend": {
+                        "subgroups": {
+                            "sed": {
+                                "label": "SED",
+                                "value": "Socio-economically"
+                            },
+                            "el": {
+                                "label": "EL",
+                                "value": "English-Learner"
+                            },
+                            "fy": {
+                                "label": "FY",
+                                "value": "Foster Youth"
+                            },
+                            "hl": {
+                                "label": "HL",
+                                "value": "Homeless"
+                            },
+                            "swd": {
+                                "label": "SWD",
+                                "value": "Students with disabilities"
+                            },
+                            "hi": {
+                                "label": "HL",
+                                "value": "Hispanic"
+                            },
+                            "wh": {
+                                "label": "WH",
+                                "value": "White"
+                            },
+                            "bl": {
+                                "label": "BL",
+                                "value": "Black"
+                            },
+                            "as": {
+                                "label": "AS",
+                                "value": "Asian"
+                            },
+                            "fi": {
+                                "label": "FI",
+                                "value": "Filipino"
+                            },
+                            "glr": {
+                                "exceeding": {
+                                    "label": "Exceeding",
+                                    "color": "#557176"
+                                },
+                                "ready": {
+                                    "label": "Ready",
+                                    "color": "#64A399"
+                                },
+                                "below": {
+                                    "label": "Below",
+                                    "color": "#D8A556"
+                                },
+                                "farBelow": {
+                                    "label": "Far Below",
+                                    "color": "#9B3E3A"
+                                }
+                            }
+                        }
+                    },
+                    "data": {
+                        "glr": [
+                            {
+                                "label": "SED",
+                                "data": {
+                                    "exceeding": 30,
+                                    "ready": 8.350000000000001,
+                                    "close": 30.930000000000003,
+                                    "below": 16.049999999999997,
+                                    "farBelow": 14.67
+                                }
+                            },
+                            {
+                                "label": "EL",
+                                "data": {
+                                    "exceeding": 32.22,
+                                    "ready": 9.719999999999999,
+                                    "close": 34.34,
+                                    "below": 10.44,
+                                    "farBelow": 13.280000000000001
+                                }
+                            },
+                            {
+                                "label": "FY",
+                                "data": {
+                                    "exceeding": 29.77,
+                                    "ready": 10.620000000000001,
+                                    "close": 35,
+                                    "below": 12,
+                                    "farBelow": 12.61
+                                }
+                            },
+                            {
+                                "label": "HL",
+                                "data": {
+                                    "exceeding": 25.55,
+                                    "ready": 12.15,
+                                    "close": 35,
+                                    "below": 13.299999999999999,
+                                    "farBelow": 14
+                                }
+                            },
+                            {
+                                "label": "SWD",
+                                "data": {
+                                    "exceeding": 30.03,
+                                    "ready": 10.08,
+                                    "close": 32.57,
+                                    "below": 10.98,
+                                    "farBelow": 16.34
+                                }
+                            },
+                            {
+                                "label": "HL",
+                                "data": {
+                                    "exceeding": 28.65,
+                                    "ready": 11.23,
+                                    "close": 35,
+                                    "below": 11.120000000000001,
+                                    "farBelow": 14
+                                }
+                            },
+                            {
+                                "label": "WH",
+                                "data": {
+                                    "exceeding": 25.439999999999998,
+                                    "ready": 9,
+                                    "close": 30.32,
+                                    "below": 16.009999999999998,
+                                    "farBelow": 19.23
+                                }
+                            },
+                            {
+                                "label": "BL",
+                                "data": {
+                                    "exceeding": 24.900000000000002,
+                                    "ready": 10.2,
+                                    "close": 35.63,
+                                    "below": 16.47,
+                                    "farBelow": 12.799999999999999
+                                }
+                            },
+                            {
+                                "label": "AS",
+                                "data": {
+                                    "exceeding": 28.87,
+                                    "ready": 10.13,
+                                    "close": 35,
+                                    "below": 12,
+                                    "farBelow": 14
+                                }
+                            },
+                            {
+                                "label": "FI",
+                                "data": {
+                                    "exceeding": 28.72,
+                                    "ready": 8.04,
+                                    "close": 33.22,
+                                    "below": 13.969999999999999,
+                                    "farBelow": 16.05
+                                }
+                            }
+                        ],
+                        "metOrExceeding": {
+                            "currentYear": [
+                                {
+                                    "label": "SED",
+                                    "value": 38.35
+                                },
+                                {
+                                    "label": "EL",
+                                    "value": 41.94
+                                },
+                                {
+                                    "label": "FY",
+                                    "value": 40.39
+                                },
+                                {
+                                    "label": "HL",
+                                    "value": 37.7
+                                },
+                                {
+                                    "label": "SWD",
+                                    "value": 40.11
+                                },
+                                {
+                                    "label": "HL",
+                                    "value": 39.879999999999995
+                                },
+                                {
+                                    "label": "WH",
+                                    "value": 34.44
+                                },
+                                {
+                                    "label": "BL",
+                                    "value": 35.1
+                                },
+                                {
+                                    "label": "AS",
+                                    "value": 39
+                                },
+                                {
+                                    "label": "FI",
+                                    "value": 36.76
+                                }
+                            ],
+                            "priorYear": [
+                                {
+                                    "label": "SED",
+                                    "value": 38
+                                },
+                                {
+                                    "label": "EL",
+                                    "value": 44
+                                },
+                                {
+                                    "label": "FY",
+                                    "value": 41
+                                },
+                                {
+                                    "label": "HL",
+                                    "value": 36
+                                },
+                                {
+                                    "label": "SWD",
+                                    "value": 41
+                                },
+                                {
+                                    "label": "HL",
+                                    "value": 43
+                                },
+                                {
+                                    "label": "WH",
+                                    "value": 37
+                                },
+                                {
+                                    "label": "BL",
+                                    "value": 39
+                                },
+                                {
+                                    "label": "AS",
+                                    "value": 42
+                                },
+                                {
+                                    "label": "FI",
+                                    "value": 36
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }

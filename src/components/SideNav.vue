@@ -23,26 +23,30 @@ aside.side-nav(:class='[viewMode, navState]')
 <script>
 import routes from '@/router/routes';
 
-const formatNavRoutes = ( routerInfo, basePath ) => routerInfo.map( ( info ) => {
-	const { path : pathProp } = info;
-	const path                = basePath ? `${basePath}/${pathProp}` : pathProp;
-	const item                = {
-		path
-	};
+const formatNavRoutes = ( routerInfo, basePath ) => {
+	const menuItems = routerInfo.map( ( info ) => {
+		const { path : pathProp } = info;
+		const path                = basePath ? `${basePath}/${pathProp}` : pathProp;
+		const item                = {
+			path
+		};
 
-	if ( info.meta ) {
-		const metaKeys = Object.keys( info.meta.navOptions );
-		metaKeys.forEach( ( key ) => {
-			item[key] = info.meta.navOptions[key];
-		} );
-	}
+		if ( info.meta ) {
+			const metaKeys = Object.keys( info.meta.navOptions );
+			metaKeys.forEach( ( key ) => {
+				item[key] = info.meta.navOptions[key];
+			} );
+		}
 
-	if ( info.children ) {
-		item.children = formatNavRoutes( info.children, path );
-	}
+		if ( info.children ) {
+			item.children = formatNavRoutes( info.children, path );
+		}
 
-	return item;
-} );
+		return item;
+	} );
+
+	return menuItems.sort( ( a, b ) => ( a.order - b.order ) );
+};
 
 export default {
 	name : 'side-nav',
@@ -110,9 +114,12 @@ export default {
 			localStorage.setItem( 'musd-equity-report:nav-state', this.navState );
 		},
 
-		viewMode( viewMode ) {
-			localStorage.setItem( 'musd-equity-report:view-mode', this.viewMode );
-			this.$store.dispatch( 'setMode', viewMode );
+		viewMode : {
+			immediate : true,
+			handler( viewMode ) {
+				localStorage.setItem( 'musd-equity-report:view-mode', this.viewMode );
+				this.$store.dispatch( 'setMode', viewMode );
+			}
 		}
 
 	},
@@ -179,7 +186,7 @@ export default {
 
 	&.day {
 		background-color: $background-primary-darkened;
-		background-image: linear-gradient(180deg, rgba(159, 206, 209, 0.26) 0%, #EACDA9 100%);;
+		background-image: linear-gradient(180deg, rgba(159, 206, 209, 0.26) 0%, #EACDA9 100%);
 
 		.nav-menu {
 

@@ -1,8 +1,10 @@
 <route>
 {
+	"redirect" : "/academics/student-population-census/spc-by-grade-level-and-subgroup",
 	"meta" : {
 		"navOptions" : {
-			"title": "Student Population Census"
+			"title": "Student Population Census",
+			"order": 1
 		}
 	}
 }

@@ -49,15 +49,49 @@ export default {
 					spaceBetweenLabelsAndLines : 5,
 					numberOfIndicators         : 5,
 				},
-				color : colors.grey,
+				dayColor   : colors.grey,
+				nightColor : colors.white,
 			} );
 
 			// Compute the position and size of the bars
+			const barData   = this.computeBarData();
+			const barGroups = this.drawBars( barData );
+
+			// Draw a second set of lines over the bars
+			this.drawAxisIndicators( {
+				range : {
+					min : 0,
+					max : 100,
+				},
+				axis   : 'y',
+				labels : false,
+				lines  : {
+					spaceBetweenLabelsAndLines : 5,
+					numberOfIndicators         : 5,
+				},
+				color : colors.opaqueWhite,
+			} );
+
+			// draw the bar labels
+			this.drawBarLabels( barGroups );
+
+			// check if any of the bar groups
+			// are overlapping
+			this.fixBarLabelOverlaps( barGroups );
+
+			// correct overlaps
+			this.correctTextSVGOverlaps();
+
+			// animate the bars and texts
+			this.animateChart();
+		},
+
+		computeBarData() {
 			const barKeys = Object.keys( this.data );
 			const sum     = barKeys.reduce( ( total, key ) => total + this.data[key], 0 );
 
 			let runningSum = 0;
-			const barData = barKeys.map( ( key ) => {
+			return barKeys.map( ( key ) => {
 				// get the value and the height
 				const value  = this.data[key];
 				const height = ( value / sum ) * this.ah;
@@ -78,7 +112,9 @@ export default {
 					height,
 				};
 			} );
+		},
 
+		drawBars( barData ) {
 			// Draw the bars
 			const barGroups = this.canvas.selectAll( `bars-${this.id}` )
 				.data( barData )
@@ -91,36 +127,27 @@ export default {
 				.attr( 'y', d => d.y )
 				.attr( 'fill', d => d.color )
 				.attr( 'height', d => d.height )
-				.attr( 'width', d => d.width );
+				.attr( 'width', d => d.width )
+				.style( 'opacity', 0 )
+				.attr( 'class', `bar-${this.id} translate-${this.id}` );
 
-			// Draw a second set of lines over the bars
-			this.drawAxisIndicators( {
-				range : {
-					min : 0,
-					max : 100,
-				},
-				axis   : 'y',
-				labels : false,
-				lines  : {
-					spaceBetweenLabelsAndLines : 5,
-					numberOfIndicators         : 5,
-				},
-				color : colors.opaqueWhite,
-			} );
+			return barGroups;
+		},
 
-			// draw the bar labels
+		drawBarLabels( barGroups ) {
 			barGroups
 				.append( 'text' )
-				.attr( 'class', `text-node-${this.id}` )
+				.attr( 'class', `text-node-${this.id} translate-${this.id}` )
 				.attr( 'x', d => ( d.x + d.width ) - 3 )
 				.attr( 'y', d => d.y + 3 )
 				.attr( 'fill', '#ffffff' )
 				.attr( 'text-anchor', 'end' )
 				.attr( 'dominant-baseline', 'text-before-edge' )
+				.style( 'opacity', 0 )
 				.text( d => d.text );
+		},
 
-			// check if any of the bar groups
-			// are overlapping
+		fixBarLabelOverlaps( barGroups ) {
 			const barGroupElements  = Array.from( barGroups._groups[0] );
 			const textAndBarHeights = barGroupElements
 				.map( group => ( {
@@ -134,6 +161,7 @@ export default {
 				.filter( ( { rectangleHeight, textHeight } ) => rectangleHeight < ( textHeight + 6 ) )
 				.map( ( { group } ) => group );
 
+			// move all the necessary text
 			groupsWithTextToMove.forEach( ( group ) => {
 				const d = group.__data__;
 
@@ -143,15 +171,53 @@ export default {
 					.attr( 'text-anchor', 'start' )
 					.attr( 'fill', d.color );
 			} );
-			// d3.select( textNodesToMove )
-			// 	.attr( 'x', d = );
-			// Add hover effects
+		},
 
+		correctTextSVGOverlaps() {
+			// finally we have to check if any of the text is now
+			// overflowing the SVG
+
+			const texts = this.canvas
+				.selectAll( 'text' );
+
+			const textNodes          = Array.from( texts._groups[0] );
+			const canvasWidth        = this.canvas.attr( 'width' );
+			const overlappingAmounts = textNodes.map( node => node.getBBox() )
+				.map( dims => ( dims.x + dims.width ) )
+				.filter( rightMostEdge => rightMostEdge > canvasWidth );
+
+			if ( !overlappingAmounts.length ) {
+				return;
+			}
+
+			const maxOverlap = Math.max( ...overlappingAmounts );
+			const translateX = ( maxOverlap - canvasWidth ) + 5;
+
+			this.canvas
+				.selectAll( `.translate-${this.id}` )
+				.style( 'transform', `translateX(-${translateX}px)` );
+		},
+
+		animateChart() {
+			this.canvas
+				.selectAll( `.bar-${this.id}` )
+				.attr( 'width', 0 )
+				.transition()
+				.style( 'opacity', 1 )
+				.duration( 200 )
+				.delay( ( d, i ) => ( i * 50 ) )
+				.attr( 'width', d => d.width );
+
+			this.canvas
+				.selectAll( 'text' )
+				.transition()
+				.duration( 200 )
+				.delay( ( d, i ) => 200 + ( i * 50 ) )
+				.style( 'opacity', 1 );
 		}
 	}
 };
 </script>
 
 <style lang="scss">
-
 </style>

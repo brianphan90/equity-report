@@ -44,8 +44,9 @@ export default {
 			font-size: 16px;
 
 			&::before {
-				height: 10px;
-				width: 10px;
+				height: 16px;
+				width: 16px;
+				border-width: 3px;
 			}
 		}
 	}
@@ -56,6 +57,23 @@ export default {
 		color: $color-neutral-dark;
 		font-size: 24px;
 		font-family: "Roboto Condensed";
+
+		&.router-link-active {
+
+			+ .nav-items .router-link-exact-active {
+				color: $color-primary;
+
+				&::before {
+					border-color: $color-primary;
+					background: $color-primary-lightened;
+				}
+			}
+
+			&::before {
+				border-color: $color-accent;
+				background: $color-accent-lightened;
+			}
+		}
 
 		&::before {
 			content: ' ';

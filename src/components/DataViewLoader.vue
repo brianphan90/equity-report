@@ -9,6 +9,12 @@ export default {
 		data : null,
 	} ),
 
+	computed : {
+		filters() {
+			return this.$store.state.filters;
+		}
+	},
+
 	created() {
 		this.load();
 	},
@@ -17,7 +23,7 @@ export default {
 		load() {
 			this.state = 'loading';
 
-			this.fetch()
+			this.fetch( this.filters )
 				.then( ( data ) => {
 					this.data  = data;
 					this.state = 'loaded';

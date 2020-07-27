@@ -12,19 +12,23 @@
 
 <template lang='pug'>
 	.spc-by-grade-level-and-subgroup
+		h1.page-title Academic Performance Equity Report
 		data-view-state-manager(
 			:state='state'
 			:error-message='errorMessage'
 		)
-			.content(slot='loaded' v-if='data')
+			.content.dynamic-mode-background-secondary.floating-side-text(slot='loaded' v-if='data')
 				.population-count
 					p.count(:style='{ color : data.populationCount.color }') {{ data.populationCount.value }}
-					p.label {{ data.populationCount.label }}
+					p.label.dynamic-mode-text {{ data.populationCount.label }}
 				.charts
-					simple-bar-chart(
+					striped-bar-chart.chart(
 						v-for='item in data.charts'
-						:data='item.data.chart'
+						:data='item.data'
 						:legend='data.legend'
+						:title='item.title'
+						:options='options'
+						@b-value='bValue = Math.max( $event, bValue )'
 					)
 
 </template>
@@ -33,7 +37,7 @@
 import { GetSpcByGradeLevelAndSubgroup } from '@/lib/API';
 import DataViewLoader from '@/components/DataViewLoader';
 import DataViewStateManager from '@/components/DataViewStateManager';
-import SimpleBarChart from '@/components/charts/SimpleBarChart';
+import StripedBarChart from '@/components/charts/StripedBarChart';
 
 export default {
 	name : 'spc-by-grade-level-and-subgroup',
@@ -41,42 +45,88 @@ export default {
 	extends : DataViewLoader,
 
 	data : () => ( {
-		fetch : GetSpcByGradeLevelAndSubgroup,
+		fetch  : GetSpcByGradeLevelAndSubgroup,
+		bValue : 0,
 	} ),
+
+	computed : {
+		options() {
+			return {
+				maxTextLength   : 150,
+				preferredBValue : this.bValue,
+			};
+		}
+	},
 
 	components : {
 		DataViewStateManager,
-		SimpleBarChart,
+		StripedBarChart,
 	}
 };
 </script>
 
 <style lang='scss'>
-	.spc-by-grade-level-and-subgroup {
+.spc-by-grade-level-and-subgroup {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 
+	.data-view-state-manager {
+		flex: 1 1 0;
+
+		.loaded-container,
 		.content {
+			height: 100%;
+		}
+	}
 
-			.population-count {
-				display: flex;
-				width: 70%;
-    		align-items: center;
+	.content {
+		margin: 0 20px;
+		border-radius: 5px;
+		padding: 40px 60px 40px 40px;
+		display: flex;
+		flex-direction: column;
 
-				.count {
-					font-size: 67px;
-					font-weight: 900;
-					line-height: 79px;
-					margin-right: 10px
-				}
+		&::before {
+			content: "Student Population";
+			font-size: 48px !important;
+		}
 
-				.label {
-					font-weight: bold;
-					font-size: 24px;
-					line-height: 118.7%;
-					color: black;
-					text-align: left;
-				}
+		.population-count {
+			display: flex;
+			align-items: center;
+
+			.count,
+			.label {
+				font-family: "Roboto Slab", serif;
+			}
+
+			.count {
+				font-size: 95px;
+				font-weight: 900;
+				line-height: 79px;
+				margin-right: 10px
+			}
+
+			.label {
+				font-weight: bold;
+				font-size: 36px;
+				line-height: 118.7%;
+				text-align: left;
 			}
 		}
 
+		.charts {
+			display: flex;
+			flex: 1 1 0;
+			margin-top: 15px;
+
+			.chart {
+				flex: 1 1 0;
+				height: 100%;
+			}
+		}
 	}
+
+}
 </style>

@@ -153,8 +153,10 @@ export default [
             meta: {
               navOptions: {
                 title: 'CAASPP',
+                order: 3,
               },
             },
+            redirect: '/academics/caaspp/caaspp-by-classroom',
             children: [
               {
                 name: 'academics-caaspp-caaspp-by-classroom',
@@ -189,8 +191,10 @@ export default [
             meta: {
               navOptions: {
                 title: 'ELPAC',
+                order: 4,
               },
             },
+            redirect: '/academics/elpac/elpac-by-classroom',
             children: [
               {
                 name: 'academics-elpac-elpac-by-classroom',
@@ -225,15 +229,17 @@ export default [
             meta: {
               navOptions: {
                 title: 'Grade Level Readiness',
+                order: 2,
               },
             },
+            redirect: '/academics/grade-level-readiness/glr-by-classroom',
             children: [
               {
                 name: 'academics-grade-level-readiness-glr-by-classroom',
                 path: 'glr-by-classroom',
                 component: index_academics_grade_level_readiness_glr_by_classroom,
                 meta: {
-                  topbarTitle: 'GLR By Classroom',
+                  topbarTitle: 'Academic Performance Equity Report',
                   navOptions: {
                     title: 'By Classroom',
                     icon: 'whatever',
@@ -274,8 +280,11 @@ export default [
             meta: {
               navOptions: {
                 title: 'Student Population Census',
+                order: 1,
               },
             },
+            redirect:
+              '/academics/student-population-census/spc-by-grade-level-and-subgroup',
             children: [
               {
                 name:
@@ -313,8 +322,11 @@ export default [
             meta: {
               navOptions: {
                 title: 'Discipline',
+                order: 1,
               },
             },
+            redirect:
+              '/climate-and-engagement/discipline/behavior-incidents-disaggregated',
             children: [
               {
                 name:
@@ -351,8 +363,10 @@ export default [
             meta: {
               navOptions: {
                 title: 'School Survey',
+                order: 3,
               },
             },
+            redirect: '/climate-and-engagement/school-survey/results',
             children: [
               {
                 name: 'climate-and-engagement-school-survey-results',
@@ -375,8 +389,11 @@ export default [
             meta: {
               navOptions: {
                 title: 'Staff',
+                order: 2,
               },
             },
+            redirect:
+              '/climate-and-engagement/staff/certificated-attendance-disaggregated',
             children: [
               {
                 name:

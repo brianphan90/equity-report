@@ -1,8 +1,10 @@
 <route>
 {
+	"redirect": "/climate-and-engagement/staff/certificated-attendance-disaggregated",
 	"meta" : {
 		"navOptions" : {
-			"title": "Staff"
+			"title": "Staff",
+			"order": 2
 		}
 	}
 }
