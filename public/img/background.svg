@@ -1,0 +1,41 @@
+<svg width="569" height="799" viewBox="0 0 569 799" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Group</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-2466 2439)">
+<g id="Group" opacity="0.4">
+<g id="Vector">
+<use xlink:href="#path0_fill" transform="translate(2466 -1961.02)" fill="url(#paint0_linear)"/>
+</g>
+<g id="Vector">
+<use xlink:href="#path1_fill" transform="matrix(-1 0 0 1 3035 -2009.27)" fill="url(#paint1_linear)"/>
+</g>
+<g id="Vector">
+<use xlink:href="#path1_fill" transform="matrix(1 1.75037e-07 1.74654e-07 -1 2466 -2067.73)" fill="url(#paint2_linear)"/>
+</g>
+<g id="Vector">
+<use xlink:href="#path2_fill" transform="matrix(-4.27617e-08 1 1 4.46821e-08 2673.75 -2439)" fill="url(#paint3_linear)"/>
+</g>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(569 1.25171e-05 -2.25072e-05 1062.52 0.488843 -210.74)">
+<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.43"/>
+<stop offset="1" stop-color="#FFFFFF" stop-opacity="0.16"/>
+</linearGradient>
+<linearGradient id="paint1_linear" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(569 1.25171e-05 -2.25072e-05 1062.52 0.488842 -210.74)">
+<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.43"/>
+<stop offset="1" stop-color="#FFFFFF" stop-opacity="0.16"/>
+</linearGradient>
+<linearGradient id="paint2_linear" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(569 1.25171e-05 -2.25072e-05 1062.52 0.488842 -210.74)">
+<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.43"/>
+<stop offset="1" stop-color="#FFFFFF" stop-opacity="0.16"/>
+</linearGradient>
+<linearGradient id="paint3_linear" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(798.5 1.22286e-05 -3.15852e-05 1038.03 0.686011 -205.883)">
+<stop offset="0" stop-color="#FFFFFF" stop-opacity="0.43"/>
+<stop offset="1" stop-color="#FFFFFF" stop-opacity="0.16"/>
+</linearGradient>
+<path id="path0_fill" d="M 159.848 117.646C 125.434 175.61 30.7964 205.258 0 210.588L 0 321.019L 569 321.019L 569 68.677C 528.753 64.8461 445.944 41.8377 409.152 23.2055C 355.869 -3.77769 327.517 -5.27673 281.078 8.71455C 268.806 12.4119 202.865 45.1917 159.848 117.646Z"/>
+<path id="path1_fill" d="M 159.848 117.646C 125.434 175.61 30.7964 205.258 0 210.588L 0 369.269L 569 369.269L 569 68.677C 528.753 64.8461 445.944 41.8378 409.152 23.2055C 355.869 -3.77766 327.517 -5.2767 281.078 8.71458C 268.806 12.4119 202.865 45.1918 159.848 117.646Z"/>
+<path id="path2_fill" d="M 224.321 114.935C 176.027 171.563 43.2178 200.527 0 205.734L 0 360.758L 798.5 360.758L 798.5 67.0941C 742.02 63.3515 625.812 40.8735 574.179 22.6706C 499.406 -3.69059 459.618 -5.15508 394.448 8.51372C 377.226 12.1258 284.689 44.1501 224.321 114.935Z"/>
+</defs>
+</svg>

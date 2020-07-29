@@ -127,6 +127,9 @@ function index_climate_and_engagement_staff_results() {
     /* webpackChunkName: "index-climate-and-engagement-staff-results" */ '@/routes/index/climate-and-engagement/staff/results.vue'
   )
 }
+function login() {
+  return import(/* webpackChunkName: "login" */ '@/routes/login.vue')
+}
 
 export default [
   {
@@ -464,5 +467,10 @@ export default [
         ],
       },
     ],
+  },
+  {
+    name: 'login',
+    path: '/login',
+    component: login,
   },
 ]

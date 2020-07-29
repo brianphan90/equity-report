@@ -1,6 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import { SignInWithGoogle } from '@/lib/db/auth';
+import { GetUserNode, WriteUser } from '@/lib/db/user';
+import { db } from '@/lib/db';
+
 Vue.use( Vuex );
 
 export default new Vuex.Store( {
@@ -8,10 +12,7 @@ export default new Vuex.Store( {
 
 		schoolSelectValue : '',
 
-		user : {
-			mode : '',
-		},
-
+		user    : false,
 		filters : [],
 
 	},
@@ -45,10 +46,55 @@ export default new Vuex.Store( {
 
 		},
 
+		setUser( state, user ) {
+			state.user = user;
+		}
+
 	},
 	/* eslint-enable no-param-reassign */
 
 	actions : {
+
+		async login( store ) {
+
+			// call fb sign in with google
+			const user = await SignInWithGoogle();
+
+			if ( !user ) {
+				console.warn( 'something went wrong with the login' );
+				return null;
+			}
+
+			console.log( user );
+
+			const { displayName, email, photoURL } = user;
+
+			// check for fb user node
+			const { uid } = user;
+			const dbUser = await GetUserNode( uid );
+
+			const userToSet = dbUser || {
+				email,
+				uid,
+				name     : displayName,
+				photoUrl : photoURL
+			};
+
+			// make fb user node if it is the first time logging in
+			if ( !dbUser ) {
+				WriteUser( uid, userToSet );
+			}
+
+			// set user
+			store.commit( 'setUser', userToSet );
+
+			return userToSet;
+
+		},
+
+		setUser( store, user ) {
+			store.commit( 'setUser', user );
+		},
 
 		setSchoolSelectValue( store, school ) {
 

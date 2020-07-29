@@ -5,6 +5,8 @@
 
 <script>
 import { db } from '@/lib/db';
+import { GetUser } from '@/lib/db/auth';
+import { GetUserNode } from '@/lib/db/user';
 
 export default {
 	name : 'app',
@@ -18,9 +20,27 @@ export default {
 
 			} );
 
+		GetUser()
+			.then( ( user ) => {
+				if ( !user ) {
+					return;
+				}
+
+				const { uid } = user;
+
+				GetUserNode( uid )
+					.then( ( dbUser ) => {
+						this.$store.dispatch( 'setUser', dbUser );
+					} );
+			} );
+
 	},
 
 	computed : {
+
+		user() {
+			return this.$store.state.user;
+		},
 
 		mode() {
 			return this.$store.state.user.mode;
