@@ -30,12 +30,7 @@ export default {
 		user( user ) {
 
 			// hasnt attempted to login
-			if ( user === false ) {
-				return;
-			}
-
-			// Not logged in
-			if ( !user ) {
+			if ( user.name === false ) {
 				return;
 			}
 

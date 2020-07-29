@@ -109,3 +109,14 @@ export const GetGlrOverview = filters => fetchPromise( path( 'data/school/glr-ov
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
+
+
+export const GetCaasppByClassroom = filters => fetchPromise( path( 'data/teacher/caaspp-by-classroom', { filters } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );
+
+export const GetElpacByClassroom = filters => fetchPromise( path( 'data/teacher/elpac-by-classroom', { filters } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );

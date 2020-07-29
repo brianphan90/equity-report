@@ -12,7 +12,7 @@
 				h2(v-if='selectedSchoolValue === ""') {{ user.location }}
 				h2(v-else) Viewing: {{ activeSiteName }}
 			.profile-picture
-				i.material-icons person
+				img(:src='user.photoUrl')
 		.control-panel
 			.select-site
 				p Active Site:
@@ -333,13 +333,8 @@ export default {
 				overflow: hidden;
 				position: relative;
 
-				i.material-icons {
-					font-size: 36px;
-					position: absolute;
-					bottom: -6px;
-					left: 50%;
-					transform: translateX(-50%);
-					color: white;
+				img {
+					height: 100%;
 				}
 			}
 		}

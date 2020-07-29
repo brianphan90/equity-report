@@ -12,7 +12,11 @@ export default new Vuex.Store( {
 
 		schoolSelectValue : '',
 
-		user    : false,
+		user : {
+			name : false,
+			mode : 'day'
+		},
+
 		filters : [],
 
 	},
@@ -47,7 +51,8 @@ export default new Vuex.Store( {
 		},
 
 		setUser( state, user ) {
-			state.user = user;
+			const mode = state.user;
+			state.user = { mode, ...user };
 		}
 
 	},
@@ -64,8 +69,6 @@ export default new Vuex.Store( {
 				console.warn( 'something went wrong with the login' );
 				return null;
 			}
-
-			console.log( user );
 
 			const { displayName, email, photoURL } = user;
 
