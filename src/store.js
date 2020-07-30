@@ -1,11 +1,15 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import { SignInWithGoogle } from '@/lib/db/auth';
+import { SignInWithGoogle, SignOut } from '@/lib/db/auth';
 import { GetUserNode, WriteUser } from '@/lib/db/user';
 import { db } from '@/lib/db';
 
+import router from './router';
+
+
 Vue.use( Vuex );
+Vue.config.devtools = true;
 
 export default new Vuex.Store( {
 	state : {
@@ -19,10 +23,19 @@ export default new Vuex.Store( {
 
 		filters : [],
 
+		selected : {
+			school : '',
+			year   : '',
+		}
+
 	},
 
 	/* eslint-disable no-param-reassign */
 	mutations : {
+
+		setState( state, curState ) {
+			state.state = curState;
+		},
 
 		setSchoolSelectValue( state, school ) {
 
@@ -53,6 +66,10 @@ export default new Vuex.Store( {
 		setUser( state, user ) {
 			const mode = state.user;
 			state.user = { mode, ...user };
+		},
+
+		setSelected( state, selected ) {
+			state.selected = selected;
 		}
 
 	},
@@ -95,6 +112,13 @@ export default new Vuex.Store( {
 
 		},
 
+		logout( store ) {
+
+			store.commit( 'setUser', { name : false, mode : 'day' } );
+			return SignOut();
+
+		},
+
 		setUser( store, user ) {
 			store.commit( 'setUser', user );
 		},
@@ -123,6 +147,38 @@ export default new Vuex.Store( {
 			store.commit( 'setNavItemState', itemState );
 
 		},
+
+		setSelected( store, selected ) {
+			const map = {
+				school : 'int',
+			};
+
+			const query = Object.keys( selected ).reduce( ( obj, key ) => {
+				const value = selected[key];
+
+				if ( !value ) {
+					return obj;
+				}
+
+				const type = map[key];
+
+				switch ( type ) {
+					case 'int':
+						obj[key] = parseInt( value, 10 ); // eslint-disable-line
+						break;
+					default:
+						obj[key] = value; // eslint-disable-line
+				}
+
+				return obj;
+
+			}, {} );
+
+			router.push( { query } );
+			store.commit( 'setSelected', selected );
+
+			return selected;
+		}
 
 	},
 } );
