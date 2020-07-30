@@ -29,4 +29,18 @@ const router = new VueRouter( {
 	routes,
 } );
 
+
+router.beforeEach( ( to, from, next ) => {
+	function hasQuery( query ) {
+		return !!Object.keys( query ).length;
+	}
+	console.log( 'test' );
+	if ( !hasQuery( to.query ) && hasQuery( from.query ) ) {
+		return next( { name : to.name, query : from.query } );
+	}
+
+	return next();
+
+} );
+
 export default router;
