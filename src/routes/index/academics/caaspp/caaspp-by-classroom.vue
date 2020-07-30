@@ -88,7 +88,7 @@ export default {
 		flex-direction: column;
 
 		&::before {
-			content: "GLR Breakdown";
+			content: "CAASPP Breakdown";
 		}
 
 		.page-header {

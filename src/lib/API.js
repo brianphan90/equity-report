@@ -120,3 +120,8 @@ export const GetElpacByClassroom = filters => fetchPromise( path( 'data/teacher/
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
+
+export const GetBehaviorIncidentsDisaggregated = ( filters, siteId, year ) => fetchPromise( path( 'data/teacher/behavior-incidents-disaggregated', { filters, siteId, year } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );
