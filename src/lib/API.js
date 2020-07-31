@@ -121,7 +121,17 @@ export const GetElpacByClassroom = filters => fetchPromise( path( 'data/teacher/
 	headers : defaultHeaders(),
 } );
 
+export const GetCertificatedAttendanceOverview = ( filters, siteId, year ) => fetchPromise( path( 'data/teacher/certificated-attendance-overview', { filters, siteId, year } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );
+
 export const GetBehaviorIncidentsDisaggregated = ( filters, siteId, year ) => fetchPromise( path( 'data/teacher/behavior-incidents-disaggregated', { filters, siteId, year } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );
+
+export const GetClassifiedAttendanceOverview = ( filters, siteId, year ) => fetchPromise( path( 'data/teacher/classified-attendance-overview', { filters, siteId, year } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
