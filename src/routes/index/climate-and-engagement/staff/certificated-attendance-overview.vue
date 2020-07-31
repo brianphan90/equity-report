@@ -23,11 +23,11 @@
 			.top
 				p.description Teacher attendance is directly related to student outcomes: the more teachers are absent, the more their students’ achievement suffers.
 				.delivered
-					p.value 85%
-					p.text Average Total Instructional Hours Delivered
+					p.value {{ data.avgInstructionalHours.value }}%
+					p.text {{ data.avgInstructionalHours.label }}
 			.bottom
 				.not-delivered
-					p.value 15%
+					p.value {{ data.instructionalHoursNotDelivered.pct }}%
 					.text
 						span of Instructional Hours
 						span.bold Not Delivered
@@ -36,7 +36,7 @@
 					p Equals
 					.line
 				.not-delivered
-					p.value 4273
+					p.value {{ data.instructionalHoursNotDelivered.num }}
 					.text
 						span of Instructional Hours
 						span.bold Not Delivered
@@ -81,7 +81,6 @@ export default {
 
 		.content {
 			padding: 40px 60px 40px 40px;
-			max-width: 1000px;
 
 			.page-title {
 				display: flex;
