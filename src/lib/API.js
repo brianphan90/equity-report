@@ -131,7 +131,7 @@ export const GetBehaviorIncidentsDisaggregated = ( filters, siteId, year ) => fe
 	headers : defaultHeaders(),
 } );
 
-export const GetClassifiedAttendanceOverview = ( filters, siteId, year ) => fetchPromise( path( 'data/teacher/classified-attendance-overview', { filters, siteId, year } ), {
+export const GetClassifiedAttendanceOverview = ( filters, siteId, year ) => fetchPromise( path( 'data/classified/classified-attendance-overview', { filters, siteId, year } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );

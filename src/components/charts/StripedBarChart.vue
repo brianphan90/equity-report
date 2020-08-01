@@ -220,7 +220,7 @@ export default {
 
 					return `M ${d.textX} ${startY} L ${d.textX} ${endY}`;
 				} )
-				.style( 'stroke', colors.orange )
+				.style( 'stroke', this.legend.default.color )
 				.style( 'stroke-width', 0 )
 				.style( 'stroke-dasharray', '4 3' );
 
@@ -254,7 +254,7 @@ export default {
 				.lower()
 				.attr( 'x', d => d.x + ( d.width / 2 ) - ( rectangleWidth / 2 ) )
 				.attr( 'width', rectangleWidth )
-				.attr( 'fill', colors.orange )
+				.attr( 'fill', this.legend.default.color )
 				.attr( 'height', rectangleHeight )
 				.attr( 'y', ( d ) => {
 					const { endY } = getY( d );

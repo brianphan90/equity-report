@@ -25,7 +25,7 @@
 					striped-bar-chart.chart(
 						v-for='item in data.charts'
 						:data='item.data'
-						:legend='data.legend'
+						:legend='item.legend'
 						:title='item.title'
 						:options='options'
 						@b-value='bValue = Math.max( $event, bValue )'
