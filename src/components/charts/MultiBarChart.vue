@@ -137,7 +137,6 @@ export default {
 				max : range.end
 			};
 		}
-
 	},
 
 	mounted() {
@@ -152,8 +151,8 @@ export default {
 
 			const { range } = this;
 
-			const barData = this.computeBarData();
-			this.barGroups = this.createBarGroup( barData );
+			const barGroupsData = this.computeBarGroupsData();
+			this.barGroups = this.createBarGroup( barGroupsData );
 
 			this.xAxisLabels = this.drawXAxisLabels( this.barGroups );
 
@@ -176,7 +175,7 @@ export default {
 
 		},
 
-		computeBarData() {
+		computeBarGroupsData() {
 			const { legend, groupWidth, groupSpacing } = this;
 			const barKeys = Object.keys( this.legend );
 
@@ -193,8 +192,7 @@ export default {
 
 					arr.push( {
 						color,
-						value       : v,
-						groupOffset : ( groupWidth + groupSpacing ) * i
+						value : v
 					} );
 
 					return arr;
@@ -214,10 +212,23 @@ export default {
 				.append( 'g' );
 		},
 
+		computeBarData( data, i ) {
+			const { groupWidth, groupSpacing } = this;
+
+			return data.map( ( d ) => {
+				const groupOffset = ( groupWidth + groupSpacing ) * i;
+
+				return {
+					...d,
+					groupOffset
+				};
+			} );
+		},
+
 		drawBars( barGroups ) {
 
 			const bars = barGroups.selectAll( `bar-${this.id}` )
-				.data( d => d.values )
+				.data( ( d, i ) => this.computeBarData( d.values, i ) )
 				.enter()
 				.append( 'g' );
 
