@@ -166,6 +166,10 @@ export default {
 				background: rgba( $background-primary, 0.1 );
 			}
 
+			.dynamic-mode-background {
+				background: $color-secondary-darkened;
+			}
+
 			.dynamic-mode-border {
 
 				&.right {
@@ -197,6 +201,11 @@ export default {
 
 		.dynamic-mode-background-secondary {
 			background: $background-primary-darkened;
+			transition: background 0.4s ease;
+		}
+
+		.dynamic-mode-background {
+			background: $background-primary;
 			transition: background 0.4s ease;
 		}
 

@@ -150,14 +150,15 @@ export default {
 		},
 
 		computeBarData() {
-			const barKeys = Object.keys( this.data );
+			const { orderedLegend } = this;
 
-			return barKeys.map( ( key, i ) => {
+			return orderedLegend.map( ( legend, i ) => {
+				const { key, label, color } = legend;
 				const value = this.data[key];
 
 				return {
-					label : this.legend[key].label,
-					color : this.legend[key].color,
+					label,
+					color,
 					value
 				};
 
@@ -229,8 +230,6 @@ export default {
 
 			return ( value / max ) * this.ah;
 		},
-
-
 	}
 
 };

@@ -1,5 +1,5 @@
 <template lang="pug">
-	.multi-bar-chart
+	.multi-bar-chart.dynamic-mode-background
 		.header
 			h1.title {{ title }}
 			.legend
@@ -14,7 +14,6 @@ import colors from '@/assets/js/colors';
 import ChartLegend from '@/components/ChartLegend';
 import BaseChart from '@/components/charts/BaseChart';
 import * as d3 from 'd3';
-
 
 export default {
 	name : 'multi-bar-chart',
@@ -44,7 +43,10 @@ export default {
 
 	computed : {
 		groupSpacing() {
-			return this.options.groupSpacing || 7;
+			const sumOfGroupWidths = ( this.groupWidth * this.data.length );
+
+			return ( this.aw - sumOfGroupWidths ) / ( this.data.length );
+			// return this.options.groupSpacing || ;
 		},
 
 		barSpacing() {
@@ -92,10 +94,7 @@ export default {
 		},
 
 		barWidth() {
-			const { aw, totalSpace, totalBars } = this;
-
-			const barWidth = ( aw - totalSpace ) / totalBars;
-			return Math.min( barWidth, 30 );
+			return 8;
 		},
 
 		groupWidth() {
@@ -176,23 +175,19 @@ export default {
 		},
 
 		computeBarGroupsData() {
-			const { legend, groupWidth, groupSpacing } = this;
-			const barKeys = Object.keys( this.legend );
+			const { orderedLegend } = this;
 
 			return this.data.map( ( d, i ) => {
 				const { label, value } = d;
 
-				const values = barKeys.reduce( ( arr, key ) => {
-					const { color } = legend[key];
-					const v = d.value[key];
-
-					if ( !v ) {
-						return arr;
-					}
+				const values = orderedLegend.reduce( ( arr, legend ) => {
+					const { key, color } = legend;
+					const v = value[key];
 
 					arr.push( {
 						color,
-						value : v
+						legend,
+						value : v,
 					} );
 
 					return arr;
@@ -227,10 +222,11 @@ export default {
 
 		drawBars( barGroups ) {
 
-			const bars = barGroups.selectAll( `bar-${this.id}` )
+			const bars = barGroups.selectAll( `bar-groups-${this.id}` )
 				.data( ( d, i ) => this.computeBarData( d.values, i ) )
 				.enter()
-				.append( 'g' );
+				.append( 'g' )
+				.attr( 'class', `bar-wrapper-${this.id}` );
 
 			bars
 				.append( 'rect' )
@@ -239,9 +235,65 @@ export default {
 					const y = this.getY( this.getHeight( d.value ) );
 					return y;
 				} )
-				.attr( 'fill', d => d.color )
+				.attr( 'fill', ( d ) => {
+					if ( d.legend.style === 'striped' ) {
+						return 'transparent';
+					}
+
+					return d.color;
+				} )
+				.attr( 'stroke', ( d ) => {
+					if ( d.legend.style === 'striped' ) {
+						return d.color;
+					}
+
+					return 'none';
+				} )
+				.attr( 'stroke-width', ( d ) => {
+					if ( d.legend.style === 'striped' ) {
+						return '2';
+					}
+
+					return '0';
+				} )
 				.attr( 'height', d => this.getHeight( d.value ) )
 				.attr( 'width', d => this.barWidth );
+
+			// use this to make your lines render properly
+			const roundToNearestMultipleOfEight = num => Math.ceil( Math.ceil( num ) / 8 ) * 8;
+
+			bars
+				.append( 'path' )
+				.attr( 'd', ( d, i ) => {
+					const x = this.getX( i ) + d.groupOffset + ( this.barWidth / 2 );
+
+					const point1 = {
+						x,
+						y : Math.round( this.h - this.b ),
+					};
+
+					const point2 = {
+						x,
+						y : Math.min( point1.y, roundToNearestMultipleOfEight( point1.y - this.getHeight( d.value ) ) ),
+					};
+
+					return this.pathFromPoints( [point1, point2] );
+				} )
+				.style( 'stroke', d => d.color )
+				.style( 'stroke-dasharray', ( d ) => {
+					if ( d.legend.style === 'striped' ) {
+						return '2, 6';
+					}
+
+					return '';
+				} )
+				.style( 'stroke-width', ( d ) => {
+					if ( d.legend.style === 'striped' ) {
+						return this.barWidth;
+					}
+
+					return 0;
+				} );
 		},
 
 		drawXAxisLabels( barGroups ) {
@@ -254,6 +306,22 @@ export default {
 				.attr( 'dominant-baseline', 'start' )
 				.style( 'font-size', '12px' )
 				.text( d => d.label );
+
+			this.changeWithMode( {
+				nodes   : xAxisLabels,
+				options : {
+					day : {
+						style : [
+							['fill', colors.grey],
+						],
+					},
+					night : {
+						style : [
+							['fill', colors.white],
+						],
+					},
+				},
+			} );
 
 			const barLabelNodes = barGroups.selectAll( '.x-axis-labels' );
 			const barLabelWidths = Array.from( barLabelNodes._groups[0] ).map( a => a.getBBox().height );
@@ -268,9 +336,14 @@ export default {
 		},
 
 		getX( i ) {
-			const { l, barWidth, barSpacing } = this;
+			const {
+				l,
+				barWidth,
+				barSpacing,
+				groupSpacing
+			} = this;
 
-			return l + ( barWidth * i ) + ( barSpacing * i );
+			return l + ( barWidth * i ) + ( barSpacing * i ) + ( groupSpacing / 2 );
 		},
 
 		getY( height ) {
@@ -286,12 +359,14 @@ export default {
 				groupSpacing
 			} = this;
 
-			return ( l + ( groupSpacing * i ) + ( groupWidth * i ) + ( groupWidth / 2 ) );
+			return ( l + ( groupSpacing * i ) + ( groupWidth * i ) + ( groupWidth / 2 ) ) + ( groupSpacing / 2 );
 		},
 
 		getHeight( value ) {
 			const { max } = this.range;
 
+			// + this assumes that the bottom of the range
+			// + is always zero
 			return ( value / max ) * this.ah;
 		},
 
@@ -305,35 +380,34 @@ export default {
 </script>
 
 <style lang="scss">
-	.multi-bar-chart {
-		background-color: white;
-		padding: 20px;
+
+.multi-bar-chart {
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+
+	.header {
 		display: flex;
-		flex-direction: column;
+		justify-content: space-between;
+		margin-bottom: 10px;
 
-		.header {
-			display: flex;
-			justify-content: space-between;
-			margin-bottom: 10px;
-
-			.title {
-				font-family: 'Roboto';
-				font-style: normal;
-				font-weight: bold;
-				font-size: 14px;
-				line-height: 16px;
-			}
-
+		.title {
+			font-family: 'Roboto';
+			font-style: normal;
+			font-weight: bold;
+			font-size: 14px;
+			line-height: 16px;
 		}
 
-		.chart {
-			flex: 1 1 0;
-
-			svg {
-				width: 100%;
-				height: 100%;
-			}
-		}
 	}
 
+	.chart {
+		flex: 1 1 0;
+
+		svg {
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
 </style>

@@ -3,7 +3,7 @@ legend(:style='{ gridTemplateColumns }')
 	.item(v-for='item in shapedItems')
 		.shape(
 			:class='[item.shape || "square", item.style]'
-			:style='{ backgroundColor : item.color, borderBottomColor : item.color }'
+			:style='getStyle( item )'
 		)
 		label.dynamic-mode-text {{ item.label }}
 	.item.titled-legend-item(
@@ -111,7 +111,31 @@ export default {
 				.map( key => this.legend[key] );
 		}
 
-	}
+	},
+
+	methods : {
+		getStyle( item ) {
+			if ( item.style === 'striped' ) {
+				return {
+					border     : `2px solid ${item.color}`,
+					background : `repeating-linear-gradient(
+						transparent 4px,
+						${item.color} 4px,
+						${item.color} 5px,
+						transparent 5px,
+						transparent 7px,
+						${item.color} 7px,
+						${item.color} 8px
+					)`
+				};
+			}
+
+			return {
+				backgroundColor   : item.color,
+				borderBottomColor : item.color
+			};
+		},
+	},
 };
 </script>
 

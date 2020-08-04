@@ -23,7 +23,6 @@ aside.side-nav(:class='[viewMode, navState]')
 <script>
 import routes from '@/router/routes';
 
-console.log( routes );
 const formatNavRoutes = ( routerInfo, basePath ) => {
 	const menuItems = routerInfo.map( ( info ) => {
 		const { path : pathProp } = info;
@@ -53,42 +52,30 @@ export default {
 	name : 'side-nav',
 
 	data : () => ( {
-		navState : 'open',
-		viewMode : 'night',
+		navState : localStorage.getItem( 'musd-equity-report:nav-state' ) || 'open',
+		viewMode : localStorage.getItem( 'musd-equity-report:view-mode' ) || 'night',
 
 		nav  : formatNavRoutes( routes[0].children ), // academics, climate-and-engagement
-		open : routes[0].children.reduce( ( obj, item ) => {
-			const added = {};
-			added[item.path] = false;
+		open : ( () => {
+			const navItemsState = localStorage.getItem( 'musd-equity-report:nav-items-state' );
 
-			return {
-				...obj,
-				...added,
-			};
-		}, {} ),
+			if ( navItemsState ) {
+				return JSON.parse( navItemsState );
+			}
+
+			return routes[0].children.reduce( ( obj, item ) => {
+				const added = {};
+				added[item.path] = false;
+
+				return {
+					...obj,
+					...added,
+				};
+			}, {} );
+		} )(),
 
 		closeTimeout : {},
 	} ),
-
-	created() {
-
-		const navItemsState = localStorage.getItem( 'musd-equity-report:nav-items-state' );
-		const navState      = localStorage.getItem( 'musd-equity-report:nav-state' );
-		const viewMode      = localStorage.getItem( 'musd-equity-report:view-mode' );
-
-		if ( navState ) {
-			this.navState = navState;
-		}
-
-		if ( viewMode ) {
-			this.viewMode = viewMode;
-		}
-
-		if ( navItemsState ) {
-			this.open = JSON.parse( navItemsState );
-		}
-
-	},
 
 	computed : {
 
