@@ -3,8 +3,9 @@
 	"meta" : {
 		"topbarTitle" : "Staff Certificated Attendance Overview",
 		"navOptions": {
-			"title": "Certificated Attendance Overview",
-			"icon" : "whatever"
+			"title" : "Certificated Attendance Overview",
+			"icon"  : "whatever",
+			"order" : 1
 		}
 	}
 }
@@ -18,8 +19,8 @@
 	)
 		.content.dynamic-mode-background-secondary.floating-side-text(slot='loaded' v-if='data')
 			.page-title
-				p TEACHER
-				p Attendance
+				h1.main-title TEACHER
+				h2.sub-title Attendance
 			.top
 				p.description Teacher attendance is directly related to student outcomes: the more teachers are absent, the more their students’ achievement suffers.
 				.delivered
@@ -85,28 +86,15 @@ export default {
 			.page-title {
 				display: flex;
 
-				p:first-child {
-					font-family: 'Roboto Slab';
-					font-style: normal;
-					font-weight: bold;
+				.main-title {
 					font-size: 52px;
 					line-height: 69px;
-					display: flex;
-					align-items: center;
 					letter-spacing: 0.045em;
-					color: $color-text-secondary;
-					margin-right: 10px;
 				}
 
-				p:last-child {
-					font-family: 'Roboto Slab';
-					font-style: normal;
-					font-weight: 300;
+				.sub-title {
 					font-size: 52px;
 					line-height: 69px;
-					display: flex;
-					align-items: center;
-					color: $color-text-secondary;
 				}
 			}
 
@@ -117,8 +105,6 @@ export default {
 				margin-bottom: 50px;
 
 				.description {
-					font-family: 'Roboto';
-					font-style: normal;
 					font-weight: normal;
 					font-size: 18px;
 					line-height: 162.5%;
@@ -134,8 +120,6 @@ export default {
 					flex-direction: column;
 
 					.value {
-						font-family: 'Roboto';
-						font-style: normal;
 						font-weight: 900;
 						font-size: 160px;
 						line-height: 187px;
@@ -144,8 +128,6 @@ export default {
 					}
 
 					.text {
-						font-family: 'Roboto';
-						font-style: normal;
 						font-weight: 300;
 						font-size: 33px;
 						line-height: 110%;
@@ -166,8 +148,6 @@ export default {
 					flex-direction: column;
 
 					.value {
-						font-family: 'Roboto';
-						font-style: normal;
 						font-weight: 900;
 						font-size: 70px;
 						line-height: 162.5%;
@@ -180,8 +160,6 @@ export default {
 
 					.text {
 						span {
-							font-family: 'Roboto';
-							font-style: normal;
 							font-weight: 300;
 							font-size: 14px;
 							line-height: 131.5%;
@@ -208,8 +186,6 @@ export default {
 					}
 
 					p {
-						font-family: 'Roboto';
-						font-style: normal;
 						font-weight: 900;
 						font-size: 25px;
 						line-height: 162.5%;

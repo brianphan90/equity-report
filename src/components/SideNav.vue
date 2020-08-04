@@ -23,6 +23,7 @@ aside.side-nav(:class='[viewMode, navState]')
 <script>
 import routes from '@/router/routes';
 
+console.log( routes );
 const formatNavRoutes = ( routerInfo, basePath ) => {
 	const menuItems = routerInfo.map( ( info ) => {
 		const { path : pathProp } = info;

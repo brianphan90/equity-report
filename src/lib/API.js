@@ -126,6 +126,11 @@ export const GetCertificatedAttendanceOverview = ( filters, siteId, year ) => fe
 	headers : defaultHeaders(),
 } );
 
+export const GetBehaviorIncidentsOverview = ( filters, siteId, year ) => fetchPromise( path( 'data/school/behavior-incidents-overview', { filters, siteId, year } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );
+
 export const GetBehaviorIncidentsDisaggregated = ( filters, siteId, year ) => fetchPromise( path( 'data/teacher/behavior-incidents-disaggregated', { filters, siteId, year } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),

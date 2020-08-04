@@ -11,7 +11,7 @@
 	top-bar
 	.main-content(:class='mode')
 		side-nav
-		.view-container
+		.view-container.dynamic-mode-background-secondary
 			//- filters
 			.view-report-modal(v-if='!isReady')
 				.body
@@ -234,6 +234,9 @@ export default {
 			height: 100%;
 			max-height: 100%;
 			position: relative;
+			display: flex;
+			justify-content: center;
+
 
 			.filters {
 				width: 100%;
@@ -296,6 +299,30 @@ export default {
 						cursor: pointer;
 					}
 				}
+			}
+
+			.router-view {
+				max-width: 1000px;
+
+				h1.main-title {
+					font-family: 'Roboto Slab';
+					font-style: normal;
+					font-weight: bold;
+					display: flex;
+					align-items: center;
+					color: $color-text-secondary;
+					margin-right: 10px;
+				}
+
+				h2.sub-title {
+					font-family: 'Roboto Slab';
+					font-style: normal;
+					font-weight: 300;
+					display: flex;
+					align-items: center;
+					color: $color-text-secondary;
+				}
+
 			}
 		}
 	}

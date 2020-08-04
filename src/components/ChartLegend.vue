@@ -2,7 +2,7 @@
 legend(:style='{ gridTemplateColumns }')
 	.item(v-for='item in shapedItems')
 		.shape(
-			:class='item.shape || "square"'
+			:class='[item.shape || "square", item.style]'
 			:style='{ backgroundColor : item.color, borderBottomColor : item.color }'
 		)
 		label.dynamic-mode-text {{ item.label }}

@@ -3,8 +3,9 @@
 	"meta" : {
 		"topbarTitle" : "Discipline Behavior Incidents Disaggregated",
 		"navOptions": {
-			"title": "Behavior Incidents Disaggregated",
-			"icon" : "whatever"
+			"title" : "Behavior Incidents Disaggregated",
+			"icon"  : "whatever",
+			"order" : 2
 		}
 	}
 }

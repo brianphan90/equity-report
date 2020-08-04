@@ -3,8 +3,9 @@
 	"meta" : {
 		"topbarTitle" : "CAASPP By Classroom",
 		"navOptions": {
-			"title": "By Classroom",
-			"icon" : "whatever"
+			"title" : "By Classroom",
+			"icon"  : "whatever",
+			"order" : 2
 		}
 	}
 }

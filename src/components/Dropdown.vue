@@ -1,9 +1,9 @@
 <template lang='pug'>
-.dropdown.box(:class='{ error : hasErrors }')
+.dropdown(:class='{ error : hasErrors }')
 	.error(v-if='hasErrors') {{ errors }}
 	.select-wrapper
 		p.minimal-label.highlight-text(v-if='options.minimalLabel') {{ options.minimalLabel }}
-		select(v-model='localValue')
+		select.dynamic-mode-background-secondary(v-model='localValue')
 			option(v-for='option in selectOptions' :value='option.value') {{ option.text }}
 </template>
 
@@ -233,6 +233,7 @@ $blueGrey       : #50606E;
 		}
 
 		select {
+			border: 1px solid #0081C2;
 			font-size: 14px;
 			outline: none;
 			width: 100%;
@@ -240,7 +241,7 @@ $blueGrey       : #50606E;
 			padding: 5px 10px;
 			border-radius: 30px;
 			color : #0081C2;
-			border: none;
+			background: transparent;
 		}
 	}
 }

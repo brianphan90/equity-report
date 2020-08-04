@@ -3,8 +3,9 @@
 	"meta" : {
 		"topbarTitle" : "Academic Performance Equity Report",
 		"navOptions": {
-			"title": "By Classroom",
-			"icon" : "whatever"
+			"title" : "By Classroom",
+			"icon"  : "whatever",
+			"order" : 3
 		}
 	}
 }

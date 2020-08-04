@@ -3,8 +3,9 @@
 	"meta" : {
 		"topbarTitle" : "Staff Classified Attendance Overview",
 		"navOptions": {
-			"title": "Classified Attendance Overview",
-			"icon" : "whatever"
+			"title" : "Classified Attendance Overview",
+			"icon"  : "whatever",
+			"order" : 3
 		}
 	}
 }
@@ -18,8 +19,8 @@
 	)
 		.content.dynamic-mode-background-secondary.floating-side-text(slot='loaded' v-if='data')
 			.page-title
-				p Classified
-				p Attendance
+				h1.main-title Classified
+				h2.sub-title Attendance
 			.employee-count
 				.text
 					span Attendance
@@ -94,28 +95,15 @@ export default {
 		.page-title {
 			display: flex;
 
-			p:first-child {
-				font-family: 'Roboto Slab';
-				font-style: normal;
-				font-weight: bold;
-				font-size: 52px;
-				line-height: 69px;
-				display: flex;
-				align-items: center;
-				letter-spacing: 0.045em;
-				color: $color-text-secondary;
-				margin-right: 10px;
-			}
+			.main-title {
+					font-size: 52px;
+					line-height: 69px;
+					letter-spacing: 0.045em;
+				}
 
-			p:last-child {
-				font-family: 'Roboto Slab';
-				font-style: normal;
-				font-weight: 300;
+			.sub-title {
 				font-size: 52px;
 				line-height: 69px;
-				display: flex;
-				align-items: center;
-				color: $color-text-secondary;
 			}
 		}
 
@@ -131,8 +119,6 @@ export default {
 
 				span {
 					text-align: start;
-					font-family: 'Roboto';
-					font-style: normal;
 					font-weight: bold;
 					font-size: 27px;
 					line-height: 135%;
@@ -141,7 +127,6 @@ export default {
 				}
 
 				span:nth-child(n+3) {
-					font-style: normal;
 					font-weight: normal;
 					color: $color-text-secondary;
 				}
@@ -153,8 +138,6 @@ export default {
 				align-items: flex-end;
 
 				.value {
-					font-family: 'Roboto';
-					font-style: normal;
 					font-weight: 900;
 					font-size: 130px;
 					line-height: 152px;
@@ -163,8 +146,6 @@ export default {
 				}
 
 				.label {
-					font-family: 'Roboto';
-					font-style: normal;
 					font-weight: 300;
 					font-size: 21px;
 					line-height: 130.5%;
