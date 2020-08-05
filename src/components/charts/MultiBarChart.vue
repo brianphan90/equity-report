@@ -1,7 +1,7 @@
 <template lang="pug">
 	.multi-bar-chart.dynamic-mode-background
 		.header
-			h1.title {{ title }}
+			h1.title.dynamic-mode-text {{ title }}
 			.legend
 				chart-legend(:legend='legend'  :columns='1')
 		.chart

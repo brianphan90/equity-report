@@ -34,10 +34,11 @@
 						:legend='data.legend'
 					)
 				.overall
-					multi-bar-chart.chart(
+					labeled-bar-chart.chart(
 						:data='data.charts.overall.data'
 						:title='data.charts.overall.title'
 						:legend='data.legend'
+						:options='options'
 					)
 </template>
 
@@ -46,6 +47,7 @@ import { GetBehaviorIncidentsOverview } from '@/lib/API';
 import DataViewLoader from '@/components/DataViewLoader';
 import DataViewStateManager from '@/components/DataViewStateManager';
 import MultiBarChart from '@/components/charts/MultiBarChart';
+import LabeledBarChart from '@/components/charts/LabeledBarChart';
 
 export default {
 	name : 'behavior-incidents-overview',
@@ -53,12 +55,17 @@ export default {
 	extends : DataViewLoader,
 
 	data : () => ( {
-		fetch : GetBehaviorIncidentsOverview,
+		fetch   : GetBehaviorIncidentsOverview,
+		options : {
+			hasBarLabels       : true,
+			numberOfIndicators : 7
+		}
 	} ),
 
 	components : {
 		DataViewStateManager,
-		MultiBarChart
+		MultiBarChart,
+		LabeledBarChart
 	}
 };
 </script>

@@ -175,9 +175,11 @@ export default {
 					return bottomOfChart - distanceFromBottom;
 				} )();
 
+				const textValue = Math.round( range.min + ( ( i / ( numberOfIndicators - 1 ) ) * rangeDifference ) );
+
 				labelData.push( {
 					y,
-					text : `${range.min + ( ( i / ( numberOfIndicators - 1 ) ) * rangeDifference )}${postChar || ''}`,
+					text : `${textValue}${postChar || ''}`,
 					dominantBaseline,
 					nightColor,
 					dayColor,
