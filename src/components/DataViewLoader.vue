@@ -12,6 +12,12 @@ export default {
 	computed : {
 		filters() {
 			return this.$store.state.filters;
+		},
+		siteId() {
+			return this.$store.state.selected.school;
+		},
+		year() {
+			return this.$store.state.selected.year;
 		}
 	},
 
@@ -23,7 +29,7 @@ export default {
 		load() {
 			this.state = 'loading';
 
-			this.fetch( this.filters )
+			this.fetch( this.filters, this.siteId, this.year )
 				.then( ( data ) => {
 					this.data  = data;
 					this.state = 'loaded';

@@ -4,6 +4,7 @@
 		component(
 			:is='graph'
 			:data='item.data.chart'
+			:options='options'
 			:legend='legend'
 		)
 	.label-wrapper
@@ -23,6 +24,10 @@ export default {
 		graph : {
 			type     : Object,
 			required : true,
+		},
+
+		options : {
+			type : Object
 		},
 
 		item : {

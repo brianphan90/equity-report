@@ -3,8 +3,9 @@
 	"meta" : {
 		"topbarTitle" : "Staff Classified Attendance Disaggregated",
 		"navOptions": {
-			"title": "Classified Attendance Disaggregated",
-			"icon" : "whatever"
+			"title" : "Classified Attendance Disaggregated",
+			"icon"  : "whatever",
+			"order" : 4
 		}
 	}
 }

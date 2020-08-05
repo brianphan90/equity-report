@@ -3,8 +3,9 @@
 	"meta" : {
 		"topbarTitle" : "Staff Certificated Attendance Disaggregated",
 		"navOptions": {
-			"title": "Certificated Attendance Disaggregated",
-			"icon" : "whatever"
+			"title" : "Certificated Attendance Disaggregated",
+			"icon"  : "whatever",
+			"order" : 2
 		}
 	}
 }

@@ -109,3 +109,34 @@ export const GetGlrOverview = filters => fetchPromise( path( 'data/school/glr-ov
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
+
+
+export const GetCaasppByClassroom = filters => fetchPromise( path( 'data/teacher/caaspp-by-classroom', { filters } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );
+
+export const GetElpacByClassroom = filters => fetchPromise( path( 'data/teacher/elpac-by-classroom', { filters } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );
+
+export const GetCertificatedAttendanceOverview = ( filters, siteId, year ) => fetchPromise( path( 'data/teacher/certificated-attendance-overview', { filters, siteId, year } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );
+
+export const GetBehaviorIncidentsOverview = ( filters, siteId, year ) => fetchPromise( path( 'data/school/behavior-incidents-overview', { filters, siteId, year } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );
+
+export const GetBehaviorIncidentsDisaggregated = ( filters, siteId, year ) => fetchPromise( path( 'data/teacher/behavior-incidents-disaggregated', { filters, siteId, year } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );
+
+export const GetClassifiedAttendanceOverview = ( filters, siteId, year ) => fetchPromise( path( 'data/classified/classified-attendance-overview', { filters, siteId, year } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );

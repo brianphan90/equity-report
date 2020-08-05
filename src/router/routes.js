@@ -122,10 +122,8 @@ function index_climate_and_engagement_staff_classified_attendance_overview() {
     /* webpackChunkName: "index-climate-and-engagement-staff-classified-attendance-overview" */ '@/routes/index/climate-and-engagement/staff/classified-attendance-overview.vue'
   )
 }
-function index_climate_and_engagement_staff_results() {
-  return import(
-    /* webpackChunkName: "index-climate-and-engagement-staff-results" */ '@/routes/index/climate-and-engagement/staff/results.vue'
-  )
+function login() {
+  return import(/* webpackChunkName: "login" */ '@/routes/login.vue')
 }
 
 export default [
@@ -167,6 +165,7 @@ export default [
                   navOptions: {
                     title: 'By Classroom',
                     icon: 'whatever',
+                    order: 2,
                   },
                 },
               },
@@ -179,6 +178,7 @@ export default [
                   navOptions: {
                     title: 'By Grade Level and Subgroup',
                     icon: 'whatever',
+                    order: 1,
                   },
                 },
               },
@@ -205,6 +205,7 @@ export default [
                   navOptions: {
                     title: 'By Classroom',
                     icon: 'whatever',
+                    order: 2,
                   },
                 },
               },
@@ -217,6 +218,7 @@ export default [
                   navOptions: {
                     title: 'By Grade Level and Subgroup',
                     icon: 'whatever',
+                    order: 1,
                   },
                 },
               },
@@ -243,6 +245,7 @@ export default [
                   navOptions: {
                     title: 'By Classroom',
                     icon: 'whatever',
+                    order: 3,
                   },
                 },
               },
@@ -256,6 +259,7 @@ export default [
                   navOptions: {
                     title: 'By Grade Level and Subgroup',
                     icon: 'whatever',
+                    order: 2,
                   },
                 },
               },
@@ -268,6 +272,7 @@ export default [
                   navOptions: {
                     title: 'Overview',
                     icon: 'whatever',
+                    order: 1,
                   },
                 },
               },
@@ -338,6 +343,7 @@ export default [
                   navOptions: {
                     title: 'Behavior Incidents Disaggregated',
                     icon: 'whatever',
+                    order: 2,
                   },
                 },
               },
@@ -351,6 +357,7 @@ export default [
                   navOptions: {
                     title: 'Behavior Incidents Overview',
                     icon: 'whatever',
+                    order: 1,
                   },
                 },
               },
@@ -405,6 +412,7 @@ export default [
                   navOptions: {
                     title: 'Certificated Attendance Disaggregated',
                     icon: 'whatever',
+                    order: 2,
                   },
                 },
               },
@@ -418,6 +426,7 @@ export default [
                   navOptions: {
                     title: 'Certificated Attendance Overview',
                     icon: 'whatever',
+                    order: 1,
                   },
                 },
               },
@@ -431,6 +440,7 @@ export default [
                   navOptions: {
                     title: 'Classified Attendance Disaggregated',
                     icon: 'whatever',
+                    order: 4,
                   },
                 },
               },
@@ -444,18 +454,7 @@ export default [
                   navOptions: {
                     title: 'Classified Attendance Overview',
                     icon: 'whatever',
-                  },
-                },
-              },
-              {
-                name: 'climate-and-engagement-staff-results',
-                path: 'results',
-                component: index_climate_and_engagement_staff_results,
-                meta: {
-                  topbarTitle: 'S',
-                  navOptions: {
-                    title: 'By Classroom',
-                    icon: 'whatever',
+                    order: 3,
                   },
                 },
               },
@@ -464,5 +463,10 @@ export default [
         ],
       },
     ],
+  },
+  {
+    name: 'login',
+    path: '/login',
+    component: login,
   },
 ]

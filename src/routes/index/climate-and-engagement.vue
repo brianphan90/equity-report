@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style lang="scss">
-.academics {
+.climate-and-engagement {
 	width: 100%;
 	height: 100%;
 }

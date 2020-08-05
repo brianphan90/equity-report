@@ -3,8 +3,9 @@
 	"meta" : {
 		"topbarTitle" : "CAASPP By Grade Level and Subgroup",
 		"navOptions": {
-			"title": "By Grade Level and Subgroup",
-			"icon" : "whatever"
+			"title" : "By Grade Level and Subgroup",
+			"icon"  : "whatever",
+			"order" : 1
 		}
 	}
 }

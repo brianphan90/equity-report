@@ -26,6 +26,18 @@ export default {
 	} ),
 
 	computed : {
+		orderedLegend() {
+			const legend = Object.keys( this.legend ).map( ( key ) => {
+				const value = this.legend[key];
+				return {
+					key,
+					...value
+				};
+			} );
+
+			return legend.filter( a => a.order !== undefined ).sort( ( a, b ) => a.order - b.order );
+		},
+
 		ah() { // available height
 			const { h, t, b } = this;
 
@@ -384,7 +396,23 @@ export default {
 
 					} );
 			} );
-		}
+		},
+
+		pathFromPoints( points ) {
+
+			const path = points.reduce( ( a, b, i ) => {
+
+				if ( typeof a !== 'object' ) {
+					return `${a} L ${b.x} ${b.y}${i === ( points.length - 1 ) ? ' Z' : ''}`;
+				}
+
+				return `M ${b.x} ${b.y}`;
+
+			}, {} );
+
+			return path;
+
+		},
 	},
 };
 </script>

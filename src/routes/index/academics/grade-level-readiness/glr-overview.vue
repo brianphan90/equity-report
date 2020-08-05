@@ -3,8 +3,9 @@
 	"meta" : {
 		"topbarTitle" : "GLR Overview",
 		"navOptions": {
-			"title": "Overview",
-			"icon" : "whatever"
+			"title" : "Overview",
+			"icon"  : "whatever",
+			"order" : 1
 		}
 	}
 }

@@ -29,4 +29,25 @@ const router = new VueRouter( {
 	routes,
 } );
 
+
+router.beforeEach( ( to, from, next ) => {
+
+	if ( !to.fullPath.includes( 'academics' ) && !to.fullPath.includes( 'climate-and-engagement' ) ) {
+		next();
+		return;
+	}
+
+	function hasQuery( query ) {
+		return !!Object.keys( query ).length;
+	}
+
+	if ( !hasQuery( to.query ) && hasQuery( from.query ) ) {
+		next( { name : to.name, query : from.query } );
+		return;
+	}
+
+	next();
+
+} );
+
 export default router;

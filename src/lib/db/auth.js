@@ -1,18 +1,18 @@
-import { _auth } from '@/lib/db';
+import { auth } from '@/lib/db';
 
-export const OnAuthStateChanged = callback => _auth.onAuthStateChanged( callback );
+export const OnAuthStateChanged = callback => auth().onAuthStateChanged( callback );
 
 export const SignIn = ( email, password ) => new Promise( ( resolve ) => {
-	resolve( _auth
+	resolve( auth()
 		.signInWithEmailAndPassword( email, password ) );
 } );
 
 export const SignOut = () => new Promise( () => {
-	_auth.signOut();
+	auth().signOut();
 } );
 
 export const PasswordReset = email => new Promise( ( resolve ) => {
-	_auth
+	auth()
 		.sendPasswordResetEmail( email )
 		.then( () => email );
 
@@ -20,7 +20,7 @@ export const PasswordReset = email => new Promise( ( resolve ) => {
 } );
 
 export const GetUser = () => new Promise( ( resolve ) => {
-	const killListener = _auth
+	const killListener = auth()
 		.onAuthStateChanged( ( user ) => {
 
 			resolve( user );
@@ -39,3 +39,13 @@ export const GetCurrentUserToken = () => new Promise( ( resolve, reject ) => {
 		.catch( reject );
 
 } );
+
+export const SignInWithGoogle = () => {
+
+	const provider = new auth.GoogleAuthProvider();
+
+	return auth().signInWithPopup( provider )
+		.then( ( { user } ) => user )
+		.catch( err => console.log( err.message ) );
+
+};
