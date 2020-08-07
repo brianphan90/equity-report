@@ -109,7 +109,7 @@ export default {
 				margin-right: 30px;
 
 				h1 {
-					font-size: 36px;
+					font-size: 24px;
 					font-family: 'Roboto Slab';
 					text-align: left;
 					font-weight: 800;

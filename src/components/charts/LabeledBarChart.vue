@@ -2,6 +2,7 @@
 .labeled-bar-chart
 	.title
 		h1.dynamic-mode-text {{ title }}
+		h1.sub-title.dynamic-mode-text {{ subTitle }}
 	.chart
 		svg(ref='svg')
 </template>
@@ -20,6 +21,10 @@ export default {
 		title : {
 			type     : String,
 			required : true,
+		},
+
+		subTitle : {
+			type : String
 		},
 
 		options : {
@@ -118,9 +123,6 @@ export default {
 				this.drawBarLabels( this.barGroups );
 			}
 
-		},
-
-		getIllustrationData( data ) {
 		},
 
 		createBarGroups( data ) {
@@ -346,6 +348,15 @@ export default {
 			font-size: 14px;
 			line-height: 16px;
 			letter-spacing: 0.01em;
+			text-align: left;
+			margin-bottom: 5px;
+		}
+
+		h1.sub-title {
+			font-size: 11px;
+			line-height: 13px;
+			letter-spacing: 0.04em;
+			font-weight: normal;
 		}
 	}
 

@@ -27,31 +27,28 @@ export default {
 
 	data : () => ( {
 		axisIndicators : null,
-		barGroups      : null,
-		barPadding     : 5
+		barGroups      : null
 	} ),
 
 	computed : {
-		numberOfGaps() {
-			const { data } = this;
-
-			if ( !data ) {
-				return 1;
-			}
-
-			return Object.keys( data ).length + 1;
-		},
-
-		totalSpaceTakenUpByPadding() {
-			return this.barPadding * this.numberOfGaps;
+		numOfBars() {
+			return Object.keys( this.data ).length;
 		},
 
 		maxBarWidth() {
-			return ( this.aw - this.totalSpaceTakenUpByPadding ) / Object.keys( this.data ).length;
+			const { aw, numOfBars, defaultPadding } = this;
+
+			return aw / numOfBars;
 		},
 
 		barWidth() {
-			return Math.min( this.maxBarWidth, 30 );
+			const { maxBarWidth } = this;
+			return Math.min( maxBarWidth, 25 );
+		},
+
+		barPadding() {
+			const { barWidth, numOfBars, aw } = this;
+			return ( aw - ( barWidth * numOfBars ) ) / numOfBars;
 		},
 
 		range() {
@@ -210,7 +207,7 @@ export default {
 		getX( i ) {
 			const { l, barWidth, barPadding } = this;
 
-			return l + ( barWidth * i ) + ( barPadding * i );
+			return l + ( barWidth * i ) + ( barPadding * i ) + ( barPadding / 2 );
 		},
 
 		getY( height ) {
@@ -222,7 +219,7 @@ export default {
 		getTextX( i ) {
 			const { l, barWidth, barPadding } = this;
 
-			return ( l + ( barWidth * i ) + ( barPadding * i ) ) + ( barWidth / 2 );
+			return ( l + ( barWidth * i ) + ( barPadding * i ) ) + ( barWidth / 2 ) + ( barPadding / 2 );
 		},
 
 		getHeight( value ) {
