@@ -1,5 +1,5 @@
 <template lang='pug'>
-.labeled-bar-chart
+.labeled-bar-chart.dynamic-mode-background
 	.title
 		h1.dynamic-mode-text {{ title }}
 		h1.sub-title.dynamic-mode-text {{ subTitle }}
@@ -337,6 +337,7 @@ export default {
 .labeled-bar-chart {
 	display: flex;
 	flex-direction: column;
+	padding: 20px;
 
 	.title {
 		align-self: flex-start;

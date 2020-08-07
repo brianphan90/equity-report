@@ -1,11 +1,11 @@
 <template lang="pug">
-.top-bar(:class='mode')
+.top-bar
 	.left
 		.logo
 			img(src='/img/musd-logo.png')
 			.logo-text
-				p Madera Unified
-				h1 Equity Report Dashboard
+				p.dynamic-mode-text Madera Unified
+				h1.dynamic-mode-text Equity Report Dashboard
 	.right
 		.dropdowns
 			dropdown.schools(:options='schools' v-model='selectedOptions.school')
@@ -121,74 +121,12 @@ export default {
 
 <style lang="scss">
 .top-bar {
-	background-color: $color-secondary-lightened;
 	box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
 	z-index: 11;
 	transition: all 0.5s ease;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-
-	&.day {
-		background-color: white;
-
-		.logo {
-
-			.logo-text {
-
-				p {
-					color: $color-secondary;
-				}
-
-				h1 {
-					color: $color-primary;
-				}
-			}
-		}
-
-		.account-wrapper {
-
-			&:not(.open) {
-
-				.account::after {
-					border-color: $color-primary;
-				}
-			}
-
-			.account {
-
-				&::before {
-					background-color: $color-primary;
-				}
-
-				.name-display {
-
-					h1 {
-						color: $color-primary;
-					}
-
-					h2 {
-						color: rgba(0,0,0,0.5);
-					}
-				}
-
-				.profile-picture {
-					background-color: transparentize($color-primary, 0.5);
-				}
-			}
-
-			.control-panel {
-				background-color: $background-primary;
-
-				.select-site {
-
-					p {
-						color: $color-secondary;
-					}
-				}
-			}
-		}
-	}
 
 	.left {
 		.logo {
@@ -211,7 +149,6 @@ export default {
 
 				h1,
 				p {
-					color: white;
 					white-space: nowrap;
 					text-align: left;
 				}

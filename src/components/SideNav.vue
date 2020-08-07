@@ -1,8 +1,15 @@
 <template lang="pug">
 aside.side-nav(:class='[viewMode, navState]')
+	.collapse-nav
+		.icons
+			div.icon.dynamic-mode-text(
+				v-for='item in nav'
+				:class='`icon-${item.icon}`'
+				@click='selectIcon( item )'
+			)
 	.nav-menu
 		.menu-item(
-			v-for='( item  ) in nav'
+			v-for='( item ) in nav'
 			:class='{ "sub-nav" : item.children.length, open : open[item.path], closed : !open[item.path] }'
 		)
 			.item(
@@ -116,7 +123,7 @@ export default {
 
 		selectMenuItem( item ) {
 
-			if ( this.open[item.path] ) {
+			if ( this.open[item.path] && this.navState === 'open' ) {
 				this.open[item.path] = false;
 
 				return;
@@ -150,6 +157,11 @@ export default {
 
 			this.viewMode = 'day';
 		},
+
+		selectIcon( item ) {
+			this.selectMenuItem( item );
+			this.toggleNavState();
+		}
 
 	},
 
@@ -228,11 +240,11 @@ export default {
 			overflow-x: hidden;
 			width: 300px;
 			pointer-events: none;
+			display: none;
 
 			.menu-item {
 				position: relative;
 				background-color: transparent !important;
-				pointer-events: all;
 
 				&:hover {
 
@@ -264,6 +276,12 @@ export default {
 					}
 				}
 			}
+		}
+
+		.collapse-nav {
+			flex: 1 1 0;
+			display: flex;
+			flex-direction: column;
 		}
 
 		.bottom-bar {
@@ -360,12 +378,27 @@ export default {
 		}
 	}
 
+	.collapse-nav {
+		display: none;
+		padding-top: 30px;
+
+		.icons {
+
+			.icon {
+				padding: 10px;
+				font-size: 20px;
+				cursor: pointer;
+			}
+		}
+	}
+
 	.bottom-bar {
 		padding: 7px;
 		display: flex;
 		flex-direction: row-reverse;
 		justify-content: space-between;
 		position: relative;
+
 
 		.toggle {
 			height: 30px;

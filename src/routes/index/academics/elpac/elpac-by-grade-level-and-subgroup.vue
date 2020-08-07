@@ -164,6 +164,7 @@ export default {
 
 		.charts-container {
 			flex: 1 1 0;
+			overflow: auto;
 
 			.bar-charts {
 				padding: 25px 20px;

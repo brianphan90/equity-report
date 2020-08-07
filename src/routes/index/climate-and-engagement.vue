@@ -3,7 +3,8 @@
 	"redirect": "/climate-and-engagement/discipline/behavior-incidents-overview",
 	"meta" : {
 		"navOptions": {
-			"title": "Climate and Engagement"
+			"title": "Climate and Engagement",
+			"icon" : "climate"
 		}
 	}
 }

@@ -86,10 +86,16 @@ export default {
 		}
 
 		.content {
-			padding: 40px 60px 40px 40px;
+			padding: 20px;
+			border-radius: 5px;
+			position: relative;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
 
 			.page-title {
 				display: flex;
+				margin-left: 10px;
 
 				h1.main-title {
 					color: #9E5B46 !important;
@@ -107,7 +113,8 @@ export default {
 
 			.charts {
 				display: flex;
-				flex-wrap: wrap;
+				overflow: auto;
+				flex: 1 1 0;
 
 				.subgroups {
 					flex : 2 1 auto;
@@ -124,6 +131,11 @@ export default {
 					flex: 1 1 auto;
 					margin: 10px;
 					border-radius: 10px;
+				}
+
+				.labeled-bar-chart {
+					border-radius: 10px;
+					margin: 10px;
 				}
 
 			}
