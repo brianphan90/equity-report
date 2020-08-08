@@ -311,7 +311,7 @@ export default {
 			}
 
 			.router-view {
-				max-width: 1000px;
+				max-width: 1200px;
 
 				h1.main-title {
 					font-family: 'Roboto Slab';

@@ -146,6 +146,8 @@ export default {
 		draw() {
 			// set beginning dims
 			this.updateDims( {
+				t : 2,
+				b : 2
 			} );
 
 			const { range } = this;

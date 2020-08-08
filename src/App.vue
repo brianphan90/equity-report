@@ -23,6 +23,7 @@ export default {
 		GetUser()
 			.then( ( user ) => {
 				if ( !user ) {
+					this.$store.dispatch( 'setUser', { name : '' } );
 					return;
 				}
 
@@ -47,6 +48,18 @@ export default {
 		},
 
 	},
+
+	watch : {
+		user( user ) {
+			if ( user.name === false ) {
+				return;
+			}
+
+			if ( !user.name ) {
+				this.$router.push( '/login' );
+			}
+		}
+	}
 };
 </script>
 

@@ -28,12 +28,16 @@
 					:legend='data.legend'
 					:columns='1'
 				)
-			.side-bar(v-if='false')
-				.overall-glr-percent-of-students
-					bar-graph-with-indicators
-					percent-indicator
-				.college-tracker
-					college-tracker
+			.side-bar
+				.overall-glr-percent-of-students.dynamic-mode-background
+					multi-bar-chart(
+						:data='data.charts.overall.data'
+						:title='data.charts.overall.title'
+						:legend='data.charts.overall.legend'
+					)
+					percent-indicator(:percents='data.charts.overall.percents')
+				//- .college-tracker
+				//- 	college-tracker
 
 </template>
 
@@ -45,6 +49,7 @@ import RadialBarChart from '@/components/charts/RadialBarChart';
 import ChartLegend from '@/components/ChartLegend';
 import CollegeTracker from '@/components/charts/CollegeTracker';
 import PercentIndicator from '@/components/charts/PercentIndicator';
+import MultiBarChart from '@/components/charts/MultiBarChart';
 
 
 export default {
@@ -72,6 +77,7 @@ export default {
 		ChartLegend,
 		CollegeTracker,
 		PercentIndicator,
+		MultiBarChart
 	}
 };
 </script>
@@ -119,6 +125,12 @@ export default {
 
 		.side-bar {
 			flex: 1 1 0;
+
+			.overall-glr-percent-of-students {
+				min-width: 200px;
+				border-radius: 10px;
+				overflow: hidden;
+			}
 		}
 	}
 }

@@ -174,7 +174,6 @@ export default {
 
 <style lang="scss">
 .side-nav {
-	background-color: $color-secondary;
 	flex: 0 0 300px;
 	height: 100%;
 	max-width: 500px;

@@ -10,15 +10,13 @@
 		.dropdowns
 			dropdown.schools(:options='schools' v-model='selectedOptions.school')
 			dropdown.years(:options='years' v-model='selectedOptions.year')
-		.account-wrapper(v-bind:class='{ open: controlPanelOpen }' @mouseenter='controlPanelOpen = !controlPanelOpen' @mouseleave='controlPanelOpen = !controlPanelOpen')
+		.account-wrapper(v-bind:class='{ open: controlPanelOpen }' @click='controlPanelOpen = !controlPanelOpen' @mouseleave='controlPanelOpen = false')
 			.account
 				.name-display
-					h1 {{ user.name }}
-					h2(v-if='selectedSchoolValue === ""') {{ user.location }}
-					h2(v-else) Viewing: {{ activeSiteName }}
-				.profile-picture
+					h1.dynamic-mode-text {{ user.name }}
+				.profile-picture.dynamic-mode-background-secondary
 					img(:src='user.photoUrl')
-			.control-panel
+			.control-panel.dynamic-mode-background-secondary
 				.logout-button(@click='signOut') Sign Out
 </template>
 
@@ -122,7 +120,7 @@ export default {
 <style lang="scss">
 .top-bar {
 	box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
-	z-index: 11;
+	z-index: 101;
 	transition: all 0.5s ease;
 	display: flex;
 	align-items: center;
@@ -224,7 +222,6 @@ export default {
 						font-size: 14px;
 						font-weight: 300;
 						text-align: right;
-						color: white;
 						margin-bottom: 3px;
 					}
 
@@ -232,7 +229,6 @@ export default {
 						font-size: 10px;
 						text-align: right;
 						font-weight: 300;
-						color: rgba(255,255,255,0.5);
 					}
 				}
 
@@ -240,7 +236,6 @@ export default {
 					margin-left: 15px;
 					height: 30px;
 					width: 30px;
-					background-color: rgba(255,255,255,0.5);
 					border-radius: 15px;
 					overflow: hidden;
 					position: relative;
@@ -256,106 +251,14 @@ export default {
 				width: calc(100% + 20px);
 				min-width: 200px;
 				top: -10px;
-				left: 50%;
+				left: 40%;
 				transform: translateX(-50%);
 				padding-top: 50px;
 				padding: 10px;
 				padding-top: 50px;
-				background-color: $background-secondary;
 				z-index: 1;
 				box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.25), 0px 0px 0px 1px rgba(0,0,0,0.08);
 				transition: all 0.2s ease;
-
-				&::after {
-					content: " ";
-					transition: all 0.2s ease;
-					height: 8px;
-					width: 8px;
-					border: 1px solid white;
-					border-top: 0;
-					border-left: 0;
-					transform: translate(-50%, -50%) rotate(-135deg);
-					position: absolute;
-					top: calc( ( 26px / 2 ) + 5px );
-					left: calc( ( 26px / 2 ) + 10px );
-				}
-
-				&::before {
-					content: " ";
-					transition: all 0.2s ease;
-					height: 26px;
-					width: 26px;
-					border-radius: 50%;
-					position: absolute;
-					background-color: white;
-					opacity: 0.5;
-					transform: translate(0%, 0%);
-					top: 5px;
-					left: 10px;
-				}
-
-				.select-site {
-					margin-top: 10px;
-
-					> p {
-						font-size: 12px;
-						font-weight: 300;
-						margin-bottom: 10px;
-						//padding-left: 10px;
-						color: white;
-					}
-
-					select{
-						width: 100%;
-					}
-
-					.dropdown {
-
-						&.open {
-
-							.select-display::after {
-								transform: translateY(1px) rotate(-135deg);
-							}
-						}
-
-						.select-display {
-							border-radius: 0 !important;
-							padding: 10px;
-
-							&::after {
-								border: 1px solid #00A8FF;
-								border-top: 0;
-								border-left: 0;
-								transform: translateY(-2px) rotate(45deg);
-								height: 5px;
-								width: 5px;
-							}
-
-							p {
-								font-size: 12px;
-							}
-						}
-
-						.options-wrapper {
-							border-radius: 0;
-
-							.option {
-								background-color: $background-primary-darkened;
-								padding: 10px;
-
-								&:hover {
-									background-color: $background-primary;
-								}
-
-								p {
-									font-size: 12px;
-									color: $background-secondary !important;
-									font-weight: 300;
-								}
-							}
-						}
-					}
-				}
 			}
 
 			.logout-button {

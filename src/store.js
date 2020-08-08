@@ -44,7 +44,6 @@ export default new Vuex.Store( {
 		},
 
 		setMode( state, mode ) {
-
 			console.log( 'Update state.user.mode = ', mode );
 
 			state.user.mode = mode;
@@ -64,7 +63,7 @@ export default new Vuex.Store( {
 		},
 
 		setUser( state, user ) {
-			const mode = state.user;
+			const { mode } = state.user;
 			state.user = { mode, ...user };
 		},
 
@@ -114,7 +113,7 @@ export default new Vuex.Store( {
 
 		logout( store ) {
 
-			store.commit( 'setUser', { name : false, mode : 'day' } );
+			store.commit( 'setUser', { name : '', mode : 'day' } );
 			return SignOut();
 
 		},
