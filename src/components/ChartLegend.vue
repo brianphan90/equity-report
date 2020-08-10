@@ -56,10 +56,12 @@ export default {
 
 		shapedItemKeys() {
 			if ( Array.isArray( this.legend ) ) {
-				return this.legend.map( ( item, i ) => i );
+				return this.legend.map( ( item, i ) => i )
+					.sort( ( a, b ) => a.order - b.order );
 			}
 
-			return Object.keys( this.legend ).filter( key => !this.legend[key].title );
+			return Object.keys( this.legend ).filter( key => !this.legend[key].title )
+				.sort( ( a, b ) => a.order - b.order );
 		},
 
 		remainderInFinalRow() {
@@ -102,13 +104,15 @@ export default {
 
 		titledItems() {
 			if ( Array.isArray( this.legend ) ) {
-				return this.legend.filter( item => item.title );
+				return this.legend.filter( item => item.title )
+					.sort( ( a, b ) => a.order - b.order );
 			}
 
 			const keys = Object.keys( this.legend );
 
 			return keys.filter( key => this.legend[key].title )
-				.map( key => this.legend[key] );
+				.map( key => this.legend[key] )
+				.sort( ( a, b ) => a.order - b.order );
 		}
 
 	},

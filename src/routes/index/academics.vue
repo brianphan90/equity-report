@@ -3,7 +3,8 @@
 	"redirect": "/academics/grade-level-readiness/glr-by-classroom",
 	"meta" : {
 		"navOptions": {
-			"title": "Academics"
+			"title": "Academics",
+			"icon" : "book"
 		}
 	}
 }

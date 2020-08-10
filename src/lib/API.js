@@ -116,6 +116,11 @@ export const GetCaasppByClassroom = filters => fetchPromise( path( 'data/teacher
 	headers : defaultHeaders(),
 } );
 
+export const GetElpacByGradeLevelAndSubgroup = ( filters, siteId, year ) => fetchPromise( path( 'data/school/elpac-by-grade-level-and-subgroup', { filters, siteId, year } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );
+
 export const GetElpacByClassroom = filters => fetchPromise( path( 'data/teacher/elpac-by-classroom', { filters } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),

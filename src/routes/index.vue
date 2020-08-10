@@ -7,11 +7,11 @@
 </route>
 
 <template lang="pug">
-.home
-	top-bar
-	.main-content(:class='mode')
-		side-nav
-		.view-container.dynamic-mode-background-secondary
+.home(:class='mode')
+	top-bar.dynamic-mode-background
+	.main-content.dynamic-mode-background-secondary
+		side-nav(:class='mode').dynamic-mode-background
+		.view-container
 			//- filters
 			.view-report-modal(v-if='!isReady')
 				.body
@@ -121,6 +121,93 @@ export default {
 	overflow: hidden;
 	height: 100vh;
 
+	&.night {
+		background: $color-secondary-darkened;
+
+		.dynamic-mode-text {
+			color: $background-primary;
+		}
+
+		.dynamic-mode-background-secondary {
+			background: $color-secondary-lightened;
+		}
+
+		.dynamic-mode-background-opaque {
+			background: rgba( $background-primary, 0.1 );
+		}
+
+		.dynamic-mode-background {
+			background: $color-secondary-darkened;
+		}
+
+		.dynamic-mode-border {
+
+			&.right {
+				border: 0px solid transparent;
+				border-right: 2px solid $background-primary;
+			}
+
+			&.top {
+				border: 0px solid transparent;
+				border-top: 2px solid $background-primary;
+			}
+
+			&.bottom {
+				border: 0px solid transparent;
+				border-bottom: 2px solid $background-primary;
+			}
+
+			&.left {
+				border: 0px solid transparent;
+				border-left: 2px solid $background-primary;
+			}
+		}
+	}
+
+	.dynamic-mode-text {
+		color: $color-neutral-dark;
+		transition: color 0.4s ease;
+	}
+
+	.dynamic-mode-background-secondary {
+		background: $background-primary-darkened;
+		transition: background 0.4s ease;
+	}
+
+	.dynamic-mode-background {
+		background: $background-primary;
+		transition: background 0.4s ease;
+	}
+
+	.dynamic-mode-background-opaque {
+		background: $background-primary;
+		transition: background 0.4s ease;
+	}
+
+	.dynamic-mode-border {
+		border: 2px solid $color-neutral-dark;
+
+		&.right {
+			border: 0px solid transparent;
+			border-right: 2px solid $color-neutral-dark;
+		}
+
+		&.top {
+			border: 0px solid transparent;
+			border-top: 2px solid $color-neutral-dark;
+		}
+
+		&.bottom {
+			border: 0px solid transparent;
+			border-bottom: 2px solid $color-neutral-dark;
+		}
+
+		&.left {
+			border: 0px solid transparent;
+			border-left: 2px solid $color-neutral-dark;
+		}
+	}
+
 	.top-bar {
 		width: 100%;
 	}
@@ -148,93 +235,6 @@ export default {
 				color: rgba($color-neutral-dark, 0.15);
 				text-transform: uppercase;
 				letter-spacing: 5px;
-			}
-		}
-
-		&.night {
-			background: $color-secondary-darkened;
-
-			.dynamic-mode-text {
-				color: $background-primary;
-			}
-
-			.dynamic-mode-background-secondary {
-				background: $color-secondary-lightened;
-			}
-
-			.dynamic-mode-background-opaque {
-				background: rgba( $background-primary, 0.1 );
-			}
-
-			.dynamic-mode-background {
-				background: $color-secondary-darkened;
-			}
-
-			.dynamic-mode-border {
-
-				&.right {
-					border: 0px solid transparent;
-					border-right: 2px solid $background-primary;
-				}
-
-				&.top {
-					border: 0px solid transparent;
-					border-top: 2px solid $background-primary;
-				}
-
-				&.bottom {
-					border: 0px solid transparent;
-					border-bottom: 2px solid $background-primary;
-				}
-
-				&.left {
-					border: 0px solid transparent;
-					border-left: 2px solid $background-primary;
-				}
-			}
-		}
-
-		.dynamic-mode-text {
-			color: $color-neutral-dark;
-			transition: color 0.4s ease;
-		}
-
-		.dynamic-mode-background-secondary {
-			background: $background-primary-darkened;
-			transition: background 0.4s ease;
-		}
-
-		.dynamic-mode-background {
-			background: $background-primary;
-			transition: background 0.4s ease;
-		}
-
-		.dynamic-mode-background-opaque {
-			background: $background-primary;
-			transition: background 0.4s ease;
-		}
-
-		.dynamic-mode-border {
-			border: 2px solid $color-neutral-dark;
-
-			&.right {
-				border: 0px solid transparent;
-				border-right: 2px solid $color-neutral-dark;
-			}
-
-			&.top {
-				border: 0px solid transparent;
-				border-top: 2px solid $color-neutral-dark;
-			}
-
-			&.bottom {
-				border: 0px solid transparent;
-				border-bottom: 2px solid $color-neutral-dark;
-			}
-
-			&.left {
-				border: 0px solid transparent;
-				border-left: 2px solid $color-neutral-dark;
 			}
 		}
 
@@ -311,7 +311,7 @@ export default {
 			}
 
 			.router-view {
-				max-width: 1000px;
+				max-width: 1200px;
 
 				h1.main-title {
 					font-family: 'Roboto Slab';

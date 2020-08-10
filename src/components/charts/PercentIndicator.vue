@@ -1,12 +1,14 @@
 <template lang='pug'>
 .percent-indicator
+	p.title Current Year
 	.row
-		label.dynamic-mode-text Change
-		.triangle(:class='data.change')
-	.row.divider
-	.row
-		label.dynamic-mode-text Scores
-		p.value.dynamic-mode-text {{ data.scoreCount }}
+		.percent
+			p.value {{ percents.farBelowOrBelow }}%
+			p.label Far Below or Below
+		.line
+		.percent
+			p.value {{ percents.readyOrExceeding }}%
+			p.label Ready or Exceeding
 </template>
 
 <script>
@@ -14,7 +16,7 @@ export default {
 	name : 'percent-indicator',
 
 	props : {
-		data : {
+		percents : {
 			type     : Object,
 			required : true,
 		},
@@ -24,27 +26,40 @@ export default {
 
 <style lang='scss'>
 .percent-indicator {
+	padding: 20px;
+
+	.title {
+		font-weight: 500;
+		font-size: 12px;
+		line-height: 11px;
+		margin-bottom: 10px
+	}
+
+	.line {
+		border-left: 1px solid black;
+		height: 20px;
+	}
+
 
 	.row {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: space-evenly;
 
-		&.divider {
-			position: relative;
-			margin: 5px 0;
+		.percent {
 
-			&::before {
-				content: ' ';
-				position: absolute;
-				width: 100%;
-				border-top: 2px dashed $color-neutral-medium;
-				height: 0px;
+			.value {
+				font-weight: 900;
+				font-size: 17px;
+				line-height: 20px;
+				color: #D8A556;
+				letter-spacing: 0.075em;
 			}
-		}
 
-		p.value {
-			font-weight: 600;
+			.label {
+				font-size: 12px;
+			}
+
 		}
 	}
 }

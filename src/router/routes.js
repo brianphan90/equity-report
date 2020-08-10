@@ -140,6 +140,7 @@ export default [
         meta: {
           navOptions: {
             title: 'Academics',
+            icon: 'book',
           },
         },
         redirect: '/academics/grade-level-readiness/glr-by-classroom',
@@ -315,6 +316,7 @@ export default [
         meta: {
           navOptions: {
             title: 'Climate and Engagement',
+            icon: 'climate',
           },
         },
         redirect:
