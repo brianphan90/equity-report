@@ -36,8 +36,10 @@
 						:legend='data.charts.overall.legend'
 					)
 					percent-indicator(:percents='data.charts.overall.percents')
-				//- .college-tracker
-				//- 	college-tracker
+				college-tracker(
+					:data='data.charts.collegeTracker.data'
+					:title='data.charts.collegeTracker.title'
+				)
 
 </template>
 
@@ -90,11 +92,8 @@ export default {
 
 	.data-view-state-manager {
 		flex: 1 1 0;
+		overflow: auto;
 
-		.loaded-container,
-		.content {
-			height: 100%;
-		}
 	}
 
 	.content {
@@ -130,8 +129,15 @@ export default {
 				min-width: 200px;
 				border-radius: 10px;
 				overflow: hidden;
+				margin-bottom: 20px;
+			}
+
+			.college-tracker {
+				border-radius: 10px;
+				min-height: 250px;
 			}
 		}
+
 	}
 }
 </style>
