@@ -18,18 +18,47 @@ export default {
 		},
 		year() {
 			return this.$store.state.selected.year;
-		}
+		},
+		subgroup() { // TODO implement subgroup logic. Probably should be in store.
+			return 'ALL';
+		},
+		fetchParams() {
+			const { siteId, year, subgroup } = this;
+
+			return {
+				siteId,
+				year,
+				subgroup
+			};
+
+		},
 	},
 
 	created() {
 		this.load();
 	},
 
+	watch : {
+		fetchParams : {
+			deep : true,
+			handler( fetchParams ) {
+
+				const { siteId, year, subgroup } = this;
+
+				if ( siteId === '' || year === '' || subgroup === '' ) {
+					return;
+				}
+
+				this.load();
+			}
+		}
+	},
+
 	methods : {
 		load() {
 			this.state = 'loading';
 
-			this.fetch( this.filters, this.siteId, this.year )
+			this.fetch( this.filters, this.siteId, this.year, this.subgroup )
 				.then( ( data ) => {
 					this.data  = data;
 					this.state = 'loaded';

@@ -85,63 +85,65 @@ const fetchPromise = ( route, options ) => new Promise( ( resolve, reject ) => {
 	}
 } );
 
-export const GetYears = () => fetchPromise( path( 'years' ), {
+/* eslint-disable */
+
+export const GetYears = () => fetchPromise( path( 'data/years' ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
 
-export const GetSchools = () => fetchPromise( path( 'schools' ), {
+export const GetSchools = () => fetchPromise( path( 'data/schools' ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
 
-export const GetSpcByGradeLevelAndSubgroup =  filters => fetchPromise( path( 'data/school/spc-by-grade-level-and-subgroup', { filters } ), {
+export const GetSpcByGradeLevelAndSubgroup =  ( filters, siteId, year, subgroup ) => fetchPromise( path( 'data/school/spc-by-grade-level-and-subgroup', { filters, siteId, year, subgroup } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
 
-export const GetGlrByClassroom = filters => fetchPromise( path( 'data/teacher/glr-by-classroom', { filters } ), {
+export const GetGlrByClassroom = ( filters, siteId, year, subgroup ) => fetchPromise( path( 'data/teacher/glr-by-classroom', { filters, siteId, year, subgroup } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
 
-export const GetGlrOverview = filters => fetchPromise( path( 'data/school/glr-overview', { filters } ), {
+export const GetGlrOverview = ( filters, siteId, year, subgroup ) => fetchPromise( path( 'data/school/glr-overview', { filters, siteId, year, subgroup } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
 
 
-export const GetCaasppByClassroom = filters => fetchPromise( path( 'data/teacher/caaspp-by-classroom', { filters } ), {
+export const GetCaasppByClassroom = ( filters, siteId, year, subgroup ) => fetchPromise( path( 'data/teacher/caaspp-by-classroom', { filters, siteId, year, subgroup } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
 
-export const GetElpacByGradeLevelAndSubgroup = ( filters, siteId, year ) => fetchPromise( path( 'data/school/elpac-by-grade-level-and-subgroup', { filters, siteId, year } ), {
+export const GetElpacByGradeLevelAndSubgroup = ( filters, siteId, year, subgroup ) => fetchPromise( path( 'data/school/elpac-by-grade-level-and-subgroup', { filters, siteId, year, subgroup } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
 
-export const GetElpacByClassroom = filters => fetchPromise( path( 'data/teacher/elpac-by-classroom', { filters } ), {
+export const GetElpacByClassroom = ( filters, siteId, year, subgroup ) => fetchPromise( path( 'data/teacher/elpac-by-classroom', { filters, siteId, year, subgroup } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
 
-export const GetCertificatedAttendanceOverview = ( filters, siteId, year ) => fetchPromise( path( 'data/teacher/certificated-attendance-overview', { filters, siteId, year } ), {
+export const GetCertificatedAttendanceOverview = ( filters, siteId, year, subgroup ) => fetchPromise( path( 'data/teacher/certificated-attendance-overview', { filters, siteId, year, subgroup } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
 
-export const GetBehaviorIncidentsOverview = ( filters, siteId, year ) => fetchPromise( path( 'data/school/behavior-incidents-overview', { filters, siteId, year } ), {
+export const GetBehaviorIncidentsOverview = ( filters, siteId, year, subgroup ) => fetchPromise( path( 'data/school/behavior-incidents-overview', { filters, siteId, year, subgroup } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
 
-export const GetBehaviorIncidentsDisaggregated = ( filters, siteId, year ) => fetchPromise( path( 'data/teacher/behavior-incidents-disaggregated', { filters, siteId, year } ), {
+export const GetBehaviorIncidentsDisaggregated = ( filters, siteId, year, subgroup ) => fetchPromise( path( 'data/teacher/behavior-incidents-disaggregated', { filters, siteId, year, subgroup } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
 
-export const GetClassifiedAttendanceOverview = ( filters, siteId, year ) => fetchPromise( path( 'data/classified/classified-attendance-overview', { filters, siteId, year } ), {
+export const GetClassifiedAttendanceOverview = ( filters, siteId, year, subgroup ) => fetchPromise( path( 'data/classified/classified-attendance-overview', { filters, siteId, year, subgroup } ), {
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
