@@ -174,6 +174,7 @@ export default new Vuex.Store( {
 			}, {} );
 
 			router.push( { query } );
+
 			store.commit( 'setSelected', selected );
 
 			return selected;
