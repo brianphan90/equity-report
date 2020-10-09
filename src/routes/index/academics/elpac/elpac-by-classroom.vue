@@ -80,7 +80,6 @@ export default {
 
 	.content {
 		margin: 0 20px;
-		background: $color-neutral-light;
 		padding: 20px 100px 20px 20px;
 		border-radius: 5px;
 		position: relative;
@@ -116,7 +115,6 @@ export default {
 		}
 
 		.charts-container {
-			background: $background-primary;
 			display: flex;
 			flex-flow: wrap;
 			justify-content: space-between;

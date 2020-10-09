@@ -8,6 +8,7 @@
 <script>
 import * as d3 from 'd3';
 import BaseChart from '@/components/charts/BaseChart';
+import colors from '@/assets/js/colors';
 
 export default {
 	name : 'college-tracker',
@@ -155,6 +156,22 @@ export default {
 				.style( 'font-size', '10px' )
 				.text( ( d, i ) => this.icons[i].label );
 
+			this.changeWithMode( {
+				nodes   : iconLabels,
+				options : {
+					day : {
+						style : [
+							['fill', colors.grey],
+						],
+					},
+					night : {
+						style : [
+							['fill', colors.white],
+						],
+					},
+				},
+			} );
+
 			this.wrapText( iconLabels, 105 );
 
 			const textNodes      = Array.from( iconLabels._groups[0] );
@@ -189,6 +206,22 @@ export default {
 				.attr( 'text-anchor', 'middle' )
 				.style( 'font-size', '12px' )
 				.text( d => `${d.value}%` );
+
+			this.changeWithMode( {
+				nodes   : valueLabels,
+				options : {
+					day : {
+						style : [
+							['fill', colors.grey],
+						],
+					},
+					night : {
+						style : [
+							['fill', colors.white],
+						],
+					},
+				},
+			} );
 
 			const textNodes      = Array.from( valueLabels._groups[0] );
 			const textNodeHeights = textNodes.map( node => node.getBBox().height );

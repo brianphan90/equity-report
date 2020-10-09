@@ -25,7 +25,7 @@
 					h1.subtitle.dynamic-mode-text Level and Subgroups
 				.legends
 					.legend-wrapper(v-for='legend in formattedLegends')
-						p {{ legend.title }}
+						p.dynamic-mode-text {{ legend.title }}
 						chart-legend(:legend='legend.items' :columns='1')
 					.legend-wrapper
 			.charts-container
@@ -113,7 +113,6 @@ export default {
 
 	.content {
 		margin: 0 20px;
-		background: $color-neutral-light;
 		padding: 20px 100px 20px 20px;
 		border-radius: 5px;
 		position: relative;
