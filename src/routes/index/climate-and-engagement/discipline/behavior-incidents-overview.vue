@@ -29,8 +29,8 @@
 						:legend='data.legend'
 					)
 					multi-bar-chart.chart(
-						:data='data.charts.bySubGroup.data'
-						:title='data.charts.bySubGroup.title'
+						:data='data.charts.bySubgroup.data'
+						:title='data.charts.bySubgroup.title'
 						:legend='data.legend'
 					)
 				.overall

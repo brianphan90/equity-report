@@ -28,7 +28,7 @@
 					span All Day,
 					span every day.
 				.count
-					p.value 22
+					p.value {{ data.numOfEmployees }}
 					p.label Classified Employees at Cesar Chavez Elementary
 			.charts
 				horizontal-striped-bar-chart.chart(

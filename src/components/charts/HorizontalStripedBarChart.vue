@@ -96,7 +96,7 @@ export default {
 		getIllustrationData( data ) {
 			const { t } = this;
 
-			const range                      = this.getDataRange( data.map( a => a.value ), false );
+			const range                    = this.getDataRange( data.map( a => a.value ), false );
 			const { barWidth, barPadding } = this;
 
 			return data.map( ( d, i ) => ( {
@@ -104,7 +104,7 @@ export default {
 				y           : t + ( barWidth * i ) + ( barPadding * i ),
 				width       : barWidth,
 				textY       : ( t + ( barWidth * i ) + ( barPadding * i ) ) + ( barWidth / 2 ),
-				xProportion : ( d.value - range.start ) / ( range.end - range.start ),
+				xProportion : ( d.value - range.start ) / ( range.end - range.start ) || 0,
 				valueLabel  : d.value
 			} ) );
 		},
@@ -149,7 +149,10 @@ export default {
 			const spaceBetweenLabelAndBar = 2;
 
 			this.barLabelGroups.append( 'rect' )
-				.attr( 'x', d => getX( d ).endX + spaceBetweenLabelAndBar )
+				.attr( 'x', ( d ) => {
+					console.log( d, getX( d ).endX );
+					return getX( d ).endX + spaceBetweenLabelAndBar;
+				} )
 				.attr( 'y', d => d.textY - ( d.width / 2 ) )
 				.attr( 'width', this.labelWidth )
 				.attr( 'fill', this.legend.default.color )
