@@ -17,19 +17,19 @@
 		:state='state'
 		:error-message='errorMessage'
 	)
-		.content.dynamic-mode-background-secondary.floating-side-text(slot='loaded' v-if='data')
+		.content.dynamic-mode-background-secondary.floating-side-text.content-card(slot='loaded' v-if='data')
 			.page-title
-				h1.main-title Classified
-				h2.sub-title Attendance
+				h1.main-title.dynamic-mode-text Classified
+				h2.sub-title.dynamic-mode-text Attendance
 			.employee-count
 				.text
-					span Attendance
-					span Matters.
-					span All Day,
-					span every day.
+					span.dynamic-mode-text Attendance
+					span.dynamic-mode-text Matters.
+					span.dynamic-mode-text All Day,
+					span.dynamic-mode-text every day.
 				.count
 					p.value {{ data.numOfEmployees }}
-					p.label Classified Employees at Cesar Chavez Elementary
+					p.label.dynamic-mode-text Classified Employees at Cesar Chavez Elementary
 			.charts
 				horizontal-striped-bar-chart.chart(
 					v-for='item in data.charts'
@@ -91,6 +91,7 @@ export default {
 		padding: 40px 60px 40px 40px;
 		display: flex;
 		flex-direction: column;
+		margin: 30px 30px 0 30px;
 
 		.page-title {
 			display: flex;

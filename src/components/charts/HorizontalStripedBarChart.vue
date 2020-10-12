@@ -180,6 +180,21 @@ export default {
 				.attr( 'font-size', '12px' )
 				.text( d => d.label );
 
+			this.changeWithMode( {
+				nodes   : this.yAxisLabels,
+				options : {
+					day : {
+						style : [
+							['fill', colors.grey],
+						],
+					},
+					night : {
+						style : [
+							['fill', colors.white],
+						],
+					},
+				},
+			} );
 			const textNodes      = Array.from( this.yAxisLabels._groups[0] );
 			const textNodeWidths = textNodes.map( node => node.getBBox().width );
 			const largestWidth   = Math.max( ...textNodeWidths );
@@ -200,7 +215,11 @@ export default {
 
 			for ( let i = 0; i < this.numOfLines; i++ ) {
 				const x = l + ( i * width );
-				labelData.push( { x } );
+				labelData.push( {
+					x,
+					dayColor   : colors.white,
+					nightColor : colors.grey,
+				} );
 			}
 
 			const lineGroups = this.canvas
@@ -208,13 +227,15 @@ export default {
 				.data( labelData )
 				.enter()
 				.append( 'g' ) // will append as many g's as the length of labelData
-				.attr( 'class', `line-indicators-${this.id}` );
+				.attr( 'class', `line-indicators-${this.id}` )
+				.lower();
 
 			lineGroups.append( 'path' )
 				.attr( 'd', d => `M ${d.x} ${0} L ${d.x} ${heightOfAllBars}` )
 				.attr( 'class', `dynamic-stroke-${this.id}` )
 				.style( 'stroke-width', 1 )
-				.style( 'stroke', '#000000' );
+				.style( 'stroke-dasharray', '2 4' )
+				.style( 'stroke', this.mode === 'day' ? colors.grey : colors.white );
 
 			return lineGroups;
 		}

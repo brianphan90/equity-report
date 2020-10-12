@@ -21,6 +21,10 @@ html {
 		user-select: none;           /* Non-prefixed version, currently not supported by any browser */
 	}
 
+	.accent {
+		color: $color-accent;
+	}
+
 	* {
 		box-sizing: border-box;
 	}

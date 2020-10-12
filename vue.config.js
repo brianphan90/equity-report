@@ -1,3 +1,4 @@
+const fs = require( 'fs' );
 const VueAutoRoutingPlugin = require( 'vue-auto-routing/lib/webpack-plugin' );
 
 module.exports = {
@@ -13,6 +14,20 @@ module.exports = {
 	},
 
 	configureWebpack : {
+		devServer : {
+			disableHostCheck : true,
+			public           : 'localhost.madera.k12.ca.us',
+			port             : 3100,
+			https            : {
+				key  : fs.readFileSync( '../certs/maderaKey.key' ),
+				cert : fs.readFileSync( '../certs/madera.crt' ),
+			},
+			headers : {
+				'Access-Control-Allow-Origin'  : '*',
+				'Access-Control-Allow-Methods' : 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+				'Access-Control-Allow-Headers' : 'X-Requested-With, content-type, Authorization'
+			},
+		},
 
 		plugins : [
 			new VueAutoRoutingPlugin( {

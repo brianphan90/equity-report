@@ -21,6 +21,7 @@
     "dotenv": "^8.2.0",
     "eslint-plugin-html": "^6.0.2",
     "firebase": "^7.15.5",
+    "fs": "0.0.1-security",
     "module": "^1.2.5",
     "path": "^0.12.7",
     "pug": "^3.0.0",

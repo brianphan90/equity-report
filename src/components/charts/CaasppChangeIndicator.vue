@@ -2,15 +2,15 @@
 .caaspp-change-indicator
 	.changes
 		.change
-			p.label E
-			.triangle(:class='getTriangleClass( data.english )')
-			p.value {{ data.english }}
+			p.label.dynamic-mode-text E
+			.triangle.dynamic-mode-text(:class='getTriangleClass( data.english )')
+			p.value.dynamic-mode-text {{ data.english }}
 		.change
-			p.label M
-			.triangle(:class='getTriangleClass( data.math )')
-			p.value {{ data.math }}
+			p.label.dynamic-mode-text M
+			.triangle.dynamic-mode-text(:class='getTriangleClass( data.math )')
+			p.value.dynamic-mode-text {{ data.math }}
 	.score
-		p {{ data.numOfScore }}
+		p.dynamic-mode-text {{ data.numOfScore }}
 </template>
 
 <script>

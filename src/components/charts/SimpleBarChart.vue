@@ -192,6 +192,22 @@ export default {
 				.style( 'font-size', '12px' )
 				.text( d => d.label );
 
+			this.changeWithMode( {
+				nodes   : xAxisLabels,
+				options : {
+					day : {
+						style : [
+							['fill', colors.grey],
+						],
+					},
+					night : {
+						style : [
+							['fill', colors.white],
+						],
+					},
+				},
+			} );
+
 			const barLabelNodes = barGroups.selectAll( '.x-axis-labels' );
 			const barLabelWidths = Array.from( barLabelNodes._groups[0] ).map( a => a.getBBox().height );
 			const biggestBarLabel = Math.max( ...barLabelWidths );

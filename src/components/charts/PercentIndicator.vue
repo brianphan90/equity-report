@@ -1,14 +1,14 @@
 <template lang='pug'>
 .percent-indicator
-	p.title Current Year
+	p.title.dynamic-mode-text Current Year
 	.row
 		.percent
 			p.value {{ percents.farBelowOrBelow }}%
-			p.label Far Below or Below
+			p.label.dynamic-mode-text Far Below or Below
 		.line
 		.percent
 			p.value {{ percents.readyOrExceeding }}%
-			p.label Ready or Exceeding
+			p.label.dynamic-mode-text Ready or Exceeding
 </template>
 
 <script>

@@ -17,30 +17,30 @@
 		:state='state'
 		:error-message='errorMessage'
 	)
-		.content.dynamic-mode-background-secondary.floating-side-text(slot='loaded' v-if='data')
+		.content.dynamic-mode-background-secondary.floating-side-text.content-card(slot='loaded' v-if='data')
 			.page-title
-				h1.main-title TEACHER
-				h2.sub-title Attendance
+				h1.main-title.dynamic-mode-text TEACHER
+				h2.sub-title.dynamic-mode-text Attendance
 			.top
-				p.description Teacher attendance is directly related to student outcomes: the more teachers are absent, the more their students’ achievement suffers.
+				p.description.dynamic-mode-text Teacher attendance is directly related to student outcomes: the more teachers are absent, the more their students’ achievement suffers.
 				.delivered
-					p.value {{ data.avgInstructionalHours.value }}%
-					p.text {{ data.avgInstructionalHours.label }}
+					p.value.accent {{ data.avgInstructionalHours.value }}%
+					p.text.dynamic-mode-text {{ data.avgInstructionalHours.label }}
 			.bottom
 				.not-delivered
-					p.value {{ data.instructionalHoursNotDelivered.pct }}%
+					p.value.accent {{ data.instructionalHoursNotDelivered.pct }}%
 					.text
-						span of Instructional Hours
-						span.bold Not Delivered
+						span.dynamic-mode-text of Instructional Hours
+						span.bold.dynamic-mode-text Not Delivered
 				.equals
 					.line
-					p Equals
+					p.dynamic-mode-text Equals
 					.line
 				.not-delivered
-					p.value {{ data.instructionalHoursNotDelivered.num }}
+					p.value.accent {{ data.instructionalHoursNotDelivered.num }}
 					.text
-						span of Instructional Hours
-						span.bold Not Delivered
+						span.dynamic-mode-text of Instructional Hours
+						span.bold.dynamic-mode-text Not Delivered
 </template>
 
 <script>
@@ -82,6 +82,7 @@ export default {
 
 		.content {
 			padding: 40px 60px 40px 40px;
+			margin: 30px 30px 0 30px;
 
 			.page-title {
 				display: flex;
@@ -124,7 +125,6 @@ export default {
 						font-size: 160px;
 						line-height: 187px;
 						text-align: right;
-						color : #9D8C36;
 					}
 
 					.text {
@@ -155,7 +155,6 @@ export default {
 						align-items: center;
 						text-align: center;
 						letter-spacing: 0.01em;
-						color: #000000;
 					}
 
 					.text {

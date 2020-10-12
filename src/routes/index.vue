@@ -9,7 +9,7 @@
 <template lang="pug">
 .home(:class='mode')
 	top-bar.dynamic-mode-background
-	.main-content.dynamic-mode-background-secondary
+	.main-content
 		side-nav(:class='mode').dynamic-mode-background
 		.view-container
 			//- filters
@@ -125,7 +125,7 @@ export default {
 		background: $color-secondary-darkened;
 
 		.dynamic-mode-text {
-			color: $background-primary;
+			color: $background-primary !important;
 		}
 
 		.dynamic-mode-background-secondary {
@@ -165,7 +165,7 @@ export default {
 	}
 
 	.dynamic-mode-text {
-		color: $color-neutral-dark;
+		color: $color-neutral-dark !important;
 		transition: color 0.4s ease;
 	}
 
@@ -182,6 +182,14 @@ export default {
 	.dynamic-mode-background-opaque {
 		background: $background-primary;
 		transition: background 0.4s ease;
+	}
+
+	.content-card {
+		margin: 0 20px;
+		border-radius: 5px;
+		padding: 40px 60px 40px 40px;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.dynamic-mode-border {
