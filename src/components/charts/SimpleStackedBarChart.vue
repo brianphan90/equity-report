@@ -161,15 +161,49 @@ export default {
 				.filter( ( { rectangleHeight, textHeight } ) => rectangleHeight < ( textHeight + 6 ) )
 				.map( ( { group } ) => group );
 
+
+			const correctYPos = ( y, yPrev, textHeight, index, length, ah, d ) => {
+				const yDiff = y - yPrev;
+
+				if ( index === 0 && y < textHeight ) {
+					return y;
+				}
+
+				if ( index === length - 1 && y + textHeight > ah ) {
+					return ah - textHeight;
+				}
+
+				const multiplier = length - 1 - index;
+				const spaceRemaining = ah - ( y + textHeight );
+				if ( spaceRemaining < textHeight ) {
+					return y - ( textHeight * multiplier );
+				}
+
+				if ( yDiff < textHeight ) {
+					return yPrev + textHeight;
+				}
+
+				return y;
+			};
+
 			// move all the necessary text
-			groupsWithTextToMove.forEach( ( group ) => {
+			let yPrev = 0;
+			const { length } = groupsWithTextToMove;
+			groupsWithTextToMove.forEach( ( group, index ) => {
 				const d = group.__data__;
+
+				const textHeight = group.childNodes[1].getBBox().height;
+				const { ah } = this;
+				const newY = correctYPos( d.y, yPrev, textHeight, index, length, this.ah, d );
 
 				d3.select( group )
 					.select( 'text' )
 					.attr( 'x', d.x + d.width + 6 )
+					.attr( 'y', newY )
 					.attr( 'text-anchor', 'start' )
 					.attr( 'fill', d.color );
+
+				yPrev = newY;
 			} );
 		},
 

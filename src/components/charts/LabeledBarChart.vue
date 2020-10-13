@@ -31,7 +31,8 @@ export default {
 			type    : Object,
 			default : () => ( {
 				numberOfIndicators : 7,
-				hasBarLabels       : false
+				hasBarLabels       : false,
+				isDefaultRange     : false
 			} )
 		}
 	},
@@ -57,6 +58,15 @@ export default {
 		},
 
 		range() {
+			const { isDefaultRange } = this.options;
+
+			if ( isDefaultRange ) {
+				return {
+					min : 0,
+					max : 100
+				};
+			}
+
 			const { data } = this;
 			const values = data.map( d => d.value );
 			const range = this.getDataRange( values, false );
