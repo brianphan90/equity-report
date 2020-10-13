@@ -55,7 +55,8 @@ export default {
 	data : () => ( {
 		fetch           : GetElpacByGradeLevelAndSubgroup,
 		barChartOptions : {
-			numberOfIndicators : 6
+			numberOfIndicators : 6,
+			isDefaultRange     : true,
 		}
 	} ),
 

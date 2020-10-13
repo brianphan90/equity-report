@@ -1,8 +1,8 @@
 <template lang='pug'>
 .elpac-indicator
 	.row
-		label.dynamic-mode-text Scores
-		p.value.dynamic-mode-text {{ data['lvl3+4'] }}
+		label.dynamic-mode-text Lvl. 3+4
+		p.value.dynamic-mode-text {{ data['lvl3+4'] }}%
 	.row.divider
 	.row
 		label.dynamic-mode-text Scores
