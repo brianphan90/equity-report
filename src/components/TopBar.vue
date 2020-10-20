@@ -31,7 +31,6 @@ export default {
 		controlPanelOpen : false,
 
 		selectedSchoolValue : '',
-		schoolSites         : [],
 
 		schools : {
 			options      : GetSchools,
@@ -57,6 +56,7 @@ export default {
 		const selected = this.$store.dispatch( 'setSelected', { school, year } );
 
 		this.selectedOptions = this.selected;
+
 	},
 
 	computed : {
@@ -108,7 +108,6 @@ export default {
 				} );
 
 		},
-
 	},
 
 	components : {

@@ -26,7 +26,9 @@ export default new Vuex.Store( {
 		selected : {
 			school : '',
 			year   : '',
-		}
+		},
+
+		activeSchool : ''
 
 	},
 
@@ -69,6 +71,10 @@ export default new Vuex.Store( {
 
 		setSelected( state, selected ) {
 			state.selected = selected;
+		},
+
+		setActiveSchool( state, school ) {
+			state.school = school;
 		}
 
 	},
@@ -178,7 +184,10 @@ export default new Vuex.Store( {
 			store.commit( 'setSelected', selected );
 
 			return selected;
-		}
+		},
 
+		setActiveSchool( { commit }, school ) {
+			commit( 'setActiveSchool', school );
+		}
 	},
 } );
