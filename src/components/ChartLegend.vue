@@ -7,7 +7,7 @@ legend(:style='{ gridTemplateColumns }')
 		)
 		.label
 			label.dynamic-mode-text {{ item.label }}
-			p.description(v-if='item.description') - {{ item.description }}
+			p.dynamic-mode-text.description(v-if='item.description') - {{ item.description }}
 	.item.titled-legend-item(
 		v-for='( item, i ) in titledItems'
 		:style='{ gridRowStart : numberOfRowsOfShapedItems + i + 1, gridColumn : `1 / ${numberOfColumns + 1}` }'

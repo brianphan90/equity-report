@@ -314,7 +314,7 @@ export default {
 				.html( ( d ) => {
 					const { value } = d;
 					const textColor = this.mode === 'night' ? colors.nightTextDefault : colors.dayTextDefault;
-					return `<span style='color:${textColor}, font-weight:bold'>` + value + "</span>"; //eslint-disable-line
+					return `<span style='color:${textColor}'>` + value + "</span>"; //eslint-disable-line
 				} );
 
 			bars.call( tip );
