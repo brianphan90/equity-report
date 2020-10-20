@@ -149,10 +149,7 @@ export default {
 			const spaceBetweenLabelAndBar = 2;
 
 			this.barLabelGroups.append( 'rect' )
-				.attr( 'x', ( d ) => {
-					console.log( d, getX( d ).endX );
-					return getX( d ).endX + spaceBetweenLabelAndBar;
-				} )
+				.attr( 'x', d => getX( d ).endX + spaceBetweenLabelAndBar )
 				.attr( 'y', d => d.textY - ( d.width / 2 ) )
 				.attr( 'width', this.labelWidth )
 				.attr( 'fill', this.legend.default.color )

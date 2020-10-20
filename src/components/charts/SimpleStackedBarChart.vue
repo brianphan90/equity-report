@@ -22,11 +22,23 @@ export default {
 		axisIndicators : null,
 	} ),
 
+	computed : {
+		mode() {
+			return this.$store.state.user.mode;
+		},
+	},
+
 	mounted() {
 		this.init( this.$refs.svg, {
 			t : 1,
 			b : 1,
 		} );
+	},
+
+	watch : {
+		mode() {
+			this.draw();
+		}
 	},
 
 	methods : {
@@ -196,12 +208,14 @@ export default {
 				const { ah } = this;
 				const newY = correctYPos( d.y, yPrev, textHeight, index, length, this.ah, d );
 
+				const textColor = this.mode === 'night' ? colors.nightTextDefault : colors.dayTextDefault;
+
 				d3.select( group )
 					.select( 'text' )
 					.attr( 'x', d.x + d.width + 6 )
 					.attr( 'y', newY )
 					.attr( 'text-anchor', 'start' )
-					.attr( 'fill', d.color );
+					.attr( 'fill', textColor );
 
 				yPrev = newY;
 			} );

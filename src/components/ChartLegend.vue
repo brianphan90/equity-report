@@ -5,7 +5,9 @@ legend(:style='{ gridTemplateColumns }')
 			:class='[item.shape || "square", item.style]'
 			:style='getStyle( item )'
 		)
-		label.dynamic-mode-text {{ item.label }}
+		.label
+			label.dynamic-mode-text {{ item.label }}
+			p.description(v-if='item.description') - {{ item.description }}
 	.item.titled-legend-item(
 		v-for='( item, i ) in titledItems'
 		:style='{ gridRowStart : numberOfRowsOfShapedItems + i + 1, gridColumn : `1 / ${numberOfColumns + 1}` }'
@@ -119,24 +121,26 @@ export default {
 
 	methods : {
 		getStyle( item ) {
+			const color = item.legendColor || item.color;
+
 			if ( item.style === 'striped' ) {
 				return {
-					border     : `2px solid ${item.color}`,
+					border     : `2px solid ${color}`,
 					background : `repeating-linear-gradient(
 						transparent 4px,
-						${item.color} 4px,
-						${item.color} 5px,
+						${color} 4px,
+						${color} 5px,
 						transparent 5px,
 						transparent 7px,
-						${item.color} 7px,
-						${item.color} 8px
+						${color} 7px,
+						${color} 8px
 					)`
 				};
 			}
 
 			return {
-				backgroundColor   : item.color,
-				borderBottomColor : item.color
+				backgroundColor   : color,
+				borderBottomColor : color
 			};
 		},
 	},
@@ -173,6 +177,16 @@ legend {
 
 		p + label {
 			margin-left: 10px;
+		}
+
+		.label {
+			display: flex;
+
+			.description {
+				font-size: 12px;
+				font-weight: normal;
+				margin-left: 3px;
+			}
 		}
 	}
 }

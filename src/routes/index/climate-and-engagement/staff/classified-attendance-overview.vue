@@ -29,7 +29,7 @@
 					span.dynamic-mode-text every day.
 				.count
 					p.value {{ data.numOfEmployees }}
-					p.label.dynamic-mode-text Classified Employees at Cesar Chavez Elementary
+					p.label.dynamic-mode-text Classified Employees
 			.charts
 				horizontal-striped-bar-chart.chart(
 					v-for='item in data.charts'
@@ -63,7 +63,7 @@ export default {
 				maxTextLength   : 75,
 				preferredBValue : this.bValue
 			};
-		}
+		},
 	},
 
 	components : {

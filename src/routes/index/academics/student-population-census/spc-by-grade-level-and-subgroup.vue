@@ -12,7 +12,7 @@
 
 <template lang='pug'>
 	.spc-by-grade-level-and-subgroup
-		h1.page-title Academic Performance Equity Report
+		h1.page-title {{ data.populationCount.label }}
 		data-view-state-manager(
 			:state='state'
 			:error-message='errorMessage'
@@ -20,7 +20,7 @@
 			.content.dynamic-mode-background-secondary.floating-side-text(slot='loaded' v-if='data')
 				.population-count
 					p.count(:style='{ color : data.populationCount.color }') {{ data.populationCount.value }}
-					p.label.dynamic-mode-text {{ data.populationCount.label }}
+					p.label(:style='{ color : data.populationCount.color }') Total Students
 				.charts
 					striped-bar-chart.chart(
 						v-for='item in data.charts'
@@ -94,7 +94,7 @@ export default {
 
 		.population-count {
 			display: flex;
-			align-items: center;
+			align-items: flex-end;
 
 			.count,
 			.label {

@@ -7,7 +7,8 @@
 		.change
 			p.label.dynamic-mode-text M
 			p.value.dynamic-mode-text(:class='getClass( data.math )') {{ data.math }}
-	.score
+	.score-wrapper
+		p.label.dynamic-mode-text Total Scores
 		p.dynamic-mode-text {{ data.numOfScore }}
 </template>
 
@@ -41,7 +42,7 @@ export default {
 <style lang='scss'>
 .caaspp-change-indicator {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 
 	.changes {
 		display: flex;
@@ -82,17 +83,31 @@ export default {
 		}
 	}
 
-	.score {
-		margin-left: 10px;
+	.score-wrapper {
 		display: flex;
-		padding: 5px;
-		border : 2px solid #CDCDCD;
-		align-items: center;
-		justify-content: center;
+		flex-direction: column;
 
 		p {
 			font-size: 12px;
 		}
+
+		.label {
+			font-size: 12px;
+		}
+
+		.score {
+			margin-left: 10px;
+			display: flex;
+			padding: 5px;
+			border : 2px solid #CDCDCD;
+			align-items: center;
+			justify-content: center;
+
+			p {
+				font-size: 12px;
+			}
+		}
 	}
+
 }
 </style>

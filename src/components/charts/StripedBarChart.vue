@@ -97,7 +97,8 @@ export default {
 				// aw,
 			} = this;
 
-			const range                      = this.getDataRange( data.map( a => a.value ), false );
+			const range                      = this.getDataRange( data.map( a => a.value ), false, 1.5 );
+			console.log( range );
 			const barPadding                 = 5;
 			const numberOfGaps               = data.length + 1;
 			const totalSpaceTakenUpByPadding = barPadding * numberOfGaps;

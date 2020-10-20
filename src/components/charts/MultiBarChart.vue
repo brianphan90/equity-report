@@ -14,6 +14,7 @@ import colors from '@/assets/js/colors';
 import ChartLegend from '@/components/ChartLegend';
 import BaseChart from '@/components/charts/BaseChart';
 import * as d3 from 'd3';
+import d3Tip from 'd3-tip';
 
 export default {
 	name : 'multi-bar-chart',
@@ -135,11 +136,21 @@ export default {
 				min : range.start,
 				max : range.end
 			};
-		}
+		},
+
+		mode() {
+			return this.$store.state.user.mode;
+		},
 	},
 
 	mounted() {
 		this.init( this.$refs.svg );
+	},
+
+	watch : {
+		mode() {
+			this.draw();
+		}
 	},
 
 	methods : {
@@ -296,6 +307,21 @@ export default {
 
 					return 0;
 				} );
+
+			const tip = d3Tip()
+				.attr( 'class', 'd3-tip' )
+				.html( ( d ) => {
+					const { value } = d;
+					const textColor = this.mode === 'night' ? colors.nightTextDefault : colors.dayTextDefault;
+					return `<span style='color:${textColor}'>` + value + "</span>"; //eslint-disable-line
+				} );
+
+			bars.call( tip );
+
+			bars
+				.on( 'mouseover', tip.show )
+				.on( 'mouseout', tip.hide );
+
 		},
 
 		drawXAxisLabels( barGroups ) {
@@ -409,6 +435,21 @@ export default {
 		svg {
 			width: 100%;
 			height: 100%;
+		}
+
+		.tooltip{
+      position      : absolute;
+      text-align    : center;
+      max-width     : 70px;
+      max-height    : 30px;
+      padding       : 8px;
+      border        : none;
+      border-radius : 8px;
+      margin-top    : -30px;
+      font          : 10px sans-serif;
+      background    : black;
+      color         : white;
+      pointer-events: none;
 		}
 	}
 }

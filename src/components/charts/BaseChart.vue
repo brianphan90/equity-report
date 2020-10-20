@@ -232,7 +232,7 @@ export default {
 
 		},
 
-		getDataRange( yValues, scaled ) {
+		getDataRange( yValues, scaled, endMultipler = 1 ) {
 			const biggest    = Math.max( ...yValues );
 			const smallest   = Math.min( ...yValues );
 			const difference = ( biggest - smallest );
@@ -275,7 +275,7 @@ export default {
 			// four more relevantIncrements away
 			const start = !scaled ? 0 : ( Math.floor( smallest / relevantIncrement ) * relevantIncrement );
 			const range = ( Math.ceil( ( difference + smallest - start ) / relevantIncrement ) ) * relevantIncrement;
-			const end   = start + range;
+			const end   = ( start + range ) * endMultipler;
 
 			return {
 				start,
