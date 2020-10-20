@@ -171,54 +171,87 @@ export default {
 
 			const groupsWithTextToMove = textAndBarHeights
 				.filter( ( { rectangleHeight, textHeight } ) => rectangleHeight < ( textHeight + 6 ) )
-				.map( ( { group } ) => group );
+				.map( ( { group } ) => group )
+				.filter( ( group ) => {
+					const d = group.__data__;
+					const { text } = d;
+					return text !== '0%';
+				} );
 
 
-			const correctYPos = ( y, yPrev, textHeight, index, length, ah, d ) => {
-				const yDiff = y - yPrev;
+			const correctYPos = ( y, yPrev, textHeight, index, ah, direction ) => { // eslint-disable-line
 
+				// place text at the top
 				if ( index === 0 && y < textHeight ) {
-					return y;
+					return 0;
 				}
 
-				if ( index === length - 1 && y + textHeight > ah ) {
+				// place text at the bottom
+				if ( index === 0 && y + textHeight > ah ) {
 					return ah - textHeight;
 				}
 
-				const multiplier = length - 1 - index;
-				const spaceRemaining = ah - ( y + textHeight );
-				if ( spaceRemaining < textHeight ) {
-					return y - ( textHeight * multiplier );
-				}
+				const yDiff = y - yPrev;
 
-				if ( yDiff < textHeight ) {
-					return yPrev + textHeight;
+				// going down
+				if ( direction < 0 ) {
+
+					// curY is above prevY
+					if ( yDiff < 0 ) {
+						return yPrev + textHeight;
+					}
+
+					// Overlap
+					if ( yDiff < textHeight ) {
+						return yPrev + textHeight;
+					}
+
+				}
+				else {
+
+					// curY is below prevY
+					if ( yDiff > 0 ) {
+						return yPrev - textHeight;
+					}
+
+					// Overlap
+					if ( yDiff < textHeight ) {
+						return yPrev - textHeight;
+					}
 				}
 
 				return y;
+
 			};
 
-			// move all the necessary text
-			let yPrev = 0;
-			const { length } = groupsWithTextToMove;
-			groupsWithTextToMove.forEach( ( group, index ) => {
-				const d = group.__data__;
+			const shiftText = ( groups, direction ) => {
+				// move all the necessary text
+				let prevY = 0;
+				const { length } = groups;
+				groups.forEach( ( group, index ) => {
+					const d = group.__data__;
 
-				const textHeight = group.childNodes[1].getBBox().height;
-				const { ah } = this;
-				const newY = correctYPos( d.y, yPrev, textHeight, index, length, this.ah, d );
+					const textHeight = group.childNodes[1].getBBox().height;
 
-				const textColor = this.mode === 'night' ? colors.nightTextDefault : colors.dayTextDefault;
+					const curY = group.childNodes[1].getBBox().y;
+					const newY = correctYPos( curY, prevY, textHeight, index, this.ah, direction );
+					const textColor = this.mode === 'night' ? colors.nightTextDefault : colors.dayTextDefault;
 
-				d3.select( group )
-					.select( 'text' )
-					.attr( 'x', d.x + d.width + 6 )
-					.attr( 'y', newY )
-					.attr( 'text-anchor', 'start' )
-					.attr( 'fill', textColor );
+					d3.select( group )
+						.select( 'text' )
+						.attr( 'x', d.x + d.width + 6 )
+						.attr( 'y', newY )
+						.attr( 'text-anchor', 'start' )
+						.attr( 'dominant-baseline', 'text-before-edge' )
+						.attr( 'fill', textColor );
 
-				yPrev = newY;
-			} );
+					prevY = newY;
+				} );
+			};
+
+			shiftText( groupsWithTextToMove, -1 );
+			shiftText( groupsWithTextToMove.reverse(), 1 );
+
 		},
 
 		correctTextSVGOverlaps() {
