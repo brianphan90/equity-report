@@ -147,3 +147,23 @@ export const GetClassifiedAttendanceOverview = ( filters, siteId, year, subgroup
 	method  : 'GET',
 	headers : defaultHeaders(),
 } );
+
+export const GetGLRByGradeLevelAndSubgroup = ( filters, siteId, year, subgroup ) => fetchPromise( path( 'data/school/glr-by-grade-level-and-subgroup', { filters, siteId, year } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );
+
+export const GetCaasppByGradeLevelAndSubgroup = ( filters, siteId, year, subgroup ) => fetchPromise( path( 'data/school/caaspp-by-grade-level-and-subgroup', { filters, siteId, year } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );
+
+export const GetCertificatedAttendanceDisaggregated = ( filters, siteId, year, subgroup ) => fetchPromise( path( 'data/school/certificated-attendance-disaggregated', { filters, siteId, year } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );
+
+export const GetClassifiedAttendanceDisaggregated = ( filters, siteId, year, subgroup ) => fetchPromise( path( 'data/school/classified-attendance-disaggregated', { filters, siteId, year } ), {
+	method  : 'GET',
+	headers : defaultHeaders(),
+} );

@@ -1,12 +1,6 @@
-<template lang="pug">
-	.multi-bar-chart.dynamic-mode-background
-		.header
-			h1.title.dynamic-mode-text {{ title }}
-			.legend
-				chart-legend(:legend='legend'  :columns='1')
-		.chart
-			svg(ref='svg')
-
+<template lang='pug'>
+.stacked-comparison-chart
+	svg(ref='svg')
 </template>
 
 <script>
@@ -17,7 +11,7 @@ import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
 export default {
-	name : 'multi-bar-chart',
+	name : 'StackedComparisonChart',
 
 	extends : BaseChart,
 
@@ -406,52 +400,8 @@ export default {
 	}
 
 };
+
 </script>
 
-<style lang="scss">
-
-.multi-bar-chart {
-	padding: 20px;
-	display: flex;
-	flex-direction: column;
-
-	.header {
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: 10px;
-
-		.title {
-			font-family: 'Roboto';
-			font-style: normal;
-			font-weight: bold;
-			font-size: 14px;
-			line-height: 16px;
-		}
-
-	}
-
-	.chart {
-		flex: 1 1 0;
-
-		svg {
-			width: 100%;
-			height: 100%;
-		}
-
-		.tooltip{
-      position      : absolute;
-      text-align    : center;
-      max-width     : 70px;
-      max-height    : 30px;
-      padding       : 8px;
-      border        : none;
-      border-radius : 8px;
-      margin-top    : -30px;
-      font          : 10px sans-serif;
-      background    : black;
-      color         : white;
-      pointer-events: none;
-		}
-	}
-}
+<style lang='scss'>
 </style>

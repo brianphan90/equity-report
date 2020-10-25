@@ -374,6 +374,7 @@ export default [
                 title: 'School Survey',
                 order: 3,
               },
+              display: false,
             },
             redirect: '/climate-and-engagement/school-survey/results',
             children: [
@@ -387,6 +388,7 @@ export default [
                     title: 'Results',
                     icon: 'whatever',
                   },
+                  display: false,
                 },
               },
             ],
