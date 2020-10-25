@@ -5,7 +5,8 @@
 		"navOptions": {
 			"title": "Results",
 			"icon" : "whatever"
-		}
+		},
+		"display": false
 	}
 }
 </route>

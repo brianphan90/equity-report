@@ -31,7 +31,16 @@ aside.side-nav(:class='[viewMode, navState]')
 import routes from '@/router/routes';
 
 const formatNavRoutes = ( routerInfo, basePath ) => {
-	const menuItems = routerInfo.map( ( info ) => {
+	const menuItems = routerInfo.filter( ( info ) => {
+		const { meta } = info;
+		if ( !meta ) {
+			return true;
+		}
+
+		console.log( meta.display );
+
+		return meta.display !== false;
+	} ).map( ( info ) => {
 		const { path : pathProp } = info;
 		const path                = basePath ? `${basePath}/${pathProp}` : pathProp;
 		const item                = {

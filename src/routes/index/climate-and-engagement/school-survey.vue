@@ -5,7 +5,8 @@
 		"navOptions" : {
 			"title": "School Survey",
 			"order": 3
-		}
+		},
+		"display": false
 	}
 }
 </route>
