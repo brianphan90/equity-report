@@ -101,6 +101,9 @@ export default {
 			// + Just wrote this and honestly, not fully sure how it works
 			// *           `\_(^-^)_/` <( LOL! )
 
+
+			// ^^ and its hard to read :(
+
 			return shapedItems;
 		},
 

@@ -12,17 +12,16 @@
 </route>
 
 <template lang='pug'>
-.glr-by-grade-level-and-subgroup
-	h1 Classified Attendance Dissagregated
+.classified-attendance-disaggregated
 	data-view-state-manager(
 		:state='state'
 		:error-message='errorMessage'
 	)
 		.content.dynamic-mode-background-secondary.floating-side-text(slot='loaded' v-if='data')
-			.page-header
-				.title
-					//- h1.dynamic-mode-text Grade Level Readiness
-					//- h1.subtitle.dynamic-mode-text By Grade Level and Subgroup
+			.page-title
+				h1.main-title.dynamic-mode-text Classified Attendance
+			.chart
+				chart-legend(:legend="data.legend")
 			.charts-container.dynamic-mode-background-opaque
 				stacked-comparison-charts(
 					v-for='chart in data.charts'
@@ -61,4 +60,30 @@ export default {
 </script>
 
 <style lang='scss'>
+.classified-attendance-overview {
+	height: 100%;
+	display: flex;
+
+	.content {
+		.page-title {
+			display: flex;
+
+			.main-title {
+					font-size: 52px;
+					line-height: 69px;
+					letter-spacing: 0.045em;
+			}
+		}
+	}
+
+	.charts {
+		display: flex;
+		flex: 1 1 0;
+		margin-top: 15px;
+		.chart {
+			flex: 1 1 0;
+			height: 100%;
+		}
+	}
+}
 </style>
