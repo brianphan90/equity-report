@@ -102,7 +102,7 @@ export default {
 			// *           `\_(^-^)_/` <( LOL! )
 
 
-			// ^^ and its hard to read :(
+			
 
 			return shapedItems;
 		},
