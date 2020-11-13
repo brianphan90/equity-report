@@ -13,7 +13,7 @@ aside.side-nav(:class='[viewMode, navState]')
 			:class='{ "sub-nav" : item.children.length, open : open[item.path], closed : !open[item.path] }'
 		)
 			.item(
-				@click='selectMenuItem( item ); testFunc()'
+				@click='selectMenuItem( item )'
 				v-if='item.type != "link"'
 			)
 				h1 {{ item.title }}
@@ -21,9 +21,9 @@ aside.side-nav(:class='[viewMode, navState]')
 				p.sub-text(v-else) Click to Expand
 
 			nav-items.sub-menu(:items='item.children')
-			.btn()
+			.btn(@click='testFunc()')
 				p Next
-			//- h1 {{$route.name}}
+
 	.bottom-bar
 		.toggle(@click='toggleNavState')
 		.night-day.no-select(:class='viewMode' @click='toggleViewMode')
@@ -224,7 +224,17 @@ export default {
 			return { signal : false };
 		},
 		testFunc() {
-			this.nav.forEach( item => console.log( item ) );
+			const curPath = this.$router.history.current.path;
+			const retArray = [];
+			this.nav.forEach( item => item.children.forEach( child => child.children.forEach( grandChild => retArray.push( grandChild ) ) ) );
+			const curIndex = retArray.findIndex( element => element.path === curPath );
+			if ( curIndex < retArray.length - 1 ) {
+				this.$router.push( retArray[curIndex + 1].path );
+			}
+			else {
+				this.$router.push( retArray[0].path );
+			}
+
 		}
 
 	},
