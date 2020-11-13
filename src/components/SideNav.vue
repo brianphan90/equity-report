@@ -13,7 +13,7 @@ aside.side-nav(:class='[viewMode, navState]')
 			:class='{ "sub-nav" : item.children.length, open : open[item.path], closed : !open[item.path] }'
 		)
 			.item(
-				@click='selectMenuItem( item )'
+				@click='selectMenuItem( item ); testFunc()'
 				v-if='item.type != "link"'
 			)
 				h1 {{ item.title }}
@@ -21,7 +21,9 @@ aside.side-nav(:class='[viewMode, navState]')
 				p.sub-text(v-else) Click to Expand
 
 			nav-items.sub-menu(:items='item.children')
-
+			.btn()
+				p Next
+			//- h1 {{$route.name}}
 	.bottom-bar
 		.toggle(@click='toggleNavState')
 		.night-day.no-select(:class='viewMode' @click='toggleViewMode')
@@ -46,7 +48,6 @@ const formatNavRoutes = ( routerInfo, basePath ) => {
 		const item                = {
 			path
 		};
-
 		if ( info.meta ) {
 			const metaKeys = Object.keys( info.meta.navOptions );
 			metaKeys.forEach( ( key ) => {
@@ -57,10 +58,10 @@ const formatNavRoutes = ( routerInfo, basePath ) => {
 		if ( info.children ) {
 			item.children = formatNavRoutes( info.children, path );
 		}
-
+		console.log( item );
 		return item;
 	} );
-
+	console.log( menuItems );
 	return menuItems.sort( ( a, b ) => ( a.order - b.order ) );
 };
 
@@ -68,6 +69,7 @@ export default {
 	name : 'side-nav',
 
 	data : () => ( {
+		curNode  : null,
 		navState : localStorage.getItem( 'musd-equity-report:nav-state' ) || 'open',
 		viewMode : localStorage.getItem( 'musd-equity-report:view-mode' ) || 'night',
 
@@ -102,7 +104,6 @@ export default {
 		pagePath() {
 			return this.$route.path;
 		}
-
 	},
 
 	watch : {
@@ -124,14 +125,13 @@ export default {
 				localStorage.setItem( 'musd-equity-report:view-mode', this.viewMode );
 				this.$store.dispatch( 'setMode', viewMode );
 			}
-		}
+		},
 
 	},
 
 	methods : {
 
 		selectMenuItem( item ) {
-
 			if ( this.open[item.path] && this.navState === 'open' ) {
 				this.open[item.path] = false;
 
@@ -142,9 +142,7 @@ export default {
 			menuItemKeys.forEach( ( key ) => {
 				this.open[key] = false;
 			} );
-
 			this.open[item.path] = true;
-
 		},
 
 		toggleNavState() {
@@ -158,6 +156,7 @@ export default {
 		},
 
 		toggleViewMode() {
+			console.log( this.$router.history.current.path );
 			if ( this.viewMode === 'day' ) {
 				this.viewMode = 'night';
 
@@ -170,6 +169,62 @@ export default {
 		selectIcon( item ) {
 			this.selectMenuItem( item );
 			this.toggleNavState();
+		},
+
+		log( message ) {
+			console.log( message );
+		},
+
+		nextRoute( ) {
+			const curRoute = this.$router.history.current.path;
+			console.log( curRoute );
+			//	const {} = routes[0].children;
+			this.nav.forEach( ( item ) => {
+				item.children.forEach( ( child ) => {
+					console.log( child.path );
+					const retObj = this.findChild( child );
+					if ( retObj.signal ) {
+						const nextChild = retObj.branch.find( element => ( element.order === retObj.order + 1 ) );
+						if ( nextChild ) { //	next path within same branch exists
+							this.$router.go( nextChild.path );
+							return null;
+						}
+					}
+					else {
+						console.log( 'ROUTE NOT FOUND' );
+					}
+					return null;
+				} );
+			} );
+		},
+		findChild( child, flag ) {
+			let childObj;
+			if ( child.path === this.$router.history.current.path ) {
+				return {
+					order  : child.order,
+					path   : child.path,
+					signal : true
+				};
+			}
+			if ( child.children ) {
+				child.children.forEach( ( nextChild ) => {
+					childObj = this.findChild( nextChild, flag );
+					if ( childObj.signal ) {
+						console.log( child.children );
+						console.log( childObj.order );
+						return {
+							branch : child.children,
+							path   : childObj.path,
+							order  : childObj.order
+						};
+					}
+					return { signal : false };
+				} );
+			}
+			return { signal : false };
+		},
+		testFunc() {
+			this.nav.forEach( item => console.log( item ) );
 		}
 
 	},
@@ -498,6 +553,22 @@ export default {
 				}
 			}
 		}
+		.btn{
+				cursor: pointer;
+				background: white;
+				display: flex;
+				padding: 10px 15px;
+				margin-left: 100px;
+				border-radius: 10px;
+				justify-content: center;
+				align-items: center;
+				flex : 0 0 auto;
+				p {
+					color :#00A8FF;
+					margin-left: 10px;
+					font-size: 20px;
+				}
+			}
 	}
 }
 </style>
