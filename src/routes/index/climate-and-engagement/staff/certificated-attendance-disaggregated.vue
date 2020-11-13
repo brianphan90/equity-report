@@ -40,6 +40,12 @@
 										th(scope="row")
 										td {{ entry.label }}
 										td {{ entry.numOfAbsecnes}}
+							pure-vue-chart(
+								:points="firstHalfBarGraph"
+								:width="500"
+								:height="200"
+								:show-values="true"
+							)
 				.right-chart
 					.data-grid
 						.month-legend
@@ -56,6 +62,12 @@
 										th(scope="row")
 										td {{ entry.label }}
 										td {{ entry.numOfAbsecnes}}
+							pure-vue-chart(
+								:points="secondHalfBarGraph"
+								:width="500"
+								:height="200"
+								:show-values="true"
+							)
 </template>
 
 <script>
@@ -67,6 +79,8 @@ import DisaggregatedGraphicWrapper from '@/components/charts/DisaggregatedGraphi
 import ChangeIndicator from '@/components/charts/ChangeIndicator';
 import ChartLegend from '@/components/ChartLegend';
 import StackedComparisonCharts from '@/components/charts/StackedComparisonCharts';
+
+import PureVueChart from 'pure-vue-chart';
 
 export default {
 	name : 'certificated-attendance-disaggregated',
@@ -89,6 +103,25 @@ export default {
 		secondHalfDataChart() {
 			const half = Math.ceil( this.data.chart.data.length / 2 );
 			return this.data.chart.data.slice( half, this.data.chart.data.length );
+		},
+		firstHalfBarGraph() {
+			const dataArray = [];
+			const halfArray = this.data.chart.data.length / 2;
+
+			for ( let i = 0; i < halfArray; i++ ) {
+				dataArray.push( this.data.chart.data[i].totalInstruction );
+			}
+			return dataArray;
+		},
+		secondHalfBarGraph() {
+			const dataArray = [];
+			const arrayLength = this.data.chart.data.length;
+			const halfArray = this.data.chart.data.length / 2;
+
+			for ( let i = halfArray; i < arrayLength; i++ ) {
+				dataArray.push( this.data.chart.data[i].totalInstruction );
+			}
+			return dataArray;
 		}
 
 	},
@@ -98,6 +131,7 @@ export default {
 		DisaggregatedGraphicWrapper,
 		ChartLegend,
 		StackedComparisonCharts,
+		PureVueChart
 	}
 };
 </script>
@@ -105,6 +139,7 @@ export default {
 <style lang='scss'>
 .certificated-attendance-disaggregated {
 	height: 100%;
+	width: 100%;
 	.content {
 		.page-title {
 			display: flex;

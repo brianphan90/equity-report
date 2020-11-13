@@ -45,16 +45,22 @@
 							table
 								thead
 									tr(v-for="(entry,i) in months" :key="1")
-										th
+										th {{i++}}
 										td {{ entry }}
 						.teacher-info
 							table.table-mt-5
 								thead
 								tbody
 									tr(v-for="(entry, i) in secondHalfDataChart" :key="i")
-										th(scope="row")
+										th(scope="row") {{i++}}
 										td {{ entry.label }}
 										td {{ entry.numOfAbsecnes}}
+							pure-vue-chart(
+								:points="[1,3,50,100]"
+								:width="500"
+								:height="200"
+								:show-values="true"
+							)
 </template>
 
 <script>
@@ -66,6 +72,8 @@ import DisaggregatedGraphicWrapper from '@/components/charts/DisaggregatedGraphi
 import ChangeIndicator from '@/components/charts/ChangeIndicator';
 import ChartLegend from '@/components/ChartLegend';
 import StackedComparisonCharts from '@/components/charts/StackedComparisonCharts';
+
+import PureVueChart from 'pure-vue-chart';
 
 export default {
 	name : 'classified-attendance-disaggregated',
@@ -97,6 +105,7 @@ export default {
 		DisaggregatedGraphicWrapper,
 		ChartLegend,
 		StackedComparisonCharts,
+		PureVueChart
 	}
 };
 </script>
