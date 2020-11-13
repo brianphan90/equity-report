@@ -21,7 +21,7 @@ aside.side-nav(:class='[viewMode, navState]')
 				p.sub-text(v-else) Click to Expand
 
 			nav-items.sub-menu(:items='item.children')
-			.btn(@click='testFunc()')
+			.btn(@click='nextPage()')
 				p Next
 
 	.bottom-bar
@@ -132,6 +132,7 @@ export default {
 	methods : {
 
 		selectMenuItem( item ) {
+			console.log( 'set menu item', item.path );
 			if ( this.open[item.path] && this.navState === 'open' ) {
 				this.open[item.path] = false;
 
@@ -174,56 +175,7 @@ export default {
 		log( message ) {
 			console.log( message );
 		},
-
-		nextRoute( ) {
-			const curRoute = this.$router.history.current.path;
-			console.log( curRoute );
-			//	const {} = routes[0].children;
-			this.nav.forEach( ( item ) => {
-				item.children.forEach( ( child ) => {
-					console.log( child.path );
-					const retObj = this.findChild( child );
-					if ( retObj.signal ) {
-						const nextChild = retObj.branch.find( element => ( element.order === retObj.order + 1 ) );
-						if ( nextChild ) { //	next path within same branch exists
-							this.$router.go( nextChild.path );
-							return null;
-						}
-					}
-					else {
-						console.log( 'ROUTE NOT FOUND' );
-					}
-					return null;
-				} );
-			} );
-		},
-		findChild( child, flag ) {
-			let childObj;
-			if ( child.path === this.$router.history.current.path ) {
-				return {
-					order  : child.order,
-					path   : child.path,
-					signal : true
-				};
-			}
-			if ( child.children ) {
-				child.children.forEach( ( nextChild ) => {
-					childObj = this.findChild( nextChild, flag );
-					if ( childObj.signal ) {
-						console.log( child.children );
-						console.log( childObj.order );
-						return {
-							branch : child.children,
-							path   : childObj.path,
-							order  : childObj.order
-						};
-					}
-					return { signal : false };
-				} );
-			}
-			return { signal : false };
-		},
-		testFunc() {
+		nextPage() {
 			const curPath = this.$router.history.current.path;
 			const retArray = [];
 			this.nav.forEach( item => item.children.forEach( child => child.children.forEach( grandChild => retArray.push( grandChild ) ) ) );
@@ -232,9 +184,12 @@ export default {
 				this.$router.push( retArray[curIndex + 1].path );
 			}
 			else {
+				console.log( 'end' );
 				this.$router.push( retArray[0].path );
+				this.open['/academics'] = true;
+				this.open['/climate-and-engagement'] = false;
 			}
-
+			console.log( retArray );
 		}
 
 	},
