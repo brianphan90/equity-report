@@ -27,6 +27,7 @@
     "path": "^0.12.7",
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.0.0",
+    "pure-vue-chart": "^0.4.0",
     "register-service-worker": "^1.7.1",
     "swiper": "^5.4.5",
     "uuid": "^8.2.0",
