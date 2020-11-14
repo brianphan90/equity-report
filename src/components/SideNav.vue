@@ -178,16 +178,37 @@ export default {
 		nextPage() {
 			const curPath = this.$router.history.current.path;
 			const retArray = [];
-			this.nav.forEach( item => item.children.forEach( child => child.children.forEach( grandChild => retArray.push( grandChild ) ) ) );
+			const rootPaths = [];
+			let magicIndex = -1;
+			let prevCategory = null;
+			this.nav.forEach( ( item ) => {
+				rootPaths.push( item.path );
+				item.children.forEach( child => child.children.forEach( ( grandChild, index ) => {
+					if ( !prevCategory ) {
+						prevCategory = item.icon;
+					}
+					else if ( prevCategory !== item.icon ) {
+						console.log( index - 1 );
+						magicIndex = index;
+						return null;
+					}
+					retArray.push( grandChild );
+					return null;
+				} ) );
+			} );
 			const curIndex = retArray.findIndex( element => element.path === curPath );
 			if ( curIndex < retArray.length - 1 ) {
 				this.$router.push( retArray[curIndex + 1].path );
+				if ( curIndex === 7 ) {	// temporary (scalable)
+					this.open[rootPaths[0]] = false; //	/academics
+					this.open[rootPaths[1]] = true; //	/climate-and-engagement
+				}
 			}
 			else {
 				console.log( 'end' );
 				this.$router.push( retArray[0].path );
-				this.open['/academics'] = true;
-				this.open['/climate-and-engagement'] = false;
+				this.open[rootPaths[0]] = true; //	/academics
+				this.open[rootPaths[1]] = false; //	/climate-and-engagement
 			}
 			console.log( retArray );
 		}
