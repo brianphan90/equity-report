@@ -180,17 +180,19 @@ export default {
 			const retArray = [];
 			const rootPaths = [];
 			let magicIndex = -1;
+			let finalIndex = -1;
 			let prevCategory = null;
 			this.nav.forEach( ( item ) => {
 				rootPaths.push( item.path );
-				item.children.forEach( child => child.children.forEach( ( grandChild, index ) => {
+				item.children.forEach( child => child.children.forEach( ( grandChild ) => {
+					magicIndex++;
 					if ( !prevCategory ) {
 						prevCategory = item.icon;
 					}
 					else if ( prevCategory !== item.icon ) {
-						console.log( index - 1 );
-						magicIndex = index;
-						return null;
+						console.log( magicIndex - 1 );
+						finalIndex = magicIndex - 1;
+						prevCategory = item.icon;
 					}
 					retArray.push( grandChild );
 					return null;
@@ -199,7 +201,7 @@ export default {
 			const curIndex = retArray.findIndex( element => element.path === curPath );
 			if ( curIndex < retArray.length - 1 ) {
 				this.$router.push( retArray[curIndex + 1].path );
-				if ( curIndex === 7 ) {	// temporary (scalable)
+				if ( curIndex === finalIndex ) {	// temporary (scalable)
 					this.open[rootPaths[0]] = false; //	/academics
 					this.open[rootPaths[1]] = true; //	/climate-and-engagement
 				}
