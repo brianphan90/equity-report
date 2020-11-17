@@ -24,8 +24,7 @@ export default {
 		barGroups      : null,
 	} ),
 
-	computed: {
-		
+	computed : {
 	}
 };
 </script>
