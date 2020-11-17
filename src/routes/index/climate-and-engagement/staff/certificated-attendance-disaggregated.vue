@@ -29,7 +29,7 @@
 						.month-legend
 							table
 								thead
-									tr(v-for="(entry,i) in months" :key="1")
+									tr(v-for="(entry,i) in months" :key="i")
 										th
 										td {{ entry }}
 						.teacher-info

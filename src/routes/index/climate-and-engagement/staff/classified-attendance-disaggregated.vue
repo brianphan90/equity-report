@@ -22,39 +22,11 @@
 				h1.main-title.dynamic-mode-text Classified Attendance
 			.chart
 				chart-legend(:legend="data.legend")
-			.charts
-				.left-chart
-					.data-grid
-						.month-legend
-							table
-								thead
-									tr(v-for="(entry,i) in months" :key="1")
-										th
-										td {{ entry }}
-						.teacher-info
-							table.table-mt-5
-								thead
-								tbody
-									tr(v-for="(entry, i) in firstHalfDataChart" :key="i")
-										th(scope="row")
-										td {{ entry.label }}
-										td {{ entry.numOfAbsecnes}}
-				.right-chart
-					.data-grid
-						.month-legend
-							table
-								thead
-									tr(v-for="(entry,i) in months" :key="1")
-										th {{i++}}
-										td {{ entry }}
-						.teacher-info
-							table.table-mt-5
-								thead
-								tbody
-									tr(v-for="(entry, i) in secondHalfDataChart" :key="i")
-										th(scope="row") {{i++}}
-										td {{ entry.label }}
-										td {{ entry.numOfAbsecnes}}
+			.attendance-chart
+				attendance-disaggregate-wrapper(
+					:legend='data.legend'
+					:chart='data.chart'
+				)
 </template>
 
 <script>
@@ -66,6 +38,10 @@ import DisaggregatedGraphicWrapper from '@/components/charts/DisaggregatedGraphi
 import ChangeIndicator from '@/components/charts/ChangeIndicator';
 import ChartLegend from '@/components/ChartLegend';
 import StackedComparisonCharts from '@/components/charts/StackedComparisonCharts';
+
+
+import AttendanceDisaggregateWrapper from './Graphs/AttendanceDisaggregateWrapper';
+
 
 export default {
 	name : 'classified-attendance-disaggregated',
@@ -97,6 +73,7 @@ export default {
 		DisaggregatedGraphicWrapper,
 		ChartLegend,
 		StackedComparisonCharts,
+		AttendanceDisaggregateWrapper
 	}
 };
 </script>
@@ -108,69 +85,14 @@ export default {
 	.content {
 		.page-title {
 			display: flex;
-
-			.main-title {
-					font-size: 52px;
-					line-height: 69px;
-					letter-spacing: 0.045em;
-			}
 		}
-		.charts {
+		.main-title {
+			font-size: 52px;
+			line-height: 69px;
+			letter-spacing: 0.045em;
+		}
+		.attendance-chart {
 			width: 100%;
-			height: 100%;
-			display: flex;
-			flex: 1 1 0;
-			margin-top: 15px;
-			.left-chart {
-				flex: 1 1 0;
-				height: 100%;
-				width:50%;
-				.main-title {
-					font-size: 52px;
-					line-height: 69px;
-					letter-spacing: 0.045em;
-				}
-				.data-grid {
-					display: grid;
-					grid-template-columns: repeat(5, 1fr);
-					grid-template-rows: repeat(5, 1fr);
-					grid-column-gap: 0px;
-					grid-row-gap: 0px;
-					.month-legend {
-						grid-area: 1 / 2 / 2 / 6;
-						writing-mode: vertical-lr;
-					}
-					.teacher-info {
-						grid-area: 2 / 1 / 6 / 6;
-					}
-
-				}
-			}
-			.right-chart {
-				flex: 1 1 0;
-				height: 100%;
-				width: 50%;
-				.main-title {
-					font-size: 52px;
-					line-height: 69px;
-					letter-spacing: 0.045em;
-				}
-				.data-grid {
-					display: grid;
-					grid-template-columns: repeat(5, 1fr);
-					grid-template-rows: repeat(5, 1fr);
-					grid-column-gap: 0px;
-					grid-row-gap: 0px;
-					.month-legend {
-						grid-area: 1 / 2 / 2 / 6;
-						writing-mode: vertical-lr;
-					}
-					.teacher-info {
-						grid-area: 2 / 1 / 6 / 6;
-					}
-
-				}
-			}
 		}
 	}
 }
