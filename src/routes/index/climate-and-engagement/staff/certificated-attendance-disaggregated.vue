@@ -20,9 +20,10 @@
 		.content.dynamic-mode-background-secondary.floating-side-text(slot='loaded' v-if='data')
 			.page-header
 				.title
-					h1 CAASPP By Grade Level And Subgroup
-			.chart
-				chart-legend(:legend='data.legend')
+					h1.dynamic-mode-text Teacher
+					h1.subtitle.dynamic-mode-text Attendance
+				.legend
+					chart-legend(:legend='data.legend' :columns=1 )
 			.charts
 				.left-chart
 					.data-grid
@@ -98,6 +99,7 @@ export default {
 	computed : {
 		firstHalfDataChart() {
 			const half = Math.ceil( this.data.chart.data.length / 2 );
+			console.log( this.data.legend );
 			return this.data.chart.data.slice( 0, half );
 		},
 		secondHalfDataChart() {
@@ -123,7 +125,6 @@ export default {
 			}
 			return dataArray;
 		}
-
 	},
 
 	components : {
@@ -141,13 +142,36 @@ export default {
 	height: 100%;
 	width: 100%;
 	.content {
-		.page-title {
+		margin: 0 20px;
+		padding: 20px 100px 20px 20px;
+		border-radius: 5px;
+		position: relative;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		.page-header {
 			display: flex;
-
-			.main-title {
-					font-size: 52px;
-					line-height: 69px;
+			align-items: center;
+			justify-content: space-between;
+			padding-bottom: 30px;
+			.title {
+				margin-bottom: 15px;
+				margin-right: 30px;
+				h1 {
+					font-size: 24px;
+					font-family: 'Roboto Slab';
+					text-align: left;
+					font-weight: bold;
 					letter-spacing: 0.045em;
+					&.subtitle {
+						font-weight: 400;
+					}
+				}
+			}
+			.legend {
+				legend {
+					display : flex;
+				}
 			}
 		}
 		.charts {

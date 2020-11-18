@@ -21,11 +21,11 @@ aside.side-nav(:class='[viewMode, navState]')
 				p.sub-text(v-else) Click to Expand
 
 			nav-items.sub-menu(:items='item.children')
-			.btn(@click='nextPage()')
-				p Next
 
 	.bottom-bar
 		.toggle(@click='toggleNavState')
+		.btn(@click='nextPage()')
+				p NEXT
 		.night-day.no-select(:class='viewMode' @click='toggleViewMode')
 </template>
 
@@ -543,17 +543,23 @@ export default {
 		}
 		.btn{
 				cursor: pointer;
-				background: white;
+				font-style: normal;
+				line-height: 18px;
+				font-weight: Bold;
+				letter-spacing: 0.15em;
 				display: flex;
-				padding: 10px 15px;
-				margin-left: 100px;
+				padding-left: 20px;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				margin-left: 90px;
+				background: linear-gradient(89.75deg, #D8A556 -1.35%, #C07F1A 102.1%);
+				box-shadow: 0px 1px 15px rgba(0, 52, 79, 0.2), 0px 1px 3px rgba(0, 52, 79, 0.2);
 				border-radius: 10px;
 				justify-content: center;
 				align-items: center;
 				flex : 0 0 auto;
 				p {
-					color :#00A8FF;
-					margin-left: 10px;
+					color : white;
 					font-size: 20px;
 				}
 			}
