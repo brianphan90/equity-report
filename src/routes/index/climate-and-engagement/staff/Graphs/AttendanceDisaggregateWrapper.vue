@@ -1,9 +1,13 @@
 <template lang="pug">
 .attendance-disaggregate-wrapper
 	.left-chart
-		h1(v-for='(entry,i) in months' :key='i') {{entry}}
+		TimelineGraph(
+			:data='dataForFirstGraph'
+		)
 	.right-chart
-		h1(v-for='(entry,i) in months' :key='i') {{entry}}
+		TimelineGraph(
+			:data='dataForSecondGraph'
+		)
 </template>
 <script>
 
@@ -19,22 +23,15 @@ export default {
 	},
 
 	computed : {
-		months() {
-			return [
-				'July',
-				'August',
-				'September',
-				'October',
-				'November',
-				'December',
-				'January',
-				'February',
-				'March',
-				'April',
-				'May',
-				'June',
-			];
+		dataForFirstGraph() {
+			const half = Math.ceil( this.chart.data.length / 2 );
+			return this.chart.data.slice( 0, half );
 		},
+
+		dataForSecondGraph() {
+			const half = Math.ceil( this.chart.data.length / 2 );
+			return this.chart.data.slice( half, this.chart.data.length );
+		}
 	},
 	components : {
 		TimelineGraph
