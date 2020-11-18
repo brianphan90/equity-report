@@ -48,9 +48,10 @@ export default {
 		},
 		range() {
 			const { data } = this;
-			const values = data.map( d => d.value );
+			const values = data.map( d => d.numOfAbsecnes );
+			console.log( values );
 			const range = this.getDataRange( values, false );
-
+			console.log( range );
 			return {
 				min : range.start,
 				max : range.end
@@ -80,6 +81,8 @@ export default {
 				dayColor   : colors.grey,
 				nightColor : colors.white,
 			} );
+
+			this.xAxisLabels.attr( 'x', ( d, i ) => this.getTextX( i ) );
 		},
 		drawMonths( months ) {
 			console.log( months );
