@@ -42,9 +42,11 @@ export default {
 <style lang="scss">
 .attendance-disaggregate-wrapper {
 	width: 100%;
+	height: 100%;
 	.left-chart {
 		float: left;
 		width: 50%;
+		height: 100%;
 	}
 	.right-chart {
 		float: right;

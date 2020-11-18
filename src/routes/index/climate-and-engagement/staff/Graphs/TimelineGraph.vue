@@ -1,5 +1,6 @@
 <template lang="pug">
-	svg(ref='svg')
+	.chart
+		svg(ref='svg')
 </template>
 
 <script>
@@ -27,6 +28,16 @@ export default {
 	} ),
 
 	computed : {
+		barWidth() {
+			const { aw, data } = this;
+			return Math.min( aw / data.length, 25 );
+		},
+		barSpacing() {
+			const { barWidth, data, aw } = this;
+			const barSpacing = ( aw - ( barWidth * data.length ) ) / data.length;
+			console.log( barSpacing );
+			return 15;
+		},
 		numOfBars() {
 			return 12;
 		},
@@ -69,7 +80,8 @@ export default {
 			return this.data.map( ( item ) => {
 				const {
 					label,
-					value,
+					// remove this when certified is added
+					// value,
 					numOfAbsecnes
 				} = item;
 
@@ -78,19 +90,25 @@ export default {
 				const absences  = item.data.absences;
 
 				const colorforSolidLine = '#9E5A46';
+				
+				// temp fix passing in 100 because doing classified first
+
+				const value = 100;
+				
 				return {
 					label,
 					value,
 					absences,
 					numOfAbsecnes,
-					colorforSolidLine
+					colorforSolidLine,
 				};
 			} );
 		},
 		draw() {
 			// set beginning dims
 			this.updateDims( {
-				l : 5,
+				
+				l : 50,
 				r : 5,
 				t : 10
 			} );
@@ -109,6 +127,8 @@ export default {
 			console.log( 'bargroups', this.barGroups );
 
 			this.xAxisLabels = this.drawXAxisLabels( this.barGroups );
+
+			console.log( 'xAxisLabels', this.xAxisLabels );
 			// draw labels
 			const lineIndicators = this.drawAxisIndicators( {
 				range    : this.range,
@@ -147,6 +167,9 @@ export default {
 				.attr( 'dominant-baseline', 'start' )
 				.style( 'font-size', '12px' )
 				.text( d => d.label );
+
+
+			console.log( 'drawxaxislabels in function', xAxisLabels );
 
 			this.changeWithMode( {
 				nodes   : xAxisLabels,
@@ -188,3 +211,17 @@ export default {
 	}
 };
 </script>
+
+<style lang='scss'>
+	.chart {
+		width: 100%;
+		height: 100%;
+		flex: 1 1 0;
+
+		svg {
+			width: 100%;
+			height: 1%;
+		}
+	}
+
+</style>

@@ -116,7 +116,7 @@ export default {
 			console.log( 'bargroups', this.barGroups );
 
 			this.xAxisLabels = this.drawXAxisLabels( this.barGroups );
-
+			console.log( 'xAxisLabels', this.xAxisLabels );
 			// draw labels
 			const lineIndicators = this.drawAxisIndicators( {
 				range    : this.range,
