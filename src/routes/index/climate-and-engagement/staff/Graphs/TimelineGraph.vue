@@ -49,7 +49,7 @@ export default {
 		range() {
 			const { data } = this;
 			const values = data.map( d => d.numOfAbsecnes );
-			console.log( values );
+			// console.log( values );
 			const range = this.getDataRange( values, false );
 			console.log( range );
 			return {
@@ -64,9 +64,49 @@ export default {
 	},
 
 	methods : {
+		computeBarData() {
+
+			return this.data.map( ( item ) => {
+				const {
+					label,
+					value,
+					numOfAbsecnes
+				} = item;
+
+				console.log( item.data.absences );
+				/* eslint-disable */
+				const absences  = item.data.absences;
+
+				const colorforSolidLine = '#9E5A46';
+				return {
+					label,
+					value,
+					absences,
+					numOfAbsecnes,
+					colorforSolidLine
+				};
+			} );
+		},
 		draw() {
-			this.drawMonths( this.months );
-			this.barGroups = this.createBarGroups( this.data );
+			// set beginning dims
+			this.updateDims( {
+				l : 5,
+				r : 5,
+				t : 10
+			} );
+			// this.drawMonths( this.months );
+
+			console.log( 'data', this.data );
+
+			// format array with all needed poroperties
+
+			const barGroupsData = this.computeBarData();
+
+			console.log( 'barGroupsdata', barGroupsData );
+
+			this.barGroups = this.createBarGroups( barGroupsData );
+
+			console.log( 'bargroups', this.barGroups );
 
 			this.xAxisLabels = this.drawXAxisLabels( this.barGroups );
 			// draw labels
@@ -84,6 +124,7 @@ export default {
 
 			this.xAxisLabels.attr( 'x', ( d, i ) => this.getTextX( i ) );
 		},
+
 		drawMonths( months ) {
 			console.log( months );
 		},
@@ -96,7 +137,6 @@ export default {
 				.append( 'g' )
 				.attr( 'class', 'bar-groups' );
 		},
-
 		drawXAxisLabels( barGroups ) {
 			const xAxisLabels = barGroups
 				.append( 'text' )
@@ -114,15 +154,16 @@ export default {
 					day : {
 						style : [
 							['fill', colors.grey],
-						]
+						],
 					},
 					night : {
 						style : [
-							['fill', colors.white]
+							['fill', colors.white],
 						],
 					},
 				},
 			} );
+
 			const barLabelNodes = barGroups.selectAll( '.x-axis-labels' );
 			const barLabelWidths = Array.from( barLabelNodes._groups[0] ).map( a => a.getBBox().height );
 			const biggestBarLabel = Math.max( ...barLabelWidths );

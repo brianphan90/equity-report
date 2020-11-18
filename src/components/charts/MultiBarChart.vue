@@ -164,10 +164,11 @@ export default {
 			const { range } = this;
 
 			const barGroupsData = this.computeBarGroupsData();
+			console.log( 'barGroupsData', barGroupsData );
 			this.barGroups = this.createBarGroup( barGroupsData );
-
+			console.log( 'bargroups', this.barGroups );
 			this.xAxisLabels = this.drawXAxisLabels( this.barGroups );
-
+			console.log( 'xAxisLabels', this.xAxisLabels );
 			// draw labels
 			this.drawAxisIndicators( {
 				range,
@@ -189,6 +190,10 @@ export default {
 
 		computeBarGroupsData() {
 			const { orderedLegend } = this;
+
+			console.log( 'orderedLegend', orderedLegend );
+
+			console.log( 'data', this.data );
 
 			return this.data.map( ( d ) => {
 				const { label, value } = d;
@@ -214,6 +219,8 @@ export default {
 		},
 
 		createBarGroup( barData ) {
+
+			console.log( this.id );
 			return this.canvas.selectAll( `bar-groups-${this.id}` )
 				.data( barData )
 				.enter()
