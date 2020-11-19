@@ -6,15 +6,12 @@
 			:item='item'
 			:key="item.label"
 		)
-<<<<<<< HEAD
-=======
 	.right-chart
 		TimelineGraph(
 			v-for='item in dataForSecondGraph'
 			:item='item'
 			:key="item.label"
 		)
->>>>>>> c0ac5e42d2366a8ae4414b4bd9dfff8beb370a02
 </template>
 <script>
 
