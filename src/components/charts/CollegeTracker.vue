@@ -225,6 +225,7 @@ export default {
 
 			const textNodes      = Array.from( valueLabels._groups[0] );
 			const textNodeHeights = textNodes.map( node => node.getBBox().height );
+			console.log( textNodeHeights );
 			const largestHeight   = Math.max( ...textNodeHeights );
 
 			this.updateDims( {

@@ -6,6 +6,7 @@
 <script>
 import * as d3 from 'd3';
 import BaseChart from '@/components/charts/BaseChart';
+import HorizontalStripedBarChart from '@/components/charts/HorizontalStripedBarChart';
 import colors from '@/assets/js/colors';
 
 export default {
@@ -24,6 +25,7 @@ export default {
 		axisIndicators  : null,
 		barGroups       : null,
 		xAxisLabels     : null,
+		yAxisLabels     : null,
 		barLabelSpacing : 5
 	} ),
 
@@ -35,7 +37,7 @@ export default {
 		barSpacing() {
 			const { barWidth, data, aw } = this;
 			const barSpacing = ( aw - ( barWidth * data.length ) ) / data.length;
-			console.log( barSpacing );
+			console.log( aw );
 			return 15;
 		},
 		numOfBars() {
@@ -127,19 +129,24 @@ export default {
 			console.log( 'bargroups', this.barGroups );
 
 			this.xAxisLabels = this.drawXAxisLabels( this.barGroups );
-
+			
 			console.log( 'xAxisLabels', this.xAxisLabels );
 			// draw labels
+			
+			// this.yAxisLabels = this.drawYAxisLabels( this.barGroups );
+			// console.log( 'yAxisLabels', this.yAxisLabels );	
+
 			const lineIndicators = this.drawAxisIndicators( {
 				range    : this.range,
 				axis     : 'y',
 				postChar : '',
 				lines    : {
-					spaceBetweenLabelsAndLines : 5,
+					spaceBetweenLabelsAndLines : 20,
 					numberOfIndicators         : 12,
 				},
 				dayColor   : colors.grey,
-				nightColor : colors.white,
+				nightColor : colors.white, 
+				data : this.data
 			} );
 
 			this.xAxisLabels.attr( 'x', ( d, i ) => this.getTextX( i ) );
@@ -157,6 +164,8 @@ export default {
 				.append( 'g' )
 				.attr( 'class', 'bar-groups' );
 		},
+
+
 		drawXAxisLabels( barGroups ) {
 			const xAxisLabels = barGroups
 				.append( 'text' )
@@ -190,6 +199,7 @@ export default {
 			const barLabelNodes = barGroups.selectAll( '.x-axis-labels' );
 			const barLabelWidths = Array.from( barLabelNodes._groups[0] ).map( a => a.getBBox().height );
 			const biggestBarLabel = Math.max( ...barLabelWidths );
+			
 			const spaceBetweenBarAndXAxis = 2;
 
 			this.updateDims( {

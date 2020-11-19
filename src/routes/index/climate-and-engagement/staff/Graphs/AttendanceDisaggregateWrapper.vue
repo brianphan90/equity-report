@@ -4,10 +4,6 @@
 		TimelineGraph(
 			:data='dataForFirstGraph'
 		)
-	.right-chart
-		TimelineGraph(
-			:data='dataForSecondGraph'
-		)
 </template>
 <script>
 
