@@ -139,6 +139,7 @@ export default {
 				postChar,
 				nightColor,
 				dayColor,
+				data
 			} = options;
 
 			const color = ( this.mode === 'night' ? nightColor : dayColor );
@@ -174,9 +175,13 @@ export default {
 
 					return bottomOfChart - distanceFromBottom;
 				} )();
-
-				const textValue = Math.round( range.min + ( ( i / ( numberOfIndicators - 1 ) ) * rangeDifference ) );
-
+				let textValue;
+				if ( !data ) {
+					textValue = Math.round( range.min + ( ( i / ( numberOfIndicators - 1 ) ) * rangeDifference ) );
+				}
+				else {
+					textValue = this.data[Object.keys( this.data )[i]].label;
+				}
 				labelData.push( {
 					y,
 					text : `${textValue}${postChar || ''}`,

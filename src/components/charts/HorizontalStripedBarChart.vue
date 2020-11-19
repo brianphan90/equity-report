@@ -95,10 +95,8 @@ export default {
 
 		getIllustrationData( data ) {
 			const { t } = this;
-
 			const range                    = this.getDataRange( data.map( a => a.value ), false );
 			const { barWidth, barPadding } = this;
-
 			return data.map( ( d, i ) => ( {
 				label       : d.label,
 				y           : t + ( barWidth * i ) + ( barPadding * i ),
