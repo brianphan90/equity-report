@@ -1,6 +1,10 @@
 <template lang="pug">
 	.chart
-		svg(ref='svg')
+		svg(
+			ref='svg'
+			height='70'
+			width='150'
+		)
 </template>
 
 <script>
@@ -15,9 +19,9 @@ export default {
 	extends : BaseChart,
 
 	props : {
-		data : {
-			type    : Array,
-			default : () => ( [] )
+		item : {
+			type    : Object,
+			default : () => ( {} )
 		}
 	},
 
@@ -30,17 +34,35 @@ export default {
 	} ),
 
 	computed : {
+		numOfBars() {
+			// const numOfBars = Object.keys( this.item.values ).length;
+			return 1;
+		},
+		maxBarWidth() {
+			const { aw, numOfBars, defaultPadding } = this;
+
+			const maxBarWidth = aw / numOfBars;
+
+			return maxBarWidth;
+		},
 		barWidth() {
-			const { aw, data } = this;
-			return Math.min( aw / data.length, 25 );
+			const { maxBarWidth } = this;
+			return Math.min( maxBarWidth, 25 );
 		},
 		barSpacing() {
+<<<<<<< HEAD
 			const { barWidth, data, aw } = this;
 			const barSpacing = ( aw - ( barWidth * data.length ) ) / data.length;
 			console.log( aw );
 			return 15;
+=======
+			// const { barWidth, data, aw } = this;
+			// const barSpacing = ( aw - ( barWidth * data.length ) ) / data.length;
+			// console.log( barSpacing );
+			return 8;
+>>>>>>> c0ac5e42d2366a8ae4414b4bd9dfff8beb370a02
 		},
-		numOfBars() {
+		numOfBarsMonths() {
 			return 12;
 		},
 		months() {
@@ -73,58 +95,54 @@ export default {
 	},
 
 	mounted() {
-		this.init( this.$refs.svg );
+		this.init( this.$refs.svg, {
+			t : 1,
+			b : 1,
+		} );
 	},
 
 	methods : {
-		computeBarData() {
+		computeBarData( item ) {
+			const {
+				label,
+				numOfAbsecnes
+			} = this.item;
 
-			return this.data.map( ( item ) => {
-				const {
-					label,
-					// remove this when certified is added
-					// value,
-					numOfAbsecnes
-				} = item;
+			// console.log( item.data.absences );
+			/* eslint-disable */ 
+			const absences  = item.data.absences;
 
-				console.log( item.data.absences );
-				/* eslint-disable */
-				const absences  = item.data.absences;
+			const colorforSolidLine = '#9E5A46';
+			// temp fix passing in 100 because doing classified first
 
-				const colorforSolidLine = '#9E5A46';
-				
-				// temp fix passing in 100 because doing classified first
+			const value = 100;
 
-				const value = 100;
-				
-				return {
-					label,
-					value,
-					absences,
-					numOfAbsecnes,
-					colorforSolidLine,
-				};
-			} );
+			return [{
+				label,
+				value,
+				absences,
+				numOfAbsecnes,
+				colorforSolidLine,
+			}];
 		},
 		draw() {
 			// set beginning dims
 			this.updateDims( {
-				
-				l : 50,
-				r : 5,
-				t : 10
+				// h : 220,
+				b : 1,
+				t : 1,
 			} );
 			// this.drawMonths( this.months );
 
-			console.log( 'data', this.data );
+			// console.log( 'data', this.item );
 
 			// format array with all needed poroperties
 
-			const barGroupsData = this.computeBarData();
+			const barData = this.computeBarData( this.item );
 
-			console.log( 'barGroupsdata', barGroupsData );
+			console.log( 'barGroupsdata', barData );
 
-			this.barGroups = this.createBarGroups( barGroupsData );
+			this.barGroups = this.createBarGroup( barData );
 
 			console.log( 'bargroups', this.barGroups );
 
@@ -150,19 +168,18 @@ export default {
 			} );
 
 			this.xAxisLabels.attr( 'x', ( d, i ) => this.getTextX( i ) );
+			this.bars = this.drawBars( this.barGroups );
 		},
 
 		drawMonths( months ) {
 			console.log( months );
 		},
 
-		createBarGroups( data ) {
-			return this.canvas
-				.selectAll( '.bar-groups' )
-				.data( data )
+		createBarGroup( barData ) {
+			return this.canvas.selectAll( `bars-${this.id}` )
+				.data( barData )
 				.enter()
-				.append( 'g' )
-				.attr( 'class', 'bar-groups' );
+				.append( 'g' );
 		},
 
 
@@ -217,20 +234,83 @@ export default {
 
 			return ( l + ( barWidth * i ) + ( barSpacing * i ) + ( barWidth / 2 ) ) + ( barSpacing / 2 );
 		},
+		getX( i ) {
+			const {
+				l,
+				barWidth,
+				barSpacing,
+			} = this;
+
+			return l + ( barWidth * i ) + ( barSpacing * i ) + ( barSpacing / 2 );
+		},
+		getY( height ) {
+			const { ah, t } = this;
+
+			return ah + t - height;
+		},
+		getHeight( value ) {
+			const { max } = this.range;
+
+			// + this assumes that the bottom of the range
+			// + is always zero
+			return ( value / max ) * this.ah;
+		}
 
 	}
+/*
+			if ( totalInstruction) {
+				return this.data.map( ( item ) => {
+					const {
+						label,
+						full,
+						partial,
+						totalInstruction,
+					} = item;
+					const absences  = item.data.absences;
+					const colorforSolidLine = '#9E5A46';
+					return {
+						label,
+						full,
+						partial,
+						absences
+					}
+				} );
+			} else {
+				return this.data.map( ( item ) => {
+					const {
+						label,
+						numOfAbsecnes
+					} = item;
+
+					console.log( item.data.absences );
+					const absences  = item.data.absences;
+
+					const colorforSolidLine = '#9E5A46';
+					// temp fix passing in 100 because doing classified first
+
+					const value = 100;
+
+					return {
+						label,
+						value,
+						absences,
+						numOfAbsecnes,
+						colorforSolidLine,
+					};
+				} );
+			}
+*/
 };
 </script>
 
 <style lang='scss'>
 	.chart {
 		width: 100%;
-		height: 100%;
 		flex: 1 1 0;
 
 		svg {
 			width: 100%;
-			height: 1%;
+			height: 1000;
 		}
 	}
 

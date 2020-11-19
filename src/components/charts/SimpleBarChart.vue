@@ -102,7 +102,9 @@ export default {
 
 			// Compute the position and size of the bars
 			const barData   = this.computeBarData();
+			console.log( 'barData', barData );
 			const barGroups = this.createBarGroup( barData );
+			console.log( 'barGroups', barGroups );
 
 			let xAxisLabels = null;
 
