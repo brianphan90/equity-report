@@ -2,15 +2,11 @@
 .attendance-disaggregate-wrapper
 	.left-chart
 		TimelineGraph(
-			v-for='item in dataForFirstGraph'
-			:item='item'
-			:key="item.label"
+			:data='dataForFirstGraph'
 		)
 	.right-chart
 		TimelineGraph(
-			v-for='item in dataForSecondGraph'
-			:item='item'
-			:key="item.label"
+			:data='dataForSecondGraph'
 		)
 </template>
 <script>

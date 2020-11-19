@@ -2,7 +2,7 @@
 	.chart
 		svg(
 			ref='svg'
-			height='80'
+			height='280'
 			width='150'
 		)
 </template>
@@ -97,11 +97,10 @@ export default {
 			const {
 				label,
 				numOfAbsecnes
-			} = this.item;
-
+			} = item;
 			// console.log( item.data.absences );
 			/* eslint-disable */ 
-			const absences  = item.data.absences;
+			const absences  = item.absences;
 
 			const colorforSolidLine = '#9E5A46';
 			// temp fix passing in 100 because doing classified first
@@ -128,8 +127,8 @@ export default {
 			// console.log( 'data', this.item );
 
 			// format array with all needed poroperties
-
-			const barData = this.computeBarData( this.item );
+			this.data.forEach( item => {
+				const barData = this.computeBarData( item );
 
 			// console.log( 'barGroupsdata', barData );
 
@@ -148,20 +147,10 @@ export default {
 			
 			// this.yAxisLabels = this.drawYAxisLabels( this.barGroups );
 			// console.log( 'yAxisLabels', this.yAxisLabels );	
+			})
+			
 
-			const lineIndicators = this.drawAxisIndicators( {
-				range    : this.range,
-				axis     : 'y',
-				postChar : '',
-				lines    : {
-					spaceBetweenLabelsAndLines : 20,
-					numberOfIndicators         : 12,
-				},
-				dayColor   : colors.grey,
-				nightColor : colors.white, 
-				data : this.data
-			} );
-			this.xAxisLabels.attr( 'x', ( d, i ) => this.getTextX( i ) );
+			
 		},
 
 		createBarGroup( barData ) {
@@ -170,12 +159,12 @@ export default {
 				.enter()
 				.append( 'g' );
 		},
+
 		drawBars( barGroups ) {
 
 
 			this.barLabelGroups = barGroups
 				.append( 'g' );
-
 
 			const spaceBetweenLabelAndBar = 2;
 
@@ -240,6 +229,44 @@ export default {
 
 			return xAxisLabels;
 		},
+
+		drawYAxisLabels( barGroups ) {
+			this.yAxisLabels = barGroups
+				.append( 'text' )
+				.attr( 'class', 'y-axis-labels' )
+				.attr( 'x', this.l )
+				.attr( 'y', d => d.textY )
+				.attr( 'text-anchor', 'start' )
+				.attr( 'dominant-baseline', 'middle' )
+				.attr( 'font-size', '12px' )
+				.text( d => d.label );
+
+			this.changeWithMode( {
+				nodes   : this.yAxisLabels,
+				options : {
+					day : {
+						style : [
+							['fill', colors.grey],
+						],
+					},
+					night : {
+						style : [
+							['fill', colors.white],
+						],
+					},
+				},
+			} );
+			const textNodes      = Array.from( this.yAxisLabels._groups[0] );
+			const textNodeWidths = textNodes.map( node => node.getBBox().width );
+			const largestWidth   = Math.max( ...textNodeWidths );
+
+			this.updateDims( {
+				l : largestWidth + 10,
+			} );
+
+			return this.yAxisLabels;
+		},
+		
 		getTextX( i ) {
 			const {
 				l,
