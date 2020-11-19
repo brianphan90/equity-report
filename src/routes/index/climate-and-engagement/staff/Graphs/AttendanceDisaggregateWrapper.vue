@@ -2,11 +2,15 @@
 .attendance-disaggregate-wrapper
 	.left-chart
 		TimelineGraph(
-			:data='dataForFirstGraph'
+			v-for='item in dataForFirstGraph'
+			:item='item'
+			:key="item.label"
 		)
 	.right-chart
 		TimelineGraph(
-			:data='dataForSecondGraph'
+			v-for='item in dataForSecondGraph'
+			:item='item'
+			:key="item.label"
 		)
 </template>
 <script>
@@ -41,8 +45,8 @@ export default {
 
 <style lang="scss">
 .attendance-disaggregate-wrapper {
-	width: 100%;
 	height: 100%;
+	overflow: auto;
 	.left-chart {
 		float: left;
 		width: 50%;
@@ -51,6 +55,7 @@ export default {
 	.right-chart {
 		float: right;
 		width: 50%;
+		height: 100%;
 	}
 	.label-wrapper {
 		padding: 10px;
