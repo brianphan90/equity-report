@@ -2,7 +2,7 @@
 	.chart
 		svg(
 			ref='svg'
-			height='70'
+			height='80'
 			width='150'
 		)
 </template>
@@ -51,10 +51,7 @@ export default {
 			// const { barWidth, data, aw } = this;
 			// const barSpacing = ( aw - ( barWidth * data.length ) ) / data.length;
 			// console.log( barSpacing );
-			return 8;
-		},
-		numOfBarsMonths() {
-			return 12;
+			return 5;
 		},
 		months() {
 			return [
@@ -131,7 +128,7 @@ export default {
 
 			const barData = this.computeBarData( this.item );
 
-			console.log( 'barGroupsdata', barData );
+			// console.log( 'barGroupsdata', barData );
 
 			this.barGroups = this.createBarGroup( barData );
 
@@ -139,26 +136,10 @@ export default {
 
 			this.xAxisLabels = this.drawXAxisLabels( this.barGroups );
 
-			console.log( 'xAxisLabels', this.xAxisLabels );
-			// draw labels
-			const lineIndicators = this.drawAxisIndicators( {
-				range    : this.range,
-				axis     : 'y',
-				postChar : '',
-				lines    : {
-					spaceBetweenLabelsAndLines : 5,
-					numberOfIndicators         : 12,
-				},
-				dayColor   : colors.grey,
-				nightColor : colors.white,
-			} );
+			// draw the bars
+			this.drawBars ( this.barGroups );
 
 			this.xAxisLabels.attr( 'x', ( d, i ) => this.getTextX( i ) );
-			this.bars = this.drawBars( this.barGroups );
-		},
-
-		drawMonths( months ) {
-			console.log( months );
 		},
 
 		createBarGroup( barData ) {
@@ -166,6 +147,33 @@ export default {
 				.data( barData )
 				.enter()
 				.append( 'g' );
+		},
+		drawBars( barGroups ) {
+
+
+			this.barLabelGroups = barGroups
+				.append( 'g' );
+
+
+			const spaceBetweenLabelAndBar = 2;
+
+			this.barLabelGroups.append( 'rect' )
+				.attr( 'x', 45 )
+				.attr( 'y', 50 )
+				.attr( 'width', 540 )
+				.attr( 'fill', '#9E5A46' )
+				.attr( 'height', 10 );
+
+			// this function needs to be alter'd to draw triangles, circles on graph
+			const textLabels = this.barLabelGroups.append( 'text' )
+				.attr( 'x', 500 )
+				.attr( 'y', 70 )
+				// .attr( 'class', 'bar-value' )
+				.attr( 'text-anchor', 'middle' )
+				.attr( 'dominant-baseline', 'middle' )
+				.style( 'fill', colors.black )
+				.text( 'number of absences: ' );
+
 		},
 		drawXAxisLabels( barGroups ) {
 			const xAxisLabels = barGroups
@@ -240,49 +248,6 @@ export default {
 		}
 
 	}
-/*
-			if ( totalInstruction) {
-				return this.data.map( ( item ) => {
-					const {
-						label,
-						full,
-						partial,
-						totalInstruction,
-					} = item;
-					const absences  = item.data.absences;
-					const colorforSolidLine = '#9E5A46';
-					return {
-						label,
-						full,
-						partial,
-						absences
-					}
-				} );
-			} else {
-				return this.data.map( ( item ) => {
-					const {
-						label,
-						numOfAbsecnes
-					} = item;
-
-					console.log( item.data.absences );
-					const absences  = item.data.absences;
-
-					const colorforSolidLine = '#9E5A46';
-					// temp fix passing in 100 because doing classified first
-
-					const value = 100;
-
-					return {
-						label,
-						value,
-						absences,
-						numOfAbsecnes,
-						colorforSolidLine,
-					};
-				} );
-			}
-*/
 };
 </script>
 
