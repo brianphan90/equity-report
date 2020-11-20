@@ -35,7 +35,7 @@
 /*
 			.charts
 				.left-chart
-					.data-grid
+f					.data-grid
 						.month-legend
 							table
 								thead

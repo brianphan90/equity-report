@@ -81,7 +81,7 @@ export default {
 <style lang='scss'>
 .classified-attendance-disaggregated {
 	height: 100%;
-
+	overflow: scroll;
 	.content {
 		.page-title {
 			display: flex;

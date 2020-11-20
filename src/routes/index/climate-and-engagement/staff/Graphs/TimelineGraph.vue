@@ -2,7 +2,7 @@
 	.chart
 		svg(
 			ref='svg'
-			height='280'
+			height= '565'
 			width='150'
 		)
 </template>
@@ -36,7 +36,7 @@ export default {
 	computed : {
 		numOfBars() {
 			// const numOfBars = Object.keys( this.item.values ).length;
-			return 1;
+			return 12;
 		},
 		maxBarWidth() {
 			const { aw, numOfBars, defaultPadding } = this;
@@ -72,85 +72,205 @@ export default {
 				'June',
 			];
 		},
-		range() {
-			const { data } = this;
-			const values = data.map( d => d.numOfAbsecnes );
-			// console.log( values );
-			const range = this.getDataRange( values, false );
-			console.log( range );
-			return {
-				min : range.start,
-				max : range.end
-			};
-		},
 	},
 
 	mounted() {
 		this.init( this.$refs.svg, {
 			t : 1,
-			b : 1,
+			b : 1
 		} );
 	},
 
 	methods : {
-		computeBarData( item ) {
-			const {
-				label,
-				numOfAbsecnes
-			} = item;
-			// console.log( item.data.absences );
-			/* eslint-disable */ 
-			const absences  = item.absences;
+		computeBarData( data ) {
+			// we are passing array but we have to check two cases to check if it comes from certificated or classified
+			/* eslint-disable */
+			const totalInstruction = data[0].totalInstruction;
+			if ( totalInstruction ) {
+				return data.map( ( item ) => {
+					const {
+						label,
+						full, 
+						partial, 
+						totalInstruction,
+					} = item; 
+					
+					/* eslint-disable */ 
+					const absences = item.data.absences;
+					const value = 100;
+					const colorforSolidLine = '#9E5A46';
+					return {
+						label,
+						value,
+						absences,
+						full,
+						partial,
+						totalInstruction,
+						colorforSolidLine
+					}
+				})
+			} else {
+				return data.map( ( item ) => {
+					const {
+						label,
+						numOfAbsecnes
+					} = item;
+					/* eslint-disable */ 
+					const absences  = item.data.absences;
 
-			const colorforSolidLine = '#9E5A46';
-			// temp fix passing in 100 because doing classified first
+					const colorforSolidLine = '#9E5A46';
+					// temp fix passing in 100 because doing classified first
 
-			const value = 100;
+					const value = 100;
 
-			return [{
-				label,
-				value,
-				absences,
-				numOfAbsecnes,
-				colorforSolidLine,
-			}];
+					return {
+						label,
+						value,
+						absences,
+						numOfAbsecnes,
+						colorforSolidLine,
+					}
+				} );
+			}
 		},
 		draw() {
-			// set beginning dims
-			this.updateDims( {
-				// h : 220,
-				b : 1,
-				t : 1,
-			} );
 			// this.drawMonths( this.months );
 
-			// console.log( 'data', this.item );
-
 			// format array with all needed poroperties
-			this.data.forEach( item => {
-				const barData = this.computeBarData( item );
 
-			// console.log( 'barGroupsdata', barData );
+			const barData = this.computeBarData( this.data );
+
+
+			console.log( 'barGroupsdata', barData );
 
 			this.barGroups = this.createBarGroup( barData );
 
-			console.log( 'bargroups', this.barGroups );
+			// console.log( 'bargroups', this.barGroups );
 
 			this.xAxisLabels = this.drawXAxisLabels( this.barGroups );
+			//draws y axis without indicator lines
 
 			// draw the bars
 			this.drawBars ( this.barGroups );
 
+			const lineIndicators = this.drawAxisIndicators( {
+				range    : this.range,
+				axis     : 'y',
+				postChar : '',
+				lines    : {
+					spaceBetweenLabelsAndLines : 5,
+					numberOfIndicators         : this.data.length,
+				},
+				dayColor   : colors.grey,
+				nightColor : colors.white,
+				data: this.data,
+			} );
 			
-			console.log( 'xAxisLabels', this.xAxisLabels );
+			
+
+
 			// draw labels
 			
 			// this.yAxisLabels = this.drawYAxisLabels( this.barGroups );
 			// console.log( 'yAxisLabels', this.yAxisLabels );	
-			})
+			
 			
 
+		},
+
+		drawAxisIndicators( options ) {
+			const {
+				axis, // eslint-disable-line
+				range,
+				lines,
+				postChar,
+				nightColor,
+				dayColor,
+				data
+			} = options;
+
+			const color = ( this.mode === 'night' ? nightColor : dayColor );
+
+			const {
+				numberOfIndicators,
+				spaceBetweenLabelsAndLines,
+			} = lines;
+
+			/* add text labels */
+
+			const labelData = [];
+			for ( let i = 0; i < numberOfIndicators; i++ ) {
+
+				const dominantBaseline = ( () => {
+					if ( i === numberOfIndicators - 1 ) {
+						return 'text-before-edge';
+					}
+
+					if ( i === 0 ) {
+						return 'text-after-edge';
+					}
+
+					return 'middle';
+				} )();
+
+				const y = ( () => {
+					const bottomOfChart = this.t + this.ah;
+					console.log(bottomOfChart);
+					const distanceFromBottom = i * ( this.ah / ( numberOfIndicators - 1 ) );
+					console.log( distanceFromBottom );
+					return bottomOfChart - distanceFromBottom;
+				} )();
+
+				console.log( 'y', y ); 
+
+				const textValue = this.data[Object.keys( this.data )[i]].label;;
+
+				labelData.push( {
+					y,
+					text : `${textValue}${postChar || ''}`,
+					dominantBaseline,
+					nightColor,
+					dayColor,
+				} );
+
+			}
+
+			const lineIndicatorGroups = this.canvas
+				.selectAll( `line-indicators-${this.id}` )
+				.data( labelData )
+				.enter()
+				.append( 'g' ) // will append as many g's as the length of labelData
+				.attr( 'class', `line-indicators-${this.id}` );
+
 			
+
+			if ( options.labels !== false ) {
+				/* draw line lables */
+				const lineLabels = lineIndicatorGroups.append( 'text' )
+					.attr( 'class', `line-indicators label-${this.id} dynamic-text-${this.id}` )
+					.attr( 'dominant-baseline', d => d.dominantBaseline )
+					.attr( 'x', this.l )
+					.attr( 'y', d => d.y)
+					.style( 'font-size', '10px' )
+					.style( 'fill', color )
+					.text( d => d.text );
+
+				/* right align text */
+
+				const lineLabelWidths  = Array.from( lineLabels._groups[0] ).map( a => a.getBBox().width );
+				const biggestLineLabel = Math.max( ...lineLabelWidths );
+
+				lineLabels.attr( 'x', biggestLineLabel )
+					.attr( 'text-anchor', 'end' );
+
+				this.updateDims( {
+					l : biggestLineLabel + spaceBetweenLabelsAndLines
+				} );
+
+			}
+
+			return lineIndicatorGroups;
+
 		},
 
 		createBarGroup( barData ) {
@@ -198,8 +318,6 @@ export default {
 				.style( 'font-size', '12px' )
 				.text( d => d.label );
 
-
-			console.log( 'drawxaxislabels in function', xAxisLabels );
 
 			this.changeWithMode( {
 				nodes   : xAxisLabels,

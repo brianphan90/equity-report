@@ -175,13 +175,8 @@ export default {
 
 					return bottomOfChart - distanceFromBottom;
 				} )();
-				let textValue;
-				if ( !data ) {
-					textValue = Math.round( range.min + ( ( i / ( numberOfIndicators - 1 ) ) * rangeDifference ) );
-				}
-				else {
-					textValue = this.data[Object.keys( this.data )[i]].label;
-				}
+				const textValue = Math.round( range.min + ( ( i / ( numberOfIndicators - 1 ) ) * rangeDifference ) );
+
 				labelData.push( {
 					y,
 					text : `${textValue}${postChar || ''}`,
