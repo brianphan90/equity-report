@@ -2,8 +2,8 @@
 	.chart
 		svg(
 			ref='svg'
-			height= '565'
-			width='150'
+			height='1000'
+			width='200'
 		)
 </template>
 
@@ -140,18 +140,17 @@ export default {
 
 			const barData = this.computeBarData( this.data );
 
+			this.barData = barData;
 
 			console.log( 'barGroupsdata', barData );
 
 			this.barGroups = this.createBarGroup( barData );
 
-			// console.log( 'bargroups', this.barGroups );
-
 			this.xAxisLabels = this.drawXAxisLabels( this.barGroups );
 			//draws y axis without indicator lines
 
 			// draw the bars
-			this.drawBars ( this.barGroups );
+			// this.drawBars ( this.barGroups );
 
 			const lineIndicators = this.drawAxisIndicators( {
 				range    : this.range,
@@ -221,8 +220,6 @@ export default {
 					return bottomOfChart - distanceFromBottom;
 				} )();
 
-				console.log( 'y', y ); 
-
 				const textValue = this.data[Object.keys( this.data )[i]].label;;
 
 				labelData.push( {
@@ -250,24 +247,42 @@ export default {
 					.attr( 'class', `line-indicators label-${this.id} dynamic-text-${this.id}` )
 					.attr( 'dominant-baseline', d => d.dominantBaseline )
 					.attr( 'x', this.l )
-					.attr( 'y', d => d.y)
+					.attr( 'y', d => d.y + 75 )
 					.style( 'font-size', '10px' )
 					.style( 'fill', color )
 					.text( d => d.text );
 
+
 				/* right align text */
 
+				/*
 				const lineLabelWidths  = Array.from( lineLabels._groups[0] ).map( a => a.getBBox().width );
 				const biggestLineLabel = Math.max( ...lineLabelWidths );
 
 				lineLabels.attr( 'x', biggestLineLabel )
 					.attr( 'text-anchor', 'end' );
 
+
 				this.updateDims( {
 					l : biggestLineLabel + spaceBetweenLabelsAndLines
 				} );
-
+				*/ 
 			}
+			const bars = this.barGroups.selectAll( `bar-groups-${this.id}` )
+				.data( this.barData )
+				.enter()
+				.append( 'g' );
+
+			bars.append( 'rect' )
+				.attr( 'x', ( d, i ) => this.getX( i ) + 50  )
+				.attr( 'y', ( d ) => {
+					const y = this.getY( this.getHeight( d.value ) );
+					console.log( 'y in', y );
+					return y;
+				} )
+				.attr( 'width', 200 )
+				.attr( 'fill', '#9E5A46' )
+				.attr( 'height', 10 );
 
 			return lineIndicatorGroups;
 

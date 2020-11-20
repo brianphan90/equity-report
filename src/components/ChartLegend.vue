@@ -37,7 +37,7 @@ export default {
 	computed : {
 
 		gridTemplateColumns() {
-			console.log( this.legend );
+			// console.log( this.legend );
 			if ( typeof this.columns === 'string' ) {
 				return this.columns;
 			}
