@@ -1,16 +1,26 @@
 <template lang="pug">
 .attendance-disaggregate-wrapper
 	.left-chart
+		MonthLegend(
+
+		)
 		TimelineGraph(
-			:data='dataForFirstGraph'
+			v-for='item in dataForFirstGraph'
+			:item='item'
+			:key="item.label"
 		)
 	.right-chart
+		MonthLegend(
+
+		)
 		TimelineGraph(
-			:data='dataForSecondGraph'
+			v-for='item in dataForSecondGraph'
+			:item='item'
+			:key="item.label"
 		)
 </template>
 <script>
-
+import MonthLegend from './MonthLegend';
 import TimelineGraph from './TimelineGraph';
 
 export default {
@@ -34,7 +44,8 @@ export default {
 		}
 	},
 	components : {
-		TimelineGraph
+		TimelineGraph,
+		MonthLegend
 	}
 };
 </script>

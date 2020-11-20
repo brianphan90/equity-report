@@ -97,6 +97,7 @@ export default {
 				t : 1,
 			} );
 
+			console.log( 'range', this.range );
 			const { range, options } = this;
 			const { hasXAxis } = options;
 
@@ -243,7 +244,6 @@ export default {
 		getHeight( value ) {
 			const { max } = this.range;
 
-			console.log( 'this range ', this.range );
 
 			return ( value / max ) * this.ah;
 		},

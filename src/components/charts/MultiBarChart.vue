@@ -66,8 +66,8 @@ export default {
 
 		numberOfBarsInGroups() {
 			const { legend } = this;
-
-			return Object.keys( legend ).length;
+			const numberOfBarsInGroups = Object.keys( legend ).length;
+			return numberOfBarsInGroups;
 		},
 
 		totalBars() {
@@ -95,7 +95,7 @@ export default {
 		},
 
 		barWidth() {
-			return 8;
+			return 10;
 		},
 
 		groupWidth() {
@@ -231,7 +231,8 @@ export default {
 					groupOffset
 				};
 			} );
-			console.log( barData );
+			console.log( 'compute Bar data being passed in ', data );
+			console.log( 'compute bar data output', barData );
 			return barData;
 		},
 
