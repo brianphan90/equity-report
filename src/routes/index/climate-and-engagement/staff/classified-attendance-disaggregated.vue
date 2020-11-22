@@ -40,7 +40,7 @@ import ChartLegend from '@/components/ChartLegend';
 import StackedComparisonCharts from '@/components/charts/StackedComparisonCharts';
 
 
-import AttendanceDisaggregateWrapper from './Graphs/AttendanceDisaggregateWrapper';
+import AttendanceDisaggregateWrapper from '@/components/charts/AttendanceDisaggregateWrapper';
 
 
 export default {
