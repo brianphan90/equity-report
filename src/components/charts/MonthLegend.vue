@@ -9,12 +9,11 @@ export default {
 
 	props : {
 		svg : {
-			required: true,
+			required : true,
 		},
-	},
-
-	mounted() {
-		this.init(this.svg);
+		dims : {
+			required : true,
+		}
 	},
 
 	computed : {
@@ -28,33 +27,34 @@ export default {
 		draw() {
 			// take our months
 			const { months } = this;
-			
+
+			console.log( 'hi' );
 
 			// add a wrapper for our months
 			const monthsGroup = this.canvas
-				.selectAll('.months-group')
-				.data(months)
+				.selectAll( '.months-group' )
+				.data( months )
 				.enter()
-				.append('g');
+				.append( 'g' );
 
 			// append the texts
-			monthsGroup.append('text')
-				.attr('x', (d, i) => this.getX(i))
-				.attr('y', 0)
-				.text(month => month);
+			monthsGroup.append( 'text' )
+				.attr( 'x', ( d, i ) => this.getX( i ) )
+				.attr( 'y', 0 )
+				.text( month => month );
 
 			// we're gonna rotate'em
 			// we're gonna figure how "tall" they are
 			// we're going to emit that data to the parent
 		},
 
-		getX(i) {
+		getX( i ) {
 			// figure out our relevant constraints
 			const { aw, l }   = this;
 			const numOfMonths = this.months.length;
-			const monthWidth  = (aw / (numOfMonths - 1));
+			const monthWidth  = ( aw / ( numOfMonths - 1 ) );
 
-			return l + (monthWidth * 1);
+			return l + ( monthWidth * 1 );
 		},
 		createMonthGroups( data ) {
 			return this.canvas

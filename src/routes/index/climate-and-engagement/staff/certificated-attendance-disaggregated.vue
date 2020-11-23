@@ -89,8 +89,8 @@ import ChangeIndicator from '@/components/charts/ChangeIndicator';
 import ChartLegend from '@/components/ChartLegend';
 import StackedComparisonCharts from '@/components/charts/StackedComparisonCharts';
 
-import PureVueChart from 'pure-vue-chart';
-import AttendanceDisaggregateWrapper from './Graphs/AttendanceDisaggregateWrapper';
+
+import AttendanceDisaggregateWrapper from '@/components/charts/AttendanceDisaggregateWrapper';
 
 export default {
 	name : 'certificated-attendance-disaggregated',
@@ -111,7 +111,6 @@ export default {
 		DisaggregatedGraphicWrapper,
 		ChartLegend,
 		StackedComparisonCharts,
-		PureVueChart,
 		AttendanceDisaggregateWrapper
 	}
 };

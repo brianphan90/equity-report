@@ -122,7 +122,6 @@ export default {
 				const padding = 5;
 				const startX = this.l + padding;
 				const endX   = this.l + padding + ( this.aw * d.xProportion );
-				console.log( 'return stuiff in drawBars', { startX, endX } );
 				return {
 					startX,
 					endX
@@ -133,7 +132,6 @@ export default {
 				.append( 'path' )
 				.attr( 'd', ( d ) => {
 					const { startX, endX } = getX( d );
-					console.log( `M ${startX} ${d.textY} L ${endX} ${d.textY}` );
 					return `M ${startX} ${d.textY} L ${endX} ${d.textY}`;
 				} )
 				.style( 'stroke', this.legend.default.color )

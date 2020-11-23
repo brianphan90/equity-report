@@ -173,17 +173,14 @@ export default {
 
 			this.barData = barData;
 
-			console.log( 'barGroupsdata', barData );
 
 			this.barGroups = this.createBarGroup( barData );
 
-			console.log('barGrouops', this.barGroups );
 
 			this.drawTimelineGraph( this.barGroups );
 
 		},
 		drawTimelineGraph ( barGroups ) {
-			console.log( 'bargroups', barGroups );
 			this.barLabelGroups = barGroups
 				.append( 'g' );
 
@@ -250,11 +247,6 @@ export default {
 	.chart {
 		width: 100%;
 		flex: 1 1 0;
-
-		svg {
-			width: 100%;
-			height: 1000;
-		}
 	}
 
 </style>
