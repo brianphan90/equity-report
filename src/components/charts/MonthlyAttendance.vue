@@ -1,6 +1,5 @@
 <template lang='pug'>
 .monthly-attendance-chart
-
 	svg(:id='id' ref='svg')
 </template>
 
@@ -58,7 +57,7 @@ export default {
 			console.log( this.canvas );
 			this.drawMonthLabels();
 			const teacherGroups = this.drawLeftLabels();
-
+			this.drawBarGroups();
 			this.reArrangeMonthLabels();
 			this.reArrangeMonthRectangles();
 		},
@@ -194,6 +193,32 @@ export default {
 			} );
 
 			return teacherGroups;
+		},
+
+		drawBarGroups() {
+			const getX = ( d ) => {
+				const startX = this.l;
+				const endX = this.l + ( this.aw * d.xProportion );
+				return {
+					startX,
+					endX,
+				};
+			};
+			const barGroups = this.canvas
+				.selectAll( '.bar-groups' )
+				.data( this.data )
+				.enter()
+				.append( 'g' );
+
+			const spaceBetweenLabelAndBar = 2;
+
+			barGroups.append( 'rect' )
+				.attr( 'x', this.l - 10 )
+				.attr( 'y', ( d, i ) => this.getTeacherGroupT( i ) )
+				.attr( 'width', this.monthWidth * 12 )
+				.attr( 'fill', '#3F5356' )
+				.attr( 'height', 10 );
+
 		},
 
 		getTeacherGroupT( i ) {
