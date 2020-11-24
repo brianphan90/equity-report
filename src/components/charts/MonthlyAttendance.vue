@@ -167,6 +167,18 @@ export default {
 				.text( d => d.label )
 				.style( 'fill', this.mode === 'day' ? colors.grey : colors.white );
 
+
+			// append bottom label for # of absences
+			const absenceNodes = teacherGroups
+				.append( 'text' )
+				.attr( 'x', this.monthWidth * 8.5 )
+				.attr( 'y', ( d, i ) => this.getTeacherGroupT( i ) + 20 )
+				.attr( 'dominant-baseline', 'middle' )
+				.attr( 'text-anchor', 'start' )
+				.attr( 'font-size', '10px' )
+				.text( d => this.absenceLabel( d.numOfAbsecnes ) )
+				.style( 'fill', this.mode === 'day' ? colors.grey : colors.white );
+
 			this.changeWithMode( {
 				nodes   : textNodes,
 				options : {
@@ -196,21 +208,11 @@ export default {
 		},
 
 		drawBarGroups() {
-			const getX = ( d ) => {
-				const startX = this.l;
-				const endX = this.l + ( this.aw * d.xProportion );
-				return {
-					startX,
-					endX,
-				};
-			};
 			const barGroups = this.canvas
 				.selectAll( '.bar-groups' )
 				.data( this.data )
 				.enter()
 				.append( 'g' );
-
-			const spaceBetweenLabelAndBar = 2;
 
 			barGroups.append( 'rect' )
 				.attr( 'x', this.l - 10 )
@@ -218,7 +220,6 @@ export default {
 				.attr( 'width', this.monthWidth * 12 )
 				.attr( 'fill', '#3F5356' )
 				.attr( 'height', 10 );
-
 		},
 
 		getTeacherGroupT( i ) {
@@ -262,6 +263,13 @@ export default {
 
 			rectangles.attr( 'x', ( d, i ) => this.getMonthLabelX( i ) - ( this.monthWidth / 2 ) );
 		},
+		absenceLabel( num ) {
+			console.log( num );
+			const firstPart = 'Number of Absences:';
+			const secondPart = num.toString();
+			const res = firstPart.concat( secondPart );
+			return res;
+		}
 	},
 
 	components : {

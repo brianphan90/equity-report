@@ -24,7 +24,7 @@
 					h1.subtitle.dynamic-mode-text Attendance
 				.legend
 					chart-legend(:legend='data.legend' :columns=1 )
-			.charts
+			.attendance-chart
 				attendance-disaggregate-wrapper(
 					:legend='data.legend'
 					:chart='data.chart'
@@ -119,7 +119,7 @@ export default {
 <style lang='scss'>
 .certificated-attendance-disaggregated {
 	height: 100%;
-
+	overflow: scroll;
 	.content {
 		.page-title {
 			display: flex;
@@ -132,6 +132,8 @@ export default {
 		.attendance-chart {
 			width: 100%;
 			height: 100%;
+			flex: 1 1 0;
+			padding: 30px;
 		}
 	}
 }
