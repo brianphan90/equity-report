@@ -39,16 +39,18 @@ export default {
 <style lang="scss">
 .attendance-disaggregate-wrapper {
 	height: 100%;
-	.left-chart {
-		float: left;
-		width: 50%;
+	display: flex;
+	align-items: stretch;
+
+	.monthly-attendance-chart {
 		height: 100%;
+		flex: 1 1 0;
+
+		+ .monthly-attendance-chart {
+			margin-left: 30px;
+		}
 	}
-	.right-chart {
-		float: right;
-		width: 50%;
-		height: 100%;
-	}
+
 	.label-wrapper {
 		padding: 10px;
 		margin: 10px 0;

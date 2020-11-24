@@ -17,10 +17,10 @@
 		:state='state'
 		:error-message='errorMessage'
 	)
-		.content.dynamic-mode-background-secondary.floating-side-text(slot='loaded' v-if='data')
+		.content.dynamic-mode-background.floating-side-text(slot='loaded' v-if='data')
 			.page-title
 				h1.main-title.dynamic-mode-text Classified Attendance
-			.chart
+			.chart-legend
 				chart-legend(:legend="data.legend")
 			.attendance-chart
 				attendance-disaggregate-wrapper(
@@ -39,9 +39,7 @@ import ChangeIndicator from '@/components/charts/ChangeIndicator';
 import ChartLegend from '@/components/ChartLegend';
 import StackedComparisonCharts from '@/components/charts/StackedComparisonCharts';
 
-
 import AttendanceDisaggregateWrapper from '@/components/charts/AttendanceDisaggregateWrapper';
-
 
 export default {
 	name : 'classified-attendance-disaggregated',
@@ -82,18 +80,38 @@ export default {
 .classified-attendance-disaggregated {
 	height: 100%;
 	overflow: scroll;
+
+	.data-view-state-manager,
+	.data-view-state-manager .loaded-container,
+	.data-view-state-manager .loaded-container .content {
+		height: 100%;
+	}
+
 	.content {
+		display: flex;
+		flex-direction: column;
+
 		.page-title {
 			display: flex;
+			flex: 0 0 auto;
 		}
+
 		.main-title {
 			font-size: 52px;
 			line-height: 69px;
 			letter-spacing: 0.045em;
+			flex: 0 0 auto;
 		}
+
+		.chart-legend {
+			flex: 0 0 auto;
+		}
+
 		.attendance-chart {
 			width: 100%;
 			height: 100%;
+			flex: 1 1 0;
+			padding: 30px;
 		}
 	}
 }

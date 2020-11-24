@@ -39,8 +39,6 @@ const formatNavRoutes = ( routerInfo, basePath ) => {
 			return true;
 		}
 
-		console.log( meta.display );
-
 		return meta.display !== false;
 	} ).map( ( info ) => {
 		const { path : pathProp } = info;
@@ -58,10 +56,8 @@ const formatNavRoutes = ( routerInfo, basePath ) => {
 		if ( info.children ) {
 			item.children = formatNavRoutes( info.children, path );
 		}
-		console.log( item );
 		return item;
 	} );
-	console.log( menuItems );
 	return menuItems.sort( ( a, b ) => ( a.order - b.order ) );
 };
 
@@ -132,7 +128,6 @@ export default {
 	methods : {
 
 		selectMenuItem( item ) {
-			console.log( 'set menu item', item.path );
 			if ( this.open[item.path] && this.navState === 'open' ) {
 				this.open[item.path] = false;
 
@@ -157,7 +152,6 @@ export default {
 		},
 
 		toggleViewMode() {
-			console.log( this.$router.history.current.path );
 			if ( this.viewMode === 'day' ) {
 				this.viewMode = 'night';
 
@@ -173,8 +167,9 @@ export default {
 		},
 
 		log( message ) {
-			console.log( message );
+			// console.log( message );
 		},
+
 		nextPage() {
 			const curPath = this.$router.history.current.path;
 			const retArray = [];
@@ -190,7 +185,6 @@ export default {
 						prevCategory = item.icon;
 					}
 					else if ( prevCategory !== item.icon ) {
-						console.log( magicIndex - 1 );
 						finalIndex = magicIndex - 1;
 						prevCategory = item.icon;
 					}
@@ -207,12 +201,10 @@ export default {
 				}
 			}
 			else {
-				console.log( 'end' );
 				this.$router.push( retArray[0].path );
 				this.open[rootPaths[0]] = true; //	/academics
 				this.open[rootPaths[1]] = false; //	/climate-and-engagement
 			}
-			console.log( retArray );
 		}
 
 	},

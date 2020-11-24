@@ -92,15 +92,27 @@ export default {
 				.remove();
 
 			this.resetDims();
-			this.draw();
+			this.$nextTick( () => this.draw() );
 		},
 
 		resetDims() {
 
+			const svg = ( () => {
+				if ( this.$refs.svg ) {
+					return this.$refs.svg;
+				}
+
+				if ( this.svg ) {
+					return this.svg;
+				}
+
+				throw new Error( 'an SVG must be defined either implicitly as a ref named "svg" or explicityly as a data property, or prop' );
+			} )();
+
 			const {
 				clientWidth  : w,
 				clientHeight : h,
-			} = this.$refs.svg;
+			} = svg;
 
 			this.h = h;
 			this.w = w;
