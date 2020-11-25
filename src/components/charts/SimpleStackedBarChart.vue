@@ -179,15 +179,15 @@ export default {
 				} );
 
 
-			const correctYPos = ( y, yPrev, textHeight, index, ah, direction ) => { // eslint-disable-line
+			const correctYPos = ( y, yPrev, textHeight, index, ah, direction, d ) => { // eslint-disable-line
 
 				// place text at the top
-				if ( index === 0 && y < textHeight ) {
+				if ( index === 0 && direction < 0 && y < textHeight ) {
 					return 0;
 				}
 
 				// place text at the bottom
-				if ( index === 0 && y + textHeight > ah ) {
+				if ( index === 0 && direction > 0 && y + textHeight > ah ) {
 					return ah - textHeight;
 				}
 
@@ -208,14 +208,8 @@ export default {
 
 				}
 				else {
-
-					// curY is below prevY
-					if ( yDiff > 0 ) {
-						return yPrev - textHeight;
-					}
-
 					// Overlap
-					if ( yDiff < textHeight ) {
+					if ( Math.abs( yDiff ) < textHeight ) { // eslint-disable-line
 						return yPrev - textHeight;
 					}
 				}
@@ -234,7 +228,7 @@ export default {
 					const textHeight = group.childNodes[1].getBBox().height;
 
 					const curY = group.childNodes[1].getBBox().y;
-					const newY = correctYPos( curY, prevY, textHeight, index, this.ah, direction );
+					const newY = correctYPos( curY, prevY, textHeight, index, this.ah, direction, d );
 					const textColor = this.mode === 'night' ? colors.nightTextDefault : colors.dayTextDefault;
 
 					d3.select( group )
