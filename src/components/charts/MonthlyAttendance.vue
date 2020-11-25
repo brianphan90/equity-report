@@ -126,7 +126,7 @@ export default {
 				.attr( 'y', 0 )
 				.attr( 'height', this.ah )
 				.attr( 'width', rectangleWidth )
-				.style( 'fill', ( d, i ) => {
+				.style( 'fill', ( d, i, data, g ) => {
 					if ( i % 2 ) {
 						return this.mode === 'day' ? colors.dayTimeLightAccent : colors.nightTimeLightAccent;
 					}
@@ -255,9 +255,10 @@ export default {
 			 */
 
 			const indicatorGroup = barGroup
-				.selectAll( '.indicators' )
+				.selectAll( `.indicators-${rowNumber}` )
 				.data( barIndicatorData )
-				.enter();
+				.enter()
+				.append( 'g' );
 
 			const indicatorGroups = Array.from( indicatorGroup._groups[0] );
 			indicatorGroups.forEach( iGroup => this.drawIndicators( iGroup, rowNumber ) );
@@ -265,7 +266,6 @@ export default {
 
 		getBarIndicatorGroupData( d ) {
 			const { absences } = d.data;
-
 
 			const absenceMap = absences.reduce( ( map, absence ) => {
 				/* eslint-disable no-param-reassign */
@@ -344,17 +344,66 @@ export default {
 			const symbols = textGroups
 				.append( 'path' )
 				.attr( 'class', 'symbol' )
-				.attr( 'd', d => this.getPath( d.symbol ) )
-				.attr( 'x', ( d, i ) => this.getBarTextX( month, i ) + 1/* the width of the text next to it */ )
-				.attr( 'y', this.getBarY( rowNumber ) )
+				.attr( 'd', ( d, i, datas, g ) => {
+					const textSibling = textGroups._groups[0][i].children[0];
+					const {
+						x: textX,
+						y: textY,
+						width,
+						height
+					} = textSibling.getBBox();
+
+					const x = textX + width + 3;
+					const y = textY + ( height / 2 );
+
+					return this.getPath( d.symbol, x, y );
+				} )
 				.style( 'fill', colors.white );
 
-
 			// apply a transform (if we have to)
+			const dims = indicatorGroup.node().getBBox();
+			const { width } = dims;
+			indicatorGroup
+				.style( 'transform', `translate(-${width / 2}px, 0)` );
 		},
 
-		getPath( symbol ) {
-			return 'M 1 0 L 1 100 L 100 80 L 100 1 Z';
+		getPath( symbol, x, y ) {
+			if ( symbol === 'triangle' ) {
+				const triangleSideLength = 8;
+				// get the height of the base
+				const triangleHeight = Math.atan( 60 ) * ( triangleSideLength / 2 );
+
+				const points = [];
+
+				// make an isosceles triangle
+				points.push( {
+					x,
+					y : y + ( triangleHeight / 2 ),
+				} );
+
+				points.push( {
+					x : x + triangleSideLength / 2,
+					y : y - ( triangleHeight / 2 ),
+				} );
+
+				points.push( {
+					x : x + triangleSideLength,
+					y : y + ( triangleHeight / 2 ),
+				} );
+
+				return this.pathFromPoints( points );
+			}
+
+			const r  = 4;
+			const cx = x + r;
+			const cy = y;
+
+			return `
+				M ${cx} ${cy}
+				m -${r}, 0
+				a ${r},${r} 0 1,0 ${r * 2},0
+				a ${r},${r} 0 1,0 -${r * 2},0
+			`;
 		},
 
 		getBarTextX( month, i ) {
