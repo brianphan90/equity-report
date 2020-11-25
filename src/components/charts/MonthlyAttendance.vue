@@ -32,6 +32,10 @@ export default {
 			ah : 0,
 		},
 
+		leftLabelFontSize    : 16,
+		barHeight            : 18,
+		barIndicatorFontSize : 10,
+
 		timelineHeight : 50,
 	} ),
 
@@ -49,6 +53,10 @@ export default {
 			const { aw } = this;
 			const numOfMonths = this.months.length;
 			return ( aw / ( numOfMonths - 1 ) );
+		},
+
+		columnWidth() {
+			return ( this.aw / this.months.length );
 		}
 	},
 
@@ -57,16 +65,15 @@ export default {
 			console.log( this.canvas );
 			this.drawMonthLabels();
 			const teacherGroups = this.drawLeftLabels();
-			this.drawBarGroups();
+			const barGroups = this.drawBarGroups();
+
+			barGroups.forEach( ( group, i ) => this.drawBarIndicatorGroups( group, i ) );
+
 			this.reArrangeMonthLabels();
 			this.reArrangeMonthRectangles();
 		},
 
 		drawMonthLabels() {
-			this.updateDims( {
-				r : 20,
-			} );
-
 			// take our months
 			const { months } = this;
 
@@ -107,7 +114,7 @@ export default {
 				}
 			} );
 
-			const rectangleWidth = ( this.monthWidth );
+			const rectangleWidth = ( this.columnWidth );
 
 			// we're gonna rotate'em
 			// we're gonna figure how "tall" they are
@@ -161,18 +168,19 @@ export default {
 			const textNodes = teacherGroups
 				.append( 'text' )
 				.attr( 'x', this.l )
-				.attr( 'y', ( d, i ) => this.getTeacherGroupT( i ) )
+				.attr( 'y', ( d, i ) => this.getLeftLabelY( i ) )
 				.attr( 'dominant-baseline', 'hanging' )
 				.attr( 'text-anchor', 'left' )
 				.text( d => d.label )
-				.style( 'fill', this.mode === 'day' ? colors.grey : colors.white );
+				.style( 'fill', this.mode === 'day' ? colors.grey : colors.white )
+				.style( 'font-size', `${this.leftLabelFontSize}px` );
 
 
 			// append bottom label for # of absences
 			const absenceNodes = teacherGroups
 				.append( 'text' )
 				.attr( 'x', this.monthWidth * 8.5 )
-				.attr( 'y', ( d, i ) => this.getTeacherGroupT( i ) + 20 )
+				.attr( 'y', ( d, i ) => this.getLeftLabelY( i ) + 20 )
 				.attr( 'dominant-baseline', 'middle' )
 				.attr( 'text-anchor', 'start' )
 				.attr( 'font-size', '10px' )
@@ -215,22 +223,158 @@ export default {
 				.append( 'g' );
 
 			barGroups.append( 'rect' )
-				.attr( 'x', this.l - 10 )
-				.attr( 'y', ( d, i ) => this.getTeacherGroupT( i ) )
-				.attr( 'width', this.monthWidth * 12 )
+				.attr( 'x', this.l )
+				.attr( 'y', ( d, i ) => this.getBarY( i ) )
+				.attr( 'width', this.columnWidth * this.months.length )
 				.attr( 'fill', '#3F5356' )
-				.attr( 'height', 10 );
+				.attr( 'height', this.barHeight );
+
+			// TODO: Run some kind of callback here with some good arguments to it
+
+			return Array.from( barGroups._groups[0] );
 		},
 
-		getTeacherGroupT( i ) {
+		drawBarIndicatorGroups( group, rowNumber ) {
+			const { __data__ : data } = group;
+			const barGroup = d3.select( group );
+
+			const barIndicatorData = this.getBarIndicatorGroupData( data );
+			/**
+			 * <g class='barGroup'>
+			 * 		<g transform='translate(-10px)'>
+			 *       <g>
+			 *         <text>4</text>
+			 *         <path d='[triangle]' />
+			 *       </g>
+			 *       <g>
+			 *         <text>2</text>
+			 *         <path d='[circle]' />
+			 *       </g>
+			 *    </g>
+			 * <g>
+			 */
+
+			const indicatorGroup = barGroup
+				.selectAll( '.indicators' )
+				.data( barIndicatorData )
+				.enter();
+
+			const indicatorGroups = Array.from( indicatorGroup._groups[0] );
+			indicatorGroups.forEach( iGroup => this.drawIndicators( iGroup, rowNumber ) );
+		},
+
+		getBarIndicatorGroupData( d ) {
+			const { absences } = d.data;
+
+
+			const absenceMap = absences.reduce( ( map, absence ) => {
+				/* eslint-disable no-param-reassign */
+				const { date, type } = absence;
+				const month = new Date( date ).getMonth();
+
+				if ( map[month] === undefined ) {
+					map[month] = {};
+				}
+
+				if ( map[month][type] === undefined ) {
+					map[month][type] = 0;
+				}
+
+				map[month][type] += 1;
+
+				return map;
+				/* eslint-enable no-param-reassign */
+			}, {} );
+
+			const monthKeys = Object.keys( absenceMap );
+			return monthKeys.map( ( key ) => {
+				const month = {
+					month      : key,
+					indicators : []
+				};
+
+				const map = absenceMap[key];
+				if ( map.partialAbsence ) {
+					month.indicators.push( {
+						symbol : 'triangle',
+						count  : map.partialAbsence,
+					} );
+				}
+
+				if ( map.fullAbsence ) {
+					month.indicators.push( {
+						symbol : 'circle',
+						count  : map.fullAbsence,
+					} );
+				}
+
+				return month;
+			} );
+		},
+
+		getBarY( rowNumber ) {
+			return this.getLeftLabelY( rowNumber ) - ( this.leftLabelFontSize / 2 );
+		},
+
+		drawIndicators( group, rowNumber ) {
+			const { __data__ : data } = group;
+			const { month, indicators } = data;
+
+			const indicatorGroup = d3.select( group );
+			const textGroups = indicatorGroup
+				.selectAll( `.label-group-${rowNumber}-${month}` )
+				.data( indicators )
+				.enter()
+				.append( 'g' )
+				.attr( 'class', `label-group-${rowNumber}-${month}` );
+
+			// append the label
+			const counts = textGroups
+				.append( 'text' )
+				.attr( 'x', ( d, i ) => this.getBarTextX( month, i ) )
+				.attr( 'y', this.getBarY( rowNumber ) + ( this.barHeight / 2 ) )
+				.attr( 'class', 'symbol-count' )
+				.attr( 'dominant-baseline', 'middle' )
+				.attr( 'text-anchor', 'left' )
+				.style( 'fill', colors.white )
+				.style( 'font-size', `${this.barIndicatorFontSize}px` )
+				.text( d => d.count );
+
+			// append the symbol
+			const symbols = textGroups
+				.append( 'path' )
+				.attr( 'class', 'symbol' )
+				.attr( 'd', d => this.getPath( d.symbol ) )
+				.attr( 'x', ( d, i ) => this.getBarTextX( month, i ) + 1/* the width of the text next to it */ )
+				.attr( 'y', this.getBarY( rowNumber ) )
+				.style( 'fill', colors.white );
+
+
+			// apply a transform (if we have to)
+		},
+
+		getPath( symbol ) {
+			return 'M 1 0 L 1 100 L 100 80 L 100 1 Z';
+		},
+
+		getBarTextX( month, i ) {
+			const { l, columnWidth } = this;
+
+			const startOfMonth = l + ( columnWidth * month );
+			const labelSpacing = ( columnWidth / 2 );
+
+			return startOfMonth + ( columnWidth / 2 ) + ( labelSpacing * i );
+		},
+
+		getLeftLabelY( i ) {
 			return this.t + ( this.timelineHeight * i );
 		},
 
 		getMonthLabelX( i ) {
 			// figure out our relevant constraints
-			const { l, monthWidth } = this;
+			const { l, columnWidth } = this;
 
-			return l + ( monthWidth * i );
+			return l + ( columnWidth * i ) + ( columnWidth / 2 );
 		},
 
 		createMonthGroups( data ) {
@@ -261,14 +405,16 @@ export default {
 		reArrangeMonthRectangles() {
 			const rectangles = d3.selectAll( `.rect-${this.id}` );
 
-			rectangles.attr( 'x', ( d, i ) => this.getMonthLabelX( i ) - ( this.monthWidth / 2 ) );
+			rectangles
+				.attr( 'x', ( d, i ) => this.getMonthLabelX( i ) - ( this.monthWidth / 2 ) )
+				.attr( 'width', this.columnWidth );
 		},
+
 		absenceLabel( num ) {
-			console.log( num );
-			const firstPart = 'Number of Absences:';
+			const firstPart = 'Number of Absences: ';
 			const secondPart = num.toString();
-			const res = firstPart.concat( secondPart );
-			return res;
+
+			return firstPart.concat( secondPart );
 		}
 	},
 
