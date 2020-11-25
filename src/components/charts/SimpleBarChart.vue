@@ -97,12 +97,15 @@ export default {
 				t : 1,
 			} );
 
+			console.log( 'range', this.range );
 			const { range, options } = this;
 			const { hasXAxis } = options;
 
 			// Compute the position and size of the bars
 			const barData   = this.computeBarData();
+			console.log( 'barData', barData );
 			const barGroups = this.createBarGroup( barData );
+			console.log( 'barGroups', barGroups );
 
 			let xAxisLabels = null;
 
@@ -240,6 +243,7 @@ export default {
 
 		getHeight( value ) {
 			const { max } = this.range;
+
 
 			return ( value / max ) * this.ah;
 		},

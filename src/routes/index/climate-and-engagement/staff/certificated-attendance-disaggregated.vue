@@ -12,21 +12,22 @@
 </route>
 
 <template lang='pug'>
-.glr-by-grade-level-and-subgroup
-	h1 CAASPP By Grade Level And Subgroup
+.certificated-attendance-disaggregated
 	data-view-state-manager(
 		:state='state'
 		:error-message='errorMessage'
 	)
 		.content.dynamic-mode-background-secondary.floating-side-text(slot='loaded' v-if='data')
-			.page-header
-				.title
-					//- h1.dynamic-mode-text Grade Level Readiness
-					//- h1.subtitle.dynamic-mode-text By Grade Level and Subgroup
-			.charts-container.dynamic-mode-background-opaque
-				stacked-comparison-charts(
-					v-for='chart in data.charts'
-					:data='chart'
+			.page-title
+				h1.dynamic-mode-text Teacher
+				h1.subtitle.dynamic-mode-text Attendance
+			.chart-legend
+				chart-legend(:legend='data.legend' :columns=1 )
+			.attendance-chart
+				attendance-disaggregate-wrapper(
+					:legend='data.legend'
+					:chart='data.chart'
+					:origin='this.origin'
 				)
 </template>
 
@@ -40,6 +41,9 @@ import ChangeIndicator from '@/components/charts/ChangeIndicator';
 import ChartLegend from '@/components/ChartLegend';
 import StackedComparisonCharts from '@/components/charts/StackedComparisonCharts';
 
+
+import AttendanceDisaggregateWrapper from '@/components/charts/AttendanceDisaggregateWrapper';
+
 export default {
 	name : 'certificated-attendance-disaggregated',
 
@@ -49,16 +53,40 @@ export default {
 		fetch : GetCertificatedAttendanceDisaggregated,
 		ChangeIndicator,
 		SimpleStackedBarChart,
+
+		origin : 'certificated'
 	} ),
+
 
 	components : {
 		DataViewStateManager,
 		DisaggregatedGraphicWrapper,
 		ChartLegend,
 		StackedComparisonCharts,
+		AttendanceDisaggregateWrapper
 	}
 };
 </script>
 
 <style lang='scss'>
+.certificated-attendance-disaggregated {
+	height: 100%;
+	overflow: scroll;
+	.content {
+		.page-title {
+			display: flex;
+		}
+		.main-title {
+			font-size: 52px;
+			line-height: 69px;
+			letter-spacing: 0.045em;
+		}
+		.attendance-chart {
+			width: 100%;
+			height: 100%;
+			flex: 1 1 0;
+			padding: 30px;
+		}
+	}
+}
 </style>

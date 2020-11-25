@@ -101,17 +101,18 @@ export default {
 
 			const { hasBarLabels, numberOfIndicators } = this.options;
 
+
+			console.log( 'this.options', this.options );
+
 			if ( hasBarLabels ) {
 				this.updateDims( {
 					t : this.t + this.barLabelHeight + this.barLabelSpacing
 				} );
 			}
 
-
 			this.barGroups = this.createBarGroups( this.data );
 
 			this.xAxisLabels = this.drawXAxisLabels( this.barGroups );
-
 			// draw labels
 			const lineIndicators = this.drawAxisIndicators( {
 				range    : this.range,
@@ -154,6 +155,9 @@ export default {
 				.attr( 'dominant-baseline', 'start' )
 				.style( 'font-size', '12px' )
 				.text( d => d.label );
+
+
+			console.log( 'xaxislabel in function', xAxisLabels );
 
 			this.changeWithMode( {
 				nodes   : xAxisLabels,

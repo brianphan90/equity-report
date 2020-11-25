@@ -95,10 +95,8 @@ export default {
 
 		getIllustrationData( data ) {
 			const { t } = this;
-
 			const range                    = this.getDataRange( data.map( a => a.value ), false );
 			const { barWidth, barPadding } = this;
-
 			return data.map( ( d, i ) => ( {
 				label       : d.label,
 				y           : t + ( barWidth * i ) + ( barPadding * i ),
@@ -124,7 +122,6 @@ export default {
 				const padding = 5;
 				const startX = this.l + padding;
 				const endX   = this.l + padding + ( this.aw * d.xProportion );
-
 				return {
 					startX,
 					endX
@@ -135,7 +132,6 @@ export default {
 				.append( 'path' )
 				.attr( 'd', ( d ) => {
 					const { startX, endX } = getX( d );
-
 					return `M ${startX} ${d.textY} L ${endX} ${d.textY}`;
 				} )
 				.style( 'stroke', this.legend.default.color )

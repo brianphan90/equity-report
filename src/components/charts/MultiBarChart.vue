@@ -66,8 +66,8 @@ export default {
 
 		numberOfBarsInGroups() {
 			const { legend } = this;
-
-			return Object.keys( legend ).length;
+			const numberOfBarsInGroups = Object.keys( legend ).length;
+			return numberOfBarsInGroups;
 		},
 
 		totalBars() {
@@ -95,7 +95,7 @@ export default {
 		},
 
 		barWidth() {
-			return 8;
+			return 10;
 		},
 
 		groupWidth() {
@@ -165,9 +165,7 @@ export default {
 
 			const barGroupsData = this.computeBarGroupsData();
 			this.barGroups = this.createBarGroup( barGroupsData );
-
 			this.xAxisLabels = this.drawXAxisLabels( this.barGroups );
-
 			// draw labels
 			this.drawAxisIndicators( {
 				range,
@@ -214,6 +212,8 @@ export default {
 		},
 
 		createBarGroup( barData ) {
+
+			console.log( this.id );
 			return this.canvas.selectAll( `bar-groups-${this.id}` )
 				.data( barData )
 				.enter()
@@ -223,7 +223,7 @@ export default {
 		computeBarData( data, i ) {
 			const { groupWidth, groupSpacing } = this;
 
-			return data.map( ( d ) => {
+			const barData = data.map( ( d ) => {
 				const groupOffset = ( groupWidth + groupSpacing ) * i;
 
 				return {
@@ -231,10 +231,13 @@ export default {
 					groupOffset
 				};
 			} );
+			console.log( 'compute Bar data being passed in ', data );
+			console.log( 'compute bar data output', barData );
+			return barData;
 		},
 
 		drawBars( barGroups ) {
-
+			console.log( barGroups );
 			const bars = barGroups.selectAll( `bar-groups-${this.id}` )
 				.data( ( d, i ) => this.computeBarData( d.values, i ) )
 				.enter()

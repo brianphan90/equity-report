@@ -24,6 +24,8 @@ aside.side-nav(:class='[viewMode, navState]')
 
 	.bottom-bar
 		.toggle(@click='toggleNavState')
+		.btn(@click='nextPage()')
+				p NEXT
 		.night-day.no-select(:class='viewMode' @click='toggleViewMode')
 </template>
 
@@ -37,8 +39,6 @@ const formatNavRoutes = ( routerInfo, basePath ) => {
 			return true;
 		}
 
-		console.log( meta.display );
-
 		return meta.display !== false;
 	} ).map( ( info ) => {
 		const { path : pathProp } = info;
@@ -46,7 +46,6 @@ const formatNavRoutes = ( routerInfo, basePath ) => {
 		const item                = {
 			path
 		};
-
 		if ( info.meta ) {
 			const metaKeys = Object.keys( info.meta.navOptions );
 			metaKeys.forEach( ( key ) => {
@@ -57,10 +56,8 @@ const formatNavRoutes = ( routerInfo, basePath ) => {
 		if ( info.children ) {
 			item.children = formatNavRoutes( info.children, path );
 		}
-
 		return item;
 	} );
-
 	return menuItems.sort( ( a, b ) => ( a.order - b.order ) );
 };
 
@@ -68,6 +65,7 @@ export default {
 	name : 'side-nav',
 
 	data : () => ( {
+		curNode  : null,
 		navState : localStorage.getItem( 'musd-equity-report:nav-state' ) || 'open',
 		viewMode : localStorage.getItem( 'musd-equity-report:view-mode' ) || 'night',
 
@@ -102,7 +100,6 @@ export default {
 		pagePath() {
 			return this.$route.path;
 		}
-
 	},
 
 	watch : {
@@ -124,14 +121,13 @@ export default {
 				localStorage.setItem( 'musd-equity-report:view-mode', this.viewMode );
 				this.$store.dispatch( 'setMode', viewMode );
 			}
-		}
+		},
 
 	},
 
 	methods : {
 
 		selectMenuItem( item ) {
-
 			if ( this.open[item.path] && this.navState === 'open' ) {
 				this.open[item.path] = false;
 
@@ -142,9 +138,7 @@ export default {
 			menuItemKeys.forEach( ( key ) => {
 				this.open[key] = false;
 			} );
-
 			this.open[item.path] = true;
-
 		},
 
 		toggleNavState() {
@@ -170,6 +164,47 @@ export default {
 		selectIcon( item ) {
 			this.selectMenuItem( item );
 			this.toggleNavState();
+		},
+
+		log( message ) {
+			// console.log( message );
+		},
+
+		nextPage() {
+			const curPath = this.$router.history.current.path;
+			const retArray = [];
+			const rootPaths = [];
+			let magicIndex = -1;
+			let finalIndex = -1;
+			let prevCategory = null;
+			this.nav.forEach( ( item ) => {
+				rootPaths.push( item.path );
+				item.children.forEach( child => child.children.forEach( ( grandChild ) => {
+					magicIndex++;
+					if ( !prevCategory ) {
+						prevCategory = item.icon;
+					}
+					else if ( prevCategory !== item.icon ) {
+						finalIndex = magicIndex - 1;
+						prevCategory = item.icon;
+					}
+					retArray.push( grandChild );
+					return null;
+				} ) );
+			} );
+			const curIndex = retArray.findIndex( element => element.path === curPath );
+			if ( curIndex < retArray.length - 1 ) {
+				this.$router.push( retArray[curIndex + 1].path );
+				if ( curIndex === finalIndex ) {	// temporary (scalable)
+					this.open[rootPaths[0]] = false; //	/academics
+					this.open[rootPaths[1]] = true; //	/climate-and-engagement
+				}
+			}
+			else {
+				this.$router.push( retArray[0].path );
+				this.open[rootPaths[0]] = true; //	/academics
+				this.open[rootPaths[1]] = false; //	/climate-and-engagement
+			}
 		}
 
 	},
@@ -498,6 +533,28 @@ export default {
 				}
 			}
 		}
+		.btn{
+				cursor: pointer;
+				font-style: normal;
+				line-height: 18px;
+				font-weight: Bold;
+				letter-spacing: 0.15em;
+				display: flex;
+				padding-left: 20px;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				margin-left: 90px;
+				background: linear-gradient(89.75deg, #D8A556 -1.35%, #C07F1A 102.1%);
+				box-shadow: 0px 1px 15px rgba(0, 52, 79, 0.2), 0px 1px 3px rgba(0, 52, 79, 0.2);
+				border-radius: 10px;
+				justify-content: center;
+				align-items: center;
+				flex : 0 0 auto;
+				p {
+					color : white;
+					font-size: 20px;
+				}
+			}
 	}
 }
 </style>

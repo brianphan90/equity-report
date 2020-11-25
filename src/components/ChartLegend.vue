@@ -1,19 +1,21 @@
 <template lang='pug'>
 legend(:style='{ gridTemplateColumns }')
-	.item(v-for='item in shapedItems')
-		.shape(
-			:class='[item.shape || "square", item.style]'
-			:style='getStyle( item )'
+	.shaped
+		.item(v-for='item in shapedItems')
+			.shape(
+				:class='[item.shape || "square", item.style]'
+				:style='getStyle( item )'
+			)
+			.label
+				label.dynamic-mode-text {{ item.label }}
+				p.dynamic-mode-text.description(v-if='item.description') - {{ item.description }}
+	.titled
+		.item.titled-legend-item(
+			v-for='( item, i ) in titledItems'
+			:style='{ gridRowStart : numberOfRowsOfShapedItems + i + 1, gridColumn : `1 / ${numberOfColumns + 1}` }'
 		)
-		.label
+			p.legend-item-title.dynamic-mode-text {{ item.title }}
 			label.dynamic-mode-text {{ item.label }}
-			p.dynamic-mode-text.description(v-if='item.description') - {{ item.description }}
-	.item.titled-legend-item(
-		v-for='( item, i ) in titledItems'
-		:style='{ gridRowStart : numberOfRowsOfShapedItems + i + 1, gridColumn : `1 / ${numberOfColumns + 1}` }'
-	)
-		p.legend-item-title.dynamic-mode-text {{ item.title }}
-		label.dynamic-mode-text {{ item.label }}
 </template>
 
 <script>
@@ -35,6 +37,7 @@ export default {
 	computed : {
 
 		gridTemplateColumns() {
+			// console.log( this.legend );
 			if ( typeof this.columns === 'string' ) {
 				return this.columns;
 			}
@@ -101,6 +104,7 @@ export default {
 			// + Just wrote this and honestly, not fully sure how it works
 			// *           `\_(^-^)_/` <( LOL! )
 
+
 			return shapedItems;
 		},
 
@@ -109,14 +113,12 @@ export default {
 				return this.legend.filter( item => item.title )
 					.sort( ( a, b ) => a.order - b.order );
 			}
-
 			const keys = Object.keys( this.legend );
-
+			console.log( keys );
 			return keys.filter( key => this.legend[key].title )
 				.map( key => this.legend[key] )
 				.sort( ( a, b ) => a.order - b.order );
 		}
-
 	},
 
 	methods : {
