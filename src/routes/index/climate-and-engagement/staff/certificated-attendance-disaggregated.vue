@@ -18,68 +18,20 @@
 		:error-message='errorMessage'
 	)
 		.content.dynamic-mode-background-secondary.floating-side-text(slot='loaded' v-if='data')
-			.page-header
-				.title
-					h1.dynamic-mode-text Teacher
-					h1.subtitle.dynamic-mode-text Attendance
-				.legend
-					chart-legend(:legend='data.legend' :columns=1 )
+			.page-title
+				h1.dynamic-mode-text Teacher
+				h1.subtitle.dynamic-mode-text Attendance
+			.chart-legend
+				chart-legend(:legend='data.legend' :columns=1 )
 			.attendance-chart
 				attendance-disaggregate-wrapper(
 					:legend='data.legend'
 					:chart='data.chart'
+					:origin='this.origin'
 				)
 </template>
 
 <script>
-/*
-			.charts
-				.left-chart
-f					.data-grid
-						.month-legend
-							table
-								thead
-									tr(v-for="(entry,i) in months" :key="i")
-										th
-										td {{ entry }}
-						.teacher-info
-							table.table-mt-5
-								thead
-								tbody
-									tr(v-for="(entry, i) in firstHalfDataChart" :key="i")
-										th(scope="row")
-										td {{ entry.label }}
-										td {{ entry.numOfAbsecnes}}
-							pure-vue-chart(
-								:points="firstHalfBarGraph"
-								:width="500"
-								:height="200"
-								:show-values="true"
-							)
-				.right-chart
-					.data-grid
-						.month-legend
-							table
-								thead
-									tr(v-for="(entry,i) in months" :key="1")
-										th
-										td {{ entry }}
-						.teacher-info
-							table.table-mt-5
-								thead
-								tbody
-									tr(v-for="(entry, i) in secondHalfDataChart" :key="i")
-										th(scope="row")
-										td {{ entry.label }}
-										td {{ entry.numOfAbsecnes}}
-							pure-vue-chart(
-								:points="secondHalfBarGraph"
-								:width="500"
-								:height="200"
-								:show-values="true"
-							)
-
-*/
 import { GetCertificatedAttendanceDisaggregated } from '@/lib/API';
 import DataViewLoader from '@/components/DataViewLoader';
 import DataViewStateManager from '@/components/DataViewStateManager';
@@ -102,7 +54,7 @@ export default {
 		ChangeIndicator,
 		SimpleStackedBarChart,
 
-		months : ['July', 'August', 'September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May', 'June']
+		origin : 'certificated'
 	} ),
 
 

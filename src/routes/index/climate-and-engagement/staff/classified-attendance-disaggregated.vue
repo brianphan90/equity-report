@@ -26,6 +26,7 @@
 				attendance-disaggregate-wrapper(
 					:legend='data.legend'
 					:chart='data.chart'
+					:origin='this.origin'
 				)
 </template>
 
@@ -51,7 +52,8 @@ export default {
 		ChangeIndicator,
 		SimpleStackedBarChart,
 
-		months : ['July', 'August', 'September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May', 'June']
+
+		origin : 'classified',
 	} ),
 
 	computed : {

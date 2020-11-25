@@ -1,14 +1,25 @@
 <template lang="pug">
 .attendance-disaggregate-wrapper
-	monthly-attendance(
-		:data='dataForFirstGraph'
-	)
-	monthly-attendance(
-		:data='dataForSecondGraph'
-	)
+		monthly-attendance(
+			:data='dataForFirstGraph'
+			v-if="this.origin == 'classified'"
+		)
+		monthly-attendance(
+			:data='dataForSecondGraph'
+			v-if="this.origin == 'classified'"
+		)
+		monthly-attendance-certificated(
+			:data='dataForFirstGraph'
+			v-if="this.origin == 'certificated'"
+		)
+		monthly-attendance-certificated(
+			:data='dataForSecondGraph'
+			v-if="this.origin == 'certificated'"
+		)
 </template>
 <script>
 import MonthlyAttendance from './MonthlyAttendance';
+import MonthlyAttendanceCertificated from './MonthlyAttendanceCertificated';
 
 export default {
 	name : 'attendance-disaggregate-wrapper',
@@ -17,6 +28,13 @@ export default {
 		chart : {
 			type : [Array, Object],
 		},
+
+		//  checking origin to know which chart to render nothing complex
+		//  it was done this way and using two components so when there are requested fixes on specific chart we can access the component
+		//  without debugging if else statements
+		origin : {
+			type : String
+		}
 	},
 
 	computed : {
@@ -31,7 +49,8 @@ export default {
 		}
 	},
 	components : {
-		MonthlyAttendance
+		MonthlyAttendance,
+		MonthlyAttendanceCertificated
 	}
 };
 </script>
