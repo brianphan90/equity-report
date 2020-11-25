@@ -8,7 +8,6 @@ import * as d3 from 'd3';
 import colors from '@/assets/js/colors';
 import BaseChart from './BaseChart';
 import MonthLegend from './MonthLegend';
-import TimelineGraph from './TimelineGraph';
 
 export default {
 	name    : 'monthly-attendance-chart',
@@ -33,7 +32,7 @@ export default {
 		},
 
 		leftLabelFontSize    : 16,
-		barHeight            : 18,
+		barHeight            : 23,
 		barIndicatorFontSize : 10,
 
 		timelineHeight : 50,
@@ -177,12 +176,21 @@ export default {
 
 
 			// append bottom label for # of absences
+			// TODO:: Ultimately, we will want this to be pulled out of the component. I'll explain how later. - Tim
 			const absenceNodes = teacherGroups
 				.append( 'text' )
-				.attr( 'x', this.monthWidth * 8.5 )
-				.attr( 'y', ( d, i ) => this.getLeftLabelY( i ) + 20 )
+				// this doesn't account for text that is really
+				// long. Also, it is not static, i.e., as the chart
+				// width changes, text that didn't overflow will start
+				// to overflow
+				// ! .attr( 'x', this.monthWidth * 8.5 )
+				// ? Use this instead
+				.attr( 'x', this.w - ( this.r + 10 ) )
+				.attr( 'y', ( d, i ) => this.getLeftLabelY( i ) + this.barHeight * 1.15 )
 				.attr( 'dominant-baseline', 'middle' )
-				.attr( 'text-anchor', 'start' )
+				// ? And anchor the text to the end,
+				// ? essentially "right-aligning" the text
+				.attr( 'text-anchor', 'end' )
 				.attr( 'font-size', '10px' )
 				.text( d => this.absenceLabel( d.numOfAbsecnes ) )
 				.style( 'fill', this.mode === 'day' ? colors.grey : colors.white );
@@ -253,7 +261,7 @@ export default {
 			 *    </g>
 			 * <g>
 			 */
-
+			console.log( barIndicatorData );
 			const indicatorGroup = barGroup
 				.selectAll( `.indicators-${rowNumber}` )
 				.data( barIndicatorData )
@@ -469,7 +477,6 @@ export default {
 
 	components : {
 		MonthLegend,
-		TimelineGraph,
 	}
 };
 </script>
