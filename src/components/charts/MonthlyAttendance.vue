@@ -33,7 +33,7 @@ export default {
 		},
 
 		leftLabelFontSize    : 16,
-		barHeight            : 18,
+		barHeight            : 27,
 		barIndicatorFontSize : 10,
 
 		timelineHeight : 50,
@@ -180,7 +180,7 @@ export default {
 			const absenceNodes = teacherGroups
 				.append( 'text' )
 				.attr( 'x', this.monthWidth * 8.5 )
-				.attr( 'y', ( d, i ) => this.getLeftLabelY( i ) + 20 )
+				.attr( 'y', ( d, i ) => this.getLeftLabelY( i ) + this.barHeight * 1.15 )
 				.attr( 'dominant-baseline', 'middle' )
 				.attr( 'text-anchor', 'start' )
 				.attr( 'font-size', '10px' )
@@ -253,7 +253,7 @@ export default {
 			 *    </g>
 			 * <g>
 			 */
-
+			console.log( barIndicatorData );
 			const indicatorGroup = barGroup
 				.selectAll( '.indicators' )
 				.data( barIndicatorData )
@@ -344,17 +344,19 @@ export default {
 			const symbols = textGroups
 				.append( 'path' )
 				.attr( 'class', 'symbol' )
-				.attr( 'd', d => this.getPath( d.symbol ) )
+				.attr( 'd', d => this.getPath( d, d.symbol ) )
 				.attr( 'x', ( d, i ) => this.getBarTextX( month, i ) + 1/* the width of the text next to it */ )
-				.attr( 'y', this.getBarY( rowNumber ) )
+				.attr( 'y', this.getBarY( rowNumber ) + ( this.barHeight / 2 ) )
 				.style( 'fill', colors.white );
 
 
 			// apply a transform (if we have to)
 		},
 
-		getPath( symbol ) {
-			return 'M 1 0 L 1 100 L 100 80 L 100 1 Z';
+		getPath( d, symbol ) {
+			// return 'M 1 0 L 1 100 L 100 80 L 200 1 Z';
+			return 'M 10 75 L 60 75 L 35 25';
+
 		},
 
 		getBarTextX( month, i ) {
