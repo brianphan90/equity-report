@@ -50,7 +50,7 @@ export default {
 	},
 	components : {
 		MonthlyAttendance,
-		MonthlyAttendanceCertificated
+		MonthlyAttendanceCertificated,
 	}
 };
 </script>
@@ -60,6 +60,7 @@ export default {
 	height: 100%;
 	display: flex;
 	align-items: stretch;
+	overflow: auto;
 
 	.monthly-attendance-chart {
 		height: 100%;

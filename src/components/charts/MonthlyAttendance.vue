@@ -1,6 +1,10 @@
 <template lang='pug'>
 .monthly-attendance-chart
-	svg(:id='id' ref='svg')
+	svg(
+		:id='id'
+		ref='svg'
+		:style='{ height : svgHeight }'
+	)
 </template>
 
 <script>
@@ -32,7 +36,7 @@ export default {
 		},
 
 		leftLabelFontSize    : 16,
-		barHeight            : 23,
+		barHeight            : 30,
 		barIndicatorFontSize : 10,
 
 		timelineHeight : 50,
@@ -56,6 +60,12 @@ export default {
 
 		columnWidth() {
 			return ( this.aw / this.months.length );
+		},
+
+		svgHeight() {
+			const { data } = this;
+
+			return `${( data.length * 53 ) + 10}px`;
 		}
 	},
 
@@ -192,7 +202,7 @@ export default {
 				// ? essentially "right-aligning" the text
 				.attr( 'text-anchor', 'end' )
 				.attr( 'font-size', '10px' )
-				.text( d => this.absenceLabel( d.numOfAbsecnes ) )
+				.text( d => this.absenceLabel( d.numOfAbsences ) )
 				.style( 'fill', this.mode === 'day' ? colors.grey : colors.white );
 
 			this.changeWithMode( {
@@ -261,7 +271,7 @@ export default {
 			 *    </g>
 			 * <g>
 			 */
-			console.log( barIndicatorData );
+
 			const indicatorGroup = barGroup
 				.selectAll( `.indicators-${rowNumber}` )
 				.data( barIndicatorData )
@@ -340,7 +350,7 @@ export default {
 			const counts = textGroups
 				.append( 'text' )
 				.attr( 'x', ( d, i ) => this.getBarTextX( month, i ) )
-				.attr( 'y', this.getBarY( rowNumber ) + ( this.barHeight / 2 ) )
+				.attr( 'y', ( d, i ) => this.getBarY( rowNumber ) + ( i * ( this.barHeight / 2 ) + 8 ) )
 				.attr( 'class', 'symbol-count' )
 				.attr( 'dominant-baseline', 'middle' )
 				.attr( 'text-anchor', 'left' )
@@ -420,7 +430,7 @@ export default {
 			const startOfMonth = l + ( columnWidth * month );
 			const labelSpacing = ( columnWidth / 2 );
 
-			return startOfMonth + ( columnWidth / 2 ) + ( labelSpacing * i );
+			return startOfMonth + ( columnWidth / 2 );
 		},
 
 		getLeftLabelY( i ) {

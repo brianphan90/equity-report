@@ -10,6 +10,13 @@
 	border-radius: 3px;
 }
 
+.circle {
+	@extend .shape;
+
+	background-color: black;
+	border-radius: 50%;
+}
+
 .triangle {
 	@extend .shape;
 	background-color: transparent !important;
@@ -22,6 +29,8 @@
 		border-left-color: transparent;
 		position: absolute;
 		left: 50%;
+		top: 50%;
+    transform: translate(-50%, -50%);
 	}
 
 	&.positive::before {
