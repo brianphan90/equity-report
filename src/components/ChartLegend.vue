@@ -1,14 +1,13 @@
 <template lang='pug'>
 legend(:style='{ gridTemplateColumns }')
-	.shaped
-		.item(v-for='item in shapedItems')
-			.shape(
-				:class='[item.shape || "square", item.style]'
-				:style='getStyle( item )'
-			)
-			.label
-				label.dynamic-mode-text {{ item.label }}
-				p.dynamic-mode-text.description(v-if='item.description') - {{ item.description }}
+	.item(v-for='item in shapedItems')
+		.shape(
+			:class='[item.shape || "square", item.style]'
+			:style='getStyle( item )'
+		)
+		.label
+			label.dynamic-mode-text {{ item.label }}
+			p.dynamic-mode-text.description(v-if='item.description') - {{ item.description }}
 	.titled
 		.item.titled-legend-item(
 			v-for='( item, i ) in titledItems'

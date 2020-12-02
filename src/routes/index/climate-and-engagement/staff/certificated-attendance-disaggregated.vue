@@ -17,7 +17,7 @@
 		:state='state'
 		:error-message='errorMessage'
 	)
-		.content.dynamic-mode-background-secondary.floating-side-text(slot='loaded' v-if='data')
+		.content.dynamic-mode-background.floating-side-text(slot='loaded' v-if='data')
 			.page-title
 				h1.dynamic-mode-text Teacher
 				h1.subtitle.dynamic-mode-text Attendance

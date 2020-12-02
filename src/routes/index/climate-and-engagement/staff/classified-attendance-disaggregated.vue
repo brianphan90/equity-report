@@ -21,7 +21,7 @@
 			.page-title
 				h1.main-title.dynamic-mode-text Classified Attendance
 			.chart-legend
-				chart-legend(:legend="data.legend")
+				chart-legend(:legend="data.legend" :columns='1')
 			.attendance-chart
 				attendance-disaggregate-wrapper(
 					:legend='data.legend'
