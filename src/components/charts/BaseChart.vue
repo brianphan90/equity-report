@@ -108,7 +108,6 @@ export default {
 
 				throw new Error( 'an SVG must be defined either implicitly as a ref named "svg" or explicityly as a data property, or prop' );
 			} )();
-
 			const {
 				clientWidth  : w,
 				clientHeight : h,
