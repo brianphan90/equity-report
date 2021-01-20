@@ -27,13 +27,14 @@ export default {
 				barSpacing    : 2,
 				groupSpacing  : 7
 			} )
-		}
+		},
 	},
 
 	data : () => ( {
 		xAxisLabels : null,
 		barGroups   : null,
-		bars        : null
+		bars        : null,
+
 	} ),
 
 	computed : {

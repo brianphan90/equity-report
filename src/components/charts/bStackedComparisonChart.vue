@@ -1,0 +1,615 @@
+<template lang="pug">
+    .comparisonChart
+        svg(ref='svg')
+
+</template>
+<style lang="scss">
+
+    .comparisonChart {
+        border: 1px solid red;
+        height: 500px;
+        width : 75%;
+        svg{
+        position: relative;
+        height: 100%;
+        width : 100%;
+        border: 1px solid green;
+    }
+    }
+</style>
+<script>
+import colors from '@/assets/js/colors';
+import ChartLegend from '@/components/ChartLegend';
+import BaseChart from '@/components/charts/BaseChart';
+import * as d3 from 'd3';
+import d3Tip from 'd3-tip';
+
+export default {
+	name    : 'BStackedComparisonChart',
+	extends : BaseChart,
+
+	props : {
+		title : {
+			type : String
+		},
+
+		options : {
+			type    : Object,
+			default : () => ( {
+				maxTextLength : 150,
+				barSpacing    : 2,
+				groupSpacing  : 7
+			} )
+		},
+		data : {
+			type    : Object,
+			default : () => ( {
+				byGradeLevel : {
+					type : 'overUnderChart',
+					data : [{
+						label    : '3',
+						negative : {
+							currentYear : 51.78,
+							priorYear   : 0
+						},
+						positive : {
+							currentYear : 48.21,
+							priorYear   : 0
+						}
+					},
+					{
+						label    : '4',
+						negative : {
+							currentYear : 57.14,
+							priorYear   : 0
+						},
+						positive : {
+							currentYear : 42.86,
+							priorYear   : 0,
+						}
+					},
+					{
+						label    : '5',
+						negative : {
+							currentYear : 59.79,
+							priorYear   : 0
+						},
+						positive : {
+							currentYear : 40.2,
+							priorYear   : 0,
+						}
+					},
+					{
+						label    : '6',
+						negative : {
+							currentYear : 70.1,
+							priorYear   : 0
+						},
+						positive : {
+							currentYear : 29.91,
+							priorYear   : 0,
+						}
+					},
+					{
+						label    : '7',
+						negative : {
+							currentYear : 70.1,
+							priorYear   : 0
+						},
+						positive : {
+							currentYear : 29.91,
+							priorYear   : 0,
+						}
+					},
+					{
+						label    : '8',
+						negative : {
+							currentYear : 70.1,
+							priorYear   : 0
+						},
+						positive : {
+							currentYear : 29.91,
+							priorYear   : 0,
+						}
+					},
+					{
+						label    : '9',
+						negative : {
+							currentYear : 70.1,
+							priorYear   : 0
+						},
+						positive : {
+							currentYear : 29.91,
+							priorYear   : 0,
+						}
+					}
+					]
+				}
+			} )
+		},
+		legend : {
+			type    : Object,
+			default : () => ( {
+				negative : {
+					currentYear : { color : '#BE8674' }
+				},
+				positive : {
+					currentYear : { color : '#D7B6AA' }
+				}
+			} )
+		}
+	},
+	data : () => ( {
+		xAxisLabels : null,
+		barGroups   : null,
+		bars        : null
+	} ),
+	computed : {
+		groupSpacing() {
+			const sumOfGroupWidths = ( this.groupWidth * this.data.length );
+
+			return ( this.aw - sumOfGroupWidths ) / ( this.data.length );
+			// return this.options.groupSpacing || ;
+		},
+
+		barSpacing() {
+			return this.options.barSpacing || 2;
+		},
+
+		numberOfGaps() {
+			const { data } = this;
+
+			if ( !data ) {
+				return 1;
+			}
+
+			return data.length + 1;
+		},
+
+		numberOfBarsInGroups() {
+			const { legend } = this;
+
+			return Object.keys( legend ).length;
+		},
+
+		totalBars() {
+			const { numberOfBarsInGroups, data } = this;
+
+			return numberOfBarsInGroups * data.length;
+		},
+
+		totalSpaceBetweenGroups() {
+			return this.numberOfGaps * this.groupSpacing;
+		},
+
+		spaceBetweenBars() {
+			return this.numberOfBarsInGroups * this.barSpacing;
+		},
+
+		totalSpaceBetweenBars() {
+			return this.spaceBetweenBars * this.data.length;
+		},
+
+		totalSpace() {
+			const { totalSpaceBetweenGroups, totalSpaceBetweenBars } = this;
+
+			return totalSpaceBetweenGroups + totalSpaceBetweenBars;
+		},
+
+		barWidth() {
+			return 8;
+		},
+
+		groupWidth() {
+			const { barWidth, numberOfBarsInGroups, spaceBetweenBars } = this;
+
+			return ( barWidth * numberOfBarsInGroups ) + spaceBetweenBars;
+		},
+
+		range() {
+			const { data, legend } = this;
+			const barKeys = Object.keys( legend );
+
+			const values = data.reduce( ( arr, d ) => {
+
+				barKeys.forEach( ( key ) => {
+					const value = d.value[key];
+
+					if ( !value ) {
+						return;
+					}
+
+					arr.push( value );
+				} );
+
+				return arr;
+			}, [] );
+
+			if ( !values.length ) {
+				return {
+					min : 0,
+					max : 100
+				};
+			}
+
+			const range = this.getDataRange( values, false );
+
+			return {
+				min : range.start,
+				max : range.end
+			};
+		},
+
+		mode() {
+			return this.$store.state.user.mode;
+		},
+	},
+
+	mounted() {
+		this.init( this.$refs.svg );
+	},
+	methods : {
+		draw() {
+			this.updateDims( {
+
+			} );
+			// draw y-axis
+			const yOptions = {
+				axis  : 'y-right',
+				range : {
+					min : 0,
+					max : 100
+				},
+				lines : {
+					numberOfIndicators         : 5,
+					spaceBetweenLabelsAndLines : 10,
+				},
+			};
+			const xAxisData = {
+				axis                       : 'x-bottom',
+				values                     : this.data.byGradeLevel.data,
+				spaceBetweenLabelsAndChart : 0,
+
+			};
+			// draw x-axis boxes
+			const xBoxesData = this.drawXAxisIndicators( xAxisData );
+			const fLines = {
+				start : this.t,
+				end   : xBoxesData[0].y
+			};
+			const sLines = {
+				start : xBoxesData[0].y + xBoxesData[0].height,
+				end   : xBoxesData[0].y
+			};
+
+			this.drawYAxisIndicators( fLines, yOptions );
+			this.drawYAxisIndicators( sLines, yOptions );
+
+		},
+		drawXAixs() {
+			// draw boxes first
+
+		},
+		drawYAxis( options ) {
+
+		},
+		drawXAxisIndicators( options ) {
+			const {
+				axis,
+				values,
+				spaceBetweenLabelsAndChart,
+				labelStyle,
+			} = options;
+			const getX = ( i ) => {
+				const { aw, l } = this;
+
+				return l + ( ( aw / ( values.length + 1 ) ) * ( i + 1 ) );
+			};
+			const xAxisData = values.map( ( datum, i ) => {
+				const y = () => ( ( axis === 'x-top' ) ? this.t : ( this.t + this.ah ) / 2 );
+				const x = () => getX( i );
+				return {
+					...datum,
+					x,
+					y,
+					textAnchor       : 'middle',
+					dominantBaseline : ( axis === 'x-top' ) ? 'text-before-edge' : 'text-after-edge',
+				};
+
+			} );
+			xAxisData.forEach( ( entry, i ) => console.log( getX( i ) ) );
+			const xAxisLabels = this.canvas
+				.selectAll( 'x-axis-labels axis-label' )
+				.data( xAxisData )
+				.enter()
+				.append( 'text' )
+				.attr( 'text-anchor', d => d.textAnchor )
+				.attr( 'x', d => d.x() )
+				.attr( 'y', d => d.y() )
+				.attr( 'dominant-baseline', d => d.dominantBaseline )
+				.style( 'fill', d => d.color )
+				.text( d => d.label );
+
+
+			if ( labelStyle ) {
+				this.applyMethods( xAxisLabels, 'style', labelStyle );
+			}
+			const verticalPadding = 5;
+			const xAxisLabelDims    = Array.from( xAxisLabels._groups[0] ).map( a => a.getBBox() );
+			const xAxisLabelHeights = xAxisLabelDims.map( a => a.height );
+			const xAxisLabelWidths  = xAxisLabelDims.map( a => a.width );
+			const biggestXAxisLabelHeight = Math.max( ...xAxisLabelHeights );
+			const biggestXAxisLabelWidth = Math.max( ...xAxisLabelWidths );
+			const rectHeight = biggestXAxisLabelHeight + ( 7 * verticalPadding );
+			const rectWidth = biggestXAxisLabelWidth + ( 15 * verticalPadding );
+			console.log( xAxisLabelDims );
+
+			const dims = ( () => {
+				if ( axis === 'y-top' ) {
+					return {
+						t : biggestXAxisLabelHeight + spaceBetweenLabelsAndChart,
+					};
+				}
+
+				return {
+					b : biggestXAxisLabelHeight + spaceBetweenLabelsAndChart + rectHeight,
+				};
+			} )();
+
+			this.updateDims( dims );
+			this.realignAxisLabels();
+
+			const barLabelGroup = this.canvas.selectAll( 'boxLabels' )
+				.data( xAxisLabelDims )
+				.enter()
+				.append( 'rect' )
+				.attr( 'x', ( d, i ) => getX( i ) - ( rectWidth / 2 ) )
+				.attr( 'y', d => this.t + this.ah / 2 ) // middle
+				.attr( 'fill', '#E4E4E4' )
+				.attr( 'opacity', 0.8 )
+				.attr( 'height', rectHeight )
+				.attr( 'width', rectWidth );
+			// console.log( barLabelGroup );
+			// ? center texts as necessary
+			// const totalTextSpace = xAxisLabelWidths.reduce( ( sum, w ) => sum + w, 0 );
+			// const leftOverSpace  = this.aw - totalTextSpace;
+			// const spaceAround    = ( leftOverSpace / ( values.length + 1 ) );
+			const barLabelDims = barLabelGroup._groups[0].map( entry => entry.getBBox() );
+			return barLabelDims;
+			// return xAxisData;
+
+
+		},
+		drawAxisIndicators( options ) {
+			const {
+				axis, // eslint-disable-line
+				range,
+				lines,
+				postChar,
+				nightColor,
+				dayColor,
+				data
+			} = options;
+
+			const color = ( this.mode === 'night' ? nightColor : dayColor );
+
+			const {
+				numberOfIndicators,
+				spaceBetweenLabelsAndLines,
+			} = lines;
+
+			/* draw initial lines and indicators */
+			const rangeDifference = range.max - range.min;
+
+			/* add text labels */
+
+			const labelData = [];
+			for ( let i = 0; i < numberOfIndicators; i++ ) {
+
+				const dominantBaseline = ( () => {
+					if ( i === numberOfIndicators - 1 ) {
+						return 'text-before-edge';
+					}
+
+					if ( i === 0 ) {
+						return 'text-after-edge';
+					}
+
+					return 'middle';
+				} )();
+
+				const y = ( () => {
+					const bottomOfChart      = this.t + this.ah;
+					const distanceFromBottom = i * ( this.ah / ( numberOfIndicators - 1 ) );
+
+					return bottomOfChart - distanceFromBottom;
+				} )();
+
+				const textValue = Math.round( range.min + ( ( i / ( numberOfIndicators - 1 ) ) * rangeDifference ) );
+				labelData.push( {
+					y,
+					text : `${textValue}${postChar || ''}`,
+					dominantBaseline,
+					nightColor,
+					dayColor,
+				} );
+
+			}
+			const lineIndicatorGroups = this.canvas
+				.selectAll( `line-indicators-${this.id}` )
+				.data( labelData )
+				.enter()
+				.append( 'g' ) // will append as many g's as the length of labelData
+				.attr( 'class', `line-indicators-${this.id}` );
+
+			if ( options.labels !== false ) {
+
+				/* draw line lables */
+				const lineLabels = lineIndicatorGroups.append( 'text' )
+					.attr( 'class', `line-indicators label-${this.id} dynamic-text-${this.id}` )
+					.attr( 'dominant-baseline', d => d.dominantBaseline )
+					.attr( 'x', this.l )
+					.attr( 'y', d => d.y )
+					.style( 'font-size', '10px' )
+					.style( 'fill', color )
+					.text( d => d.text );
+
+				/* right align text */
+
+				const lineLabelWidths  = Array.from( lineLabels._groups[0] ).map( a => a.getBBox().width );
+				const biggestLineLabel = Math.max( ...lineLabelWidths );
+
+				lineLabels.attr( 'x', biggestLineLabel )
+					.attr( 'text-anchor', 'end' );
+
+				this.updateDims( {
+					l : biggestLineLabel + spaceBetweenLabelsAndLines
+				} );
+
+			}
+
+			/* draw lines */
+
+			lineIndicatorGroups.append( 'path' )
+				.attr( 'd', d => `M ${this.l}, ${d.y} L ${this.l + this.aw}, ${d.y}` )
+				.attr( 'class', `dynamic-stroke-${this.id}` )
+				.style( 'stroke-dasharray', '2, 4' )
+				.style( 'stroke', color );
+
+			return lineIndicatorGroups;
+
+		},
+		drawYAxisIndicators( boxData, options ) {
+			const {
+				axis,
+				range,
+				lines,
+				postChar,
+				color,
+				transformLabel,
+			} = options;
+			const {
+				start,
+				end
+			} = boxData;
+			const {
+				numberOfIndicators,
+				spaceBetweenLabelsAndLines,
+			} = lines;
+			// const firstEnd = boxData[0].y;
+			// const secondStart = boxData[0].y - boxData[0].height;
+			// const thirdTry = boxData[0].y + boxData[0].height;
+			/* draw initial lines and indicators */
+			const rangeDifference = range.max - range.min;
+			/* add text labels */
+
+			const labelData = [];
+			for ( let i = 0; i < numberOfIndicators; i++ ) {
+
+				const dominantBaseline = ( () => {
+					if ( i === numberOfIndicators - 1 ) {
+						return 'text-before-edge';
+					}
+
+					if ( i === 0 ) {
+						return 'text-after-edge';
+					}
+
+					return 'middle';
+				} )();
+
+				const y = ( () => {
+					// const bottomOfChart = this.t + firstEnd;
+					// const bottomOfChart = thirdTry + firstEnd;
+					const bottomOfChart = start + end;
+					console.log( bottomOfChart );
+					const distanceFromBottom = i * ( end / ( numberOfIndicators - 1 ) );
+					// const bottomOfChart      = this.t + this.ah;
+					// const distanceFromBottom = i * ( secondStart / ( numberOfIndicators - 1 ) );
+					// const firstHalf  = this.t + boxData[0].y;
+					// distanceFromBottom = i * (boxData[0].y / (numberOfIndicators -1 ))
+					// const secondHalf = this.t + this
+					console.log( distanceFromBottom );
+					return bottomOfChart - distanceFromBottom;
+				} );
+
+				const x     = () => ( ( axis === 'y-right' ) ? this.w - this.r : this.l );
+				const x2    = () => ( ( axis === 'y-right' ) ? x() - this.aw : x() + this.aw );
+				const pathX = () => ( ( axis === 'y-right' ) ? x() - spaceBetweenLabelsAndLines : x() + spaceBetweenLabelsAndLines );
+				const textValue = Math.round( range.min + ( ( i / ( numberOfIndicators - 1 ) ) * rangeDifference ) );
+				const label     = transformLabel ? transformLabel( textValue ) : textValue;
+				const textAnchor = ( axis === 'y-right' ? 'start' : 'end' );
+
+				labelData.push( {
+					x,
+					x2,
+					y,
+					y2   : y,
+					text : `${label}${postChar || ''}`,
+					path : () => `M ${pathX()}, ${y()} L ${x2()}, ${y()}`,
+					dominantBaseline,
+					textAnchor,
+					color,
+				} );
+
+			}
+			// labelData.forEach( console.log( entry => pathX() ) );
+			const lineIndicatorGroups = this.canvas
+				.selectAll( `line-indicators-${this.id}` )
+				.data( labelData )
+				.enter()
+				.append( 'g' ) // will append as many g's as the length of labelData
+				.attr( 'class', `line-indicators-${this.id}` );
+
+			if ( options.labels !== false ) {
+
+				/* draw line lables */
+				const lineLabels = lineIndicatorGroups.append( 'text' )
+					.attr( 'class', `line-indicators label-${this.id} axis-labels dynamic-text-${this.id}` )
+					.attr( 'dominant-baseline', d => d.dominantBaseline )
+					.attr( 'x', d => d.x() )
+					.attr( 'y', d => d.y() )
+					.style( 'font-size', '12px' )
+					.style( 'fill', color )
+					.text( d => d.text )
+					.attr( 'text-anchor', d => d.textAnchor );
+
+				/* right align text */
+
+				const lineLabelWidths  = Array.from( lineLabels._groups[0] ).map( a => a.getBBox().width );
+				const biggestLineLabel = Math.max( ...lineLabelWidths );
+
+				const dims = ( () => {
+					const newWidth = ( biggestLineLabel + spaceBetweenLabelsAndLines );
+
+					if ( axis === 'y-right' ) {
+						return {
+							r : newWidth,
+						};
+					}
+
+					return {
+						l : newWidth,
+					};
+				} )();
+
+				this.updateDims( dims );
+				this.realignAxisLabels();
+
+			}
+
+			/* draw lines */
+			lineIndicatorGroups.append( 'path' )
+				.attr( 'd', d => d.path() )
+				.attr( 'class', `dynamic-stroke-${this.id} axis-indicators` )
+				.style( 'stroke-dasharray', '2, 4' )
+				.style( 'stroke', 'grey' );
+
+			return lineIndicatorGroups;
+
+		},
+
+
+	}
+};
+</script>

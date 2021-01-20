@@ -24,10 +24,11 @@
 					//- h1.dynamic-mode-text Grade Level Readiness
 					//- h1.subtitle.dynamic-mode-text By Grade Level and Subgroup
 			.charts-container.dynamic-mode-background-opaque
-				stacked-comparison-charts(
-					v-for='chart in data.charts'
-					:data='chart'
-				)
+				//- stacked-comparison-charts(
+				//- 	v-for='chart in data.charts'
+				//- 	:data='chart'
+				//- )
+	BStackedComparisonChart
 </template>
 
 <script>
@@ -39,6 +40,7 @@ import DisaggregatedGraphicWrapper from '@/components/charts/DisaggregatedGraphi
 import ChangeIndicator from '@/components/charts/ChangeIndicator';
 import ChartLegend from '@/components/ChartLegend';
 import StackedComparisonCharts from '@/components/charts/StackedComparisonCharts';
+import BStackedComparisonChart from '@/components/charts/bStackedComparisonChart';
 
 export default {
 	name : 'caaspp-by-grade-level-and-subroup',
@@ -56,6 +58,7 @@ export default {
 		DisaggregatedGraphicWrapper,
 		ChartLegend,
 		StackedComparisonCharts,
+		BStackedComparisonChart
 	}
 };
 </script>

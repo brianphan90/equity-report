@@ -427,6 +427,14 @@ export default {
 			return path;
 
 		},
+		realignAxisLabels() {
+			this.canvas.selectAll( '.axis-labels' )
+				.attr( 'x', d => d.x() )
+				.attr( 'y', d => d.y() );
+
+			this.canvas.selectAll( '.axis-indicators' )
+				.attr( 'd', d => d.path() );
+		}
 	},
 };
 </script>
