@@ -49,6 +49,7 @@ export default {
 					min : 0,
 					max : 100
 				},
+				flip     : true,
 				axis     : 'y',
 				postChar : '%',
 				lines    : {
@@ -185,8 +186,8 @@ export default {
 			const maxTextWidth  = Math.max( ...textDims.map( dims => dims.width ) );
 			const maxTextHeight = Math.max( ...textDims.map( dims => dims.height ) );
 
-			const rectangleWidth = maxTextWidth + ( 1 * verticalPadding );
-			const rectangleHeight  = maxTextHeight + ( 2 * verticalPadding );
+			const rectangleWidth = maxTextWidth + ( 2 * verticalPadding );
+			const rectangleHeight  = maxTextHeight + ( 1 * verticalPadding );
 
 
 			barGroups.append( 'rect' )
@@ -195,7 +196,7 @@ export default {
 				.attr( 'width', rectangleWidth )
 				.attr( 'fill', '#D8A556' )
 				.attr( 'height', rectangleHeight )
-				.attr( 'y', 110 + this.b );
+				.attr( 'y', 105 + this.b );
 		},
 		drawStackedBar( barGroups, data ) {
 			const rectangleWidth = ( this.columnWidth / 2 );

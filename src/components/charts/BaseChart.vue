@@ -150,7 +150,8 @@ export default {
 				postChar,
 				nightColor,
 				dayColor,
-				data
+				data,
+				flip
 			} = options;
 
 			const color = ( this.mode === 'night' ? nightColor : dayColor );
@@ -186,7 +187,9 @@ export default {
 
 					return bottomOfChart - distanceFromBottom;
 				} )();
-				const textValue = Math.round( range.min + ( ( i / ( numberOfIndicators - 1 ) ) * rangeDifference ) );
+
+				const position = flip === true ? ( ( numberOfIndicators - 1 ) - i ) : i;
+				const textValue = Math.round( range.min + ( ( position / ( numberOfIndicators - 1 ) ) * rangeDifference ) );
 
 				labelData.push( {
 					y,
