@@ -7,6 +7,7 @@ legend(:style='{ gridTemplateColumns }')
 		)
 		.label
 			label.dynamic-mode-text {{ item.label }}
+			label.dynamic-mode-text {{ item.value }}
 			p.dynamic-mode-text.description(v-if='item.description') - {{ item.description }}
 	.titled
 		.item.titled-legend-item(
@@ -14,7 +15,8 @@ legend(:style='{ gridTemplateColumns }')
 			:style='{ gridRowStart : numberOfRowsOfShapedItems + i + 1, gridColumn : `1 / ${numberOfColumns + 1}` }'
 		)
 			p.legend-item-title.dynamic-mode-text {{ item.title }}
-			label.dynamic-mode-text {{ item.label }}
+			label.dynamic-mode-text {{ item.label }} - {{ item.value }}
+
 </template>
 
 <script>
