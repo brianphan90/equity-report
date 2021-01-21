@@ -189,7 +189,6 @@ export default {
 				let runningSum = 0;
 				// we know all the charts are gonna be out 100
 				const sum = arrayOfScores.reduce( ( total, j ) => total + item.data[j], 0 );
-
 				return arrayOfScores.map( ( key ) => {
 				// get the value and the height
 					const value  = item.data[key];
@@ -197,11 +196,11 @@ export default {
 
 					console.log( `height for ${key}`, height );
 					// determine the1 y value for the bar;
-					const y = this.t + ( ( runningSum / sum ) * this.ah );
-
+					// const y = this.t + ( ( runningSum / sum ) * this.ah );
+					const y = ( this.t + this.ah ) - ( runningSum + height );
 					console.log( `y for ${key}`, y );
 					// add to running sum so we can
-					// do y value calculations
+					// do y value calc ulations
 					runningSum += value;
 					return {
 						width : this.aw - 60, // 30px on each side
