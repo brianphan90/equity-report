@@ -206,7 +206,7 @@ export default {
 						width : this.aw - 60, // 30px on each side
 						color : this.legend[key].color,
 						text  : `${value}%`,
-						x     : this.getX( index ) - 30, // 20px to the left
+						x     : this.getX( index ) - this.columnWidth / 4,
 						y,
 						height,
 					};

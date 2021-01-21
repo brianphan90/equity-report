@@ -38,8 +38,8 @@ export default {
 			// draw labels
 			// set beginning dims
 			this.updateDims( {
-				t : 50,
-				b : 50,
+				t : 25,
+				b : 25
 			} );
 
 			this.barGroups = this.createBarGroups( this.chartData );
@@ -87,7 +87,7 @@ export default {
 				.append( 'rect' )
 				.attr( 'class', `rect-${this.id}` )
 				.attr( 'x', ( d, i ) => this.getMonthLabelX( i ) - ( rectangleWidth / 2 ) )
-				.attr( 'y', 50 )
+				.attr( 'y', 50 - this.b )
 				.attr( 'height', this.ah )
 				.attr( 'width', rectangleWidth )
 				.style( 'fill', ( d, i, data, g ) => {
@@ -145,7 +145,7 @@ export default {
 			const maxTextHeight = Math.max( ...textDims.map( dims => dims.height ) );
 
 			const rectangleWidth = maxTextWidth + ( 1 * verticalPadding );
-			const rectangleHeight  = maxTextHeight + ( 2 * verticalPadding );
+			const rectangleHeight  = maxTextHeight + ( 1 * verticalPadding );
 
 
 			barGroups.append( 'rect' )
@@ -162,7 +162,7 @@ export default {
 
 			const textLabels = barLabelGroups.append( 'text' )
 				.attr( 'x', ( d, i ) => this.getX( i ) )
-				.attr( 'y', d => 120 )
+				.attr( 'y', d => 120 + this.b )
 				.attr( 'class', 'bar-value' )
 				.attr( 'text-anchor', 'middle' )
 				.attr( 'dominant-baseline', 'middle' )
@@ -195,7 +195,7 @@ export default {
 				.attr( 'width', rectangleWidth )
 				.attr( 'fill', '#D8A556' )
 				.attr( 'height', rectangleHeight )
-				.attr( 'y', 100 );
+				.attr( 'y', 110 + this.b );
 		},
 		drawStackedBar( barGroups, data ) {
 			const rectangleWidth = ( this.columnWidth / 2 );
@@ -238,7 +238,7 @@ export default {
 
 					console.log( `height for ${key}`, height );
 					// determine the1 y value for the bar;
-					const y = this.t + ( ( runningSum / sum ) * this.ah );
+					const y = ( this.t + this.ah ) - ( runningSum + height );
 
 					console.log( `y for ${key}`, y );
 					// add to running sum so we can
@@ -248,7 +248,7 @@ export default {
 						width : this.aw - 60, // 30px on each side
 						color : this.legend[key].color,
 						text  : `${value}%`,
-						x     : this.getX( index ) - 30, // 20px to the left
+						x     : this.getX( index ) - this.columnWidth / 4,
 						y,
 						height,
 					};
@@ -260,7 +260,7 @@ export default {
 		},
 		getBarLabel( item ) {
 
-			const label = Math.round( item ).toString();
+			const label = Math.round( 100 - item ).toString();
 			return label.concat( '%' );
 		},
 		getX( i ) {

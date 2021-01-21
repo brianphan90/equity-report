@@ -169,41 +169,96 @@ export default {
 				.attr( 'height', rectangleHeight )
 				.attr( 'y', d => 0 );
 		},
-
+		// function is written to assume that all current year and prior year are the same in length
+		// this can be changed later or can helper functions that make arrays of similar length could help solve this constraint
 		drawCircles( barGroups ) {
 
-			const nodes = [];
-			const links = [];
+			const currentYearNodes = [];
+			const priorYearNodes = [];
+			const currentYearlinks = [];
+			const priorYearLinks = [];
+			const distanceLinks = [];
 
 			this.currentYear.forEach( ( item, index ) => {
-				nodes.push( [this.getX( index ), this.getYForCircle( item.value )] );
-
+				console.log( this.currentYear[index].value );
+				currentYearNodes.push( [this.getX( index ), this.getYForCircle( item.value )] );
+				priorYearNodes.push( [this.getX( index ), this.getYForCircle( this.priorYear[index] )] );
 			} );
 
-			for ( let i = 0; i < nodes.length - 1; i++ ) {
-				links.push(
-					d3.linkHorizontal()( {
-						source : nodes[i],
-						target : nodes[i + 1]
-					} )
-				);
+
+			// not gonna rewrite code buut since our previous code is going thru length  this pushes the link for the last element in the array
+			// when at that spot this can be rewritten with for each
+			for ( let i = 0; i < currentYearNodes.length; i++ ) {
+
+				if ( i < currentYearNodes.length - 1 ) {
+					currentYearlinks.push(
+						d3.linkHorizontal()( {
+							source : currentYearNodes[i],
+							target : currentYearNodes[i + 1]
+						} )
+					);
+					priorYearLinks.push(
+						d3.linkHorizontal()( {
+							source : priorYearNodes[i],
+							target : priorYearNodes[i + 1]
+						} )
+					);
+					distanceLinks.push(
+						d3.linkHorizontal()( {
+							source : currentYearNodes[i],
+							target : priorYearNodes[i]
+						} )
+					);
+				}
+				else {
+					distanceLinks.push(
+						d3.linkHorizontal()( {
+							source : currentYearNodes[i],
+							target : priorYearNodes[i]
+						} )
+					);
+				}
 			}
-			nodes.forEach( ( item, index ) => {
+
+			console.log( distanceLinks );
+
+
+			currentYearNodes.forEach( ( item, index ) => {
 				barGroups
 					.append( 'circle' )
 					.style( 'stroke', 'gray' )
 					.style( 'fill', 'white' )
 					.attr( 'r', ( d, i ) => 5 )
-					.attr( 'cx', nodes[index][0] )
-					.attr( 'cy', nodes[index][1] );
+					.attr( 'cx', currentYearNodes[index][0] )
+					.attr( 'cy', currentYearNodes[index][1] );
+
+				barGroups
+					.append( 'circle' )
+					.style( 'stroke', 'gray' )
+					.style( 'fill', 'white' )
+					.attr( 'r', ( d, i ) => 3 )
+					.attr( 'cx', priorYearNodes[index][0] )
+					.attr( 'cy', priorYearNodes[index][1] );
+
 			} );
 
-			// Append the links to the svg element
-			for ( let i = 0; i < links.length; i++ ) {
+			// Append the links to the svg element use largest but u can rewrite with the if state like above
+			for ( let i = 0; i < distanceLinks.length; i++ ) {
 				barGroups
 					.append( 'path' )
-					.attr( 'd', links[i] )
-					.attr( 'stroke', 'green' )
+					.attr( 'd', currentYearlinks[i] )
+					.attr( 'stroke', '#567278' )
+					.attr( 'fill', 'none' );
+				barGroups
+					.append( 'path' )
+					.attr( 'd', priorYearLinks[i] )
+					.attr( 'stroke', '#64A399' )
+					.attr( 'fill', 'none' );
+				barGroups
+					.append( 'path' )
+					.style( 'stroke-dasharray', '5,5' )
+					.attr( 'd', distanceLinks[i] )
+					.attr( 'stroke', '#000000' )
 					.attr( 'fill', 'none' );
 			}
 		},
@@ -215,6 +270,9 @@ export default {
 		},
 
 		getYForCircle( value ) {
+			if ( value === 0 || !value ) {
+				return 0 + this.t + 98;
+			}
 
 
 			return 100 - value + this.t;

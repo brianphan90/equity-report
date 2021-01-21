@@ -31,6 +31,7 @@
 				BySubGroupChart(
 					:chartData='this.data.charts[1].data'
 					:legend='this.data.charts[0].legend'
+					:chartLegend='this.data.charts[1].legend.subgroups'
 				)
 
 

@@ -101,7 +101,7 @@ export default {
 			const rectangles = barGroups
 				.append( 'rect' )
 				.attr( 'class', `rect-${this.id}` )
-				.attr( 'x', ( d, i ) => this.getMonthLabelX( i ) - ( rectangleWidth / 2 ) )
+				.attr( 'x', ( d, i ) => this.getX( i ) - ( rectangleWidth / 2 ) )
 				.attr( 'y', 50 )
 				.attr( 'height', this.ah )
 				.attr( 'width', rectangleWidth )
@@ -224,7 +224,7 @@ export default {
 						width : this.aw - 60, // 30px on each side
 						color : this.legend[key].color,
 						text  : `${value}%`,
-						x     : this.getX( index ) - 30, // 20px to the left
+						x     : this.getX( index ) - this.columnWidth / 4, // 20px to the left
 						y,
 						height,
 					};

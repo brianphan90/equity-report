@@ -1,26 +1,35 @@
 <template lang="pug">
-.BySubGroupChart
-    .Chart
-        TopStackedBoxPlotChart(
-			:chartData='this.topChartData'
-			:legend='this.legend'
-        )
-        BottomStackedBoxPlotChart(
-			:chartData='this.bottomChartData'
-			:legend='this.legend'
-        )
+	.BySubGroupChart
+		.legend
+			Legend(
+				:legend='this.chartLegend'
+
+			)
+		.TopChart
+			TopStackedBoxPlotChart(
+				:chartData='this.topChartData'
+				:legend='this.legend'
+			)
+		.BottomChart
+			BottomStackedBoxPlotChart(
+				:chartData='this.bottomChartData'
+				:legend='this.legend'
+			)
 </template>
 
 <script>
 import TopStackedBoxPlotChart from '@/components/charts/GLR/components/TopStackedBoxPlotChart';
 import BottomStackedBoxPlotChart from '@/components/charts/GLR/components/BottomStackedBoxPlotChart';
 
+import Legend from '@/components/charts/GLR/components/Legend';
+
 export default {
 	name : 'GLRBySubGroupChart',
 
 	components : {
 		TopStackedBoxPlotChart,
-		BottomStackedBoxPlotChart
+		BottomStackedBoxPlotChart,
+		Legend
 	},
 
 	props : {
@@ -28,6 +37,9 @@ export default {
 			type : Object,
 		},
 		legend : {
+			type : Object,
+		},
+		chartLegend : {
 			type : Object,
 		}
 	},
@@ -82,5 +94,16 @@ export default {
 </script>
 
 <style lang="scss">
+.BySubGroupChart {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	padding: 16px;
+	text-align: center;
+	.legend {
 
+		padding-bottom: 50px;
+	}
+	.BottomChart{
+		padding-bottom: 20px;
+	}
+}
 </style>

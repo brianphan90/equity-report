@@ -1,5 +1,9 @@
 <template lang="pug">
 	.ByGradeLevelChart
+		.legend
+			Legend(
+				:legend='this.legend'
+			)
 		.trendChart
 			TrendChart(
 				:currentYear='this.trendChart.currentYear'
@@ -18,6 +22,7 @@ import BottomLine from '@/components/charts/GLR/components/BottomLine';
 import StackBarChart from '@/components/charts/GLR/components/StackBarChart';
 import TrendChart from '@/components/charts/GLR/components/TrendChart';
 
+import Legend from '@/components/charts/GLR/components/Legend';
 
 export default {
 	name : 'GLRByGradeLevelChart',
@@ -25,7 +30,8 @@ export default {
 	components : {
 		BottomLine,
 		StackBarChart,
-		TrendChart
+		TrendChart,
+		Legend
 	},
 
 
@@ -55,5 +61,13 @@ export default {
 
 <style lang="scss">
 .ByGradeLevelChart {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	padding: 16px;
+	text-align: center;
+
+	.legend {
+
+		padding-bottom: 50px;
+	}
 }
 </style>
