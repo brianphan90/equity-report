@@ -50,77 +50,77 @@ export default {
 						label    : '3',
 						negative : {
 							currentYear : 51.78,
-							priorYear   : 0
+							priorYear   : 30
 						},
 						positive : {
 							currentYear : 48.21,
-							priorYear   : 0
+							priorYear   : 70
 						}
 					},
 					{
 						label    : '4',
 						negative : {
 							currentYear : 57.14,
-							priorYear   : 0
+							priorYear   : 50
 						},
 						positive : {
 							currentYear : 42.86,
-							priorYear   : 0,
+							priorYear   : 50
 						}
 					},
 					{
 						label    : '5',
 						negative : {
 							currentYear : 59.79,
-							priorYear   : 0
+							priorYear   : 50
 						},
 						positive : {
 							currentYear : 40.2,
-							priorYear   : 0,
+							priorYear   : 50
 						}
 					},
 					{
 						label    : '6',
 						negative : {
 							currentYear : 70.1,
-							priorYear   : 0
+							priorYear   : 50
 						},
 						positive : {
 							currentYear : 29.91,
-							priorYear   : 0,
+							priorYear   : 50
 						}
 					},
 					{
 						label    : '7',
 						negative : {
 							currentYear : 70.1,
-							priorYear   : 0
+							priorYear   : 73
 						},
 						positive : {
 							currentYear : 29.91,
-							priorYear   : 0,
+							priorYear   : 50
 						}
 					},
 					{
 						label    : '8',
 						negative : {
 							currentYear : 70.1,
-							priorYear   : 0
+							priorYear   : 50
 						},
 						positive : {
 							currentYear : 29.91,
-							priorYear   : 0,
+							priorYear   : 50
 						}
 					},
 					{
 						label    : '9',
 						negative : {
 							currentYear : 70.1,
-							priorYear   : 0
+							priorYear   : 50
 						},
 						positive : {
 							currentYear : 29.91,
-							priorYear   : 0,
+							priorYear   : 50
 						}
 					}
 					]
@@ -145,6 +145,12 @@ export default {
 		bars        : null
 	} ),
 	computed : {
+		getPositiveValues() {
+			return this.data.byGradeLevel.data.map( entry => entry.positive );
+		},
+		getNegativeValues() {
+			return this.data.byGradeLevel.data.map( entry => entry.negative );
+		},
 		groupSpacing() {
 			const sumOfGroupWidths = ( this.groupWidth * this.data.length );
 
@@ -284,14 +290,84 @@ export default {
 
 			this.drawYAxisIndicators( fLines, yOptions );
 			this.drawYAxisIndicators( sLines, yOptions );
+			// const posVals = this.getPositiveValues();
+			const posData = this.computePositiveBarData( this.getPositiveValues, xBoxesData );
+			const negData = this.computeNegativeBarData( this.getNegativeValues, xBoxesData );
+			this.drawBars( posData );
+			this.drawBars( negData );
+			// this.drawBars();
+			// this.drawYAxisIndicators( xBoxesData, yOptions );
 
 		},
-		drawXAixs() {
-			// draw boxes first
-
+		computePositiveBarData( barData, boxData ) {
+			const finalData = [barData.length * 2];
+			const sum = 100;
+			barData.forEach( ( entry, i ) => {
+				const curYear = entry.currentYear;
+				const priYear = entry.priorYear;
+				const curHeight = curYear / sum * boxData[i].y;
+				const priHeight = priYear / sum * boxData[i].y;
+				const curY = this.t + ( boxData[i].y - curHeight );
+				const priY = this.t + ( boxData[i].y - priHeight );
+				const width = boxData[i].width / 5;
+				finalData.push( {
+					width  : boxData[i].width / 5,
+					x      : boxData[i].x + width,
+					y      : curY,
+					height : curHeight,
+					color  : '#94AEB4'
+				} );
+				finalData.push( {
+					width  : boxData[i].width / 5,
+					color  : '#557176',
+					x      : boxData[i].x + width * 3,
+					y      : priY,
+					height : priHeight,
+				} );
+			} );
+			return finalData;
 		},
-		drawYAxis( options ) {
-
+		computeNegativeBarData( barData, boxData ) {
+			const finalData = [barData.length * 2];
+			const sum = 100;
+			barData.forEach( ( entry, i ) => {
+				const curYear = entry.currentYear;
+				const priYear = entry.priorYear;
+				const curHeight = curYear / sum * ( this.ah - ( boxData[i].y + boxData[i].height ) );
+				const priHeight = priYear / sum * ( this.ah - ( boxData[i].y + boxData[i].height ) );
+				const curY = this.t + boxData[i].y + boxData[i].height;
+				const priY = this.t + boxData[i].y + boxData[i].height;
+				const width = boxData[i].width / 5;
+				finalData.push( {
+					width  : boxData[i].width / 5,
+					color  : '#D7B6AA',
+					x      : boxData[i].x + width,
+					y      : curY,
+					height : curHeight,
+				} );
+				finalData.push( {
+					width  : boxData[i].width / 5,
+					color  : '#BE8674',
+					x      : boxData[i].x + width * 3,
+					y      : priY,
+					height : priHeight,
+				} );
+			} );
+			return finalData;
+		},
+		drawBars( barData ) {
+			const barGroups = this.canvas.selectAll( `bars-${this.id}` )
+				.data( barData )
+				.enter()
+				.append( 'g' );
+			barGroups
+				.append( 'rect' )
+				.attr( 'x', d => d.x )
+				.attr( 'y', d => d.y )
+				.attr( 'height', d => d.height )
+				.attr( 'width', d => d.width )
+				.attr( 'opacity', 0.8 )
+				.attr( 'fill', d => d.color );
 		},
 		drawXAxisIndicators( options ) {
 			const {
@@ -317,7 +393,6 @@ export default {
 				};
 
 			} );
-			xAxisData.forEach( ( entry, i ) => console.log( getX( i ) ) );
 			const xAxisLabels = this.canvas
 				.selectAll( 'x-axis-labels axis-label' )
 				.data( xAxisData )
@@ -342,7 +417,6 @@ export default {
 			const biggestXAxisLabelWidth = Math.max( ...xAxisLabelWidths );
 			const rectHeight = biggestXAxisLabelHeight + ( 7 * verticalPadding );
 			const rectWidth = biggestXAxisLabelWidth + ( 15 * verticalPadding );
-			console.log( xAxisLabelDims );
 
 			const dims = ( () => {
 				if ( axis === 'y-top' ) {
@@ -368,7 +442,10 @@ export default {
 				.attr( 'fill', '#E4E4E4' )
 				.attr( 'opacity', 0.8 )
 				.attr( 'height', rectHeight )
+				.attr( 'stroke', 'black' )
+				.attr( 'stroke-width', 2 )
 				.attr( 'width', rectWidth );
+
 			// console.log( barLabelGroup );
 			// ? center texts as necessary
 			// const totalTextSpace = xAxisLabelWidths.reduce( ( sum, w ) => sum + w, 0 );
@@ -380,105 +457,7 @@ export default {
 
 
 		},
-		drawAxisIndicators( options ) {
-			const {
-				axis, // eslint-disable-line
-				range,
-				lines,
-				postChar,
-				nightColor,
-				dayColor,
-				data
-			} = options;
 
-			const color = ( this.mode === 'night' ? nightColor : dayColor );
-
-			const {
-				numberOfIndicators,
-				spaceBetweenLabelsAndLines,
-			} = lines;
-
-			/* draw initial lines and indicators */
-			const rangeDifference = range.max - range.min;
-
-			/* add text labels */
-
-			const labelData = [];
-			for ( let i = 0; i < numberOfIndicators; i++ ) {
-
-				const dominantBaseline = ( () => {
-					if ( i === numberOfIndicators - 1 ) {
-						return 'text-before-edge';
-					}
-
-					if ( i === 0 ) {
-						return 'text-after-edge';
-					}
-
-					return 'middle';
-				} )();
-
-				const y = ( () => {
-					const bottomOfChart      = this.t + this.ah;
-					const distanceFromBottom = i * ( this.ah / ( numberOfIndicators - 1 ) );
-
-					return bottomOfChart - distanceFromBottom;
-				} )();
-
-				const textValue = Math.round( range.min + ( ( i / ( numberOfIndicators - 1 ) ) * rangeDifference ) );
-				labelData.push( {
-					y,
-					text : `${textValue}${postChar || ''}`,
-					dominantBaseline,
-					nightColor,
-					dayColor,
-				} );
-
-			}
-			const lineIndicatorGroups = this.canvas
-				.selectAll( `line-indicators-${this.id}` )
-				.data( labelData )
-				.enter()
-				.append( 'g' ) // will append as many g's as the length of labelData
-				.attr( 'class', `line-indicators-${this.id}` );
-
-			if ( options.labels !== false ) {
-
-				/* draw line lables */
-				const lineLabels = lineIndicatorGroups.append( 'text' )
-					.attr( 'class', `line-indicators label-${this.id} dynamic-text-${this.id}` )
-					.attr( 'dominant-baseline', d => d.dominantBaseline )
-					.attr( 'x', this.l )
-					.attr( 'y', d => d.y )
-					.style( 'font-size', '10px' )
-					.style( 'fill', color )
-					.text( d => d.text );
-
-				/* right align text */
-
-				const lineLabelWidths  = Array.from( lineLabels._groups[0] ).map( a => a.getBBox().width );
-				const biggestLineLabel = Math.max( ...lineLabelWidths );
-
-				lineLabels.attr( 'x', biggestLineLabel )
-					.attr( 'text-anchor', 'end' );
-
-				this.updateDims( {
-					l : biggestLineLabel + spaceBetweenLabelsAndLines
-				} );
-
-			}
-
-			/* draw lines */
-
-			lineIndicatorGroups.append( 'path' )
-				.attr( 'd', d => `M ${this.l}, ${d.y} L ${this.l + this.aw}, ${d.y}` )
-				.attr( 'class', `dynamic-stroke-${this.id}` )
-				.style( 'stroke-dasharray', '2, 4' )
-				.style( 'stroke', color );
-
-			return lineIndicatorGroups;
-
-		},
 		drawYAxisIndicators( boxData, options ) {
 			const {
 				axis,
@@ -502,7 +481,6 @@ export default {
 			/* draw initial lines and indicators */
 			const rangeDifference = range.max - range.min;
 			/* add text labels */
-
 			const labelData = [];
 			for ( let i = 0; i < numberOfIndicators; i++ ) {
 
@@ -520,16 +498,14 @@ export default {
 
 				const y = ( () => {
 					// const bottomOfChart = this.t + firstEnd;
-					// const bottomOfChart = thirdTry + firstEnd;
+					// const bottomOfChart = this.t + this.ah;
 					const bottomOfChart = start + end;
-					console.log( bottomOfChart );
 					const distanceFromBottom = i * ( end / ( numberOfIndicators - 1 ) );
 					// const bottomOfChart      = this.t + this.ah;
 					// const distanceFromBottom = i * ( secondStart / ( numberOfIndicators - 1 ) );
 					// const firstHalf  = this.t + boxData[0].y;
 					// distanceFromBottom = i * (boxData[0].y / (numberOfIndicators -1 ))
 					// const secondHalf = this.t + this
-					console.log( distanceFromBottom );
 					return bottomOfChart - distanceFromBottom;
 				} );
 
@@ -602,8 +578,10 @@ export default {
 			lineIndicatorGroups.append( 'path' )
 				.attr( 'd', d => d.path() )
 				.attr( 'class', `dynamic-stroke-${this.id} axis-indicators` )
+				.attr( 'opacity', '0.7' )
 				.style( 'stroke-dasharray', '2, 4' )
 				.style( 'stroke', 'grey' );
+
 
 			return lineIndicatorGroups;
 
