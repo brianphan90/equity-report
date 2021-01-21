@@ -151,100 +151,6 @@ export default {
 		getNegativeValues() {
 			return this.data.byGradeLevel.data.map( entry => entry.negative );
 		},
-		groupSpacing() {
-			const sumOfGroupWidths = ( this.groupWidth * this.data.length );
-
-			return ( this.aw - sumOfGroupWidths ) / ( this.data.length );
-			// return this.options.groupSpacing || ;
-		},
-
-		barSpacing() {
-			return this.options.barSpacing || 2;
-		},
-
-		numberOfGaps() {
-			const { data } = this;
-
-			if ( !data ) {
-				return 1;
-			}
-
-			return data.length + 1;
-		},
-
-		numberOfBarsInGroups() {
-			const { legend } = this;
-
-			return Object.keys( legend ).length;
-		},
-
-		totalBars() {
-			const { numberOfBarsInGroups, data } = this;
-
-			return numberOfBarsInGroups * data.length;
-		},
-
-		totalSpaceBetweenGroups() {
-			return this.numberOfGaps * this.groupSpacing;
-		},
-
-		spaceBetweenBars() {
-			return this.numberOfBarsInGroups * this.barSpacing;
-		},
-
-		totalSpaceBetweenBars() {
-			return this.spaceBetweenBars * this.data.length;
-		},
-
-		totalSpace() {
-			const { totalSpaceBetweenGroups, totalSpaceBetweenBars } = this;
-
-			return totalSpaceBetweenGroups + totalSpaceBetweenBars;
-		},
-
-		barWidth() {
-			return 8;
-		},
-
-		groupWidth() {
-			const { barWidth, numberOfBarsInGroups, spaceBetweenBars } = this;
-
-			return ( barWidth * numberOfBarsInGroups ) + spaceBetweenBars;
-		},
-
-		range() {
-			const { data, legend } = this;
-			const barKeys = Object.keys( legend );
-
-			const values = data.reduce( ( arr, d ) => {
-
-				barKeys.forEach( ( key ) => {
-					const value = d.value[key];
-
-					if ( !value ) {
-						return;
-					}
-
-					arr.push( value );
-				} );
-
-				return arr;
-			}, [] );
-
-			if ( !values.length ) {
-				return {
-					min : 0,
-					max : 100
-				};
-			}
-
-			const range = this.getDataRange( values, false );
-
-			return {
-				min : range.start,
-				max : range.end
-			};
-		},
 
 		mode() {
 			return this.$store.state.user.mode;
@@ -417,7 +323,7 @@ export default {
 			const biggestXAxisLabelWidth = Math.max( ...xAxisLabelWidths );
 			const rectHeight = biggestXAxisLabelHeight + ( 7 * verticalPadding );
 			const rectWidth = biggestXAxisLabelWidth + ( 15 * verticalPadding );
-
+			console.log( xAxisLabelDims );
 			const dims = ( () => {
 				if ( axis === 'y-top' ) {
 					return {
@@ -438,7 +344,7 @@ export default {
 				.enter()
 				.append( 'rect' )
 				.attr( 'x', ( d, i ) => getX( i ) - ( rectWidth / 2 ) )
-				.attr( 'y', d => this.t + this.ah / 2 ) // middle
+				.attr( 'y', d => ( this.t + this.ah ) / 2 ) // middle
 				.attr( 'fill', '#E4E4E4' )
 				.attr( 'opacity', 0.8 )
 				.attr( 'height', rectHeight )
@@ -452,6 +358,7 @@ export default {
 			// const leftOverSpace  = this.aw - totalTextSpace;
 			// const spaceAround    = ( leftOverSpace / ( values.length + 1 ) );
 			const barLabelDims = barLabelGroup._groups[0].map( entry => entry.getBBox() );
+			console.log( barLabelDims );
 			return barLabelDims;
 			// return xAxisData;
 
