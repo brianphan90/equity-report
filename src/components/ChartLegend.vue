@@ -6,8 +6,8 @@ legend(:style='{ gridTemplateColumns }')
 			:style='getStyle( item )'
 		)
 		.label
-			label.dynamic-mode-text {{ item.label }}
-			label.dynamic-mode-text {{ item.value }}
+			label.dynamic-mode-text(v-if='item.value') {{ item.label }} - {{ item.value }}
+			label.dynamic-mode-text(v-else) {{ item.label }}
 			p.dynamic-mode-text.description(v-if='item.description') - {{ item.description }}
 	.titled
 		.item.titled-legend-item(

@@ -1,8 +1,7 @@
 <template lang="pug">
 .Legend
-    h1 By Grade Level
-    p TOP: Percent of students who are grade-level ready or exceeding grade-level expectations
-    p BOTTOM: Percent of students within each of the five GLR achievement bands over 2-years.
+    h1 {{this.legendInfo.title}}
+    p(v-for='item in this.legendInfo.paragraphs') {{ item }}
     ChartLegend(
         :legend='this.legend' :columns=2
     )
@@ -17,6 +16,9 @@ export default {
 
 	props : {
 		legend : {
+			type : Object,
+		},
+		legendInfo : {
 			type : Object,
 		}
 	},

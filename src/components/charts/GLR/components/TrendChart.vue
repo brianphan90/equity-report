@@ -134,7 +134,7 @@ export default {
 
 			const textLabels = barLabelGroups.append( 'text' )
 				.attr( 'x', ( d, i ) => this.getX( i ) )
-				.attr( 'y', d => 10 )
+				.attr( 'y', d => 15 )
 				.attr( 'class', 'bar-value' )
 				.attr( 'text-anchor', 'middle' )
 				.attr( 'dominant-baseline', 'middle' )
@@ -158,7 +158,7 @@ export default {
 			const maxTextHeight = Math.max( ...textDims.map( dims => dims.height ) );
 
 			const rectangleWidth = maxTextWidth + ( 3 * verticalPadding );
-			const rectangleHeight  = maxTextHeight + ( 2 * verticalPadding );
+			const rectangleHeight  = maxTextHeight + ( 1 * verticalPadding );
 
 
 			barGroups.append( 'rect' )

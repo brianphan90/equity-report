@@ -3,6 +3,7 @@
 		.legend
 			Legend(
 				:legend='this.legend'
+				:legendInfo='this.legendInfo'
 			)
 		.trendChart
 			TrendChart(
@@ -48,7 +49,13 @@ export default {
 	},
 
 	data : () => ( {
-
+		legendInfo : {
+			title      : 'By Grade Level',
+			paragraphs : [
+				'TOP: Percent of students who are grade-level ready or exceeding grade-level expectations',
+				'BOTTOM: Percent of students within each of the five GLR achievement bands over 2-years.'
+			]
+		}
 	} ),
 
 

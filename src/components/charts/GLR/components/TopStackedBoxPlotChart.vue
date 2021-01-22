@@ -120,8 +120,8 @@ export default {
 				.append( 'g' );
 
 			const textLabels = barLabelGroups.append( 'text' )
-				.attr( 'x', ( d, i ) => this.getX( i ) )
-				.attr( 'y', d => 10 )
+				.attr( 'x', ( d, i ) => this.getX( i ) ) // add 5px
+				.attr( 'y', d => 15 ) // static postition
 				.attr( 'class', 'bar-value' )
 				.attr( 'text-anchor', 'middle' )
 				.attr( 'dominant-baseline', 'middle' )
@@ -150,7 +150,7 @@ export default {
 
 			barGroups.append( 'rect' )
 				.lower()
-				.attr( 'x', ( d, i ) => this.getX( i ) - 20 )
+				.attr( 'x', ( d, i ) => this.getX( i ) - 25 )
 				.attr( 'width', rectangleWidth )
 				.attr( 'fill', '#5492B5' )
 				.attr( 'height', rectangleHeight )

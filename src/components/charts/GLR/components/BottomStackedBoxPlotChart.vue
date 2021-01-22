@@ -122,7 +122,7 @@ export default {
 
 			const textLabels = barLabelGroups.append( 'text' )
 				.attr( 'x', ( d, i ) => this.getX( i ) )
-				.attr( 'y', d => 10 )
+				.attr( 'y', d => 12 )
 				.attr( 'class', 'bar-value' )
 				.attr( 'text-anchor', 'middle' )
 				.attr( 'dominant-baseline', 'middle' )
@@ -140,18 +140,18 @@ export default {
 					.getBBox()
 			);
 
-			const verticalPadding = 5;
+			const verticalPadding = 1;
 
 			const maxTextWidth  = Math.max( ...textDims.map( dims => dims.width ) );
 			const maxTextHeight = Math.max( ...textDims.map( dims => dims.height ) );
 
-			const rectangleWidth = maxTextWidth + ( 1 * verticalPadding );
+			const rectangleWidth = maxTextWidth + ( 15 * verticalPadding );
 			const rectangleHeight  = maxTextHeight + ( 1 * verticalPadding );
 
 
 			barGroups.append( 'rect' )
 				.lower()
-				.attr( 'x', ( d, i ) => this.getX( i ) - 20 )
+				.attr( 'x', ( d, i ) => this.getX( i ) - 25 )
 				.attr( 'width', rectangleWidth )
 				.attr( 'fill', 'black' )
 				.attr( 'height', rectangleHeight )
@@ -163,7 +163,7 @@ export default {
 
 			const textLabels = barLabelGroups.append( 'text' )
 				.attr( 'x', ( d, i ) => this.getX( i ) )
-				.attr( 'y', d => 120 + this.b )
+				.attr( 'y', d => 115 + this.b )
 				.attr( 'class', 'bar-value' )
 				.attr( 'text-anchor', 'middle' )
 				.attr( 'dominant-baseline', 'middle' )
@@ -181,12 +181,12 @@ export default {
 					.getBBox()
 			);
 
-			const verticalPadding = 5;
+			const verticalPadding = 1;
 
 			const maxTextWidth  = Math.max( ...textDims.map( dims => dims.width ) );
 			const maxTextHeight = Math.max( ...textDims.map( dims => dims.height ) );
 
-			const rectangleWidth = maxTextWidth + ( 2 * verticalPadding );
+			const rectangleWidth = maxTextWidth + ( 10 * verticalPadding );
 			const rectangleHeight  = maxTextHeight + ( 1 * verticalPadding );
 
 

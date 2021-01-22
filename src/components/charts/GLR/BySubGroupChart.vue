@@ -3,7 +3,7 @@
 		.legend
 			Legend(
 				:legend='this.chartLegend'
-
+				:legendInfo='this.legendInfo'
 			)
 		.TopChart
 			TopStackedBoxPlotChart(
@@ -83,7 +83,9 @@ export default {
 	},
 
 	data : () => ( {
-
+		legendInfo : {
+			title : 'By Subgroup',
+		}
 	} ),
 
 
